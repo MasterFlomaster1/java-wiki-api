@@ -16,10 +16,13 @@ public enum Prop {
     TEMPLATES ("templates"),
     VIDEO_INFO ("videoinfo");
 
-    public final String value;
+    private final String value;
 
     Prop(String value) {
         this.value = value;
     }
 
+    public String getValue() {
+        return value;
+    }
 }

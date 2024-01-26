@@ -1,24 +1,26 @@
 package dev.masterflomaster1.jwa;
 
-import dev.masterflomaster1.jwa.model.IIProp;
-import dev.masterflomaster1.jwa.model.Prop;
 import dev.masterflomaster1.jwa.model.action.AbstractAction;
-
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 
 public class WikiApiRequest {
 
-    public final String url;
+    private final String url;
 
-    WikiApiRequest(String url) {
+    private WikiApiRequest(String url) {
         this.url = url;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public enum Format { JSON, JSON_FM, NONE, PHP, PHP_FM, RAW_FM, XML, XML_FM }
+
     public static class Builder {
 
-        String base = "https://en.wikipedia.org/w/api.php";
+        private WikiApiRequest request;
+
+        private String base = "https://en.wikipedia.org/w/api.php";
         private final String format = "json";
         private AbstractAction action;
 

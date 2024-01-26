@@ -3,6 +3,7 @@ package dev.masterflomaster1.jwa.model.action;
 import dev.masterflomaster1.jwa.model.Meta;
 import dev.masterflomaster1.jwa.model.Prop;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -13,7 +14,7 @@ import java.util.Set;
 public class Query extends AbstractAction {
 
     // Which properties to get for the queried pages.
-    private Set<Prop> prop;
+    private Set<Prop> prop = new HashSet<>();
 
     /*
     Which lists to get.
@@ -38,5 +39,30 @@ public class Query extends AbstractAction {
     private List<String> titles;
 
 
+
+    private Query() {
+
+    }
+
+    public static class Builder {
+
+        private Query query = new Query();
+
+        public Builder addProp(Prop prop) {
+            query.prop.add(prop);
+            return this;
+        }
+
+        public Builder setProps(Set<Prop> props) {
+            query.prop = props;
+            return this;
+        }
+
+        public Query build() {
+
+            return query;
+        }
+
+    }
 
 }

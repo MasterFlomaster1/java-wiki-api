@@ -9,8 +9,6 @@ public class Revisions extends AbstractProp {
      */
     private Set<RvProp> rvProp;
 
-
-
     public enum RvProp {
 
         COMMENT ("comment"),
@@ -37,6 +35,9 @@ public class Revisions extends AbstractProp {
             this.value = value;
         }
 
+        public String value() {
+            return value;
+        }
     }
 
 }
