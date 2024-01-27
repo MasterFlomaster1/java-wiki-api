@@ -26,6 +26,7 @@ public class WikiApiRequest {
 
         public Builder setAction(AbstractAction action) {
             this.action = action;
+            base += action.getUrlPart();
             return this;
         }
 
@@ -34,6 +35,7 @@ public class WikiApiRequest {
 
             // Set format
             this.base += "&format=" + format;
+            this.base += "&formatversion=2";
 
             return new WikiApiRequest(base);
         }

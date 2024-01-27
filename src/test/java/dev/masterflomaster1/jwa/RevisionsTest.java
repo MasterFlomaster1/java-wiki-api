@@ -1,10 +1,11 @@
 package dev.masterflomaster1.jwa;
 
-import dev.masterflomaster1.jwa.model.Prop;
 import dev.masterflomaster1.jwa.model.action.Query;
+import dev.masterflomaster1.jwa.model.prop.Revisions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.Set;
 
 public class RevisionsTest {
 
@@ -15,11 +16,18 @@ public class RevisionsTest {
         var a = new WikiApiRequest.Builder()
                 .setAction(
                         new Query.Builder()
-                                .addProp(Prop.REVISIONS)
+                                .addProp(
+                                        new Revisions.Builder()
+                                                .setRvProp(Set.of(Revisions.RvProp.TIMESTAMP, Revisions.RvProp.USER))
+                                                .setRvLimit(15)
+                                                .build()
+                                )
+                                .setTitles(Set.of("Page:Java_(programming_language)"))
                                 .build()
                 )
                 .build();
 
+        System.out.println(a.getUrl());
         System.out.println(api.execute(a));
     }
 
