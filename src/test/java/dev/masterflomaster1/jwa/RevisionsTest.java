@@ -22,7 +22,7 @@ public class RevisionsTest {
                                                 .setRvLimit(15)
                                                 .build()
                                 )
-                                .setTitles(Set.of("Page:Java_(programming_language)"))
+                                .setTitles(Set.of("Java_(programming_language)"))
                                 .build()
                 )
                 .build();

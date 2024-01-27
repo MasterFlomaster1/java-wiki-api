@@ -61,7 +61,7 @@ public class Query extends AbstractAction {
 
         public Builder setTitles(Set<String> titles) {
             query.titles = titles;
-            query.urlPart += "&titles=" + String.join("|", titles);
+            query.urlPart += "&titles=" + String.join("%7C", titles);
             return this;
         }
 
