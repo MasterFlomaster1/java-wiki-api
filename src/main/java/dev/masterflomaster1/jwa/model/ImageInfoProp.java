@@ -1,5 +1,7 @@
 package dev.masterflomaster1.jwa.model;
 
+import dev.masterflomaster1.jwa.ISO639Language;
+
 import java.util.Date;
 import java.util.Set;
 

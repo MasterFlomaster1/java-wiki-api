@@ -1,4 +1,4 @@
-package dev.masterflomaster1.jwa.model;
+package dev.masterflomaster1.jwa;
 
 public enum ISO639Language {
 

@@ -1,19 +1,19 @@
 package dev.masterflomaster1.jwa;
 
-import dev.masterflomaster1.jwa.model.Query;
+import dev.masterflomaster1.jwa.model.QueryAction;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-public class QueryTest {
+public class QueryActionTest {
 
     @Test
     void test() throws WikiApiException, IOException, InterruptedException {
         WikiApi api = new WikiApi();
 
         var a = new WikiApiRequest.Builder()
-                .setAction(
-                        new Query.Builder()
+                .action(
+                        new QueryAction.Builder()
                                 .build()
                 )
                 .build();

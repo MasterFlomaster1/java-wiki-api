@@ -1,8 +1,7 @@
 package dev.masterflomaster1.jwa;
 
-import dev.masterflomaster1.jwa.model.ISO639Language;
 import dev.masterflomaster1.jwa.model.ImageInfoProp;
-import dev.masterflomaster1.jwa.model.Query;
+import dev.masterflomaster1.jwa.model.QueryAction;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -15,9 +14,9 @@ public class ImageInfoPropTest {
         WikiApi api = new WikiApi();
 
         var a = new WikiApiRequest.Builder()
-                .setAction(
-                        new Query.Builder()
-                                .setProp(Set.of(
+                .action(
+                        new QueryAction.Builder()
+                                .prop(Set.of(
                                             new ImageInfoProp.Builder()
                                                     .iiProp(Set.of(ImageInfoProp.IIProp.USER, ImageInfoProp.IIProp.TIMESTAMP))
                                                     .iiLimit(10)
@@ -25,7 +24,7 @@ public class ImageInfoPropTest {
                                                     .build()
                                         )
                                 )
-                                .setTitles(Set.of("Java_(programming_language)"))
+                                .titles(Set.of("Java_(programming_language)"))
                                 .build()
                 )
                 .build();

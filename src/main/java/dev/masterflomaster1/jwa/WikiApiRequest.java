@@ -1,6 +1,7 @@
 package dev.masterflomaster1.jwa;
 
 import dev.masterflomaster1.jwa.model.AbstractAction;
+import dev.masterflomaster1.jwa.model.AbstractFormat;
 
 public class WikiApiRequest {
 
@@ -22,9 +23,21 @@ public class WikiApiRequest {
 
         private final String format = "json";
 
-        public Builder setAction(AbstractAction action) {
+        public Builder action(AbstractAction action) {
             request.action = action;
             request.url += action.getUrlPart();
+            return this;
+        }
+
+        public Builder format(AbstractFormat format) {
+            return this;
+        }
+
+        public Builder servedBy() {
+            return this;
+        }
+
+        public Builder curTimestamp() {
             return this;
         }
 

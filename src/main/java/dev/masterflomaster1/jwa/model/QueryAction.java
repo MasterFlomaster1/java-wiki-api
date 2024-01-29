@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
  * Fetch data from and about MediaWiki.
  * All data modifications will first have to use query to acquire a token to prevent abuse from malicious sites.
  */
-public class Query extends AbstractAction {
+public class QueryAction extends AbstractAction {
 
     private Set<AbstractProp> prop;
     private Set<AbstractList> list;
@@ -16,22 +16,22 @@ public class Query extends AbstractAction {
     private boolean export = false;
     private Set<String> titles;
 
-    private Query() {
+    private QueryAction() {
         urlPart = "?action=query";
     }
 
     public static class Builder {
 
-        private final Query query = new Query();
+        private final QueryAction queryAction = new QueryAction();
 
         /**
          * Which properties to get for the queried pages.
          * @param props set of properties
          * @return {@code Builder}
          */
-        public Builder setProp(Set<AbstractProp> props) {
-            query.prop = props;
-            query.urlPart += props.stream()
+        public Builder prop(Set<AbstractProp> props) {
+            queryAction.prop = props;
+            queryAction.urlPart += props.stream()
                     .map(AbstractProp::getUrl)
                     .collect(Collectors.joining());
 
@@ -44,8 +44,8 @@ public class Query extends AbstractAction {
          * @param lists set of lists
          * @return {@code Builder}
          */
-        public Builder setList(Set<AbstractList> lists) {
-            query.list = lists;
+        public Builder list(Set<AbstractList> lists) {
+            queryAction.list = lists;
 
             return this;
         }
@@ -55,8 +55,8 @@ public class Query extends AbstractAction {
          * @param meta set of metadata to get
          * @return {@code Builder}
          */
-        public Builder setMeta(Set<AbstractMeta> meta) {
-            query.meta = meta;
+        public Builder meta(Set<AbstractMeta> meta) {
+            queryAction.meta = meta;
             return this;
         }
 
@@ -65,8 +65,8 @@ public class Query extends AbstractAction {
          * @return {@code Builder}
          */
         public Builder indexPageIds() {
-            query.indexPageIDs = true;
-            query.urlPart += "&indexpageids=1";
+            queryAction.indexPageIDs = true;
+            queryAction.urlPart += "&indexpageids=1";
             return this;
         }
 
@@ -75,8 +75,8 @@ public class Query extends AbstractAction {
          * @return {@code Builder}
          */
         public Builder export() {
-            query.export = true;
-            query.urlPart += "&export=1";
+            queryAction.export = true;
+            queryAction.urlPart += "&export=1";
             return this;
         }
 
@@ -86,14 +86,14 @@ public class Query extends AbstractAction {
          * @param titles set of titles
          * @return {@code Builder}
          */
-        public Builder setTitles(Set<String> titles) {
-            query.titles = titles;
-            query.urlPart += "&titles=" + String.join("%7C", titles);
+        public Builder titles(Set<String> titles) {
+            queryAction.titles = titles;
+            queryAction.urlPart += "&titles=" + String.join("%7C", titles);
             return this;
         }
 
-        public Query build() {
-            return query;
+        public QueryAction build() {
+            return queryAction;
         }
 
     }
