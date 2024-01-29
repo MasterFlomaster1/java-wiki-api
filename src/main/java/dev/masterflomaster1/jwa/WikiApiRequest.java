@@ -1,13 +1,13 @@
 package dev.masterflomaster1.jwa;
 
-import dev.masterflomaster1.jwa.model.action.AbstractAction;
+import dev.masterflomaster1.jwa.model.AbstractAction;
 
 public class WikiApiRequest {
 
-    private final String url;
+    private String url = "https://en.wikipedia.org/w/api.php";
+    private AbstractAction action;
 
-    private WikiApiRequest(String url) {
-        this.url = url;
+    private WikiApiRequest() {
     }
 
     public String getUrl() {
@@ -18,26 +18,24 @@ public class WikiApiRequest {
 
     public static class Builder {
 
-        private WikiApiRequest request;
+        private final WikiApiRequest request = new WikiApiRequest();
 
-        private String base = "https://en.wikipedia.org/w/api.php";
         private final String format = "json";
-        private AbstractAction action;
 
         public Builder setAction(AbstractAction action) {
-            this.action = action;
-            base += action.getUrlPart();
+            request.action = action;
+            request.url += action.getUrlPart();
             return this;
         }
 
-        public WikiApiRequest build() {
-            // Set action
+        public WikiApiRequest build() throws WikiApiException {
+            if (request.action == null)
+                throw new WikiApiException("You must specify one action to generate a request");
 
-            // Set format
-            this.base += "&format=" + format;
-            this.base += "&formatversion=2";
+            request.url += "&format=" + format;
+            request.url += "&formatversion=2";
 
-            return new WikiApiRequest(base);
+            return request;
         }
 
     }

@@ -1,11 +1,11 @@
-package dev.masterflomaster1.jwa.model.prop;
+package dev.masterflomaster1.jwa.model;
 
 import java.util.Set;
 
 /**
  * List all categories the pages belong to.
  */
-public class Categories extends AbstractProp {
+public class CategoriesProp extends AbstractProp {
 
     private Set<ClProp> clProp;
 

@@ -1,6 +1,6 @@
 package dev.masterflomaster1.jwa.model;
 
-import static dev.masterflomaster1.jwa.model.prop.Revisions.RvProp;
+import static dev.masterflomaster1.jwa.model.Revisions.RvProp;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -12,11 +12,5 @@ public class UrlHelper {
                 .map(RvProp::value)
                 .collect(Collectors.joining("%7C"));
     }
-
-//    public static String concat(Set<Prop> set) {
-//        return set.stream()
-//                .map(Prop::getValue)
-//                .collect(Collectors.joining(""));
-//    }
 
 }

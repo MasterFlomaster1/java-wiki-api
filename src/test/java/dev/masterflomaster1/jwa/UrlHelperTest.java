@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Set;
 
-import static dev.masterflomaster1.jwa.model.prop.Revisions.RvProp;
+import static dev.masterflomaster1.jwa.model.Revisions.RvProp;
 
 public class UrlHelperTest {
 

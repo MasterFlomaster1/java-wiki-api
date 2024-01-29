@@ -1,4 +1,4 @@
-package dev.masterflomaster1.jwa.model.action;
+package dev.masterflomaster1.jwa.model;
 
 public abstract class AbstractAction {
 

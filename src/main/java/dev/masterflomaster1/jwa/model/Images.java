@@ -1,4 +1,4 @@
-package dev.masterflomaster1.jwa.model.prop;
+package dev.masterflomaster1.jwa.model;
 
 public class Images extends AbstractProp {
 }

@@ -1,6 +1,4 @@
-package dev.masterflomaster1.jwa.model.prop;
-
-import dev.masterflomaster1.jwa.model.UrlHelper;
+package dev.masterflomaster1.jwa.model;
 
 import java.util.Set;
 
