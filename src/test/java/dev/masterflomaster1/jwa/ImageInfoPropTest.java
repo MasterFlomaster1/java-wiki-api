@@ -10,7 +10,7 @@ import java.util.Set;
 public class ImageInfoPropTest {
 
     @Test
-    void test() throws IOException, InterruptedException, WikiApiException {
+    void test() throws IOException, InterruptedException, WikiApiSyntaxException {
         WikiApi api = new WikiApi();
 
         var a = new WikiApiRequest.Builder()

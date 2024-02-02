@@ -66,9 +66,9 @@ public class WikiApiRequest {
             return this;
         }
 
-        public WikiApiRequest build() throws WikiApiException {
+        public WikiApiRequest build() throws WikiApiSyntaxException {
             if (request.action == null)
-                throw new WikiApiException("You must specify one action to generate a request");
+                throw new WikiApiSyntaxException("You must specify one action to generate a request");
 
             request.url += "&format=json";
             request.url += "&formatversion=2";

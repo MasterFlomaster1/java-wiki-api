@@ -10,7 +10,7 @@ import java.util.Set;
 public class CategoriesPropTest {
 
     @Test
-    void test() throws WikiApiException, IOException, InterruptedException {
+    void test() throws WikiApiSyntaxException, IOException, InterruptedException {
         WikiApi api = new WikiApi();
 
         var a = new WikiApiRequest.Builder()

@@ -10,7 +10,7 @@ public class RequestTest {
     @Test
     @DisplayName("Exception is thrown when the action is not specified")
     void shouldThrownExceptionOnEmptyAction() {
-        assertThrows(WikiApiException.class, () -> new WikiApiRequest.Builder().build());
+        assertThrows(WikiApiSyntaxException.class, () -> new WikiApiRequest.Builder().build());
     }
 
 }

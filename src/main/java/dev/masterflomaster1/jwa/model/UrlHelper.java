@@ -1,6 +1,6 @@
 package dev.masterflomaster1.jwa.model;
 
-import static dev.masterflomaster1.jwa.model.Revisions.RvProp;
+import static dev.masterflomaster1.jwa.model.RevisionsProp.RvProp;
 
 import java.util.Set;
 import java.util.stream.Collectors;
