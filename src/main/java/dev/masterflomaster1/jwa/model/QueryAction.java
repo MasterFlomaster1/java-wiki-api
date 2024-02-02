@@ -57,6 +57,9 @@ public class QueryAction extends AbstractAction {
          */
         public Builder meta(Set<AbstractMeta> meta) {
             queryAction.meta = meta;
+            queryAction.urlPart += meta.stream()
+                    .map(AbstractMeta::getUrl)
+                    .collect(Collectors.joining());
             return this;
         }
 

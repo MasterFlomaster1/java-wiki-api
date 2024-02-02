@@ -1,4 +1,4 @@
-package dev.masterflomaster1.jwa.model;
+package dev.masterflomaster1.jwa;
 
 import static dev.masterflomaster1.jwa.model.RevisionsProp.RvProp;
 
