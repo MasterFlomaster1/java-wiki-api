@@ -1,7 +1,5 @@
 package dev.masterflomaster1.jwa.model;
 
-import dev.masterflomaster1.jwa.WikiApiSyntaxException;
-
 import java.util.Set;
 import java.util.stream.Collectors;
 

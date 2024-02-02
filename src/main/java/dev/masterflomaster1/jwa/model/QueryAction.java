@@ -1,5 +1,7 @@
 package dev.masterflomaster1.jwa.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -91,7 +93,9 @@ public class QueryAction extends AbstractAction {
          */
         public Builder titles(Set<String> titles) {
             queryAction.titles = titles;
-            queryAction.urlPart += "&titles=" + String.join("%7C", titles);
+            queryAction.urlPart += "&titles=" + titles.stream()
+                    .map(str -> URLEncoder.encode(str, StandardCharsets.UTF_8))
+                    .collect(Collectors.joining("%7C"));
             return this;
         }
 

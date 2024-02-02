@@ -1,9 +1,9 @@
 package dev.masterflomaster1.jwa.model;
 
-import dev.masterflomaster1.jwa.UrlHelper;
 import dev.masterflomaster1.jwa.WikiApiSyntaxException;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Get revision information.
@@ -59,7 +59,9 @@ public class RevisionsProp extends AbstractProp {
                 throw new WikiApiSyntaxException("Field already called");
 
             revisionsProp.rvProp = rvProp;
-            revisionsProp.url += "&rvprop=" + UrlHelper.concat(rvProp);
+            revisionsProp.url += "&rvprop=" + rvProp.stream()
+                    .map(RvProp::value)
+                    .collect(Collectors.joining("%7C"));
             return this;
         }
 
