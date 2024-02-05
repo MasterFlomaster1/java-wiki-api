@@ -3,6 +3,8 @@ package dev.masterflomaster1.jwa.model;
 import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
 import dev.masterflomaster1.jwa.WikiApiSyntaxException;
+import dev.masterflomaster1.jwa.model.action.QueryAction;
+import dev.masterflomaster1.jwa.model.meta.SiteInfoMeta;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

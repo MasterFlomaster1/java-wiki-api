@@ -1,8 +1,9 @@
 package dev.masterflomaster1.jwa;
 
 import com.google.gson.annotations.SerializedName;
+import dev.masterflomaster1.jwa.response.Query;
 
-public class Response {
+public final class Response {
 
     @SerializedName("batchcomplete")
     private boolean batchComplete;
@@ -19,6 +20,37 @@ public class Response {
     @SerializedName("errorlang")
     private String errorLang;
 
+    @SerializedName("query")
+    private Query query;
+
+    private Response() {
+
+    }
+
+    public boolean isBatchComplete() {
+        return batchComplete;
+    }
+
+    public String getServedBy() {
+        return servedBy;
+    }
+
+    public String getCurTimestamp() {
+        return curTimestamp;
+    }
+
+    public String getUserLang() {
+        return userLang;
+    }
+
+    public String getErrorLang() {
+        return errorLang;
+    }
+
+    public Query getQuery() {
+        return query;
+    }
+
     @Override
     public String toString() {
         return "Response{" +
@@ -27,6 +59,7 @@ public class Response {
                 ", curTimestamp='" + curTimestamp + '\'' +
                 ", userLang='" + userLang + '\'' +
                 ", errorLang='" + errorLang + '\'' +
+                ", query=" + query +
                 '}';
     }
 }

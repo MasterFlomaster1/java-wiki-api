@@ -3,7 +3,7 @@ package dev.masterflomaster1.jwa.model;
 import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiSyntaxException;
 import dev.masterflomaster1.jwa.WikiApiRequest;
-import org.junit.Assert;
+import dev.masterflomaster1.jwa.model.action.TorBlockAction;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

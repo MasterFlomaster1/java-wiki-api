@@ -1,7 +1,8 @@
 package dev.masterflomaster1.jwa;
 
-import dev.masterflomaster1.jwa.model.ImageInfoProp;
-import dev.masterflomaster1.jwa.model.QueryAction;
+import dev.masterflomaster1.jwa.model.prop.ImageInfoProp;
+import dev.masterflomaster1.jwa.model.action.QueryAction;
+import dev.masterflomaster1.jwa.util.ISO639Language;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

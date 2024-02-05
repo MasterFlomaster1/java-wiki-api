@@ -1,8 +1,8 @@
 package dev.masterflomaster1.jwa;
 
 import com.google.gson.Gson;
-import dev.masterflomaster1.jwa.model.QueryAction;
-import dev.masterflomaster1.jwa.model.RevisionsProp;
+import dev.masterflomaster1.jwa.model.action.QueryAction;
+import dev.masterflomaster1.jwa.model.prop.RevisionsProp;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 

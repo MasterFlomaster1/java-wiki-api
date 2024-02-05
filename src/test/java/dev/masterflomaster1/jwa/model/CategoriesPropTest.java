@@ -1,8 +1,15 @@
 package dev.masterflomaster1.jwa.model;
 
+import com.google.gson.Gson;
+import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
 import dev.masterflomaster1.jwa.WikiApiSyntaxException;
+import dev.masterflomaster1.jwa.model.action.QueryAction;
+import dev.masterflomaster1.jwa.model.prop.CategoriesProp;
+import dev.masterflomaster1.jwa.response.Category;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -12,9 +19,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CategoriesPropTest {
 
+    private static WikiApi api;
+    private static Gson gson;
+
+    @BeforeAll
+    static void before() {
+        api = new WikiApi();
+        gson = new Gson();
+    }
+
     @Test
-    void test() throws WikiApiSyntaxException, IOException, InterruptedException {
-        WikiApi api = new WikiApi();
+    @DisplayName("Get a list of categories the page Albert Einstein belongs to")
+    void testExample1() throws WikiApiSyntaxException, IOException, InterruptedException {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .prop(Set.of(
@@ -29,8 +45,11 @@ class CategoriesPropTest {
                 )
                 .build();
 
-        System.out.println(a.getUrl());
-        System.out.println(api.execute(a));
+        Response r = gson.fromJson(api.execute(a), Response.class);
+
+        for (Category c : r.getQuery().getPages().get(0).getCategories()) {
+            System.out.println(c.getTitle());
+        }
     }
 
     @Test
@@ -56,6 +75,7 @@ class CategoriesPropTest {
         var a = new CategoriesProp.Builder()
                 .clLimit(5)
                 .build();
+
 
         assertEquals(a.getClLimit(), 5);
     }

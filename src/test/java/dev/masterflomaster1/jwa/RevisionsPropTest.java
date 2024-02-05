@@ -1,7 +1,7 @@
 package dev.masterflomaster1.jwa;
 
-import dev.masterflomaster1.jwa.model.QueryAction;
-import dev.masterflomaster1.jwa.model.RevisionsProp;
+import dev.masterflomaster1.jwa.model.action.QueryAction;
+import dev.masterflomaster1.jwa.model.prop.RevisionsProp;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

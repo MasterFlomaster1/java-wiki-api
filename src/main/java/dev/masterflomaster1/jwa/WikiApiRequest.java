@@ -1,6 +1,6 @@
 package dev.masterflomaster1.jwa;
 
-import dev.masterflomaster1.jwa.model.AbstractAction;
+import dev.masterflomaster1.jwa.model.action.AbstractAction;
 import dev.masterflomaster1.jwa.model.AbstractFormat;
 
 public class WikiApiRequest {
