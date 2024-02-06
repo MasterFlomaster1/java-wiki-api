@@ -1,12 +1,16 @@
 package dev.masterflomaster1.jwa;
 
 import com.google.gson.annotations.SerializedName;
+import dev.masterflomaster1.jwa.response.Error;
 import dev.masterflomaster1.jwa.response.Query;
 
 public final class Response {
 
     @SerializedName("batchcomplete")
     private boolean batchComplete;
+
+    @SerializedName("error")
+    private Error error;
 
     @SerializedName("servedby")
     private String servedBy;
@@ -29,6 +33,10 @@ public final class Response {
 
     public boolean isBatchComplete() {
         return batchComplete;
+    }
+
+    public Error getError() {
+        return error;
     }
 
     public String getServedBy() {
@@ -55,6 +63,7 @@ public final class Response {
     public String toString() {
         return "Response{" +
                 "batchComplete=" + batchComplete +
+                ", error=" + error +
                 ", servedBy='" + servedBy + '\'' +
                 ", curTimestamp='" + curTimestamp + '\'' +
                 ", userLang='" + userLang + '\'' +
