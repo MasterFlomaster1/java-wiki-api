@@ -1,13 +1,18 @@
 package dev.masterflomaster1.jwa;
 
 import com.google.gson.annotations.SerializedName;
+import dev.masterflomaster1.jwa.response.Continue;
 import dev.masterflomaster1.jwa.response.Error;
 import dev.masterflomaster1.jwa.response.Query;
+import dev.masterflomaster1.jwa.response.TorBlock;
 
 public final class Response {
 
     @SerializedName("batchcomplete")
-    private boolean batchComplete;
+    private Boolean batchComplete;
+
+    @SerializedName("continue")
+    private Continue aContinue;
 
     @SerializedName("error")
     private Error error;
@@ -27,11 +32,14 @@ public final class Response {
     @SerializedName("query")
     private Query query;
 
+    @SerializedName("torBlock")
+    private TorBlock torBlock;
+
     private Response() {
 
     }
 
-    public boolean isBatchComplete() {
+    public Boolean isBatchComplete() {
         return batchComplete;
     }
 
@@ -59,16 +67,22 @@ public final class Response {
         return query;
     }
 
+    public TorBlock getTorBlock() {
+        return torBlock;
+    }
+
     @Override
     public String toString() {
         return "Response{" +
                 "batchComplete=" + batchComplete +
+                ", aContinue=" + aContinue +
                 ", error=" + error +
                 ", servedBy='" + servedBy + '\'' +
                 ", curTimestamp='" + curTimestamp + '\'' +
                 ", userLang='" + userLang + '\'' +
                 ", errorLang='" + errorLang + '\'' +
                 ", query=" + query +
+                ", torBlock=" + torBlock +
                 '}';
     }
 }

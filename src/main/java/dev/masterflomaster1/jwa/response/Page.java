@@ -7,10 +7,10 @@ import java.util.List;
 public final class Page {
 
     @SerializedName("pageid")
-    private int pageId;
+    private Integer pageId;
 
     @SerializedName("ns")
-    private int ns;
+    private Integer ns;
 
     @SerializedName("title")
     private String title;
@@ -33,15 +33,21 @@ public final class Page {
     @SerializedName("categories")
     private List<Category> categories;
 
+    @SerializedName("revisions")
+    private List<Revision> revisions;
+
+    @SerializedName("imageinfo")
+    private List<ImageInfo> imageInfo;
+
     private Page() {
 
     }
 
-    public int getPageId() {
+    public Integer getPageId() {
         return pageId;
     }
 
-    public int getNs() {
+    public Integer getNs() {
         return ns;
     }
 
@@ -57,14 +63,28 @@ public final class Page {
         return categories;
     }
 
+    public List<Revision> getRevisions() {
+        return revisions;
+    }
+
+    public List<ImageInfo> getImageInfo() {
+        return imageInfo;
+    }
+
     @Override
     public String toString() {
         return "Page{" +
                 "pageId=" + pageId +
                 ", ns=" + ns +
                 ", title='" + title + '\'' +
+                ", contentModel='" + contentModel + '\'' +
+                ", pageLanguage='" + pageLanguage + '\'' +
+                ", pageLanguageHtmlCode='" + pageLanguageHtmlCode + '\'' +
+                ", pageLanguageDir='" + pageLanguageDir + '\'' +
                 ", categoryInfo=" + categoryInfo +
                 ", categories=" + categories +
+                ", revisions=" + revisions +
+                ", imageInfo=" + imageInfo +
                 '}';
     }
 }

@@ -66,4 +66,28 @@ public class QueryActionTest {
         System.out.println(b.hashCode());
     }
 
+    @Test
+    void test4() throws WikiApiSyntaxException, IOException, InterruptedException {
+        var a = new WikiApiRequest.Builder()
+                .action(
+                        new QueryAction.Builder()
+                                .prop(
+                                        Set.of(
+                                                new RevisionsProp.Builder()
+                                                        .rvProp(Set.of())
+                                                        .rvLimit(1)
+                                                        .build()
+                                        )
+                                )
+                                .titles(Set.of("Java_(programming_language)"))
+                                .build()
+                )
+                .build();
+
+        Gson gson = new Gson();
+        Response r = gson.fromJson(api.execute(a), Response.class);
+
+        System.out.println(r);
+    }
+
 }

@@ -5,41 +5,41 @@ import com.google.gson.annotations.SerializedName;
 public final class CategoryInfo {
 
     @SerializedName("size")
-    private int size;
+    private Integer size;
 
     @SerializedName("pages")
-    private int pages;
+    private Integer pages;
 
     @SerializedName("files")
-    private int files;
+    private Integer files;
 
     @SerializedName("subcats")
-    private int subCats;
+    private Integer subCats;
 
     @SerializedName("hidden")
-    private boolean hidden;
+    private Boolean hidden;
 
     private CategoryInfo() {
 
     }
 
-    public int getSize() {
+    public Integer getSize() {
         return size;
     }
 
-    public int getPages() {
+    public Integer getPages() {
         return pages;
     }
 
-    public int getFiles() {
+    public Integer getFiles() {
         return files;
     }
 
-    public int getSubCats() {
+    public Integer getSubCats() {
         return subCats;
     }
 
-    public boolean isHidden() {
+    public Boolean isHidden() {
         return hidden;
     }
 

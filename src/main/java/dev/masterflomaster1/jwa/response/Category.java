@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 public final class Category {
 
     @SerializedName("ns")
-    private int ns;
+    private Integer ns;
 
     @SerializedName("title")
     private String title;
@@ -14,7 +14,7 @@ public final class Category {
 
     }
 
-    public int getNs() {
+    public Integer getNs() {
         return ns;
     }
 

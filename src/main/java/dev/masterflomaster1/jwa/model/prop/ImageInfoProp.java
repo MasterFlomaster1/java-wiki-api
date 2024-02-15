@@ -2,8 +2,10 @@ package dev.masterflomaster1.jwa.model.prop;
 
 import dev.masterflomaster1.jwa.util.ISO639Language;
 
-import java.util.Date;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @see <a href="https://www.mediawiki.org/wiki/API:Imageinfo">API:Imageinfo</a>
@@ -12,8 +14,8 @@ public class ImageInfoProp extends AbstractProp {
 
     private Set<IIProp> iiProp;
     private int iiLimit = 1;
-    private Date iiStart;
-    private Date iiEnd;
+    private String iiStart;
+    private String iiEnd;
     private int iiUrlWidth;
     private int iiUrlHeight;
     private ISO639Language iiExtMetadataLanguage;
@@ -21,6 +23,38 @@ public class ImageInfoProp extends AbstractProp {
 
     private ImageInfoProp() {
         url = "&prop=imageinfo";
+    }
+
+    public Set<IIProp> getIiProp() {
+        return iiProp;
+    }
+
+    public int getIiLimit() {
+        return iiLimit;
+    }
+
+    public String getIiStart() {
+        return iiStart;
+    }
+
+    public String getIiEnd() {
+        return iiEnd;
+    }
+
+    public int getIiUrlWidth() {
+        return iiUrlWidth;
+    }
+
+    public int getIiUrlHeight() {
+        return iiUrlHeight;
+    }
+
+    public ISO639Language getIiExtMetadataLanguage() {
+        return iiExtMetadataLanguage;
+    }
+
+    public boolean isIiExtMetadataMultiLang() {
+        return iiExtMetadataMultiLang;
     }
 
     public enum IIProp {
@@ -148,6 +182,9 @@ public class ImageInfoProp extends AbstractProp {
             this.value = value;
         }
 
+        public String getValue() {
+            return value;
+        }
     }
 
     public static class Builder {
@@ -160,6 +197,9 @@ public class ImageInfoProp extends AbstractProp {
          */
         public Builder iiProp(Set<IIProp> iiProp) {
             imageInfoProp.iiProp = iiProp;
+            imageInfoProp.url += "&iiprop=" + iiProp.stream()
+                    .map(ImageInfoProp.IIProp::getValue)
+                    .collect(Collectors.joining("%7C"));
             return this;
         }
 
@@ -179,7 +219,7 @@ public class ImageInfoProp extends AbstractProp {
          * @param iiStart date
          * @return {@code Builder}
          */
-        public Builder iiStart(Date iiStart) {
+        public Builder iiStart(String iiStart) {
             imageInfoProp.iiStart = iiStart;
             return this;
         }
@@ -189,8 +229,9 @@ public class ImageInfoProp extends AbstractProp {
          * @param iiEnd date
          * @return {@code Builder}
          */
-        public Builder iiEnd(Date iiEnd) {
+        public Builder iiEnd(String iiEnd) {
             imageInfoProp.iiEnd = iiEnd;
+            imageInfoProp.url += "&iiend=" + URLEncoder.encode(iiEnd, StandardCharsets.UTF_8);
             return this;
         }
 
