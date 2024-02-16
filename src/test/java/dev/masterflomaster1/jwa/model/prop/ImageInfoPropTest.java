@@ -13,6 +13,9 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.Set;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 class ImageInfoPropTest {
 
     private static WikiApi api;
@@ -79,27 +82,85 @@ class ImageInfoPropTest {
     }
 
     @Test
+    void testExample3() throws WikiApiSyntaxException, IOException, InterruptedException {
+        var a = new WikiApiRequest.Builder()
+                .action(
+                        new QueryAction.Builder()
+                                .prop(Set.of(
+                                                new ImageInfoProp.Builder()
+                                                        .iiProp(Set.of(ImageInfoProp.IIProp.TIMESTAMP,
+                                                                ImageInfoProp.IIProp.URL,
+                                                                ImageInfoProp.IIProp.EXTMETADATA
+                                                        ))
+                                                        .iiLimit(1)
+                                                        .build()
+                                        )
+                                )
+                                .titles(Set.of("File:Albert Einstein Head.jpg"))
+                                .build()
+                )
+                .build();
+
+        Response r = gson.fromJson(api.execute(a), Response.class);
+
+        var b = r.getQuery().getPages().get(0).getImageInfo().get(0).getExtMetadata();
+
+        System.out.println(b.toString());
+        System.out.println(gson.toJson(b));
+    }
+
+    @Test
     void getIiProp() {
+        var a = new ImageInfoProp.Builder()
+                .iiProp(Set.of(ImageInfoProp.IIProp.TIMESTAMP, ImageInfoProp.IIProp.USER_ID))
+                .build();
+
+        assertEquals(Set.of(ImageInfoProp.IIProp.TIMESTAMP, ImageInfoProp.IIProp.USER_ID), a.getIiProp());
     }
 
     @Test
     void getIiLimit() {
+        var a = new ImageInfoProp.Builder()
+                .iiLimit(20)
+                .build();
+
+        assertEquals(20, a.getIiLimit());
     }
 
     @Test
     void getIiStart() {
+        var a = new ImageInfoProp.Builder()
+                .iiStart("2007-12-31T23:59:59Z")
+                .build();
+
+        assertEquals("2007-12-31T23:59:59Z", a.getIiStart());
     }
 
     @Test
     void getIiEnd() {
+        var a = new ImageInfoProp.Builder()
+                .iiEnd("2007-12-31T23:59:59Z")
+                .build();
+
+        assertEquals("2007-12-31T23:59:59Z", a.getIiEnd());
     }
 
     @Test
     void getIiUrlWidth() {
+        var a = new ImageInfoProp.Builder()
+                .iiUrlWidth(50)
+                .build();
+
+        assertEquals(50, a.getIiUrlWidth());
     }
 
     @Test
     void getIiUrlHeight() {
+        var a = new ImageInfoProp.Builder()
+                .iiUrlHeight(50)
+                .build();
+
+        assertEquals(50, a.getIiUrlHeight());
     }
 
     @Test
@@ -108,5 +169,10 @@ class ImageInfoPropTest {
 
     @Test
     void isIiExtMetadataMultiLang() {
+        var a = new ImageInfoProp.Builder()
+                .iiExtMetadataMultiLang()
+                .build();
+
+        assertTrue(a.isIiExtMetadataMultiLang());
     }
 }

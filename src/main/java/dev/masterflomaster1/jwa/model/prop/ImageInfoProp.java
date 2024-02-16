@@ -221,6 +221,7 @@ public class ImageInfoProp extends AbstractProp {
          */
         public Builder iiStart(String iiStart) {
             imageInfoProp.iiStart = iiStart;
+            imageInfoProp.url += "&iistart=" + URLEncoder.encode(iiStart, StandardCharsets.UTF_8);
             return this;
         }
 
@@ -243,6 +244,7 @@ public class ImageInfoProp extends AbstractProp {
          */
         public Builder iiUrlWidth(int iiUrlWidth) {
             imageInfoProp.iiUrlWidth = iiUrlWidth;
+            imageInfoProp.url += "iiurlwidth=" + iiUrlWidth;
             return this;
         }
 
@@ -253,6 +255,7 @@ public class ImageInfoProp extends AbstractProp {
          */
         public Builder iiUrlHeight(int iiUrlHeight) {
             imageInfoProp.iiUrlHeight = iiUrlHeight;
+            imageInfoProp.url += "iiurlheight=" + iiUrlHeight;
             return this;
         }
 

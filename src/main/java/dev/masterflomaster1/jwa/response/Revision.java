@@ -2,7 +2,7 @@ package dev.masterflomaster1.jwa.response;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Revision {
+public final class Revision {
 
     @SerializedName("revid")
     private Long revId;
@@ -42,6 +42,10 @@ public class Revision {
 
     @SerializedName("parsedcomment")
     private String parsedComment;
+
+    private Revision() {
+
+    }
 
     public Long getRevId() {
         return revId;
