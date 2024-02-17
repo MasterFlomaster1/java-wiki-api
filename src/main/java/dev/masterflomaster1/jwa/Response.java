@@ -1,10 +1,8 @@
 package dev.masterflomaster1.jwa;
 
 import com.google.gson.annotations.SerializedName;
-import dev.masterflomaster1.jwa.response.Continue;
+import dev.masterflomaster1.jwa.response.*;
 import dev.masterflomaster1.jwa.response.Error;
-import dev.masterflomaster1.jwa.response.Query;
-import dev.masterflomaster1.jwa.response.TorBlock;
 
 public final class Response {
 
@@ -34,6 +32,9 @@ public final class Response {
 
     @SerializedName("torBlock")
     private TorBlock torBlock;
+
+    @SerializedName("centralauthtoken")
+    private CentralAuthToken centralAuthToken;
 
     private Response() {
 
@@ -71,6 +72,10 @@ public final class Response {
         return torBlock;
     }
 
+    public CentralAuthToken getCentralAuthToken() {
+        return centralAuthToken;
+    }
+
     @Override
     public String toString() {
         return "Response{" +
@@ -83,6 +88,7 @@ public final class Response {
                 ", errorLang='" + errorLang + '\'' +
                 ", query=" + query +
                 ", torBlock=" + torBlock +
+                ", centralAuthToken=" + centralAuthToken +
                 '}';
     }
 }

@@ -37,6 +37,7 @@ class ThankActionTest {
                 .build();
 
         Response r = gson.fromJson(api.execute(a), Response.class);
+
         System.out.println(r);
     }
 
