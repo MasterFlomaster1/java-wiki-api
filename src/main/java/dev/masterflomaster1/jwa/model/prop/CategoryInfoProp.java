@@ -1,5 +1,8 @@
 package dev.masterflomaster1.jwa.model.prop;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+
 /**
  * Returns information about the given categories.
  *
@@ -29,6 +32,7 @@ public class CategoryInfoProp extends AbstractProp {
          */
         public Builder ciContinue(String ciContinue) {
             categoryInfoProp.ciContinue = ciContinue;
+            categoryInfoProp.url += "&cicontinue=" + URLEncoder.encode(ciContinue, StandardCharsets.UTF_8);
             return this;
         }
 

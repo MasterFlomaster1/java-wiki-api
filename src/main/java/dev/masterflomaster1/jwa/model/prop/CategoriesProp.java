@@ -1,5 +1,7 @@
 package dev.masterflomaster1.jwa.model.prop;
 
+import dev.masterflomaster1.jwa.common.Dir;
+
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -13,7 +15,7 @@ public class CategoriesProp extends AbstractProp {
     private Set<ClProp> clProp;
     private ClShow clShow;
     private int clLimit;
-    private ClDir clDir;
+    private Dir clDir;
 
     private CategoriesProp() {
         url += "&prop=categories";
@@ -31,7 +33,7 @@ public class CategoriesProp extends AbstractProp {
         return clLimit;
     }
 
-    public ClDir getClDir() {
+    public Dir getClDir() {
         return clDir;
     }
 
@@ -84,25 +86,6 @@ public class CategoriesProp extends AbstractProp {
         }
     }
 
-    /**
-     * The direction in which to list.
-     */
-    public enum ClDir {
-
-        ASCENDING ("ascending"),
-        DESCENDING ("descending");
-
-        private final String value;
-
-        ClDir(String value) {
-            this.value = value;
-        }
-
-        public String getValue() {
-            return value;
-        }
-    }
-
     public static class Builder {
 
         private final CategoriesProp categoriesProp = new CategoriesProp();
@@ -143,9 +126,9 @@ public class CategoriesProp extends AbstractProp {
          * The direction in which to list.
          * @return {@code Builder}
          */
-        public Builder clDir(ClDir clDir) {
+        public Builder clDir(Dir clDir) {
             categoriesProp.clDir = clDir;
-            categoriesProp.url += "&cldir=" + clDir.value;
+            categoriesProp.url += "&cldir=" + clDir.getValue();
             return this;
         }
 

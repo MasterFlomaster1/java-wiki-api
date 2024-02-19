@@ -1,8 +1,10 @@
 package dev.masterflomaster1.jwa;
 
 import com.google.gson.annotations.SerializedName;
-import dev.masterflomaster1.jwa.response.*;
 import dev.masterflomaster1.jwa.response.Error;
+import dev.masterflomaster1.jwa.response.*;
+
+import java.util.Map;
 
 public final class Response {
 
@@ -10,7 +12,7 @@ public final class Response {
     private Boolean batchComplete;
 
     @SerializedName("continue")
-    private Continue aContinue;
+    private Map<String, String> aContinue;
 
     @SerializedName("error")
     private Error error;
@@ -36,12 +38,22 @@ public final class Response {
     @SerializedName("centralauthtoken")
     private CentralAuthToken centralAuthToken;
 
+    @SerializedName("shortenurl")
+    private ShortenUrl shortenUrl;
+
+    @SerializedName("languagesearch")
+    private Map<String, String> languageSearch;
+
     private Response() {
 
     }
 
     public Boolean isBatchComplete() {
         return batchComplete;
+    }
+
+    public Map<String, String> getContinue() {
+        return aContinue;
     }
 
     public Error getError() {
@@ -76,6 +88,14 @@ public final class Response {
         return centralAuthToken;
     }
 
+    public ShortenUrl getShortenUrl() {
+        return shortenUrl;
+    }
+
+    public Map<String, String> getLanguageSearch() {
+        return languageSearch;
+    }
+
     @Override
     public String toString() {
         return "Response{" +
@@ -89,6 +109,8 @@ public final class Response {
                 ", query=" + query +
                 ", torBlock=" + torBlock +
                 ", centralAuthToken=" + centralAuthToken +
+                ", shortenUrl=" + shortenUrl +
+                ", languageSearch=" + languageSearch +
                 '}';
     }
 }

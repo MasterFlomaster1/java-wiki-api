@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class ImageInfoProp extends AbstractProp {
 
     private Set<IIProp> iiProp;
-    private int iiLimit = 1;
+    private int iiLimit;
     private String iiStart;
     private String iiEnd;
     private int iiUrlWidth;

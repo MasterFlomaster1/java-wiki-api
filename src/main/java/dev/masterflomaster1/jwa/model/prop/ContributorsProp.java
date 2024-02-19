@@ -1,5 +1,7 @@
 package dev.masterflomaster1.jwa.model.prop;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Set;
 
 /**
@@ -111,11 +113,12 @@ public class ContributorsProp extends AbstractProp {
 
         /**
          * How many contributors to return.
-         * The value must be between 1 and 500. Enter max to use the maximum limit.
+         * @param pcLimit The value must be between 1 and 500.
          * @return {@code Builder}
          */
         public Builder pcLimit(int pcLimit) {
             contributorsProp.pcLimit = pcLimit;
+            contributorsProp.url += "&pclimit=" + pcLimit;
             return this;
         }
 
@@ -127,6 +130,7 @@ public class ContributorsProp extends AbstractProp {
          */
         public Builder pcContinue(String pcContinue) {
             contributorsProp.pcContinue = pcContinue;
+            contributorsProp.url += "&pccontinue=" + URLEncoder.encode(pcContinue, StandardCharsets.UTF_8);
             return this;
         }
 

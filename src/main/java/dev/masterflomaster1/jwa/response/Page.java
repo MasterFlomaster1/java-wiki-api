@@ -3,6 +3,7 @@ package dev.masterflomaster1.jwa.response;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
+import java.util.Map;
 
 public final class Page {
 
@@ -12,8 +13,14 @@ public final class Page {
     @SerializedName("ns")
     private Integer ns;
 
+    @SerializedName("missing")
+    private Boolean missing;
+
     @SerializedName("title")
     private String title;
+
+    @SerializedName("anoncontributors")
+    private Integer anonContributors;
 
     @SerializedName("contentmodel")
     private String contentModel;
@@ -39,6 +46,15 @@ public final class Page {
     @SerializedName("imageinfo")
     private List<ImageInfo> imageInfo;
 
+    @SerializedName("templates")
+    private List<Template> templates;
+
+    @SerializedName("pageviews")
+    private Map<String, Integer> pageViews;
+
+    @SerializedName("contributors")
+    public List<Contributor> contributors;
+
     private Page() {
 
     }
@@ -49,6 +65,10 @@ public final class Page {
 
     public Integer getNs() {
         return ns;
+    }
+
+    public Boolean isMissing() {
+        return missing;
     }
 
     public String getTitle() {
@@ -71,12 +91,30 @@ public final class Page {
         return imageInfo;
     }
 
+    public Map<String, Integer> getPageViews() {
+        return pageViews;
+    }
+
+    public List<Template> getTemplates() {
+        return templates;
+    }
+
+    public Integer getAnonContributors() {
+        return anonContributors;
+    }
+
+    public List<Contributor> getContributors() {
+        return contributors;
+    }
+
     @Override
     public String toString() {
         return "Page{" +
                 "pageId=" + pageId +
                 ", ns=" + ns +
+                ", missing=" + missing +
                 ", title='" + title + '\'' +
+                ", anonContributors=" + anonContributors +
                 ", contentModel='" + contentModel + '\'' +
                 ", pageLanguage='" + pageLanguage + '\'' +
                 ", pageLanguageHtmlCode='" + pageLanguageHtmlCode + '\'' +
@@ -85,6 +123,9 @@ public final class Page {
                 ", categories=" + categories +
                 ", revisions=" + revisions +
                 ", imageInfo=" + imageInfo +
+                ", templates=" + templates +
+                ", pageViews=" + pageViews +
+                ", contributors=" + contributors +
                 '}';
     }
 }

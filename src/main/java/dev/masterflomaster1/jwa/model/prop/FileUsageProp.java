@@ -1,5 +1,9 @@
 package dev.masterflomaster1.jwa.model.prop;
 
+import dev.masterflomaster1.jwa.common.Namespace;
+
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Set;
 
 /**
@@ -10,7 +14,7 @@ import java.util.Set;
 public class FileUsageProp extends AbstractProp {
 
     private Set<FuProp> fuProp;
-    private Set<FuNamespace> fuNamespace;
+    private Set<Namespace> fuNamespace;
     private Set<FuShow> fuShow;
     private int fuLimit;
     private String fuContinue;
@@ -23,7 +27,7 @@ public class FileUsageProp extends AbstractProp {
         return fuProp;
     }
 
-    public Set<FuNamespace> getFuNamespace() {
+    public Set<Namespace> getFuNamespace() {
         return fuNamespace;
     }
 
@@ -62,53 +66,6 @@ public class FileUsageProp extends AbstractProp {
         private final String value;
 
         FuProp(String value) {
-            this.value = value;
-        }
-
-        public String getValue() {
-            return value;
-        }
-    }
-
-    /**
-     * @see <a href="https://en.wikipedia.org/wiki/Wikipedia:Namespace">Wikipedia:Namespace</a>
-     */
-    public enum FuNamespace {
-        ALL_NAMESPACES ("*"),
-        MEDIA (""),
-        SPECIAL (""),
-        ARTICLE (""),
-        TALK (""),
-        USER (""),
-        USER_TALK (""),
-        WIKIPEDIA (""),
-        WIKIPEDIA_TALK (""),
-        FILE (""),
-        FILE_TALK (""),
-        MEDIAWIKI (""),
-        MEDIAWIKI_TALK (""),
-        TEMPLATE (""),
-        TEMPLATE_TALK (""),
-        HELP (""),
-        HELP_TALK (""),
-        CATEGORY (""),
-        CATEGORY_TALK (""),
-        PORTAL (""),
-        PORTAL_TALK (""),
-        DRAFT (""),
-        DRAFT_TALK (""),
-        TIMED_TEXT (""),
-        TIMED_TEXT_TALK (""),
-        MODULE (""),
-        MODULE_TALK (""),
-        GADGET (""),
-        GADGET_TALK (""),
-        GADGET_DEFINITION (""),
-        GADGET_DEFINITION_TALK ("");
-
-        private final String value;
-
-        FuNamespace(String value) {
             this.value = value;
         }
 
@@ -160,7 +117,7 @@ public class FileUsageProp extends AbstractProp {
          * Only include pages in these namespaces.
          * @return {@code Builder}
          */
-        public Builder fuNamespace(Set<FuNamespace> fuNamespace) {
+        public Builder fuNamespace(Set<Namespace> fuNamespace) {
             fileUsageProp.fuNamespace = fuNamespace;
             return this;
         }
@@ -192,6 +149,7 @@ public class FileUsageProp extends AbstractProp {
          */
         public Builder fuContinue(String fuContinue) {
             fileUsageProp.fuContinue = fuContinue;
+            fileUsageProp.url += "&fucontinue=" + URLEncoder.encode(fuContinue, StandardCharsets.UTF_8);
             return this;
         }
 

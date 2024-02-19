@@ -1,12 +1,12 @@
-package dev.masterflomaster1.jwa.model;
+package dev.masterflomaster1.jwa.model.prop;
 
 import com.google.gson.Gson;
 import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
 import dev.masterflomaster1.jwa.WikiApiSyntaxException;
+import dev.masterflomaster1.jwa.common.Dir;
 import dev.masterflomaster1.jwa.model.action.QueryAction;
-import dev.masterflomaster1.jwa.model.prop.CategoriesProp;
 import dev.masterflomaster1.jwa.response.Category;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -36,7 +36,7 @@ class CategoriesPropTest {
                         .prop(Set.of(
                                 new CategoriesProp.Builder()
                                         .clLimit(10)
-                                        .clDir(CategoriesProp.ClDir.ASCENDING)
+                                        .clDir(Dir.ASCENDING)
                                         .build()
                                 )
                         )
@@ -83,9 +83,9 @@ class CategoriesPropTest {
     @Test
     void getClDir() {
         var a = new CategoriesProp.Builder()
-                .clDir(CategoriesProp.ClDir.DESCENDING)
+                .clDir(Dir.DESCENDING)
                 .build();
 
-        assertEquals(a.getClDir(), CategoriesProp.ClDir.DESCENDING);
+        assertEquals(a.getClDir(), Dir.DESCENDING);
     }
 }

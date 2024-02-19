@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class Error {
 
-    @SerializedName("name")
+    @SerializedName("code")
     private String code;
 
     @SerializedName("info")
@@ -12,6 +12,18 @@ public class Error {
 
     @SerializedName("docref")
     private String docRef;
+
+    @SerializedName("parameter")
+    private String parameter;
+
+    @SerializedName("limit")
+    private int limit;
+
+    @SerializedName("lowlimit")
+    private int lowLimit;
+
+    @SerializedName("highlimit")
+    private int highLimit;
 
     private Error() {
 
@@ -29,12 +41,32 @@ public class Error {
         return docRef;
     }
 
+    public String getParameter() {
+        return parameter;
+    }
+
+    public int getLimit() {
+        return limit;
+    }
+
+    public int getLowLimit() {
+        return lowLimit;
+    }
+
+    public int getHighLimit() {
+        return highLimit;
+    }
+
     @Override
     public String toString() {
         return "Error{" +
                 "code='" + code + '\'' +
                 ", info='" + info + '\'' +
                 ", docRef='" + docRef + '\'' +
+                ", parameter='" + parameter + '\'' +
+                ", limit=" + limit +
+                ", lowLimit=" + lowLimit +
+                ", highLimit=" + highLimit +
                 '}';
     }
 }
