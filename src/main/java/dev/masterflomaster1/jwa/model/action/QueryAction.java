@@ -47,12 +47,14 @@ public class QueryAction extends AbstractAction {
         /**
          * Which lists to get.
          * Maximum number of values is 50 (500 for clients that are allowed higher limits).
-         * @param lists set of lists
+         * @param list set of lists
          * @return {@code Builder}
          */
-        public Builder list(Set<AbstractList> lists) {
-            queryAction.list = lists;
-
+        public Builder list(Set<AbstractList> list) {
+            queryAction.list = list;
+            queryAction.urlPart += list.stream()
+                    .map(AbstractList::getUrl)
+                    .collect(Collectors.joining());
             return this;
         }
 
