@@ -1,6 +1,5 @@
 package dev.masterflomaster1.jwa.request.prop;
 
-import com.google.gson.Gson;
 import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
@@ -19,17 +18,15 @@ import static org.junit.jupiter.api.Assertions.*;
 class ImageInfoPropTest {
 
     private static WikiApi api;
-    private static Gson gson;
 
     @BeforeAll
     static void before() {
         api = new WikiApi();
-        gson = new Gson();
     }
 
     @Test
     @DisplayName("Fetch information about the current version of File:Albert Einstein Head.jpg.")
-    void testExample1() throws WikiApiSyntaxException, IOException, InterruptedException {
+    void testExample1() throws WikiApiSyntaxException, IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .prop(Set.of(
@@ -42,13 +39,13 @@ class ImageInfoPropTest {
                 )
                 .build();
 
-        Response r = gson.fromJson(api.execute(a), Response.class);
+        Response r = api.execute(a);
         assertNotNull(r.getQuery().getPages().get(0).getImageInfo().get(0));
     }
 
     @Test
     @DisplayName("Fetch information about versions of File:Test.jpg from 2008 and later.")
-    void testExample2() throws WikiApiSyntaxException, IOException, InterruptedException {
+    void testExample2() throws WikiApiSyntaxException, IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .prop(Set.of(
@@ -67,12 +64,12 @@ class ImageInfoPropTest {
                 )
                 .build();
 
-        Response r = gson.fromJson(api.execute(a), Response.class);
+        Response r = api.execute(a);
         assertNotNull(r.getQuery().getPages().get(0).getImageInfo().get(0));
     }
 
     @Test
-    void testExample3() throws WikiApiSyntaxException, IOException, InterruptedException {
+    void testExample3() throws WikiApiSyntaxException, IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .prop(Set.of(
@@ -90,7 +87,7 @@ class ImageInfoPropTest {
                 )
                 .build();
 
-        Response r = gson.fromJson(api.execute(a), Response.class);
+        Response r = api.execute(a);
         assertNotNull(r.getQuery().getPages().get(0).getImageInfo().get(0).getExtMetadata());
     }
 

@@ -1,28 +1,36 @@
 package dev.masterflomaster1.jwa;
 
+import com.google.gson.Gson;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+
 import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 
 public class WikiApi {
 
-    private final HttpClient httpClient;
+    private OkHttpClient client;
+    private final Gson gson;
 
     public WikiApi() {
-        httpClient = HttpClient.newBuilder()
+        client = new OkHttpClient.Builder()
                 .build();
+
+        gson = new Gson();
     }
 
-    public String execute(WikiApiRequest request) throws IOException, InterruptedException {
-        HttpRequest httpRequest = HttpRequest.newBuilder()
-                .GET()
-                .uri(URI.create(request.getUrl()))
-                .setHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36")
+    public void setHttpClient(OkHttpClient client) {
+        this.client = client;
+    }
+
+    public Response execute(WikiApiRequest request) throws IOException {
+        Request request1 = new Request.Builder()
+                .url(request.getUrl())
+                .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36")
                 .build();
 
-        return httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString()).body();
+        try (okhttp3.Response response = client.newCall(request1).execute()) {
+            return gson.fromJson(response.body().string(), Response.class);
+        }
     }
 
 }

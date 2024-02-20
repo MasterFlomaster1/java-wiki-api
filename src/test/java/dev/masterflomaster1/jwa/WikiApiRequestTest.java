@@ -1,6 +1,5 @@
 package dev.masterflomaster1.jwa;
 
-import com.google.gson.Gson;
 import dev.masterflomaster1.jwa.request.action.QueryAction;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -14,12 +13,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class WikiApiRequestTest {
 
     private static WikiApi api;
-    private static Gson gson;
 
     @BeforeAll
     static void before() {
         api = new WikiApi();
-        gson = new Gson();
     }
 
     @Test
@@ -29,7 +26,7 @@ class WikiApiRequestTest {
     }
 
     @Test
-    void requestWithAdditionalParams() throws WikiApiSyntaxException, IOException, InterruptedException {
+    void requestWithAdditionalParams() throws WikiApiSyntaxException, IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .build()
@@ -41,7 +38,7 @@ class WikiApiRequestTest {
                 .responseLangInfo()
                 .build();
 
-        Response r = gson.fromJson(api.execute(a), Response.class);
+        Response r = api.execute(a);
 
         assertEquals("assertnameduserfailed", r.getError().getCode());
         assertEquals("custom", r.getRequestId());

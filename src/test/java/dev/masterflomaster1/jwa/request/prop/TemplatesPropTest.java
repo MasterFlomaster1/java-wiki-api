@@ -1,6 +1,5 @@
 package dev.masterflomaster1.jwa.request.prop;
 
-import com.google.gson.Gson;
 import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
@@ -21,17 +20,15 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class TemplatesPropTest {
 
     private static WikiApi api;
-    private static Gson gson;
 
     @BeforeAll
     static void before() {
         api = new WikiApi();
-        gson = new Gson();
     }
 
     @Test
     @DisplayName("Get the templates used on the page Main Page.")
-    void testExample1() throws WikiApiSyntaxException, IOException, InterruptedException {
+    void testExample1() throws WikiApiSyntaxException, IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .prop(Set.of(
@@ -44,13 +41,13 @@ class TemplatesPropTest {
                 )
                 .build();
 
-        Response r = gson.fromJson(api.execute(a), Response.class);
+        Response r = api.execute(a);
         assertNotNull(r.getQuery().getPages().get(0).getTemplates());
     }
 
     @Test
     @DisplayName("Get pages in the User and Template namespaces that are transcluded on the page Main Page.")
-    void testExample3() throws WikiApiSyntaxException, IOException, InterruptedException {
+    void testExample3() throws WikiApiSyntaxException, IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .prop(Set.of(
@@ -64,7 +61,7 @@ class TemplatesPropTest {
                 )
                 .build();
 
-        Response r = gson.fromJson(api.execute(a), Response.class);
+        Response r = api.execute(a);
         assertNotNull(r.getQuery().getPages().get(0).getTemplates());
     }
 

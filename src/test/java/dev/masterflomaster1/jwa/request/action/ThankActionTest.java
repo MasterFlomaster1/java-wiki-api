@@ -1,6 +1,5 @@
 package dev.masterflomaster1.jwa.request.action;
 
-import com.google.gson.Gson;
 import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
@@ -11,22 +10,20 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ThankActionTest {
 
     private static WikiApi api;
-    private static Gson gson;
 
     @BeforeAll
     static void before() {
         api = new WikiApi();
-        gson = new Gson();
     }
 
     @Test
     @DisplayName("Send thanks for revision ID 456, with the source being a diff page")
-    void testExample1() throws WikiApiSyntaxException, IOException, InterruptedException {
+    void testExample1() throws WikiApiSyntaxException, IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new ThankAction.Builder()
                         .rev(456)
@@ -36,7 +33,7 @@ class ThankActionTest {
                 )
                 .build();
 
-        Response r = gson.fromJson(api.execute(a), Response.class);
+        Response r = api.execute(a);
 
         System.out.println(r);
     }

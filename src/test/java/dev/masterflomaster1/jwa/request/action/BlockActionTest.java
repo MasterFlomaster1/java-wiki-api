@@ -1,6 +1,5 @@
 package dev.masterflomaster1.jwa.request.action;
 
-import com.google.gson.Gson;
 import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
@@ -20,17 +19,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class BlockActionTest {
 
     private static WikiApi api;
-    private static Gson gson;
 
     @BeforeAll
     static void before() {
         api = new WikiApi();
-        gson = new Gson();
     }
 
     @Test
     @DisplayName("Block IP address 192.0.2.5 for three days with a reason.")
-    void testExample1() throws WikiApiSyntaxException, IOException, InterruptedException {
+    void testExample1() throws WikiApiSyntaxException, IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new BlockAction.Builder()
                         .user("192.0.2.5")
@@ -41,13 +38,13 @@ class BlockActionTest {
                 )
                 .build();
 
-        Response r = gson.fromJson(api.execute(a), Response.class);
+        Response r = api.execute(a);
         System.out.println(r);
     }
 
     @Test
     @DisplayName("Block user Vandal indefinitely with a reason, and prevent new account creation and email sending.")
-    void testExample2() throws WikiApiSyntaxException, IOException, InterruptedException {
+    void testExample2() throws WikiApiSyntaxException, IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new BlockAction.Builder()
                         .user("Vandal")
@@ -61,7 +58,7 @@ class BlockActionTest {
                 )
                 .build();
 
-        Response r = gson.fromJson(api.execute(a), Response.class);
+        Response r = api.execute(a);
         System.out.println(r);
     }
 

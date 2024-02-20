@@ -1,6 +1,5 @@
 package dev.masterflomaster1.jwa.request.action;
 
-import com.google.gson.Gson;
 import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
@@ -17,17 +16,15 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class LanguageSearchActionTest {
 
     private static WikiApi api;
-    private static Gson gson;
 
     @BeforeAll
     static void before() {
         api = new WikiApi();
-        gson = new Gson();
     }
 
     @Test
     @DisplayName("Search for 'Te'")
-    void testExample1() throws WikiApiSyntaxException, IOException, InterruptedException {
+    void testExample1() throws WikiApiSyntaxException, IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new LanguageSearchAction.Builder()
                         .search("Te")
@@ -35,13 +32,13 @@ class LanguageSearchActionTest {
                 )
                 .build();
 
-        Response r = gson.fromJson(api.execute(a), Response.class);
+        Response r = api.execute(a);
         assertNotNull(r.getLanguageSearch());
     }
 
     @Test
     @DisplayName("Search for 'ഫി'")
-    void testExample2() throws WikiApiSyntaxException, IOException, InterruptedException {
+    void testExample2() throws WikiApiSyntaxException, IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new LanguageSearchAction.Builder()
                         .search("ഫി")
@@ -49,13 +46,13 @@ class LanguageSearchActionTest {
                 )
                 .build();
 
-        Response r = gson.fromJson(api.execute(a), Response.class);
+        Response r = api.execute(a);
         assertNotNull(r.getLanguageSearch());
     }
 
     @Test
     @DisplayName("Search for 'ഫി', allowing one typo")
-    void testExample3() throws WikiApiSyntaxException, IOException, InterruptedException {
+    void testExample3() throws WikiApiSyntaxException, IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new LanguageSearchAction.Builder()
                         .search("ഫി")
@@ -64,7 +61,7 @@ class LanguageSearchActionTest {
                 )
                 .build();
 
-        Response r = gson.fromJson(api.execute(a), Response.class);
+        Response r = api.execute(a);
         assertNotNull(r.getLanguageSearch());
     }
 

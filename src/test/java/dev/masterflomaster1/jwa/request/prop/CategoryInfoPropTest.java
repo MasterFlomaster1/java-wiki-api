@@ -1,6 +1,5 @@
 package dev.masterflomaster1.jwa.request.prop;
 
-import com.google.gson.Gson;
 import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
@@ -21,16 +20,14 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class CategoryInfoPropTest {
 
     private static WikiApi api;
-    private static Gson gson;
 
     @BeforeAll
     static void before() {
         api = new WikiApi();
-        gson = new Gson();
     }
 
     @Test
-    void test() throws WikiApiSyntaxException, IOException, InterruptedException {
+    void test() throws WikiApiSyntaxException, IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .prop(Set.of(
@@ -56,7 +53,7 @@ class CategoryInfoPropTest {
                 )
                 .build();
 
-        Response r = gson.fromJson(api.execute(a), Response.class);
+        Response r = api.execute(a);
 
         for (Page p : r.getQuery().getPages()) {
             System.out.println("Title: " + p.getTitle());
@@ -66,7 +63,7 @@ class CategoryInfoPropTest {
     }
 
     @Test
-    void test3() throws WikiApiSyntaxException, IOException, InterruptedException {
+    void test3() throws WikiApiSyntaxException, IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .prop(Set.of(
@@ -79,7 +76,7 @@ class CategoryInfoPropTest {
                 )
                 .build();
 
-        Response r = gson.fromJson(api.execute(a), Response.class);
+        Response r = api.execute(a);
 
         assertNotNull(r.getQuery().getPages().get(0).getCategoryInfo());
         display(r.getQuery().getPages().get(0).getCategoryInfo());
@@ -87,7 +84,7 @@ class CategoryInfoPropTest {
 
     @Test
     @DisplayName("Trigger limit error")
-    void triggerLimitError() throws WikiApiSyntaxException, IOException, InterruptedException {
+    void triggerLimitError() throws WikiApiSyntaxException, IOException {
         var cats = Set.of(
                 "Category:Business architecture",
                 "Category:Business intelligence",
@@ -154,7 +151,7 @@ class CategoryInfoPropTest {
                 )
                 .build();
 
-        Response r = gson.fromJson(api.execute(a), Response.class);
+        Response r = api.execute(a);
 
         assertNotNull(r.getError());
         assertNotNull(r.getError().getDocRef());

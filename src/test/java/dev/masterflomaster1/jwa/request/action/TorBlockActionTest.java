@@ -1,6 +1,5 @@
 package dev.masterflomaster1.jwa.request.action;
 
-import com.google.gson.Gson;
 import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
@@ -16,17 +15,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class TorBlockActionTest {
 
     private static WikiApi api;
-    private static Gson gson;
 
     @BeforeAll
     static void before() {
         api = new WikiApi();
-        gson = new Gson();
     }
 
     @Test
     @DisplayName("Check if the IP address 192.0.2.18 is blocked as a Tor exit node.")
-    void test() throws IOException, InterruptedException, WikiApiSyntaxException {
+    void test() throws IOException, WikiApiSyntaxException {
         var a = new WikiApiRequest.Builder()
                 .action(new TorBlockAction.Builder()
                         .ip("102.130.119.48")
@@ -34,7 +31,7 @@ class TorBlockActionTest {
                 )
                 .build();
 
-        Response r = gson.fromJson(api.execute(a), Response.class);
+        Response r = api.execute(a);
         System.out.println(r);
     }
 
