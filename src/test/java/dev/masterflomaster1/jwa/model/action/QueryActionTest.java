@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class QueryActionTest {
 
     @Test
-    void testBuild() {
+    void testBuilder() {
         var a = new QueryAction.Builder()
                 .prop(Set.of(new RevisionsProp.Builder().build()))
                 .list(Set.of(new UsersList.Builder().build()))

@@ -31,15 +31,14 @@ class ExtLinksPropTest {
     @DisplayName("Get a list of external links on the page Main Page.")
     void testExample1() throws WikiApiSyntaxException, IOException, InterruptedException {
         var a = new WikiApiRequest.Builder()
-                .action(
-                        new QueryAction.Builder()
-                                .prop(Set.of(
+                .action(new QueryAction.Builder()
+                        .prop(Set.of(
                                         new ExtLinksProp.Builder()
                                                 .build()
-                                        )
                                 )
-                                .titles(Set.of("Main Page"))
-                                .build()
+                        )
+                        .titles(Set.of("Main Page"))
+                        .build()
                 )
                 .build();
 

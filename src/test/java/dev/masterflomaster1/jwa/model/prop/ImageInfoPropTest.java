@@ -6,6 +6,7 @@ import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
 import dev.masterflomaster1.jwa.WikiApiSyntaxException;
 import dev.masterflomaster1.jwa.model.action.QueryAction;
+import dev.masterflomaster1.jwa.util.ISO639Language;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,8 +14,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ImageInfoPropTest {
 
@@ -31,148 +31,91 @@ class ImageInfoPropTest {
     @DisplayName("Fetch information about the current version of File:Albert Einstein Head.jpg.")
     void testExample1() throws WikiApiSyntaxException, IOException, InterruptedException {
         var a = new WikiApiRequest.Builder()
-                .action(
-                        new QueryAction.Builder()
-                                .prop(Set.of(
-                                                new ImageInfoProp.Builder()
-                                                        .build()
-                                        )
+                .action(new QueryAction.Builder()
+                        .prop(Set.of(
+                                new ImageInfoProp.Builder()
+                                        .build()
                                 )
-                                .titles(Set.of("File:Albert Einstein Head.jpg"))
-                                .build()
+                        )
+                        .titles(Set.of("File:Albert Einstein Head.jpg"))
+                        .build()
                 )
                 .build();
 
         Response r = gson.fromJson(api.execute(a), Response.class);
-
-        System.out.println(r.getQuery().getPages().get(0).getImageInfo().get(0));
-        System.out.println("Timestamp: " + r.getQuery().getPages().get(0).getImageInfo().get(0).getTimestamp());
-        System.out.println("User: " + r.getQuery().getPages().get(0).getImageInfo().get(0).getUser());
+        assertNotNull(r.getQuery().getPages().get(0).getImageInfo().get(0));
     }
 
     @Test
     @DisplayName("Fetch information about versions of File:Test.jpg from 2008 and later.")
     void testExample2() throws WikiApiSyntaxException, IOException, InterruptedException {
         var a = new WikiApiRequest.Builder()
-                .action(
-                        new QueryAction.Builder()
-                                .prop(Set.of(
-                                                new ImageInfoProp.Builder()
-                                                        .iiProp(Set.of(ImageInfoProp.IIProp.TIMESTAMP,
-                                                                ImageInfoProp.IIProp.USER,
-                                                                ImageInfoProp.IIProp.URL
-                                                        ))
-                                                        .iiLimit(50)
-                                                        .iiEnd("2007-12-31T23:59:59Z")
-                                                        .build()
-                                        )
+                .action(new QueryAction.Builder()
+                        .prop(Set.of(
+                                new ImageInfoProp.Builder()
+                                        .iiProp(Set.of(ImageInfoProp.IIProp.TIMESTAMP,
+                                                ImageInfoProp.IIProp.USER,
+                                                ImageInfoProp.IIProp.URL
+                                        ))
+                                        .iiLimit(50)
+                                        .iiEnd("2007-12-31T23:59:59Z")
+                                        .build()
                                 )
-                                .titles(Set.of("File:Test.jpg"))
-                                .build()
+                        )
+                        .titles(Set.of("File:Test.jpg"))
+                        .build()
                 )
                 .build();
 
         Response r = gson.fromJson(api.execute(a), Response.class);
-        System.out.println(a.getUrl());
-        System.out.println(r);
-
-        r.getQuery().getPages().get(0).getImageInfo().forEach(e -> {
-            System.out.printf("%s on %s: %s\n", e.getUser(), e.getTimestamp(), e.getUrl());
-        });
+        assertNotNull(r.getQuery().getPages().get(0).getImageInfo().get(0));
     }
 
     @Test
     void testExample3() throws WikiApiSyntaxException, IOException, InterruptedException {
         var a = new WikiApiRequest.Builder()
-                .action(
-                        new QueryAction.Builder()
-                                .prop(Set.of(
-                                                new ImageInfoProp.Builder()
-                                                        .iiProp(Set.of(ImageInfoProp.IIProp.TIMESTAMP,
-                                                                ImageInfoProp.IIProp.URL,
-                                                                ImageInfoProp.IIProp.EXTMETADATA
-                                                        ))
-                                                        .iiLimit(1)
-                                                        .build()
-                                        )
+                .action(new QueryAction.Builder()
+                        .prop(Set.of(
+                                new ImageInfoProp.Builder()
+                                        .iiProp(Set.of(ImageInfoProp.IIProp.TIMESTAMP,
+                                                ImageInfoProp.IIProp.URL,
+                                                ImageInfoProp.IIProp.EXTMETADATA
+                                        ))
+                                        .iiLimit(1)
+                                        .build()
                                 )
-                                .titles(Set.of("File:Albert Einstein Head.jpg"))
-                                .build()
+                        )
+                        .titles(Set.of("File:Albert Einstein Head.jpg"))
+                        .build()
                 )
                 .build();
 
         Response r = gson.fromJson(api.execute(a), Response.class);
-
-        var b = r.getQuery().getPages().get(0).getImageInfo().get(0).getExtMetadata();
-
-        System.out.println(b.toString());
-        System.out.println(gson.toJson(b));
+        assertNotNull(r.getQuery().getPages().get(0).getImageInfo().get(0).getExtMetadata());
     }
 
     @Test
-    void getIiProp() {
+    void testBuilder() {
         var a = new ImageInfoProp.Builder()
                 .iiProp(Set.of(ImageInfoProp.IIProp.TIMESTAMP, ImageInfoProp.IIProp.USER_ID))
-                .build();
-
-        assertEquals(Set.of(ImageInfoProp.IIProp.TIMESTAMP, ImageInfoProp.IIProp.USER_ID), a.getIiProp());
-    }
-
-    @Test
-    void getIiLimit() {
-        var a = new ImageInfoProp.Builder()
                 .iiLimit(20)
-                .build();
-
-        assertEquals(20, a.getIiLimit());
-    }
-
-    @Test
-    void getIiStart() {
-        var a = new ImageInfoProp.Builder()
                 .iiStart("2007-12-31T23:59:59Z")
-                .build();
-
-        assertEquals("2007-12-31T23:59:59Z", a.getIiStart());
-    }
-
-    @Test
-    void getIiEnd() {
-        var a = new ImageInfoProp.Builder()
                 .iiEnd("2007-12-31T23:59:59Z")
-                .build();
-
-        assertEquals("2007-12-31T23:59:59Z", a.getIiEnd());
-    }
-
-    @Test
-    void getIiUrlWidth() {
-        var a = new ImageInfoProp.Builder()
                 .iiUrlWidth(50)
-                .build();
-
-        assertEquals(50, a.getIiUrlWidth());
-    }
-
-    @Test
-    void getIiUrlHeight() {
-        var a = new ImageInfoProp.Builder()
                 .iiUrlHeight(50)
-                .build();
-
-        assertEquals(50, a.getIiUrlHeight());
-    }
-
-    @Test
-    void getIiExtMetadataLanguage() {
-    }
-
-    @Test
-    void isIiExtMetadataMultiLang() {
-        var a = new ImageInfoProp.Builder()
+                .iiExtMetadataLanguage(ISO639Language.English)
                 .iiExtMetadataMultiLang()
                 .build();
 
+        assertEquals(Set.of(ImageInfoProp.IIProp.TIMESTAMP, ImageInfoProp.IIProp.USER_ID), a.getIiProp());
+        assertEquals(20, a.getIiLimit());
+        assertEquals("2007-12-31T23:59:59Z", a.getIiStart());
+        assertEquals("2007-12-31T23:59:59Z", a.getIiEnd());
+        assertEquals(50, a.getIiUrlWidth());
+        assertEquals(50, a.getIiUrlHeight());
+        assertEquals(ISO639Language.English, a.getIiExtMetadataLanguage());
         assertTrue(a.isIiExtMetadataMultiLang());
+
     }
+
 }

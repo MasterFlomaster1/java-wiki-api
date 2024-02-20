@@ -1,5 +1,8 @@
 package dev.masterflomaster1.jwa.model.prop;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -10,6 +13,7 @@ import java.util.Set;
 public class InfoProp extends AbstractProp {
 
     private Set<InProp> inProp;
+    private String inContinue;
 
     private InfoProp() {
         url = "&prop=info";
@@ -17,6 +21,26 @@ public class InfoProp extends AbstractProp {
 
     public Set<InProp> getInProp() {
         return inProp;
+    }
+
+    public String getInContinue() {
+        return inContinue;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        InfoProp infoProp = (InfoProp) o;
+
+        if (!Objects.equals(inProp, infoProp.inProp)) return false;
+        return Objects.equals(inContinue, infoProp.inContinue);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(inProp, inContinue);
     }
 
     /**
@@ -117,6 +141,18 @@ public class InfoProp extends AbstractProp {
          */
         public Builder inProp(Set<InProp> inProp) {
             infoProp.inProp = inProp;
+            return this;
+        }
+
+        /**
+         * When more results are available, use this to continue.
+         * More detailed information on how to continue queries can be found on
+         * <a href="https://www.mediawiki.org/wiki/API:Continue">mediawiki.org</a>.
+         * @return {@code Builder}
+         */
+        public Builder inContinue(String inContinue) {
+            infoProp.inContinue = inContinue;
+            infoProp.url += "&incontinue=" + URLEncoder.encode(inContinue, StandardCharsets.UTF_8);
             return this;
         }
 

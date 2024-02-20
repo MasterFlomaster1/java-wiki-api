@@ -1,17 +1,21 @@
-package dev.masterflomaster1.jwa.model.action;
+package dev.masterflomaster1.jwa.model.prop;
 
 import com.google.gson.Gson;
 import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
 import dev.masterflomaster1.jwa.WikiApiSyntaxException;
+import dev.masterflomaster1.jwa.model.action.QueryAction;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.Set;
 
-class CentralAuthTokenActionTest {
+import static org.junit.jupiter.api.Assertions.*;
+
+class IsReviewedPropTest {
 
     private static WikiApi api;
     private static Gson gson;
@@ -23,15 +27,22 @@ class CentralAuthTokenActionTest {
     }
 
     @Test
-    @DisplayName("Fetch a centralauthtoken")
+    @DisplayName("Determine if Main Page is marked as reviewed.")
     void testExample1() throws WikiApiSyntaxException, IOException, InterruptedException {
         var a = new WikiApiRequest.Builder()
-                .action(new CentralAuthTokenAction.Builder()
+                .action(new QueryAction.Builder()
+                        .prop(Set.of(
+                                        new IsReviewedProp.Builder()
+                                                .build()
+                                )
+                        )
+                        .titles(Set.of("Main Page"))
                         .build()
                 )
                 .build();
 
         Response r = gson.fromJson(api.execute(a), Response.class);
+        assertTrue(r.getQuery().getPages().get(0).isReviewed());
     }
 
 }

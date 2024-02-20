@@ -19,6 +19,9 @@ public final class Page {
     @SerializedName("title")
     private String title;
 
+    @SerializedName("isreviewed")
+    private Boolean isReviewed;
+
     @SerializedName("anoncontributors")
     private Integer anonContributors;
 
@@ -69,6 +72,12 @@ public final class Page {
 
     @SerializedName("globalusage")
     private List<Map<String, String>> globalUsage;
+
+    @SerializedName("images")
+    private List<Map<String, String>> images;
+
+    @SerializedName("redirects")
+    private List<Redirect> redirects;
 
     private Page() {
 
@@ -142,6 +151,19 @@ public final class Page {
         return length;
     }
 
+    public List<Map<String, String>> getImages() {
+        return images;
+    }
+
+    public List<Redirect> getRedirects() {
+        return redirects;
+    }
+
+    public Boolean isReviewed() {
+        return isReviewed;
+    }
+
+
     @Override
     public String toString() {
         return "Page{" +
@@ -149,6 +171,7 @@ public final class Page {
                 ", ns=" + ns +
                 ", missing=" + missing +
                 ", title='" + title + '\'' +
+                ", isReviewed=" + isReviewed +
                 ", anonContributors=" + anonContributors +
                 ", contentModel='" + contentModel + '\'' +
                 ", pageLanguage='" + pageLanguage + '\'' +
@@ -166,7 +189,8 @@ public final class Page {
                 ", contributors=" + contributors +
                 ", extLinks=" + extLinks +
                 ", globalUsage=" + globalUsage +
+                ", images=" + images +
+                ", redirects=" + redirects +
                 '}';
     }
-
 }

@@ -2,6 +2,7 @@ package dev.masterflomaster1.jwa.model.prop;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 /**
  * Returns all external URLs (not interwikis) from the given pages.
@@ -33,6 +34,24 @@ public class ExtLinksProp extends AbstractProp {
 
     public String getElQuery() {
         return elQuery;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ExtLinksProp that = (ExtLinksProp) o;
+
+        if (elLimit != that.elLimit) return false;
+        if (!Objects.equals(elContinue, that.elContinue)) return false;
+        if (elProtocol != that.elProtocol) return false;
+        return Objects.equals(elQuery, that.elQuery);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(elLimit, elContinue, elProtocol, elQuery);
     }
 
     public static class Builder {

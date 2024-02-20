@@ -42,41 +42,18 @@ class ThankActionTest {
     }
 
     @Test
-    void getRev() throws WikiApiSyntaxException {
+    void testBuilder() throws WikiApiSyntaxException {
         var a = new ThankAction.Builder()
                 .rev(456)
+                .log(456)
                 .token("test12345")
+                .source("diff")
                 .build();
 
         assertEquals(456, a.getRev());
-    }
-
-    @Test
-    void getLog() throws WikiApiSyntaxException {
-        var a = new ThankAction.Builder()
-                .log(456)
-                .token("test12345")
-                .build();
-
         assertEquals(456, a.getLog());
-    }
-
-    @Test
-    void getToken() throws WikiApiSyntaxException {
-        var a = new ThankAction.Builder()
-                .token("test12345")
-                .build();
-
         assertEquals("test12345", a.getToken());
-    }
-
-    @Test
-    void getSource() throws WikiApiSyntaxException {
-        var a = new ThankAction.Builder()
-                .source("diff")
-                .token("test12345")
-                .build();
-
         assertEquals("diff", a.getSource());
     }
+
 }

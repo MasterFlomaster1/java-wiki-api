@@ -4,6 +4,7 @@ import dev.masterflomaster1.jwa.common.Namespace;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -41,6 +42,25 @@ public class FileUsageProp extends AbstractProp {
 
     public String getFuContinue() {
         return fuContinue;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        FileUsageProp that = (FileUsageProp) o;
+
+        if (fuLimit != that.fuLimit) return false;
+        if (!Objects.equals(fuProp, that.fuProp)) return false;
+        if (!Objects.equals(fuNamespace, that.fuNamespace)) return false;
+        if (!Objects.equals(fuShow, that.fuShow)) return false;
+        return Objects.equals(fuContinue, that.fuContinue);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fuProp, fuNamespace, fuShow, fuLimit, fuContinue);
     }
 
     /**

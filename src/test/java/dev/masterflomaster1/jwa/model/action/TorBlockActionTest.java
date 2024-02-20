@@ -9,9 +9,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.io.IOException;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TorBlockActionTest {
 
@@ -28,10 +28,9 @@ class TorBlockActionTest {
     @DisplayName("Check if the IP address 192.0.2.18 is blocked as a Tor exit node.")
     void test() throws IOException, InterruptedException, WikiApiSyntaxException {
         var a = new WikiApiRequest.Builder()
-                .action(
-                        new TorBlockAction.Builder()
-                                .ip("102.130.119.48")
-                                .build()
+                .action(new TorBlockAction.Builder()
+                        .ip("102.130.119.48")
+                        .build()
                 )
                 .build();
 

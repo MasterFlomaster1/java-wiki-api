@@ -5,6 +5,7 @@ import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
 import dev.masterflomaster1.jwa.WikiApiSyntaxException;
+import dev.masterflomaster1.jwa.common.Namespace;
 import dev.masterflomaster1.jwa.model.action.QueryAction;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -13,9 +14,9 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
-class RevisionsPropTest {
+class RedirectsPropTest {
 
     private static WikiApi api;
     private static Gson gson;
@@ -27,18 +28,12 @@ class RevisionsPropTest {
     }
 
     @Test
-    @DisplayName("Get last 5 revisions of the Main Page.")
-    void testExample2() throws WikiApiSyntaxException, IOException, InterruptedException {
+    @DisplayName("Get a list of redirects to the Main Page.")
+    void testExample1() throws WikiApiSyntaxException, IOException, InterruptedException {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .prop(Set.of(
-                                new RevisionsProp.Builder()
-                                        .rvProp(Set.of(
-                                                RevisionsProp.RvProp.TIMESTAMP,
-                                                RevisionsProp.RvProp.USER,
-                                                RevisionsProp.RvProp.COMMENT
-                                        ))
-                                        .rvLimit(5)
+                                new RedirectsProp.Builder()
                                         .build()
                                 )
                         )
@@ -48,7 +43,24 @@ class RevisionsPropTest {
                 .build();
 
         Response r = gson.fromJson(api.execute(a), Response.class);
-        assertNotNull(r.getQuery().getPages().get(0).getRevisions());
+        assertNotNull(r.getQuery().getPages().get(0).getRedirects());
+    }
+
+    @Test
+    void testBuild() {
+        var a = new RedirectsProp.Builder()
+                .rdProp(Set.of(RedirectsProp.RdProp.PAGE_ID))
+                .rdNamespace(Set.of(Namespace.FILE))
+                .rdShow(RedirectsProp.RdShow.NOT_FRAGMENT)
+                .rdLimit(260)
+                .rdContinue("4503755")
+                .build();
+
+        assertEquals(Set.of(RedirectsProp.RdProp.PAGE_ID), a.getRdProp());
+        assertEquals(Set.of(Namespace.FILE), a.getRdNamespace());
+        assertEquals(RedirectsProp.RdShow.NOT_FRAGMENT, a.getRdShow());
+        assertEquals(260, a.getRdLimit());
+        assertEquals("4503755", a.getRdContinue());
     }
 
 }

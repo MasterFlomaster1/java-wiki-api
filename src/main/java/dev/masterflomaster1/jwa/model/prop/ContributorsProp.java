@@ -2,6 +2,7 @@ package dev.masterflomaster1.jwa.model.prop;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -44,6 +45,28 @@ public class ContributorsProp extends AbstractProp {
 
     public String getPcContinue() {
         return pcContinue;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ContributorsProp that = (ContributorsProp) o;
+
+        if (pcLimit != that.pcLimit) return false;
+        if (!Objects.equals(pcGroup, that.pcGroup)) return false;
+        if (!Objects.equals(pcExcludeGroup, that.pcExcludeGroup))
+            return false;
+        if (!Objects.equals(pcRights, that.pcRights)) return false;
+        if (!Objects.equals(pcExcludeRights, that.pcExcludeRights))
+            return false;
+        return Objects.equals(pcContinue, that.pcContinue);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(pcGroup, pcExcludeGroup, pcRights, pcExcludeRights, pcLimit, pcContinue);
     }
 
     public enum PcGroup {

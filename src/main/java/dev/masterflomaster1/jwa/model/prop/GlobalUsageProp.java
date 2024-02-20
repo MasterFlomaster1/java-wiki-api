@@ -4,6 +4,7 @@ import dev.masterflomaster1.jwa.common.Namespace;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -42,6 +43,25 @@ public class GlobalUsageProp extends AbstractProp {
 
     public boolean isGuFilterLocal() {
         return guFilterLocal;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        GlobalUsageProp that = (GlobalUsageProp) o;
+
+        if (guLimit != that.guLimit) return false;
+        if (guFilterLocal != that.guFilterLocal) return false;
+        if (!Objects.equals(guProp, that.guProp)) return false;
+        if (!Objects.equals(guNamespace, that.guNamespace)) return false;
+        return Objects.equals(guContinue, that.guContinue);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(guProp, guLimit, guNamespace, guContinue, guFilterLocal);
     }
 
     public static class Builder {

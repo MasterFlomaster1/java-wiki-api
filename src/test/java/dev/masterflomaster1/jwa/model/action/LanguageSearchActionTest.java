@@ -29,67 +29,54 @@ class LanguageSearchActionTest {
     @DisplayName("Search for 'Te'")
     void testExample1() throws WikiApiSyntaxException, IOException, InterruptedException {
         var a = new WikiApiRequest.Builder()
-                .action(
-                        new LanguageSearchAction.Builder()
-                                .search("Te")
-                                .build()
+                .action(new LanguageSearchAction.Builder()
+                        .search("Te")
+                        .build()
                 )
                 .build();
 
         Response r = gson.fromJson(api.execute(a), Response.class);
         assertNotNull(r.getLanguageSearch());
-        System.out.println(r.getLanguageSearch());
     }
 
     @Test
     @DisplayName("Search for 'ഫി'")
     void testExample2() throws WikiApiSyntaxException, IOException, InterruptedException {
         var a = new WikiApiRequest.Builder()
-                .action(
-                        new LanguageSearchAction.Builder()
-                                .search("ഫി")
-                                .build()
+                .action(new LanguageSearchAction.Builder()
+                        .search("ഫി")
+                        .build()
                 )
                 .build();
 
         Response r = gson.fromJson(api.execute(a), Response.class);
         assertNotNull(r.getLanguageSearch());
-        System.out.println(r.getLanguageSearch());
     }
 
     @Test
     @DisplayName("Search for 'ഫി', allowing one typo")
     void testExample3() throws WikiApiSyntaxException, IOException, InterruptedException {
         var a = new WikiApiRequest.Builder()
-                .action(
-                        new LanguageSearchAction.Builder()
-                                .search("ഫി")
-                                .typos(1)
-                                .build()
+                .action(new LanguageSearchAction.Builder()
+                        .search("ഫി")
+                        .typos(1)
+                        .build()
                 )
                 .build();
 
         Response r = gson.fromJson(api.execute(a), Response.class);
         assertNotNull(r.getLanguageSearch());
-        System.out.println(r.getLanguageSearch());
     }
 
     @Test
-    void getSearch() throws WikiApiSyntaxException {
-        var a = new LanguageSearchAction.Builder()
-                .search("Te")
-                .build();
-
-        assertEquals("Te", a.getSearch());
-    }
-
-    @Test
-    void getTypos() throws WikiApiSyntaxException {
+    void testBuilder() throws WikiApiSyntaxException {
         var a = new LanguageSearchAction.Builder()
                 .search("Te")
                 .typos(1)
                 .build();
 
+        assertEquals("Te", a.getSearch());
         assertEquals(1, a.getTypos());
     }
+
 }

@@ -35,8 +35,8 @@ class TemplatesPropTest {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .prop(Set.of(
-                                        new TemplatesProp.Builder()
-                                                .build()
+                                new TemplatesProp.Builder()
+                                        .build()
                                 )
                         )
                         .titles(Set.of("Main Page"))
@@ -46,10 +46,6 @@ class TemplatesPropTest {
 
         Response r = gson.fromJson(api.execute(a), Response.class);
         assertNotNull(r.getQuery().getPages().get(0).getTemplates());
-    }
-
-    void testExample2() {
-
     }
 
     @Test
@@ -58,9 +54,9 @@ class TemplatesPropTest {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .prop(Set.of(
-                                        new TemplatesProp.Builder()
-                                                .tlNamespace(Set.of(Namespace.USER, Namespace.TEMPLATE))
-                                                .build()
+                                new TemplatesProp.Builder()
+                                        .tlNamespace(Set.of(Namespace.USER, Namespace.TEMPLATE))
+                                        .build()
                                 )
                         )
                         .titles(Set.of("Main Page"))
@@ -73,47 +69,20 @@ class TemplatesPropTest {
     }
 
     @Test
-    void getTlNamespace() {
+    void testBuild() {
         var a = new TemplatesProp.Builder()
                 .tlNamespace(Set.of(Namespace.USER, Namespace.TEMPLATE))
-                .build();
-
-        assertEquals(Set.of(Namespace.USER, Namespace.TEMPLATE), a.getTlNamespace());
-    }
-
-    @Test
-    void getTlLimit() {
-        var a = new TemplatesProp.Builder()
                 .tlLimit(4)
-                .build();
-
-        assertEquals(4, a.getTlLimit());
-    }
-
-    @Test
-    void getTlContinue() {
-        var a = new TemplatesProp.Builder()
                 .tlContinue("15580374|10|Main_Page_interwikis")
-                .build();
-
-        assertEquals("15580374|10|Main_Page_interwikis", a.getTlContinue());
-    }
-
-    @Test
-    void getTlTemplates() {
-        var a = new TemplatesProp.Builder()
                 .tlTemplates(Set.of("Template:Flatlist"))
-                .build();
-
-        assertEquals(Set.of("Template:Flatlist"), a.getTlTemplates());
-    }
-
-    @Test
-    void getTlDir() {
-        var a = new TemplatesProp.Builder()
                 .tlDir(Dir.DESCENDING)
                 .build();
 
+        assertEquals(Set.of(Namespace.USER, Namespace.TEMPLATE), a.getTlNamespace());
+        assertEquals(4, a.getTlLimit());
+        assertEquals("15580374|10|Main_Page_interwikis", a.getTlContinue());
+        assertEquals(Set.of("Template:Flatlist"), a.getTlTemplates());
         assertEquals(Dir.DESCENDING, a.getTlDir());
     }
+
 }

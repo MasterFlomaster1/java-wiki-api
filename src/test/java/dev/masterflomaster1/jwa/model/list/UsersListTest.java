@@ -53,38 +53,18 @@ class UsersListTest {
     }
 
     @Test
-    void getUsProp() {
+    void testBuilder() {
         var a = new UsersList.Builder()
                 .usProp(Set.of(UsersList.UsProp.GROUPS))
-                .build();
-
-        assertEquals(Set.of(UsersList.UsProp.GROUPS), a.getUsProp());
-    }
-
-    @Test
-    void getUsAttachedWiki() {
-        var a = new UsersList.Builder()
                 .usAttachedWiki("id")
-                .build();
-
-        assertEquals("id", a.getUsAttachedWiki());
-    }
-
-    @Test
-    void getUsUsers() {
-        var a = new UsersList.Builder()
                 .usUsers(Set.of("Example"))
-                .build();
-
-        assertEquals(Set.of("Example"), a.getUsUsers());
-    }
-
-    @Test
-    void getUsUserIds() {
-        var a = new UsersList.Builder()
                 .usUserIds(Set.of(2222))
                 .build();
 
+        assertEquals(Set.of(UsersList.UsProp.GROUPS), a.getUsProp());
+        assertEquals("id", a.getUsAttachedWiki());
+        assertEquals(Set.of("Example"), a.getUsUsers());
         assertEquals(Set.of(2222), a.getUsUserIds());
     }
+
 }

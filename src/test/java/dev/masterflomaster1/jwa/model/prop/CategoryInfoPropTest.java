@@ -145,8 +145,8 @@ class CategoryInfoPropTest {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .prop(Set.of(
-                                        new CategoryInfoProp.Builder()
-                                                .build()
+                                new CategoryInfoProp.Builder()
+                                        .build()
                                 )
                         )
                         .titles(cats)
@@ -176,7 +176,7 @@ class CategoryInfoPropTest {
     }
 
     @Test
-    void getCiContinue() {
+    void testBuilder() {
         var a = new CategoryInfoProp.Builder()
                 .ciContinue("2")
                 .build();

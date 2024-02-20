@@ -2,6 +2,7 @@ package dev.masterflomaster1.jwa.model.prop;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 /**
  * Returns information about the given categories.
@@ -18,6 +19,21 @@ public class CategoryInfoProp extends AbstractProp {
 
     public String getCiContinue() {
         return ciContinue;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CategoryInfoProp that = (CategoryInfoProp) o;
+
+        return Objects.equals(ciContinue, that.ciContinue);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ciContinue);
     }
 
     public static class Builder {

@@ -107,7 +107,7 @@ public final class Response {
     public String toString() {
         return "Response{" +
                 "batchComplete=" + batchComplete +
-                ", aContinue=" + aContinue +
+                ", continue=" + aContinue +
                 ", error=" + error +
                 ", servedBy='" + servedBy + '\'' +
                 ", curTimestamp='" + curTimestamp + '\'' +

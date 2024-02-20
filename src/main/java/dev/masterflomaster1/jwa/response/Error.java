@@ -2,7 +2,7 @@ package dev.masterflomaster1.jwa.response;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Error {
+public final class Error {
 
     @SerializedName("code")
     private String code;

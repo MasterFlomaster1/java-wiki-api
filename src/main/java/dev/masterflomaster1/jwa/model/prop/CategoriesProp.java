@@ -2,6 +2,7 @@ package dev.masterflomaster1.jwa.model.prop;
 
 import dev.masterflomaster1.jwa.common.Dir;
 
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -35,6 +36,24 @@ public class CategoriesProp extends AbstractProp {
 
     public Dir getClDir() {
         return clDir;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CategoriesProp that = (CategoriesProp) o;
+
+        if (clLimit != that.clLimit) return false;
+        if (!Objects.equals(clProp, that.clProp)) return false;
+        if (clShow != that.clShow) return false;
+        return clDir == that.clDir;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(clProp, clShow, clLimit, clDir);
     }
 
     /**

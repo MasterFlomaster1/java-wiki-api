@@ -1,5 +1,7 @@
 package dev.masterflomaster1.jwa.model.prop;
 
+import java.util.Objects;
+
 /**
  * Shows per-page pageview data (the number of daily pageviews for each of the last pvipdays days).
  *
@@ -21,6 +23,22 @@ public class PageViewsProp extends AbstractProp {
 
     public String getPvIpContinue() {
         return pvIpContinue;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        PageViewsProp that = (PageViewsProp) o;
+
+        if (pvIpDays != that.pvIpDays) return false;
+        return Objects.equals(pvIpContinue, that.pvIpContinue);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(pvIpDays, pvIpContinue);
     }
 
     public static class Builder {

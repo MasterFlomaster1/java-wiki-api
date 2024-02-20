@@ -31,15 +31,14 @@ class GlobalUsagePropTest {
     @DisplayName("Get usage of File:Example.jpg")
     void testExample1() throws WikiApiSyntaxException, IOException, InterruptedException {
         var a = new WikiApiRequest.Builder()
-                .action(
-                        new QueryAction.Builder()
-                                .prop(Set.of(
+                .action(new QueryAction.Builder()
+                        .prop(Set.of(
                                         new GlobalUsageProp.Builder()
                                                 .build()
-                                        )
                                 )
-                                .titles(Set.of("File:Example.jpg"))
-                                .build()
+                        )
+                        .titles(Set.of("File:Example.jpg"))
+                        .build()
                 )
                 .build();
 

@@ -4,10 +4,13 @@ import dev.masterflomaster1.jwa.util.ISO639Language;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
+ * Returns file information and upload history.
+ *
  * @see <a href="https://www.mediawiki.org/wiki/API:Imageinfo">API:Imageinfo</a>
  */
 public class ImageInfoProp extends AbstractProp {
@@ -55,6 +58,29 @@ public class ImageInfoProp extends AbstractProp {
 
     public boolean isIiExtMetadataMultiLang() {
         return iiExtMetadataMultiLang;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ImageInfoProp that = (ImageInfoProp) o;
+
+        if (iiLimit != that.iiLimit) return false;
+        if (iiUrlWidth != that.iiUrlWidth) return false;
+        if (iiUrlHeight != that.iiUrlHeight) return false;
+        if (iiExtMetadataMultiLang != that.iiExtMetadataMultiLang) return false;
+        if (!Objects.equals(iiProp, that.iiProp)) return false;
+        if (!Objects.equals(iiStart, that.iiStart)) return false;
+        if (!Objects.equals(iiEnd, that.iiEnd)) return false;
+        return iiExtMetadataLanguage == that.iiExtMetadataLanguage;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(iiProp, iiLimit, iiStart, iiEnd, iiUrlWidth, iiUrlHeight, iiExtMetadataLanguage,
+                iiExtMetadataMultiLang);
     }
 
     public enum IIProp {
@@ -239,7 +265,6 @@ public class ImageInfoProp extends AbstractProp {
         /**
          * If iiprop=url is set, a URL to an image scaled to this width will be returned. For performance reasons if
          * this option is used, no more than 50 scaled images will be returned.
-         * @param iiUrlWidth value
          * @return {@code Builder}
          */
         public Builder iiUrlWidth(int iiUrlWidth) {
@@ -250,7 +275,6 @@ public class ImageInfoProp extends AbstractProp {
 
         /**
          * Similar to {@code iiurlwidth}.
-         * @param iiUrlHeight value
          * @return {@code Builder}
          */
         public Builder iiUrlHeight(int iiUrlHeight) {

@@ -32,25 +32,19 @@ class InfoPropTest {
     @DisplayName("Get information about the page Main Page.")
     void testExample1() throws WikiApiSyntaxException, IOException, InterruptedException {
         var a = new WikiApiRequest.Builder()
-                .action(
-                        new QueryAction.Builder()
-                                .prop(Set.of(
+                .action(new QueryAction.Builder()
+                        .prop(Set.of(
                                         new InfoProp.Builder()
                                                 .build()
-                                        )
                                 )
-                                .titles(Set.of("Main Page"))
-                                .build()
+                        )
+                        .titles(Set.of("Main Page"))
+                        .build()
                 )
                 .build();
 
         Response r = gson.fromJson(api.execute(a), Response.class);
-
         Page p = r.getQuery().getPages().get(0);
-        System.out.println(p.getTouched());
-        System.out.println(p.getLastRevId());
-        System.out.println(p.getLength());
-
         assertNotNull(p.getTouched());
         assertNotNull(p.getLastRevId());
         assertNotNull(p.getLength());
@@ -60,9 +54,11 @@ class InfoPropTest {
     void testBuilder() {
         var a = new InfoProp.Builder()
                 .inProp(Set.of(InfoProp.InProp.URL, InfoProp.InProp.TALK_ID))
+                .inContinue("test")
                 .build();
 
         assertEquals(Set.of(InfoProp.InProp.URL, InfoProp.InProp.TALK_ID), a.getInProp());
+        assertEquals("test", a.getInContinue());
     }
 
 }

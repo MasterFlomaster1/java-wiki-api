@@ -7,7 +7,6 @@ import dev.masterflomaster1.jwa.WikiApiRequest;
 import dev.masterflomaster1.jwa.WikiApiSyntaxException;
 import dev.masterflomaster1.jwa.common.Dir;
 import dev.masterflomaster1.jwa.model.action.QueryAction;
-import dev.masterflomaster1.jwa.response.Category;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,6 +15,7 @@ import java.io.IOException;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class CategoriesPropTest {
 
@@ -46,46 +46,23 @@ class CategoriesPropTest {
                 .build();
 
         Response r = gson.fromJson(api.execute(a), Response.class);
-
-        for (Category c : r.getQuery().getPages().get(0).getCategories()) {
-            System.out.println(c.getTitle());
-        }
+        assertNotNull(r.getQuery().getPages().get(0).getCategories());
     }
 
     @Test
-    void getClProp() {
+    void testBuilder() {
         var a = new CategoriesProp.Builder()
                 .clProp(Set.of(CategoriesProp.ClProp.TIMESTAMP, CategoriesProp.ClProp.HIDDEN))
-                .build();
-
-        assertEquals(a.getClProp(), Set.of(CategoriesProp.ClProp.TIMESTAMP, CategoriesProp.ClProp.HIDDEN));
-    }
-
-    @Test
-    void getClShow() {
-        var a = new CategoriesProp.Builder()
                 .clShow(CategoriesProp.ClShow.UNHIDDEN)
-                .build();
-
-        assertEquals(a.getClShow(), CategoriesProp.ClShow.UNHIDDEN);
-    }
-
-    @Test
-    void getClLimit() {
-        var a = new CategoriesProp.Builder()
                 .clLimit(5)
-                .build();
-
-
-        assertEquals(a.getClLimit(), 5);
-    }
-
-    @Test
-    void getClDir() {
-        var a = new CategoriesProp.Builder()
                 .clDir(Dir.DESCENDING)
                 .build();
 
-        assertEquals(a.getClDir(), Dir.DESCENDING);
+        assertEquals(Set.of(CategoriesProp.ClProp.TIMESTAMP, CategoriesProp.ClProp.HIDDEN), a.getClProp());
+        assertEquals(CategoriesProp.ClShow.UNHIDDEN, a.getClShow());
+        assertEquals(a.getClLimit(), 5);
+        assertEquals(5, a.getClLimit());
+        assertEquals(Dir.DESCENDING, a.getClDir());
     }
+
 }

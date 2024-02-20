@@ -5,6 +5,7 @@ import dev.masterflomaster1.jwa.common.Namespace;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -43,6 +44,25 @@ public class TemplatesProp extends AbstractProp {
 
     public Dir getTlDir() {
         return tlDir;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        TemplatesProp that = (TemplatesProp) o;
+
+        if (tlLimit != that.tlLimit) return false;
+        if (!Objects.equals(tlNamespace, that.tlNamespace)) return false;
+        if (!Objects.equals(tlContinue, that.tlContinue)) return false;
+        if (!Objects.equals(tlTemplates, that.tlTemplates)) return false;
+        return tlDir == that.tlDir;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(tlNamespace, tlLimit, tlContinue, tlTemplates, tlDir);
     }
 
     public static class Builder {

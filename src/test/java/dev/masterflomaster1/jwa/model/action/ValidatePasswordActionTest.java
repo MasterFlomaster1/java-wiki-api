@@ -54,41 +54,18 @@ class ValidatePasswordActionTest {
     }
 
     @Test
-    void getPassword() throws WikiApiSyntaxException {
-        var a = new ValidatePasswordAction.Builder()
-                .password("12345")
-                .build();
-
-        assertEquals("12345", a.getPassword());
-    }
-
-    @Test
-    void getUser() throws WikiApiSyntaxException {
+    void testBuilder() throws WikiApiSyntaxException {
         var a = new ValidatePasswordAction.Builder()
                 .password("12345")
                 .user("user")
-                .build();
-
-        assertEquals("user", a.getUser());
-    }
-
-    @Test
-    void getEmail() throws WikiApiSyntaxException {
-        var a = new ValidatePasswordAction.Builder()
-                .password("12345")
                 .email("email")
-                .build();
-
-        assertEquals("email", a.getEmail());
-    }
-
-    @Test
-    void getRealName() throws WikiApiSyntaxException {
-        var a = new ValidatePasswordAction.Builder()
-                .password("12345")
                 .realName("name")
                 .build();
 
+        assertEquals("12345", a.getPassword());
+        assertEquals("user", a.getUser());
+        assertEquals("email", a.getEmail());
         assertEquals("name", a.getRealName());
     }
+
 }
