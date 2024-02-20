@@ -1,7 +1,7 @@
 package dev.masterflomaster1.jwa;
 
 import com.google.gson.Gson;
-import dev.masterflomaster1.jwa.model.action.QueryAction;
+import dev.masterflomaster1.jwa.request.action.QueryAction;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
