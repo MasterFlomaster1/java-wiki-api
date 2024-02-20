@@ -1,5 +1,6 @@
 package dev.masterflomaster1.jwa;
 
+import dev.masterflomaster1.jwa.model.JsonFormat;
 import dev.masterflomaster1.jwa.model.action.AbstractAction;
 import dev.masterflomaster1.jwa.model.AbstractFormat;
 
@@ -7,6 +8,13 @@ public class WikiApiRequest {
 
     private String url = "https://en.wikipedia.org/w/api.php";
     private AbstractAction action;
+    private final AbstractFormat format = new JsonFormat();
+    private String assertUser;
+    private String requestId;
+    private boolean servedBy;
+    private boolean curTimestamp;
+    private boolean responseLangInfo;
+    private String variant;
 
     private WikiApiRequest() {
     }
@@ -15,9 +23,41 @@ public class WikiApiRequest {
         return url;
     }
 
+    public AbstractAction getAction() {
+        return action;
+    }
+
+    public AbstractFormat getFormat() {
+        return format;
+    }
+
+    public String getAssertUser() {
+        return assertUser;
+    }
+
+    public String getRequestId() {
+        return requestId;
+    }
+
+    public boolean isServedBy() {
+        return servedBy;
+    }
+
+    public boolean isCurTimestamp() {
+        return curTimestamp;
+    }
+
+    public boolean isResponseLangInfo() {
+        return responseLangInfo;
+    }
+
+    public String getVariant() {
+        return variant;
+    }
+
     public static class Builder {
 
-        private final WikiApiRequest request = new WikiApiRequest();
+        private final WikiApiRequest wikiApiRequest = new WikiApiRequest();
 
         /**
          * Which action to perform.
@@ -25,17 +65,28 @@ public class WikiApiRequest {
          * @return {@code Builder}
          */
         public Builder action(AbstractAction action) {
-            request.action = action;
-            request.url += action.getUrlPart();
+            wikiApiRequest.action = action;
+            wikiApiRequest.url += action.getUrlPart();
             return this;
         }
 
         /**
-         * The format of the output.
-         * @param format value
+         * Verify the current user is the named user.
          * @return {@code Builder}
          */
-        public Builder format(AbstractFormat format) {
+        public Builder assertUser(String assertUser) {
+            wikiApiRequest.assertUser = assertUser;
+            wikiApiRequest.url += "&assertuser=" + assertUser;
+            return this;
+        }
+
+        /**
+         * Any value given here will be included in the response. May be used to distinguish requests.
+         * @return {@code Builder}
+         */
+        public Builder requestId(String requestId) {
+            wikiApiRequest.requestId = requestId;
+            wikiApiRequest.url += "&requestid=" + requestId;
             return this;
         }
 
@@ -44,7 +95,8 @@ public class WikiApiRequest {
          * @return {@code Builder}
          */
         public Builder servedBy() {
-            request.url += "&servedby=1";
+            wikiApiRequest.servedBy = true;
+            wikiApiRequest.url += "&servedby=1";
             return this;
         }
 
@@ -53,7 +105,8 @@ public class WikiApiRequest {
          * @return {@code Builder}
          */
         public Builder curTimestamp() {
-            request.url += "&curtimestamp=1";
+            wikiApiRequest.curTimestamp = true;
+            wikiApiRequest.url += "&curtimestamp=1";
             return this;
         }
 
@@ -62,18 +115,29 @@ public class WikiApiRequest {
          * @return {@code Builder}
          */
         public Builder responseLangInfo() {
-            request.url += "&responselanginfo=1";
+            wikiApiRequest.responseLangInfo = true;
+            wikiApiRequest.url += "&responselanginfo=1";
+            return this;
+        }
+
+        /**
+         * Variant of the language. Only works if the base language supports variant conversion.
+         * @return {@code Builder}
+         */
+        public Builder variant(String variant) {
+            wikiApiRequest.variant = variant;
+            wikiApiRequest.url += "&variant=" + variant;
             return this;
         }
 
         public WikiApiRequest build() throws WikiApiSyntaxException {
-            if (request.action == null)
+            if (wikiApiRequest.action == null)
                 throw new WikiApiSyntaxException("You must specify one action to generate a request");
 
-            request.url += "&format=json";
-            request.url += "&formatversion=2";
+            wikiApiRequest.url += "&format=json";
+            wikiApiRequest.url += "&formatversion=2";
 
-            return request;
+            return wikiApiRequest;
         }
 
     }

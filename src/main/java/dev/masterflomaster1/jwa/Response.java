@@ -44,6 +44,9 @@ public final class Response {
     @SerializedName("languagesearch")
     private Map<String, String> languageSearch;
 
+    @SerializedName("requestid")
+    private String requestId;
+
     private Response() {
 
     }
@@ -96,6 +99,10 @@ public final class Response {
         return languageSearch;
     }
 
+    public String getRequestId() {
+        return requestId;
+    }
+
     @Override
     public String toString() {
         return "Response{" +
@@ -111,6 +118,7 @@ public final class Response {
                 ", centralAuthToken=" + centralAuthToken +
                 ", shortenUrl=" + shortenUrl +
                 ", languageSearch=" + languageSearch +
+                ", requestId='" + requestId + '\'' +
                 '}';
     }
 }

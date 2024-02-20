@@ -1,5 +1,6 @@
 package dev.masterflomaster1.jwa.model.meta;
 
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -30,17 +31,37 @@ public class SiteInfoMeta extends AbstractMeta {
         return siNumberInGroup;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        SiteInfoMeta that = (SiteInfoMeta) o;
+
+        if (siShowAllDb != that.siShowAllDb) return false;
+        if (siNumberInGroup != that.siNumberInGroup) return false;
+        return Objects.equals(siProp, that.siProp);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(siProp, siShowAllDb, siNumberInGroup);
+    }
+
     public enum SiProp {
 
         /**
          * Overall system information.
          */
         GENERAL ("general"),
+        NAMESPACE_ALIASES ("namespacealiases"),
+        NAMESPACES ("namespaces"),
 
         /**
          * Returns a list of protocols that are allowed in external links.
          */
-        PROTOCOLS ("protocols");
+        PROTOCOLS ("protocols"),
+        STATISTICS ("statistics");
 
         final String value;
 

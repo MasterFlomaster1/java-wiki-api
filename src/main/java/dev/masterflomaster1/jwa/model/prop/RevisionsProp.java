@@ -1,5 +1,6 @@
 package dev.masterflomaster1.jwa.model.prop;
 
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -15,6 +16,22 @@ public class RevisionsProp extends AbstractProp {
 
     private RevisionsProp() {
         url = "&prop=revisions";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        RevisionsProp that = (RevisionsProp) o;
+
+        if (rvLimit != that.rvLimit) return false;
+        return Objects.equals(rvProp, that.rvProp);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(rvProp, rvLimit);
     }
 
     public enum RvProp {

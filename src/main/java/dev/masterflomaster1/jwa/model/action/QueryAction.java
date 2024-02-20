@@ -18,12 +18,36 @@ public class QueryAction extends AbstractAction {
     private Set<AbstractProp> prop;
     private Set<AbstractList> list;
     private Set<AbstractMeta> meta;
-    private boolean indexPageIDs = false;
-    private boolean export = false;
+    private boolean indexPageIDs;
+    private boolean export;
     private Set<String> titles;
 
     private QueryAction() {
         urlPart = "?action=query";
+    }
+
+    public Set<AbstractProp> getProp() {
+        return prop;
+    }
+
+    public Set<AbstractList> getList() {
+        return list;
+    }
+
+    public Set<AbstractMeta> getMeta() {
+        return meta;
+    }
+
+    public boolean isIndexPageIDs() {
+        return indexPageIDs;
+    }
+
+    public boolean isExport() {
+        return export;
+    }
+
+    public Set<String> getTitles() {
+        return titles;
     }
 
     public static class Builder {

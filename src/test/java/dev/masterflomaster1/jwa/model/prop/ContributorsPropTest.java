@@ -46,29 +46,22 @@ class ContributorsPropTest {
     }
 
     @Test
-    void getPcGroup() {
+    void testBuilder() {
         var a = new ContributorsProp.Builder()
-                .pcGroup(Set.of())
+                .pcGroup(Set.of(ContributorsProp.PcGroup.ABUSE_FILTER))
+                .pcExcludeGroup(Set.of(ContributorsProp.PcGroup.ABUSE_FILTER))
+                .pcRights(Set.of(ContributorsProp.PcRights.EDIT))
+                .pcExcludeRights(Set.of(ContributorsProp.PcRights.EDIT))
+                .pcLimit(60)
+                .pcContinue("15580374|1029")
                 .build();
+
+        assertEquals(Set.of(ContributorsProp.PcGroup.ABUSE_FILTER), a.getPcGroup());
+        assertEquals(Set.of(ContributorsProp.PcGroup.ABUSE_FILTER), a.getPcExcludeGroup());
+        assertEquals(Set.of(ContributorsProp.PcRights.EDIT), a.getPcRights());
+        assertEquals(Set.of(ContributorsProp.PcRights.EDIT), a.getPcExcludeRights());
+        assertEquals(60, a.getPcLimit());
+        assertEquals("15580374|1029", a.getPcContinue());
     }
 
-    @Test
-    void getPcExcludeGroup() {
-    }
-
-    @Test
-    void getPcRights() {
-    }
-
-    @Test
-    void getPcExcludeRights() {
-    }
-
-    @Test
-    void getPcLimit() {
-    }
-
-    @Test
-    void getPcContinue() {
-    }
 }

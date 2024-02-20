@@ -8,6 +8,7 @@ import dev.masterflomaster1.jwa.WikiApiSyntaxException;
 import dev.masterflomaster1.jwa.common.Namespace;
 import dev.masterflomaster1.jwa.common.Tags;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,6 +16,15 @@ import java.io.IOException;
 import java.util.Set;
 
 class BlockActionTest {
+
+    private static WikiApi api;
+    private static Gson gson;
+
+    @BeforeAll
+    static void before() {
+        api = new WikiApi();
+        gson = new Gson();
+    }
 
     @Test
     @DisplayName("Block IP address 192.0.2.5 for three days with a reason.")
@@ -30,9 +40,7 @@ class BlockActionTest {
                 )
                 .build();
 
-        WikiApi api = new WikiApi();
-        Gson gson = new Gson();
-        Response r = gson.fromJson(api.executePost(a), Response.class);
+        Response r = gson.fromJson(api.execute(a), Response.class);
 
         System.out.println(r);
     }
@@ -54,9 +62,6 @@ class BlockActionTest {
                 )
                 .build();
 
-        WikiApi api = new WikiApi();
-        Gson gson = new Gson();
-        System.out.println(a.getUrl());
         Response r = gson.fromJson(api.execute(a), Response.class);
 
         System.out.println(r);

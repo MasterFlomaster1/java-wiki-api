@@ -7,7 +7,7 @@ import java.util.Set;
 /**
  * Get the list of logged-in contributors and the count of anonymous contributors to a page.
  *
- * @see <a href="https://www.mediawiki.org/wiki/API:Contributors">https://www.mediawiki.org/wiki/API:Contributors</a>
+ * @see <a href="https://www.mediawiki.org/wiki/API:Contributors">API:Contributors</a>
  */
 public class ContributorsProp extends AbstractProp {
 
@@ -62,7 +62,17 @@ public class ContributorsProp extends AbstractProp {
     }
 
     public enum PcRights {
+        EDIT ("edit");
 
+        private final String value;
+
+        PcRights(String value) {
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
     }
 
     public static class Builder {

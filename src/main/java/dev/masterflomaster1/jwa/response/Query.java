@@ -9,8 +9,14 @@ public final class Query {
     @SerializedName("pages")
     private List<Page> pages;
 
+    @SerializedName("general")
+    private General general;
+
     @SerializedName("recentchanges")
     private List<RecentChange> recentChanges;
+
+    @SerializedName("users")
+    private List<User> users;
 
     public List<Page> getPages() {
         return pages;
@@ -18,6 +24,14 @@ public final class Query {
 
     public List<RecentChange> getRecentChanges() {
         return recentChanges;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public General getGeneral() {
+        return general;
     }
 
     private Query() {
@@ -28,7 +42,9 @@ public final class Query {
     public String toString() {
         return "Query{" +
                 "pages=" + pages +
+                ", general=" + general +
                 ", recentChanges=" + recentChanges +
+                ", users=" + users +
                 '}';
     }
 }

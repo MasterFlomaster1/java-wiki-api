@@ -5,7 +5,7 @@ import java.util.Set;
 /**
  * Get basic page information.
  *
- * @see <a href="https://www.mediawiki.org/wiki/API:Info">https://www.mediawiki.org/wiki/API:Info</a>
+ * @see <a href="https://www.mediawiki.org/wiki/API:Info">API:Info</a>
  */
 public class InfoProp extends AbstractProp {
 
@@ -13,6 +13,10 @@ public class InfoProp extends AbstractProp {
 
     private InfoProp() {
         url = "&prop=info";
+    }
+
+    public Set<InProp> getInProp() {
+        return inProp;
     }
 
     /**
@@ -109,7 +113,6 @@ public class InfoProp extends AbstractProp {
 
         /**
          * Which additional properties to get
-         * @param inProp value
          * @return {@code Builder}
          */
         public Builder inProp(Set<InProp> inProp) {

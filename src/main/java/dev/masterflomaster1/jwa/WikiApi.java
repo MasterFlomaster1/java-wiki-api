@@ -25,16 +25,4 @@ public class WikiApi {
         return httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString()).body();
     }
 
-    public String executePost(WikiApiRequest request) throws IOException, InterruptedException {
-        HttpRequest httpRequest = HttpRequest.newBuilder()
-                .POST(HttpRequest.BodyPublishers.noBody())
-                .uri(URI.create(request.getUrl()))
-                .setHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36")
-                .build();
-
-        return httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString()).body();
-    }
-
-
-
 }

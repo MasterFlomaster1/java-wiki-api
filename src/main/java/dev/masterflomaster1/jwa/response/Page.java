@@ -34,6 +34,15 @@ public final class Page {
     @SerializedName("pagelanguagedir")
     private String pageLanguageDir;
 
+    @SerializedName("touched")
+    private String touched;
+
+    @SerializedName("lastrevid")
+    private Long lastRevId;
+
+    @SerializedName("length")
+    private Integer length;
+
     @SerializedName("categoryinfo")
     private CategoryInfo categoryInfo;
 
@@ -53,7 +62,13 @@ public final class Page {
     private Map<String, Integer> pageViews;
 
     @SerializedName("contributors")
-    public List<Contributor> contributors;
+    private List<Contributor> contributors;
+
+    @SerializedName("extlinks")
+    private List<Map<String, String>> extLinks;
+
+    @SerializedName("globalusage")
+    private List<Map<String, String>> globalUsage;
 
     private Page() {
 
@@ -107,6 +122,26 @@ public final class Page {
         return contributors;
     }
 
+    public List<Map<String, String>> getExtLinks() {
+        return extLinks;
+    }
+
+    public List<Map<String, String>> getGlobalUsage() {
+        return globalUsage;
+    }
+
+    public String getTouched() {
+        return touched;
+    }
+
+    public Long getLastRevId() {
+        return lastRevId;
+    }
+
+    public Integer getLength() {
+        return length;
+    }
+
     @Override
     public String toString() {
         return "Page{" +
@@ -119,6 +154,9 @@ public final class Page {
                 ", pageLanguage='" + pageLanguage + '\'' +
                 ", pageLanguageHtmlCode='" + pageLanguageHtmlCode + '\'' +
                 ", pageLanguageDir='" + pageLanguageDir + '\'' +
+                ", touched='" + touched + '\'' +
+                ", lastRevId=" + lastRevId +
+                ", length=" + length +
                 ", categoryInfo=" + categoryInfo +
                 ", categories=" + categories +
                 ", revisions=" + revisions +
@@ -126,6 +164,9 @@ public final class Page {
                 ", templates=" + templates +
                 ", pageViews=" + pageViews +
                 ", contributors=" + contributors +
+                ", extLinks=" + extLinks +
+                ", globalUsage=" + globalUsage +
                 '}';
     }
+
 }
