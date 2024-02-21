@@ -1,11 +1,11 @@
 package dev.masterflomaster1.jwa.request.list;
 
 import dev.masterflomaster1.jwa.common.Namespace;
+import dev.masterflomaster1.jwa.util.TimeHandler;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -106,7 +106,7 @@ public class RecentChangesList extends AbstractList {
          */
         public Builder rcStart(LocalDateTime rcStart) {
             recentChangesList.rcStart = rcStart;
-            recentChangesList.url += "&rcstart=" + URLEncoder.encode(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'").format(rcStart), StandardCharsets.UTF_8);
+            recentChangesList.url += "&rcstart=" + URLEncoder.encode(TimeHandler.format(rcStart), StandardCharsets.UTF_8);
             return this;
         }
 
@@ -116,7 +116,7 @@ public class RecentChangesList extends AbstractList {
          */
         public Builder rcEnd(LocalDateTime rcEnd) {
             recentChangesList.rcEnd = rcEnd;
-            recentChangesList.url += "&rcend=" + URLEncoder.encode(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'").format(rcEnd), StandardCharsets.UTF_8);
+            recentChangesList.url += "&rcend=" + URLEncoder.encode(TimeHandler.format(rcEnd), StandardCharsets.UTF_8);
             return this;
         }
 

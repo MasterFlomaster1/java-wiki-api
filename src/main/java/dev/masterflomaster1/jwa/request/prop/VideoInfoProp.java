@@ -1,9 +1,10 @@
 package dev.masterflomaster1.jwa.request.prop;
 
+import dev.masterflomaster1.jwa.util.TimeHandler;
+
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -152,7 +153,7 @@ public class VideoInfoProp extends AbstractProp {
          */
         public Builder viStart(LocalDateTime viStart) {
             videoInfoProp.viStart = viStart;
-            videoInfoProp.url += "&vistart=" + URLEncoder.encode(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'").format(viStart), StandardCharsets.UTF_8);
+            videoInfoProp.url += "&vistart=" + URLEncoder.encode(TimeHandler.format(viStart), StandardCharsets.UTF_8);
             return this;
         }
 
@@ -162,7 +163,7 @@ public class VideoInfoProp extends AbstractProp {
          */
         public Builder viEnd(LocalDateTime viEnd) {
             videoInfoProp.viEnd = viEnd;
-            videoInfoProp.url += "&viend=" + URLEncoder.encode(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'").format(viEnd), StandardCharsets.UTF_8);
+            videoInfoProp.url += "&viend=" + URLEncoder.encode(TimeHandler.format(viEnd), StandardCharsets.UTF_8);
             return this;
         }
 

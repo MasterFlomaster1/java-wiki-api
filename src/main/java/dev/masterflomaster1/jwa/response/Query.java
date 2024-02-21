@@ -18,6 +18,9 @@ public final class Query {
     @SerializedName("users")
     private List<User> users;
 
+    @SerializedName("allcategories")
+    private List<CategoryInfo> allCategories;
+
     public List<Page> getPages() {
         return pages;
     }
@@ -34,6 +37,10 @@ public final class Query {
         return general;
     }
 
+    public List<CategoryInfo> getAllCategories() {
+        return allCategories;
+    }
+
     private Query() {
 
     }
@@ -45,6 +52,7 @@ public final class Query {
                 ", general=" + general +
                 ", recentChanges=" + recentChanges +
                 ", users=" + users +
+                ", allCategories=" + allCategories +
                 '}';
     }
 }

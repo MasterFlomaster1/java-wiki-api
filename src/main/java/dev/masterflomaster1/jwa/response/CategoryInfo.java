@@ -19,6 +19,9 @@ public final class CategoryInfo {
     @SerializedName("hidden")
     private Boolean hidden;
 
+    @SerializedName("category")
+    private String category;
+
     private CategoryInfo() {
 
     }
@@ -43,6 +46,10 @@ public final class CategoryInfo {
         return hidden;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
     @Override
     public String toString() {
         return "CategoryInfo{" +
@@ -51,6 +58,7 @@ public final class CategoryInfo {
                 ", files=" + files +
                 ", subCats=" + subCats +
                 ", hidden=" + hidden +
+                ", category='" + category + '\'' +
                 '}';
     }
 }

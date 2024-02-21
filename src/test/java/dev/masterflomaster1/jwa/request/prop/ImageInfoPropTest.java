@@ -11,6 +11,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -55,7 +56,7 @@ class ImageInfoPropTest {
                                                 ImageInfoProp.IIProp.URL
                                         ))
                                         .iiLimit(50)
-                                        .iiEnd("2007-12-31T23:59:59Z")
+                                        .iiEnd(LocalDateTime.of(2007, 12, 31, 23, 59, 59))
                                         .build()
                                 )
                         )
@@ -96,8 +97,8 @@ class ImageInfoPropTest {
         var a = new ImageInfoProp.Builder()
                 .iiProp(Set.of(ImageInfoProp.IIProp.TIMESTAMP, ImageInfoProp.IIProp.USER_ID))
                 .iiLimit(20)
-                .iiStart("2007-12-31T23:59:59Z")
-                .iiEnd("2007-12-31T23:59:59Z")
+                .iiStart(LocalDateTime.of(2007, 12, 31, 23, 59, 59))
+                .iiEnd(LocalDateTime.of(2007, 12, 31, 23, 59, 59))
                 .iiUrlWidth(50)
                 .iiUrlHeight(50)
                 .iiExtMetadataLanguage(ISO639Language.English)
@@ -106,8 +107,8 @@ class ImageInfoPropTest {
 
         assertEquals(Set.of(ImageInfoProp.IIProp.TIMESTAMP, ImageInfoProp.IIProp.USER_ID), a.getIiProp());
         assertEquals(20, a.getIiLimit());
-        assertEquals("2007-12-31T23:59:59Z", a.getIiStart());
-        assertEquals("2007-12-31T23:59:59Z", a.getIiEnd());
+        assertEquals(LocalDateTime.of(2007, 12, 31, 23, 59, 59), a.getIiStart());
+        assertEquals(LocalDateTime.of(2007, 12, 31, 23, 59, 59), a.getIiEnd());
         assertEquals(50, a.getIiUrlWidth());
         assertEquals(50, a.getIiUrlHeight());
         assertEquals(ISO639Language.English, a.getIiExtMetadataLanguage());

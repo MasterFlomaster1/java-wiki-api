@@ -1,5 +1,10 @@
 package dev.masterflomaster1.jwa.request.prop;
 
+import dev.masterflomaster1.jwa.util.TimeHandler;
+
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -13,9 +18,57 @@ public class RevisionsProp extends AbstractProp {
 
     private Set<RvProp> rvProp;
     private int rvLimit;
+    private String rvSection;
+    private LocalDateTime rvStart;
+    private LocalDateTime rvEnd;
+    private RvDir rvDir;
+    private String rvUser;
+    private String rvExcludeUser;
+    private String rvTag;
+    private String rvContinue;
 
     private RevisionsProp() {
         url = "&prop=revisions";
+    }
+
+    public Set<RvProp> getRvProp() {
+        return rvProp;
+    }
+
+    public int getRvLimit() {
+        return rvLimit;
+    }
+
+    public String getRvSection() {
+        return rvSection;
+    }
+
+    public LocalDateTime getRvStart() {
+        return rvStart;
+    }
+
+    public LocalDateTime getRvEnd() {
+        return rvEnd;
+    }
+
+    public RvDir getRvDir() {
+        return rvDir;
+    }
+
+    public String getRvUser() {
+        return rvUser;
+    }
+
+    public String getRvExcludeUser() {
+        return rvExcludeUser;
+    }
+
+    public String getRvTag() {
+        return rvTag;
+    }
+
+    public String getRvContinue() {
+        return rvContinue;
     }
 
     @Override
@@ -26,12 +79,143 @@ public class RevisionsProp extends AbstractProp {
         RevisionsProp that = (RevisionsProp) o;
 
         if (rvLimit != that.rvLimit) return false;
-        return Objects.equals(rvProp, that.rvProp);
+        if (!Objects.equals(rvProp, that.rvProp)) return false;
+        if (!Objects.equals(rvSection, that.rvSection)) return false;
+        if (!Objects.equals(rvStart, that.rvStart)) return false;
+        if (!Objects.equals(rvEnd, that.rvEnd)) return false;
+        if (rvDir != that.rvDir) return false;
+        if (!Objects.equals(rvUser, that.rvUser)) return false;
+        if (!Objects.equals(rvExcludeUser, that.rvExcludeUser))
+            return false;
+        if (!Objects.equals(rvTag, that.rvTag)) return false;
+        return Objects.equals(rvContinue, that.rvContinue);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(rvProp, rvLimit);
+        return Objects.hash(rvProp, rvLimit, rvSection, rvStart, rvEnd, rvDir, rvUser, rvExcludeUser, rvTag, rvContinue);
+    }
+
+    public static class Builder {
+
+        private final RevisionsProp revisionsProp = new RevisionsProp();
+
+        /**
+         * Which properties to get for each revision.
+         * @return {@code Builder}
+         */
+        public Builder rvProp(Set<RvProp> rvProp) {
+            revisionsProp.rvProp = rvProp;
+            revisionsProp.url += "&rvprop=" + rvProp.stream()
+                    .map(RvProp::getValue)
+                    .collect(Collectors.joining("%7C"));
+            return this;
+        }
+
+        /**
+         * Limit how many revisions will be returned. If {@code rvprop=content}, {@code rvprop=parsetree},
+         * {@code rvdiffto} or {@code rvdifftotext} is used, the limit is 50. If {@code rvparse} is used, the limit is 1.
+         * May only be used with a single page (mode #2).
+         * The value must be between 1 and 500.
+         * @return {@code Builder}
+         */
+        public Builder rvLimit(int rvLimit) {
+            revisionsProp.rvLimit = rvLimit;
+            revisionsProp.url += "&rvlimit=" + rvLimit;
+            return this;
+        }
+
+        /**
+         * Only retrieve the content of the section with this identifier.
+         * @return {@code Builder}
+         */
+        public Builder rvSection(String rvSection) {
+            revisionsProp.rvSection = rvSection;
+            revisionsProp.url += "&rvsection=" + URLEncoder.encode(rvSection, StandardCharsets.UTF_8);
+            return this;
+        }
+
+        /**
+         * From which revision timestamp to start enumeration.
+         * May only be used with a single page (mode #2).
+         * @return {@code Builder}
+         */
+        public Builder rvStart(LocalDateTime rvStart) {
+            revisionsProp.rvStart = rvStart;
+            revisionsProp.url += "&rvstart=" + URLEncoder.encode(TimeHandler.format(rvStart), StandardCharsets.UTF_8);
+            return this;
+        }
+
+        /**
+         * Enumerate up to this timestamp.
+         * May only be used with a single page (mode #2).
+         * @return {@code Builder}
+         */
+        public Builder rvEnd(LocalDateTime rvEnd) {
+            revisionsProp.rvEnd = rvEnd;
+            revisionsProp.url += "&rvend=" + URLEncoder.encode(TimeHandler.format(rvEnd), StandardCharsets.UTF_8);
+            return this;
+        }
+
+        /**
+         * In which direction to enumerate.
+         * May only be used with a single page (mode #2).
+         * @return {@code Builder}
+         */
+        public Builder rvDir(RvDir rvDir) {
+            revisionsProp.rvDir = rvDir;
+            revisionsProp.url += "&rvdir=" + rvDir.getValue();
+            return this;
+        }
+
+        /**
+         * Only include revisions made by user.
+         * May only be used with a single page (mode #2).
+         * @return {@code Builder}
+         */
+        public Builder rvUser(String rvUser) {
+            revisionsProp.rvUser = rvUser;
+            revisionsProp.url += "&rvuser=" + URLEncoder.encode(rvUser, StandardCharsets.UTF_8);
+            return this;
+        }
+
+        /**
+         * Exclude revisions made by user.
+         * May only be used with a single page (mode #2).
+         * @return {@code Builder}
+         */
+        public Builder rvExcludeUser(String rvExcludeUser) {
+            revisionsProp.rvExcludeUser = rvExcludeUser;
+            revisionsProp.url += "&rvexcludeuser=" + URLEncoder.encode(rvExcludeUser, StandardCharsets.UTF_8);
+            return this;
+        }
+
+        /**
+         * Only list revisions tagged with this tag.
+         * @return {@code Builder}
+         */
+        public Builder rvTag(String rvTag) {
+            revisionsProp.rvTag = rvTag;
+            revisionsProp.url += "&rvtag=" + rvTag;
+            return this;
+        }
+
+        /**
+         * When more results are available, use this to continue.
+         * More detailed information on how to continue queries can be found on
+         * <a href="https://www.mediawiki.org/wiki/API:Continue">mediawiki.org</a>.
+         * @return {@code Builder}
+         */
+        public Builder rvContinue(String rvContinue) {
+            revisionsProp.rvContinue = rvContinue;
+            revisionsProp.url += "rvcontinue" + URLEncoder.encode(rvContinue, StandardCharsets.UTF_8);
+            return this;
+        }
+
+        public RevisionsProp build() {
+            return revisionsProp;
+        }
+
     }
 
     public enum RvProp {
@@ -130,38 +314,19 @@ public class RevisionsProp extends AbstractProp {
         }
     }
 
-    public static class Builder {
+    public enum RvDir {
 
-        private final RevisionsProp revisionsProp = new RevisionsProp();
+        NEWER ("newer"),
+        OLDER ("older");
 
-        /**
-         * Which properties to get for each revision.
-         * @return {@code Builder}
-         */
-        public Builder rvProp(Set<RvProp> rvProp) {
-            revisionsProp.rvProp = rvProp;
-            revisionsProp.url += "&rvprop=" + rvProp.stream()
-                    .map(RvProp::getValue)
-                    .collect(Collectors.joining("%7C"));
-            return this;
+        private final String value;
+
+        RvDir(String value) {
+            this.value = value;
         }
 
-        /**
-         * Limit how many revisions will be returned. If {@code rvprop=content}, {@code rvprop=parsetree},
-         * {@code rvdiffto} or {@code rvdifftotext} is used, the limit is 50. If {@code rvparse} is used, the limit is 1.
-         * May only be used with a single page (mode #2).
-         * The value must be between 1 and 500.
-         * @return {@code Builder}
-         */
-        public Builder rvLimit(int rvLimit) {
-            System.out.println(revisionsProp.rvLimit);
-            revisionsProp.rvLimit = rvLimit;
-            revisionsProp.url += "&rvlimit=" + rvLimit;
-            return this;
-        }
-
-        public RevisionsProp build() {
-            return revisionsProp;
+        public String getValue() {
+            return value;
         }
 
     }
