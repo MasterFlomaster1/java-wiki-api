@@ -52,6 +52,8 @@ class CategoriesPropTest {
                 .clProp(Set.of(CategoriesProp.ClProp.TIMESTAMP, CategoriesProp.ClProp.HIDDEN))
                 .clShow(CategoriesProp.ClShow.UNHIDDEN)
                 .clLimit(5)
+                .clContinue("736|Academic_staff_of_the_University_of_Bern")
+                .clCategories(Set.of("A", "B"))
                 .clDir(Dir.DESCENDING)
                 .build();
 
@@ -59,6 +61,8 @@ class CategoriesPropTest {
         assertEquals(CategoriesProp.ClShow.UNHIDDEN, a.getClShow());
         assertEquals(a.getClLimit(), 5);
         assertEquals(5, a.getClLimit());
+        assertEquals("736|Academic_staff_of_the_University_of_Bern", a.getClContinue());
+        assertEquals(Set.of("A", "B"), a.getClCategories());
         assertEquals(Dir.DESCENDING, a.getClDir());
     }
 

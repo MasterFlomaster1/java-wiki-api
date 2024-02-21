@@ -2,6 +2,8 @@ package dev.masterflomaster1.jwa.request.prop;
 
 import dev.masterflomaster1.jwa.common.Dir;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -16,6 +18,8 @@ public class CategoriesProp extends AbstractProp {
     private Set<ClProp> clProp;
     private ClShow clShow;
     private int clLimit;
+    private String clContinue;
+    private Set<String> clCategories;
     private Dir clDir;
 
     private CategoriesProp() {
@@ -34,6 +38,14 @@ public class CategoriesProp extends AbstractProp {
         return clLimit;
     }
 
+    public String getClContinue() {
+        return clContinue;
+    }
+
+    public Set<String> getClCategories() {
+        return clCategories;
+    }
+
     public Dir getClDir() {
         return clDir;
     }
@@ -48,12 +60,91 @@ public class CategoriesProp extends AbstractProp {
         if (clLimit != that.clLimit) return false;
         if (!Objects.equals(clProp, that.clProp)) return false;
         if (clShow != that.clShow) return false;
+        if (!Objects.equals(clContinue, that.clContinue)) return false;
+        if (!Objects.equals(clCategories, that.clCategories)) return false;
         return clDir == that.clDir;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(clProp, clShow, clLimit, clDir);
+        return Objects.hash(clProp, clShow, clLimit, clContinue, clCategories, clDir);
+    }
+
+    public static class Builder {
+
+        private final CategoriesProp categoriesProp = new CategoriesProp();
+
+        /**
+         * Which additional properties to get for each category
+         * @return {@code Builder}
+         */
+        public Builder clProp(Set<ClProp> clProp) {
+            categoriesProp.clProp = clProp;
+            categoriesProp.url += "&clProp=" + clProp.stream()
+                    .map(ClProp::getValue)
+                    .collect(Collectors.joining("%7C"));
+            return this;
+        }
+
+        /**
+         * Which kind of categories to show.
+         * @return {@code Builder}
+         */
+        public Builder clShow(ClShow clShow) {
+            categoriesProp.clShow = clShow;
+            categoriesProp.url += "&clshow=" + clShow.value;
+            return this;
+        }
+
+        /**
+         * How many categories to return. The value must be between 1 and 500.
+         * @return {@code Builder}
+         */
+        public Builder clLimit(int clLimit) {
+            categoriesProp.clLimit = clLimit;
+            categoriesProp.url += "&cllimit=" + clLimit;
+            return this;
+        }
+
+        /**
+         * When more results are available, use this to continue.
+         * More detailed information on how to continue queries can be found on
+         * <a href="https://www.mediawiki.org/wiki/API:Continue">mediawiki.org</a>.
+         * @return {@code Builder}
+         */
+        public Builder clContinue(String clContinue) {
+            categoriesProp.clContinue = clContinue;
+            categoriesProp.url += "&clcontinue=" + URLEncoder.encode(clContinue, StandardCharsets.UTF_8);
+            return this;
+        }
+
+        /**
+         * Only list these categories. Useful for checking whether a certain page is in a certain category.
+         * @param clCategories Maximum number of values is 50 (500 for clients that are allowed higher limits).
+         * @return {@code Builder}
+         */
+        public Builder clCategories(Set<String> clCategories) {
+            categoriesProp.clCategories = clCategories;
+            categoriesProp.url += "&clcategories=" + clCategories.stream()
+                    .map(str -> URLEncoder.encode(str, StandardCharsets.UTF_8))
+                    .collect(Collectors.joining("%7C"));
+            return this;
+        }
+
+        /**
+         * The direction in which to list.
+         * @return {@code Builder}
+         */
+        public Builder clDir(Dir clDir) {
+            categoriesProp.clDir = clDir;
+            categoriesProp.url += "&cldir=" + clDir.getValue();
+            return this;
+        }
+
+        public CategoriesProp build() {
+            return categoriesProp;
+        }
+
     }
 
     /**
@@ -103,58 +194,6 @@ public class CategoriesProp extends AbstractProp {
         public String getValue() {
             return value;
         }
-    }
-
-    public static class Builder {
-
-        private final CategoriesProp categoriesProp = new CategoriesProp();
-
-        /**
-         * Which additional properties to get for each category
-         * @return {@code Builder}
-         */
-        public Builder clProp(Set<ClProp> clProp) {
-            categoriesProp.clProp = clProp;
-            categoriesProp.url += "&clProp=" + clProp.stream()
-                    .map(ClProp::getValue)
-                    .collect(Collectors.joining("%7C"));
-            return this;
-        }
-
-        /**
-         * Which kind of categories to show.
-         * @return {@code Builder}
-         */
-        public Builder clShow(ClShow clShow) {
-            categoriesProp.clShow = clShow;
-            categoriesProp.url += "&clshow=" + clShow.value;
-            return this;
-        }
-
-        /**
-         * How many categories to return. The value must be between 1 and 500.
-         * @return {@code Builder}
-         */
-        public Builder clLimit(int clLimit) {
-            categoriesProp.clLimit = clLimit;
-            categoriesProp.url += "&cllimit=" + clLimit;
-            return this;
-        }
-
-        /**
-         * The direction in which to list.
-         * @return {@code Builder}
-         */
-        public Builder clDir(Dir clDir) {
-            categoriesProp.clDir = clDir;
-            categoriesProp.url += "&cldir=" + clDir.getValue();
-            return this;
-        }
-
-        public CategoriesProp build() {
-            return categoriesProp;
-        }
-
     }
 
 }
