@@ -21,6 +21,9 @@ public final class Query {
     @SerializedName("allcategories")
     private List<CategoryInfo> allCategories;
 
+    @SerializedName("tokens")
+    private Tokens tokens;
+
     public List<Page> getPages() {
         return pages;
     }
@@ -41,6 +44,10 @@ public final class Query {
         return allCategories;
     }
 
+    public Tokens getTokens() {
+        return tokens;
+    }
+
     private Query() {
 
     }
@@ -53,6 +60,7 @@ public final class Query {
                 ", recentChanges=" + recentChanges +
                 ", users=" + users +
                 ", allCategories=" + allCategories +
+                ", tokens=" + tokens +
                 '}';
     }
 }

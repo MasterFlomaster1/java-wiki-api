@@ -118,7 +118,7 @@ public class ImageInfoProp extends AbstractProp {
          */
         public Builder iiStart(LocalDateTime iiStart) {
             imageInfoProp.iiStart = iiStart;
-            imageInfoProp.url += "&iistart=" + URLEncoder.encode(TimeHandler.format(iiStart), StandardCharsets.UTF_8);
+            imageInfoProp.url += "&iistart=" + URLEncoder.encode(TimeHandler.formatISO8601(iiStart), StandardCharsets.UTF_8);
             return this;
         }
 
@@ -128,7 +128,7 @@ public class ImageInfoProp extends AbstractProp {
          */
         public Builder iiEnd(LocalDateTime iiEnd) {
             imageInfoProp.iiEnd = iiEnd;
-            imageInfoProp.url += "&iiend=" + URLEncoder.encode(TimeHandler.format(iiEnd), StandardCharsets.UTF_8);
+            imageInfoProp.url += "&iiend=" + URLEncoder.encode(TimeHandler.formatISO8601(iiEnd), StandardCharsets.UTF_8);
             return this;
         }
 

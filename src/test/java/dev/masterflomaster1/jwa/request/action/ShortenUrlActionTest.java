@@ -10,8 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ShortenUrlActionTest {
 
@@ -28,12 +27,14 @@ class ShortenUrlActionTest {
         var a = new WikiApiRequest.Builder()
                 .action(new ShortenUrlAction.Builder()
                         .url("https://en.wikipedia.org/wiki/Arctica")
+                        .qrCode()
                         .build()
                 )
                 .build();
 
         Response r = api.execute(a);
-        System.out.println(r);
+        assertNull(r.getError());
+        assertNotNull(r.getShortenUrl());
     }
 
     @Test

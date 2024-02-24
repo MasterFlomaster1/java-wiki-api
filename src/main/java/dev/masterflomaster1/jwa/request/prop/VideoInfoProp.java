@@ -153,7 +153,7 @@ public class VideoInfoProp extends AbstractProp {
          */
         public Builder viStart(LocalDateTime viStart) {
             videoInfoProp.viStart = viStart;
-            videoInfoProp.url += "&vistart=" + URLEncoder.encode(TimeHandler.format(viStart), StandardCharsets.UTF_8);
+            videoInfoProp.url += "&vistart=" + URLEncoder.encode(TimeHandler.formatISO8601(viStart), StandardCharsets.UTF_8);
             return this;
         }
 
@@ -163,7 +163,7 @@ public class VideoInfoProp extends AbstractProp {
          */
         public Builder viEnd(LocalDateTime viEnd) {
             videoInfoProp.viEnd = viEnd;
-            videoInfoProp.url += "&viend=" + URLEncoder.encode(TimeHandler.format(viEnd), StandardCharsets.UTF_8);
+            videoInfoProp.url += "&viend=" + URLEncoder.encode(TimeHandler.formatISO8601(viEnd), StandardCharsets.UTF_8);
             return this;
         }
 

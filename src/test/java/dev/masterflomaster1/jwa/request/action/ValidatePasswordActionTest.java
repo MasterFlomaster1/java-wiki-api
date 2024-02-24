@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ValidatePasswordActionTest {
 
@@ -32,7 +32,10 @@ class ValidatePasswordActionTest {
                 .build();
 
         Response r = api.execute(a);
-        System.out.println(r);
+        System.out.println(r.getValidatePassword());
+
+        assertNull(r.getError());
+        assertNotNull(r.getValidatePassword());
     }
 
     @Test
@@ -47,7 +50,9 @@ class ValidatePasswordActionTest {
                 .build();
 
         Response r = api.execute(a);
-        System.out.println(r);
+
+        if (r.getValidatePassword() == null)
+            assertNotNull(r.getError());
     }
 
     @Test

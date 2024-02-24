@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ThankActionTest {
 
@@ -27,7 +27,7 @@ class ThankActionTest {
         var a = new WikiApiRequest.Builder()
                 .action(new ThankAction.Builder()
                         .rev(456)
-                        .token("ade5a6db13664e583b74ca6eb7bb73ba65d0134c+\\")
+                        .token(Shared.tokens().getCsrfToken())
                         .source("diff")
                         .build()
                 )
@@ -35,7 +35,8 @@ class ThankActionTest {
 
         Response r = api.execute(a);
 
-        System.out.println(r);
+        if (r.getError() != null)
+            assertEquals("notloggedin", r.getError().getCode());
     }
 
     @Test

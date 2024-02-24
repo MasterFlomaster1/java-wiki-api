@@ -1,6 +1,7 @@
 package dev.masterflomaster1.jwa.request.action;
 
 import dev.masterflomaster1.jwa.WikiApiSyntaxException;
+import okhttp3.FormBody;
 
 /**
  * Validate a password against the wiki's password policies.
@@ -9,7 +10,7 @@ import dev.masterflomaster1.jwa.WikiApiSyntaxException;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:Validatepassword">API:Validatepassword</a>
  */
-public class ValidatePasswordAction extends AbstractAction {
+public class ValidatePasswordAction extends AbstractAction implements IPost {
 
     private String password;
     private String user;
@@ -36,6 +37,14 @@ public class ValidatePasswordAction extends AbstractAction {
         return realName;
     }
 
+    @Override
+    public FormBody getPostBody() {
+        return new FormBody.Builder()
+                .add("action", "validatepassword")
+                .add("password", password)
+                .build();
+    }
+
     public static class Builder {
 
         private final ValidatePasswordAction validatePasswordAction = new ValidatePasswordAction();
@@ -47,7 +56,7 @@ public class ValidatePasswordAction extends AbstractAction {
          */
         public Builder password(String password) {
             validatePasswordAction.password = password;
-            validatePasswordAction.urlPart += "&password=" + password;
+//            validatePasswordAction.urlPart += "&password=" + password;
             return this;
         }
 

@@ -1,6 +1,7 @@
 package dev.masterflomaster1.jwa;
 
 import com.google.gson.Gson;
+import dev.masterflomaster1.jwa.request.action.IPost;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 
@@ -23,6 +24,19 @@ public class WikiApi {
     }
 
     public Response execute(WikiApiRequest request) throws IOException {
+
+        if (request.getAction() instanceof IPost) {
+            Request request1 = new Request.Builder()
+                    .url(request.getUrl())
+                    .post(((IPost) request.getAction()).getPostBody())
+                    .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36")
+                    .build();
+
+            try (okhttp3.Response response = client.newCall(request1).execute()) {
+                return gson.fromJson(response.body().string(), Response.class);
+            }
+        }
+
         Request request1 = new Request.Builder()
                 .url(request.getUrl())
                 .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36")

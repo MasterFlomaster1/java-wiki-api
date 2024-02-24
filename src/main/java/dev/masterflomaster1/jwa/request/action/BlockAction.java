@@ -3,6 +3,7 @@ package dev.masterflomaster1.jwa.request.action;
 import dev.masterflomaster1.jwa.WikiApiSyntaxException;
 import dev.masterflomaster1.jwa.common.Namespace;
 import dev.masterflomaster1.jwa.common.Tags;
+import okhttp3.FormBody;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -14,7 +15,7 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:Block">API:Block</a>
  */
-public class BlockAction extends AbstractAction {
+public class BlockAction extends AbstractAction implements IPost {
 
     private String user;
     private String expiry;
@@ -104,6 +105,14 @@ public class BlockAction extends AbstractAction {
 
     private BlockAction() {
         urlPart = "?action=block";
+    }
+
+    @Override
+    public FormBody getPostBody() {
+        return new FormBody.Builder()
+                .add("action", "block")
+                .add("token", token)
+                .build();
     }
 
     public static class Builder {
@@ -290,7 +299,7 @@ public class BlockAction extends AbstractAction {
          */
         public Builder token(String token) {
             blockAction.token = token;
-            blockAction.urlPart += "&token=" + URLEncoder.encode(token, StandardCharsets.UTF_8);
+//            blockAction.urlPart += "&token=" + URLEncoder.encode(token, StandardCharsets.UTF_8);
             return this;
         }
 

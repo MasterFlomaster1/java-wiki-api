@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class TorBlockActionTest {
 
@@ -26,13 +27,13 @@ class TorBlockActionTest {
     void test() throws IOException, WikiApiSyntaxException {
         var a = new WikiApiRequest.Builder()
                 .action(new TorBlockAction.Builder()
-                        .ip("102.130.119.48")
+                        .ip("192.0.2.18")
                         .build()
                 )
                 .build();
 
         Response r = api.execute(a);
-        System.out.println(r);
+        assertNotNull(r.getTorBlock());
     }
 
     @Test

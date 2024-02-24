@@ -1,16 +1,14 @@
 package dev.masterflomaster1.jwa.request.action;
 
 import dev.masterflomaster1.jwa.WikiApiSyntaxException;
-
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
+import okhttp3.FormBody;
 
 /**
  * Send a thank-you notification to an editor.
  *
  * @see <a href="https://www.mediawiki.org/wiki/Extension:Thanks#API_Documentation">Extension:Thanks</a>
  */
-public class ThankAction extends AbstractAction {
+public class ThankAction extends AbstractAction implements IPost {
 
     private int rev;
     private int log;
@@ -35,6 +33,14 @@ public class ThankAction extends AbstractAction {
 
     public String getSource() {
         return source;
+    }
+
+    @Override
+    public FormBody getPostBody() {
+        return new FormBody.Builder()
+                .add("action", "thank")
+                .add("token", token)
+                .build();
     }
 
     public static class Builder {
@@ -71,7 +77,7 @@ public class ThankAction extends AbstractAction {
          */
         public Builder token(String token) {
             thankAction.token = token;
-            thankAction.urlPart += "&token=" + URLEncoder.encode(token, StandardCharsets.UTF_8);
+//            thankAction.urlPart += "&token=" + URLEncoder.encode(token, StandardCharsets.UTF_8);
             return this;
         }
 

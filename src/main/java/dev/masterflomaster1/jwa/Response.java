@@ -32,7 +32,7 @@ public final class Response {
     @SerializedName("query")
     private Query query;
 
-    @SerializedName("torBlock")
+    @SerializedName("torblock")
     private TorBlock torBlock;
 
     @SerializedName("centralauthtoken")
@@ -46,6 +46,12 @@ public final class Response {
 
     @SerializedName("requestid")
     private String requestId;
+
+    @SerializedName("validatepassword")
+    private ValidatePassword validatePassword;
+
+    @SerializedName("block")
+    private Block block;
 
     private Response() {
 
@@ -103,11 +109,19 @@ public final class Response {
         return requestId;
     }
 
+    public ValidatePassword getValidatePassword() {
+        return validatePassword;
+    }
+
+    public Block getBlock() {
+        return block;
+    }
+
     @Override
     public String toString() {
         return "Response{" +
                 "batchComplete=" + batchComplete +
-                ", continue=" + aContinue +
+                ", aContinue=" + aContinue +
                 ", error=" + error +
                 ", servedBy='" + servedBy + '\'' +
                 ", curTimestamp='" + curTimestamp + '\'' +
@@ -119,6 +133,8 @@ public final class Response {
                 ", shortenUrl=" + shortenUrl +
                 ", languageSearch=" + languageSearch +
                 ", requestId='" + requestId + '\'' +
+                ", validatePassword=" + validatePassword +
+                ", block=" + block +
                 '}';
     }
 }
