@@ -3,7 +3,6 @@ package dev.masterflomaster1.jwa.request.list;
 import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
-import dev.masterflomaster1.jwa.WikiApiSyntaxException;
 import dev.masterflomaster1.jwa.common.Namespace;
 import dev.masterflomaster1.jwa.request.action.QueryAction;
 import org.junit.jupiter.api.BeforeAll;
@@ -28,7 +27,7 @@ class RecentChangesListTest {
 
     @Test
     @DisplayName("List recent changes.")
-    void testExample1() throws WikiApiSyntaxException, IOException {
+    void testExample1() throws IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .list(Set.of(

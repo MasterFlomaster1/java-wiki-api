@@ -3,7 +3,6 @@ package dev.masterflomaster1.jwa.request.action;
 import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
-import dev.masterflomaster1.jwa.WikiApiSyntaxException;
 import dev.masterflomaster1.jwa.request.meta.TokensMeta;
 import dev.masterflomaster1.jwa.response.Tokens;
 
@@ -39,7 +38,7 @@ class Shared {
             Response r = api.execute(a);
 
             return r.getQuery().getTokens();
-        } catch (IOException | WikiApiSyntaxException e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }

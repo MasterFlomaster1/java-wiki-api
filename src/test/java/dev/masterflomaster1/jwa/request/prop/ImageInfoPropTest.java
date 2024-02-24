@@ -3,7 +3,6 @@ package dev.masterflomaster1.jwa.request.prop;
 import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
-import dev.masterflomaster1.jwa.WikiApiSyntaxException;
 import dev.masterflomaster1.jwa.common.Prop;
 import dev.masterflomaster1.jwa.request.action.QueryAction;
 import org.junit.jupiter.api.BeforeAll;
@@ -27,7 +26,7 @@ class ImageInfoPropTest {
 
     @Test
     @DisplayName("Fetch information about the current version of File:Albert Einstein Head.jpg.")
-    void testExample1() throws WikiApiSyntaxException, IOException {
+    void testExample1() throws IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .prop(Set.of(
@@ -46,7 +45,7 @@ class ImageInfoPropTest {
 
     @Test
     @DisplayName("Fetch information about versions of File:Test.jpg from 2008 and later.")
-    void testExample2() throws WikiApiSyntaxException, IOException {
+    void testExample2() throws IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .prop(Set.of(
@@ -70,7 +69,7 @@ class ImageInfoPropTest {
     }
 
     @Test
-    void testExample3() throws WikiApiSyntaxException, IOException {
+    void testExample3() throws IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .prop(Set.of(

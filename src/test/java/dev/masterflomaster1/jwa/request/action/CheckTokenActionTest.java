@@ -3,14 +3,13 @@ package dev.masterflomaster1.jwa.request.action;
 import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
-import dev.masterflomaster1.jwa.WikiApiSyntaxException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CheckTokenActionTest {
 
@@ -23,7 +22,7 @@ class CheckTokenActionTest {
 
     @Test
     @DisplayName("Test the validity of a csrf token.")
-    void testExample1() throws WikiApiSyntaxException, IOException {
+    void testExample1() throws IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new CheckTokenAction.Builder()
                         .type(CheckTokenAction.Type.CSRF)
@@ -38,7 +37,7 @@ class CheckTokenActionTest {
     }
 
     @Test
-    void testBuilder() throws WikiApiSyntaxException {
+    void testBuilder() {
         var a = new CheckTokenAction.Builder()
                 .type(CheckTokenAction.Type.CSRF)
                 .token("123ABC")

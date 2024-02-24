@@ -26,7 +26,7 @@ class WikiApiRequestTest {
     }
 
     @Test
-    void requestWithAdditionalParams() throws WikiApiSyntaxException, IOException {
+    void requestWithAdditionalParams() throws IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .build()
@@ -49,7 +49,7 @@ class WikiApiRequestTest {
     }
 
     @Test
-    void testBuilder() throws WikiApiSyntaxException {
+    void testBuilder() {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .build()
