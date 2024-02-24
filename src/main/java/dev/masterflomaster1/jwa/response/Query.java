@@ -3,6 +3,7 @@ package dev.masterflomaster1.jwa.response;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
+import java.util.Map;
 
 public final class Query {
 
@@ -23,6 +24,18 @@ public final class Query {
 
     @SerializedName("tokens")
     private Tokens tokens;
+
+    @SerializedName("userinfo")
+    private UserInfo userInfo;
+
+    @SerializedName("globaluserinfo")
+    private GlobalUserInfo globalUserInfo;
+
+    @SerializedName("languageinfo")
+    private Map<String, LanguageInfo> languageInfo;
+
+    @SerializedName("siteviews")
+    private Map<String, Integer> siteViews;
 
     public List<Page> getPages() {
         return pages;
@@ -48,6 +61,22 @@ public final class Query {
         return tokens;
     }
 
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public GlobalUserInfo getGlobalUserInfo() {
+        return globalUserInfo;
+    }
+
+    public Map<String, LanguageInfo> getLanguageInfo() {
+        return languageInfo;
+    }
+
+    public Map<String, Integer> getSiteViews() {
+        return siteViews;
+    }
+
     private Query() {
 
     }
@@ -61,6 +90,10 @@ public final class Query {
                 ", users=" + users +
                 ", allCategories=" + allCategories +
                 ", tokens=" + tokens +
+                ", userInfo=" + userInfo +
+                ", globalUserInfo=" + globalUserInfo +
+                ", languageInfo=" + languageInfo +
+                ", siteViews=" + siteViews +
                 '}';
     }
 }

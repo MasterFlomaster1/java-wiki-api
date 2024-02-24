@@ -5,7 +5,6 @@ import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
 import dev.masterflomaster1.jwa.WikiApiSyntaxException;
 import dev.masterflomaster1.jwa.request.action.QueryAction;
-import dev.masterflomaster1.jwa.response.CategoryInfo;
 import dev.masterflomaster1.jwa.response.Page;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -56,9 +55,7 @@ class CategoryInfoPropTest {
         Response r = api.execute(a);
 
         for (Page p : r.getQuery().getPages()) {
-            System.out.println("Title: " + p.getTitle());
-            display(p.getCategoryInfo());
-            System.out.println();
+            assertNotNull(p.getCategoryInfo());
         }
     }
 
@@ -79,7 +76,6 @@ class CategoryInfoPropTest {
         Response r = api.execute(a);
 
         assertNotNull(r.getQuery().getPages().get(0).getCategoryInfo());
-        display(r.getQuery().getPages().get(0).getCategoryInfo());
     }
 
     @Test
@@ -162,14 +158,6 @@ class CategoryInfoPropTest {
         assertEquals(500, r.getError().getHighLimit());
         assertEquals("Too many values supplied for parameter \"titles\". The limit is 50.", r.getError().getInfo());
 
-    }
-
-    private void display(CategoryInfo c) {
-        System.out.println("size: " + c.getSize());
-        System.out.println("pages: " + c.getPages());
-        System.out.println("files: " + c.getFiles());
-        System.out.println("subCats: " + c.getSubCats());
-        System.out.println("hidden: " + c.isHidden());
     }
 
     @Test

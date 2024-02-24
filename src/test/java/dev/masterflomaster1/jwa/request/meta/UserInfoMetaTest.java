@@ -12,9 +12,10 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.Set;
 
+import static dev.masterflomaster1.jwa.request.meta.UserInfoMeta.UiProp.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-class TokensMetaTest {
+class UserInfoMetaTest {
 
     private static WikiApi api;
 
@@ -24,29 +25,12 @@ class TokensMetaTest {
     }
 
     @Test
-    void testLogin() throws IOException, WikiApiSyntaxException {
-        var a = new WikiApiRequest.Builder()
-                .action(new QueryAction.Builder()
-                        .meta(Set.of(
-                                new TokensMeta.Builder()
-                                        .type(Set.of(TokensMeta.Type.LOGIN, TokensMeta.Type.CSRF))
-                                        .build()
-                        ))
-                        .build()
-                )
-                .build();
-
-        Response r = api.execute(a);
-        assertNotNull(r.getQuery().getTokens());
-    }
-
-    @Test
-    @DisplayName("Retrieve a csrf token (the default).")
+    @DisplayName("Get information about the current user.")
     void testExample1() throws WikiApiSyntaxException, IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .meta(Set.of(
-                                new TokensMeta.Builder()
+                                new UserInfoMeta.Builder()
                                         .build()
                         ))
                         .build()
@@ -54,17 +38,17 @@ class TokensMetaTest {
                 .build();
 
         Response r = api.execute(a);
-        assertNotNull(r.getQuery().getTokens());
+        assertNotNull(r.getQuery().getUserInfo());
     }
 
     @Test
-    @DisplayName("Retrieve a watch token and a patrol token.")
+    @DisplayName("Get additional information about the current user.")
     void testExample2() throws WikiApiSyntaxException, IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .meta(Set.of(
-                                new TokensMeta.Builder()
-                                        .type(Set.of(TokensMeta.Type.WATCH, TokensMeta.Type.PATROL))
+                                new UserInfoMeta.Builder()
+                                        .uiProp(Set.of(BLOCK_INFO, GROUPS, RIGHTS, HAS_MSG))
                                         .build()
                         ))
                         .build()
@@ -72,17 +56,18 @@ class TokensMetaTest {
                 .build();
 
         Response r = api.execute(a);
-        assertNotNull(r.getQuery().getTokens().getWatchToken());
-        assertNotNull(r.getQuery().getTokens().getPatrolToken());
+        assertNotNull(r.getQuery().getUserInfo());
     }
 
     @Test
     void testBuilder() {
-        var a = new TokensMeta.Builder()
-                .type(Set.of(TokensMeta.Type.WATCH, TokensMeta.Type.PATROL))
+        var a = new UserInfoMeta.Builder()
+                .uiProp(Set.of(BLOCK_INFO, UserInfoMeta.UiProp.GROUPS))
+                .uiAttachedWiki("test")
                 .build();
 
-        assertEquals(Set.of(TokensMeta.Type.WATCH, TokensMeta.Type.PATROL), a.getType());
+        assertEquals(Set.of(BLOCK_INFO, UserInfoMeta.UiProp.GROUPS), a.getUiProp());
+        assertEquals("test", a.getUiAttachedWiki());
     }
 
 }

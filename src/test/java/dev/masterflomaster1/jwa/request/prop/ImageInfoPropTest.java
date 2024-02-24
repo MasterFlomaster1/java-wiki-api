@@ -4,8 +4,8 @@ import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
 import dev.masterflomaster1.jwa.WikiApiSyntaxException;
+import dev.masterflomaster1.jwa.common.Prop;
 import dev.masterflomaster1.jwa.request.action.QueryAction;
-import dev.masterflomaster1.jwa.util.ISO639Language;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -51,9 +51,9 @@ class ImageInfoPropTest {
                 .action(new QueryAction.Builder()
                         .prop(Set.of(
                                 new ImageInfoProp.Builder()
-                                        .iiProp(Set.of(ImageInfoProp.IIProp.TIMESTAMP,
-                                                ImageInfoProp.IIProp.USER,
-                                                ImageInfoProp.IIProp.URL
+                                        .iiProp(Set.of(Prop.TIMESTAMP,
+                                                Prop.USER,
+                                                Prop.URL
                                         ))
                                         .iiLimit(50)
                                         .iiEnd(LocalDateTime.of(2007, 12, 31, 23, 59, 59))
@@ -75,9 +75,9 @@ class ImageInfoPropTest {
                 .action(new QueryAction.Builder()
                         .prop(Set.of(
                                 new ImageInfoProp.Builder()
-                                        .iiProp(Set.of(ImageInfoProp.IIProp.TIMESTAMP,
-                                                ImageInfoProp.IIProp.URL,
-                                                ImageInfoProp.IIProp.EXTMETADATA
+                                        .iiProp(Set.of(Prop.TIMESTAMP,
+                                                Prop.URL,
+                                                Prop.EXTMETADATA
                                         ))
                                         .iiLimit(1)
                                         .build()
@@ -95,23 +95,23 @@ class ImageInfoPropTest {
     @Test
     void testBuilder() {
         var a = new ImageInfoProp.Builder()
-                .iiProp(Set.of(ImageInfoProp.IIProp.TIMESTAMP, ImageInfoProp.IIProp.USER_ID))
+                .iiProp(Set.of(Prop.TIMESTAMP, Prop.USER_ID))
                 .iiLimit(20)
                 .iiStart(LocalDateTime.of(2007, 12, 31, 23, 59, 59))
                 .iiEnd(LocalDateTime.of(2007, 12, 31, 23, 59, 59))
                 .iiUrlWidth(50)
                 .iiUrlHeight(50)
-                .iiExtMetadataLanguage(ISO639Language.English)
+                .iiExtMetadataLanguage("en")
                 .iiExtMetadataMultiLang()
                 .build();
 
-        assertEquals(Set.of(ImageInfoProp.IIProp.TIMESTAMP, ImageInfoProp.IIProp.USER_ID), a.getIiProp());
+        assertEquals(Set.of(Prop.TIMESTAMP, Prop.USER_ID), a.getIiProp());
         assertEquals(20, a.getIiLimit());
         assertEquals(LocalDateTime.of(2007, 12, 31, 23, 59, 59), a.getIiStart());
         assertEquals(LocalDateTime.of(2007, 12, 31, 23, 59, 59), a.getIiEnd());
         assertEquals(50, a.getIiUrlWidth());
         assertEquals(50, a.getIiUrlHeight());
-        assertEquals(ISO639Language.English, a.getIiExtMetadataLanguage());
+        assertEquals("en", a.getIiExtMetadataLanguage());
         assertTrue(a.isIiExtMetadataMultiLang());
 
     }

@@ -14,7 +14,7 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TokensMetaTest {
+class SiteViewsMetaTest {
 
     private static WikiApi api;
 
@@ -24,29 +24,12 @@ class TokensMetaTest {
     }
 
     @Test
-    void testLogin() throws IOException, WikiApiSyntaxException {
-        var a = new WikiApiRequest.Builder()
-                .action(new QueryAction.Builder()
-                        .meta(Set.of(
-                                new TokensMeta.Builder()
-                                        .type(Set.of(TokensMeta.Type.LOGIN, TokensMeta.Type.CSRF))
-                                        .build()
-                        ))
-                        .build()
-                )
-                .build();
-
-        Response r = api.execute(a);
-        assertNotNull(r.getQuery().getTokens());
-    }
-
-    @Test
-    @DisplayName("Retrieve a csrf token (the default).")
+    @DisplayName("Show sitewide pageview totals.")
     void testExample1() throws WikiApiSyntaxException, IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .meta(Set.of(
-                                new TokensMeta.Builder()
+                                new SiteViewsMeta.Builder()
                                         .build()
                         ))
                         .build()
@@ -54,17 +37,17 @@ class TokensMetaTest {
                 .build();
 
         Response r = api.execute(a);
-        assertNotNull(r.getQuery().getTokens());
+        assertNotNull(r.getQuery().getSiteViews());
     }
 
     @Test
-    @DisplayName("Retrieve a watch token and a patrol token.")
+    @DisplayName("Show sitewide unique visitor totals.")
     void testExample2() throws WikiApiSyntaxException, IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .meta(Set.of(
-                                new TokensMeta.Builder()
-                                        .type(Set.of(TokensMeta.Type.WATCH, TokensMeta.Type.PATROL))
+                                new SiteViewsMeta.Builder()
+                                        .pvIsMetric(SiteViewsMeta.PvIsMetric.UNIQUES)
                                         .build()
                         ))
                         .build()
@@ -72,17 +55,18 @@ class TokensMetaTest {
                 .build();
 
         Response r = api.execute(a);
-        assertNotNull(r.getQuery().getTokens().getWatchToken());
-        assertNotNull(r.getQuery().getTokens().getPatrolToken());
+        assertNotNull(r.getQuery().getSiteViews());
     }
 
     @Test
     void testBuilder() {
-        var a = new TokensMeta.Builder()
-                .type(Set.of(TokensMeta.Type.WATCH, TokensMeta.Type.PATROL))
+        var a = new SiteViewsMeta.Builder()
+                .pvIsMetric(SiteViewsMeta.PvIsMetric.UNIQUES)
+                .pvIsDays(4)
                 .build();
 
-        assertEquals(Set.of(TokensMeta.Type.WATCH, TokensMeta.Type.PATROL), a.getType());
+        assertEquals(SiteViewsMeta.PvIsMetric.UNIQUES, a.getPvIsMetric());
+        assertEquals(4, a.getPvIsDays());
     }
 
 }

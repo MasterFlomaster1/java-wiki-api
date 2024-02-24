@@ -10,9 +10,10 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assumptions.assumeFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-class CentralAuthTokenActionTest {
+class AntiSpoofActionTest {
 
     private static WikiApi api;
 
@@ -22,16 +23,26 @@ class CentralAuthTokenActionTest {
     }
 
     @Test
-    @DisplayName("Fetch a centralauthtoken")
+    @DisplayName("Check username 'Foo' against AntiSpoof")
     void testExample1() throws WikiApiSyntaxException, IOException {
         var a = new WikiApiRequest.Builder()
-                .action(new CentralAuthTokenAction.Builder()
+                .action(new AntiSpoofAction.Builder()
+                        .username("Foo")
                         .build()
                 )
                 .build();
 
         Response r = api.execute(a);
-        assumeFalse(r.getError() != null && r.getError().getCode().equals("notloggedin"), "Not logged in, skipping");
+        assertNotNull(r.getAntiSpoof());
+    }
+
+    @Test
+    void testBuilder() throws WikiApiSyntaxException {
+        var a = new AntiSpoofAction.Builder()
+                .username("test")
+                .build();
+
+        assertEquals("test", a.getUsername());
     }
 
 }

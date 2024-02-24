@@ -50,9 +50,7 @@ class ValidatePasswordActionTest {
                 .build();
 
         Response r = api.execute(a);
-
-        if (r.getValidatePassword() == null)
-            assertNotNull(r.getError());
+        assertEquals(r.getError().getCode(), "userexists");
     }
 
     @Test

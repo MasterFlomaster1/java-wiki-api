@@ -53,6 +53,12 @@ public final class Response {
     @SerializedName("block")
     private Block block;
 
+    @SerializedName("checktoken")
+    private CheckToken checkToken;
+
+    @SerializedName("antispoof")
+    private AntiSpoof antiSpoof;
+
     private Response() {
 
     }
@@ -117,6 +123,14 @@ public final class Response {
         return block;
     }
 
+    public CheckToken getCheckToken() {
+        return checkToken;
+    }
+
+    public AntiSpoof getAntiSpoof() {
+        return antiSpoof;
+    }
+
     @Override
     public String toString() {
         return "Response{" +
@@ -135,6 +149,8 @@ public final class Response {
                 ", requestId='" + requestId + '\'' +
                 ", validatePassword=" + validatePassword +
                 ", block=" + block +
+                ", checkToken=" + checkToken +
+                ", antiSpoof=" + antiSpoof +
                 '}';
     }
 }

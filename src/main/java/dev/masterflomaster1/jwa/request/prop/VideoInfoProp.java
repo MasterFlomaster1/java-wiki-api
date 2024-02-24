@@ -1,5 +1,6 @@
 package dev.masterflomaster1.jwa.request.prop;
 
+import dev.masterflomaster1.jwa.common.Prop;
 import dev.masterflomaster1.jwa.util.TimeHandler;
 
 import java.net.URLEncoder;
@@ -11,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class VideoInfoProp extends AbstractProp {
 
-    private Set<ViProp> viProp;
+    private Set<Prop> viProp;
     private int viLimit;
     private LocalDateTime viStart;
     private LocalDateTime viEnd;
@@ -30,7 +31,7 @@ public class VideoInfoProp extends AbstractProp {
         url = "&prop=videoinfo";
     }
 
-    public Set<ViProp> getViProp() {
+    public Set<Prop> getViProp() {
         return viProp;
     }
 
@@ -128,10 +129,10 @@ public class VideoInfoProp extends AbstractProp {
          * Which file information to get
          * @return {@code Builder}
          */
-        public Builder viProp(Set<ViProp> viProp) {
+        public Builder viProp(Set<Prop> viProp) {
             videoInfoProp.viProp = viProp;
             videoInfoProp.url += "&viprop=" + viProp.stream()
-                    .map(ViProp::getValue)
+                    .map(Prop::getValue)
                     .collect(Collectors.joining("%7C"));
             return this;
         }
@@ -282,20 +283,6 @@ public class VideoInfoProp extends AbstractProp {
             return videoInfoProp;
         }
 
-    }
-
-    public enum ViProp {
-        USER_ID ("userid");
-
-        public final String value;
-
-        ViProp(String value) {
-            this.value = value;
-        }
-
-        public String getValue() {
-            return value;
-        }
     }
 
 }

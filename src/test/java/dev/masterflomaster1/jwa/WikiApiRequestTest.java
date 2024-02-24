@@ -59,6 +59,7 @@ class WikiApiRequestTest {
                 .servedBy()
                 .curTimestamp()
                 .responseLangInfo()
+                .useLang("en")
                 .variant("t")
                 .build();
 
@@ -68,6 +69,7 @@ class WikiApiRequestTest {
         assertTrue(a.isServedBy());
         assertTrue(a.isCurTimestamp());
         assertTrue(a.isResponseLangInfo());
+        assertEquals("en", a.getUseLang());
         assertEquals("t", a.getVariant());
     }
 }

@@ -66,7 +66,7 @@ class TemplatesPropTest {
     }
 
     @Test
-    void testBuild() {
+    void testBuilder() {
         var a = new TemplatesProp.Builder()
                 .tlNamespace(Set.of(Namespace.USER, Namespace.TEMPLATE))
                 .tlLimit(4)

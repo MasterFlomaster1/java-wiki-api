@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.assumeFalse;
 
 class BlockActionTest {
 
@@ -39,11 +40,7 @@ class BlockActionTest {
 
         Response r = api.execute(a);
 
-        if (r.getError() != null) {
-            assertEquals(r.getError().getCode(), "permissiondenied");
-            return;
-        }
-
+        assumeFalse(r.getError() != null && r.getError().getCode().equals("permissiondenied"), "Permission denied, skipping");
         assertNotNull(r.getBlock());
     }
 
@@ -65,11 +62,7 @@ class BlockActionTest {
 
         Response r = api.execute(a);
 
-        if (r.getError() != null) {
-            assertEquals(r.getError().getCode(), "permissiondenied");
-            return;
-        }
-
+        assumeFalse(r.getError() != null && r.getError().getCode().equals("permissiondenied"), "Permission denied, skipping");
         assertNotNull(r.getBlock());
 
     }

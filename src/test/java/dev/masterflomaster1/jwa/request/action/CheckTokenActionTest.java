@@ -11,9 +11,8 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assumptions.assumeFalse;
 
-class ThankActionTest {
+class CheckTokenActionTest {
 
     private static WikiApi api;
 
@@ -23,34 +22,32 @@ class ThankActionTest {
     }
 
     @Test
-    @DisplayName("Send thanks for revision ID 456, with the source being a diff page")
+    @DisplayName("Test the validity of a csrf token.")
     void testExample1() throws WikiApiSyntaxException, IOException {
         var a = new WikiApiRequest.Builder()
-                .action(new ThankAction.Builder()
-                        .rev(456)
-                        .token(Shared.tokens().getCsrfToken())
-                        .source("diff")
+                .action(new CheckTokenAction.Builder()
+                        .type(CheckTokenAction.Type.CSRF)
+                        .token("123ABC")
                         .build()
                 )
                 .build();
 
         Response r = api.execute(a);
-        assumeFalse(r.getError() != null && r.getError().getCode().equals("notloggedin"), "Not logged in, skipping");
+
+        assertEquals("invalid", r.getCheckToken().getResult());
     }
 
     @Test
     void testBuilder() throws WikiApiSyntaxException {
-        var a = new ThankAction.Builder()
-                .rev(456)
-                .log(456)
-                .token("test12345")
-                .source("diff")
+        var a = new CheckTokenAction.Builder()
+                .type(CheckTokenAction.Type.CSRF)
+                .token("123ABC")
+                .maxTokenAge(1)
                 .build();
 
-        assertEquals(456, a.getRev());
-        assertEquals(456, a.getLog());
-        assertEquals("test12345", a.getToken());
-        assertEquals("diff", a.getSource());
+        assertEquals(CheckTokenAction.Type.CSRF, a.getType());
+        assertEquals("123ABC", a.getToken());
+        assertEquals(1, a.getMaxTokenAge());
     }
 
 }

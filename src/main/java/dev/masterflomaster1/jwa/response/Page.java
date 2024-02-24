@@ -79,6 +79,9 @@ public final class Page {
     @SerializedName("redirects")
     private List<Redirect> redirects;
 
+    @SerializedName("videoinfo")
+    private List<VideoInfo> videoInfo;
+
     private Page() {
 
     }
@@ -163,6 +166,9 @@ public final class Page {
         return isReviewed;
     }
 
+    public List<VideoInfo> getVideoInfo() {
+        return videoInfo;
+    }
 
     @Override
     public String toString() {
@@ -191,6 +197,7 @@ public final class Page {
                 ", globalUsage=" + globalUsage +
                 ", images=" + images +
                 ", redirects=" + redirects +
+                ", videoInfo=" + videoInfo +
                 '}';
     }
 }
