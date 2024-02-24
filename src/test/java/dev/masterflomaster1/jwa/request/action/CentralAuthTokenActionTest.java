@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
+import static org.junit.jupiter.api.Assumptions.assumeFalse;
+
 class CentralAuthTokenActionTest {
 
     private static WikiApi api;
@@ -29,7 +31,7 @@ class CentralAuthTokenActionTest {
                 .build();
 
         Response r = api.execute(a);
-        System.out.println(r);
+        assumeFalse(r.getError() != null && r.getError().getCode().equals("notloggedin"), "Not logged in, skipping");
     }
 
 }

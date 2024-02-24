@@ -45,7 +45,7 @@ class RedirectsPropTest {
     }
 
     @Test
-    void testBuild() {
+    void testBuilder() {
         var a = new RedirectsProp.Builder()
                 .rdProp(Set.of(RedirectsProp.RdProp.PAGE_ID))
                 .rdNamespace(Set.of(Namespace.FILE))

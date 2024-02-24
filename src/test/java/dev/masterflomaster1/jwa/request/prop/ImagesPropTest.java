@@ -45,7 +45,7 @@ class ImagesPropTest {
     }
 
     @Test
-    void testBuild() {
+    void testBuilder() {
         var a = new ImagesProp.Builder()
                 .imLimit(50)
                 .imContinue("15580374|Wikibooks-logo.svg")

@@ -13,8 +13,8 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.assumeFalse;
 
 class BlockActionTest {
 
@@ -33,13 +33,15 @@ class BlockActionTest {
                         .user("192.0.2.5")
                         .expiry("3 days")
                         .reason("First strike")
-                        .token("241b26e632a6aadfc6e3ee963e793a5665c210b0+\\")
+                        .token(Shared.tokens().getCsrfToken())
                         .build()
                 )
                 .build();
 
         Response r = api.execute(a);
-        System.out.println(r);
+
+        assumeFalse(r.getError() != null && r.getError().getCode().equals("permissiondenied"), "Permission denied, skipping");
+        assertNotNull(r.getBlock());
     }
 
     @Test
@@ -53,13 +55,16 @@ class BlockActionTest {
                         .noCreate()
                         .autoBlock()
                         .noEmail()
-                        .token("241b26e632a6aadfc6e3ee963e793a5665c210b0+\\")
+                        .token(Shared.tokens().getCsrfToken())
                         .build()
                 )
                 .build();
 
         Response r = api.execute(a);
-        System.out.println(r);
+
+        assumeFalse(r.getError() != null && r.getError().getCode().equals("permissiondenied"), "Permission denied, skipping");
+        assertNotNull(r.getBlock());
+
     }
 
     @Test

@@ -106,7 +106,7 @@ public class RecentChangesList extends AbstractList {
          */
         public Builder rcStart(LocalDateTime rcStart) {
             recentChangesList.rcStart = rcStart;
-            recentChangesList.url += "&rcstart=" + URLEncoder.encode(TimeHandler.format(rcStart), StandardCharsets.UTF_8);
+            recentChangesList.url += "&rcstart=" + URLEncoder.encode(TimeHandler.formatISO8601(rcStart), StandardCharsets.UTF_8);
             return this;
         }
 
@@ -116,7 +116,7 @@ public class RecentChangesList extends AbstractList {
          */
         public Builder rcEnd(LocalDateTime rcEnd) {
             recentChangesList.rcEnd = rcEnd;
-            recentChangesList.url += "&rcend=" + URLEncoder.encode(TimeHandler.format(rcEnd), StandardCharsets.UTF_8);
+            recentChangesList.url += "&rcend=" + URLEncoder.encode(TimeHandler.formatISO8601(rcEnd), StandardCharsets.UTF_8);
             return this;
         }
 

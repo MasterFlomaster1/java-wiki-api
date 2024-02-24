@@ -14,6 +14,7 @@ public class WikiApiRequest {
     private boolean servedBy;
     private boolean curTimestamp;
     private boolean responseLangInfo;
+    private String useLang;
     private String variant;
 
     private WikiApiRequest() {
@@ -53,6 +54,10 @@ public class WikiApiRequest {
 
     public String getVariant() {
         return variant;
+    }
+
+    public String getUseLang() {
+        return useLang;
     }
 
     public static class Builder {
@@ -117,6 +122,18 @@ public class WikiApiRequest {
         public Builder responseLangInfo() {
             wikiApiRequest.responseLangInfo = true;
             wikiApiRequest.url += "&responselanginfo=1";
+            return this;
+        }
+
+        /**
+         * Language to use for message translations. {@code action=query&meta=siteinfo} with {@code siprop=languages}
+         * returns a list of language codes, or specify {@code user} to use the current user's language preference, or
+         * specify {@code content} to use this wiki's content language.
+         * @return {@code Builder}
+         */
+        public Builder useLang(String useLang) {
+            wikiApiRequest.useLang = useLang;
+            wikiApiRequest.url += "&uselang=" + useLang;
             return this;
         }
 

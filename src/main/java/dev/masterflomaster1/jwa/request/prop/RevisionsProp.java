@@ -142,7 +142,7 @@ public class RevisionsProp extends AbstractProp {
          */
         public Builder rvStart(LocalDateTime rvStart) {
             revisionsProp.rvStart = rvStart;
-            revisionsProp.url += "&rvstart=" + URLEncoder.encode(TimeHandler.format(rvStart), StandardCharsets.UTF_8);
+            revisionsProp.url += "&rvstart=" + URLEncoder.encode(TimeHandler.formatISO8601(rvStart), StandardCharsets.UTF_8);
             return this;
         }
 
@@ -153,7 +153,7 @@ public class RevisionsProp extends AbstractProp {
          */
         public Builder rvEnd(LocalDateTime rvEnd) {
             revisionsProp.rvEnd = rvEnd;
-            revisionsProp.url += "&rvend=" + URLEncoder.encode(TimeHandler.format(rvEnd), StandardCharsets.UTF_8);
+            revisionsProp.url += "&rvend=" + URLEncoder.encode(TimeHandler.formatISO8601(rvEnd), StandardCharsets.UTF_8);
             return this;
         }
 

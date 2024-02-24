@@ -13,7 +13,7 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-class TorBlockActionTest {
+class AntiSpoofActionTest {
 
     private static WikiApi api;
 
@@ -23,25 +23,26 @@ class TorBlockActionTest {
     }
 
     @Test
-    @DisplayName("Check if the IP address 192.0.2.18 is blocked as a Tor exit node.")
-    void test() throws IOException, WikiApiSyntaxException {
+    @DisplayName("Check username 'Foo' against AntiSpoof")
+    void testExample1() throws WikiApiSyntaxException, IOException {
         var a = new WikiApiRequest.Builder()
-                .action(new TorBlockAction.Builder()
-                        .ip("192.0.2.18")
+                .action(new AntiSpoofAction.Builder()
+                        .username("Foo")
                         .build()
                 )
                 .build();
 
         Response r = api.execute(a);
-        assertNotNull(r.getTorBlock());
+        assertNotNull(r.getAntiSpoof());
     }
 
     @Test
-    void getIp() throws WikiApiSyntaxException {
-        var a = new TorBlockAction.Builder()
-                .ip("127.0.0.1")
+    void testBuilder() throws WikiApiSyntaxException {
+        var a = new AntiSpoofAction.Builder()
+                .username("test")
                 .build();
 
-        assertEquals("127.0.0.1", a.getIp());
+        assertEquals("test", a.getUsername());
     }
+
 }

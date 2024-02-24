@@ -49,7 +49,7 @@ class SiteInfoMetaTest {
     }
 
     @Test
-    void testBuild() {
+    void testBuilder() {
         var a = new SiteInfoMeta.Builder()
                 .siProp(Set.of(SiteInfoMeta.SiProp.NAMESPACES))
                 .siShowAllDb()

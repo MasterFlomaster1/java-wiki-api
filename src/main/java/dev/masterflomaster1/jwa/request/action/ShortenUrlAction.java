@@ -1,6 +1,7 @@
 package dev.masterflomaster1.jwa.request.action;
 
 import dev.masterflomaster1.jwa.WikiApiSyntaxException;
+import okhttp3.FormBody;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -10,7 +11,7 @@ import java.nio.charset.StandardCharsets;
  *
  * @see <a href="https://www.mediawiki.org/w/api.php?action=help&modules=shortenurl">https://www.mediawiki.org/</a>
  */
-public class ShortenUrlAction extends AbstractAction {
+public class ShortenUrlAction extends AbstractAction implements IPost {
 
     private String url;
     private boolean qrCode;
@@ -25,6 +26,13 @@ public class ShortenUrlAction extends AbstractAction {
 
     public boolean isQrCode() {
         return qrCode;
+    }
+
+    @Override
+    public FormBody getPostBody() {
+        return new FormBody.Builder()
+//                .add("action", "shortenurl")
+                .build();
     }
 
     public static class Builder {

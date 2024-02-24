@@ -12,7 +12,7 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ShortenUrlActionTest {
+class CheckTokenActionTest {
 
     private static WikiApi api;
 
@@ -22,30 +22,32 @@ class ShortenUrlActionTest {
     }
 
     @Test
-    @DisplayName("Get the short URL for https://en.wikipedia.org/wiki/Arctica.")
+    @DisplayName("Test the validity of a csrf token.")
     void testExample1() throws WikiApiSyntaxException, IOException {
         var a = new WikiApiRequest.Builder()
-                .action(new ShortenUrlAction.Builder()
-                        .url("https://en.wikipedia.org/wiki/Arctica")
-                        .qrCode()
+                .action(new CheckTokenAction.Builder()
+                        .type(CheckTokenAction.Type.CSRF)
+                        .token("123ABC")
                         .build()
                 )
                 .build();
 
         Response r = api.execute(a);
-        assertNull(r.getError());
-        assertNotNull(r.getShortenUrl());
+
+        assertEquals("invalid", r.getCheckToken().getResult());
     }
 
     @Test
     void testBuilder() throws WikiApiSyntaxException {
-        var a = new ShortenUrlAction.Builder()
-                .url("https://en.wikipedia.org/wiki/Arctica")
-                .qrCode()
+        var a = new CheckTokenAction.Builder()
+                .type(CheckTokenAction.Type.CSRF)
+                .token("123ABC")
+                .maxTokenAge(1)
                 .build();
 
-        assertEquals("https://en.wikipedia.org/wiki/Arctica", a.getUrl());
-        assertTrue(a.isQrCode());
+        assertEquals(CheckTokenAction.Type.CSRF, a.getType());
+        assertEquals("123ABC", a.getToken());
+        assertEquals(1, a.getMaxTokenAge());
     }
 
 }
