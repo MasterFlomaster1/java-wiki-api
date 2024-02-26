@@ -3,8 +3,6 @@ package dev.masterflomaster1.jwa.request.list;
 import dev.masterflomaster1.jwa.common.Namespace;
 import dev.masterflomaster1.jwa.util.TimeHandler;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -33,7 +31,7 @@ public class RecentChangesList extends AbstractList {
     private boolean rcGenerateRevisions;
 
     private RecentChangesList() {
-        url = "&list=recentchanges";
+        name = "recentchanges";
     }
 
     public LocalDateTime getRcStart() {
@@ -106,7 +104,7 @@ public class RecentChangesList extends AbstractList {
          */
         public Builder rcStart(LocalDateTime rcStart) {
             recentChangesList.rcStart = rcStart;
-            recentChangesList.url += "&rcstart=" + URLEncoder.encode(TimeHandler.formatISO8601(rcStart), StandardCharsets.UTF_8);
+            recentChangesList.apiUrl.putQuery("rcstart", TimeHandler.formatISO8601(rcStart));
             return this;
         }
 
@@ -116,7 +114,7 @@ public class RecentChangesList extends AbstractList {
          */
         public Builder rcEnd(LocalDateTime rcEnd) {
             recentChangesList.rcEnd = rcEnd;
-            recentChangesList.url += "&rcend=" + URLEncoder.encode(TimeHandler.formatISO8601(rcEnd), StandardCharsets.UTF_8);
+            recentChangesList.apiUrl.putQuery("rcend", TimeHandler.formatISO8601(rcEnd));
             return this;
         }
 
@@ -126,7 +124,7 @@ public class RecentChangesList extends AbstractList {
          */
         public Builder rcDir(RcDir rcDir) {
             recentChangesList.rcDir = rcDir;
-            recentChangesList.url += "&rcdir=" + rcDir.value;
+            recentChangesList.apiUrl.putQuery("rcdir", rcDir.value);
             return this;
         }
 
@@ -136,7 +134,7 @@ public class RecentChangesList extends AbstractList {
          */
         public Builder rcNamespace(Namespace rcNamespace) {
             recentChangesList.rcNamespace = rcNamespace;
-            recentChangesList.url += "&rcnamespace=" + rcNamespace.getValue();
+            recentChangesList.apiUrl.putQuery("rcnamespace", rcNamespace.getValue());
             return this;
         }
 
@@ -147,7 +145,7 @@ public class RecentChangesList extends AbstractList {
          */
         public Builder rcUser(String rcUser) {
             recentChangesList.rcUser = rcUser;
-            recentChangesList.url += "&rcuser=" + rcUser;
+            recentChangesList.apiUrl.putQuery("rcuser", rcUser);
             return this;
         }
 
@@ -158,7 +156,7 @@ public class RecentChangesList extends AbstractList {
          */
         public Builder rcExcludeUser(String rcExcludeUser) {
             recentChangesList.rcExcludeUser = rcExcludeUser;
-            recentChangesList.url += "&rcexcludeuser=" + rcExcludeUser;
+            recentChangesList.apiUrl.putQuery("rcexcludeuser", rcExcludeUser);
             return this;
         }
 
@@ -168,7 +166,7 @@ public class RecentChangesList extends AbstractList {
          */
         public Builder rcTag(String rcTag) {
             recentChangesList.rcTag = rcTag;
-            recentChangesList.url += "&rctag=" + rcTag;
+            recentChangesList.apiUrl.putQuery("rctag", rcTag);
             return this;
         }
 
@@ -178,25 +176,24 @@ public class RecentChangesList extends AbstractList {
          */
         public Builder rcProp(Set<RcProp> rcProp) {
             recentChangesList.rcProp = rcProp;
-            recentChangesList.url += "&rcprop=" + rcProp.stream()
+            recentChangesList.apiUrl.putQuery("rcprop", rcProp.stream()
                     .map(RcProp::getValue)
-                    .collect(Collectors.joining("%7C"));
+                    .collect(Collectors.joining("|")));
             return this;
         }
 
         /**
          * Show only items that meet these criteria. For example, to see only minor edits done by logged-in users,
          * set rcshow=minor|!anon.
-         *
          * When using {@code oresreview} or {@code !oresreview}, revisions without a score (e.g. very old revisions) are
          * considered as not needing review even if they would need review if scored.
          * @return {@code Builder}
          */
         public Builder rcShow(Set<RcShow> rcShow) {
             recentChangesList.rcShow = rcShow;
-            recentChangesList.url = "&rcshow=" + rcShow.stream()
+            recentChangesList.apiUrl.putQuery("rcshow", rcShow.stream()
                     .map(RcShow::getValue)
-                    .collect(Collectors.joining("%7C"));
+                    .collect(Collectors.joining("|")));
             return this;
         }
 
@@ -207,7 +204,7 @@ public class RecentChangesList extends AbstractList {
          */
         public Builder rcLimit(int rcLimit) {
             recentChangesList.rcLimit = rcLimit;
-            recentChangesList.url += "&rclimit=" + rcLimit;
+            recentChangesList.apiUrl.putQuery("rclimit", rcLimit);
             return this;
         }
 
@@ -217,9 +214,9 @@ public class RecentChangesList extends AbstractList {
          */
         public Builder rcType(Set<RcType> rcType) {
             recentChangesList.rcType = rcType;
-            recentChangesList.url += "&rctype=" + rcType.stream()
+            recentChangesList.apiUrl.putQuery("rctype", rcType.stream()
                     .map(RcType::getValue)
-                    .collect(Collectors.joining("%7C"));
+                    .collect(Collectors.joining("|")));
             return this;
         }
 
@@ -229,7 +226,7 @@ public class RecentChangesList extends AbstractList {
          */
         public Builder rcTopOnly() {
             recentChangesList.rcTopOnly = true;
-            recentChangesList.url += "&rctoponly=1";
+            recentChangesList.apiUrl.putQuery("rctoponly", "1");
             return this;
         }
 
@@ -239,7 +236,7 @@ public class RecentChangesList extends AbstractList {
          */
         public Builder rcTitle(String rcTitle) {
             recentChangesList.rcTitle = rcTitle;
-            recentChangesList.url += "&rctitle=" + URLEncoder.encode(rcTitle, StandardCharsets.UTF_8);
+            recentChangesList.apiUrl.putQuery("rctitle", rcTitle);
             return this;
         }
 
@@ -251,7 +248,7 @@ public class RecentChangesList extends AbstractList {
          */
         public Builder rcContinue(String rcContinue) {
             recentChangesList.rcContinue = rcContinue;
-            recentChangesList.url += "&rccontinue=" + URLEncoder.encode(rcContinue, StandardCharsets.UTF_8);
+            recentChangesList.apiUrl.putQuery("rccontinue", rcContinue);
             return this;
         }
 
@@ -262,7 +259,7 @@ public class RecentChangesList extends AbstractList {
          */
         public Builder rcGenerateRevisions() {
             recentChangesList.rcGenerateRevisions = true;
-            recentChangesList.url += "&rcgeneraterevisions=1";
+            recentChangesList.apiUrl.putQuery("rcgeneraterevisions", "1");
             return this;
         }
 

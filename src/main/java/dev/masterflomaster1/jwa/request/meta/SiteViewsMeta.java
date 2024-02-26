@@ -13,7 +13,7 @@ public class SiteViewsMeta extends AbstractMeta {
     private int pvIsDays;
 
     private SiteViewsMeta() {
-        url = "&meta=siteviews";
+        name = "siteviews";
     }
 
     public PvIsMetric getPvIsMetric() {
@@ -39,7 +39,7 @@ public class SiteViewsMeta extends AbstractMeta {
          */
         public Builder pvIsMetric(PvIsMetric pvIsMetric) {
             siteViewsMeta.pvIsMetric = pvIsMetric;
-            siteViewsMeta.url += "&pvismetric=" + pvIsMetric.getValue();
+            siteViewsMeta.apiUrl.putQuery("pvismetric", pvIsMetric.getValue());
             return this;
         }
 
@@ -50,7 +50,7 @@ public class SiteViewsMeta extends AbstractMeta {
          */
         public Builder pvIsDays(int pvIsDays) {
             siteViewsMeta.pvIsDays = pvIsDays;
-            siteViewsMeta.url += "&pvisdays=" + pvIsDays;
+            siteViewsMeta.apiUrl.putQuery("pvisdays", pvIsDays);
             return this;
         }
 

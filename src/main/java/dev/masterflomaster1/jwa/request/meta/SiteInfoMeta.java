@@ -16,7 +16,7 @@ public class SiteInfoMeta extends AbstractMeta {
     private boolean siNumberInGroup;
 
     private SiteInfoMeta() {
-        url = "&meta=siteinfo";
+        name = "siteinfo";
     }
 
     public Set<SiProp> getSiProp() {
@@ -85,9 +85,9 @@ public class SiteInfoMeta extends AbstractMeta {
          */
         public Builder siProp(Set<SiProp> siProp) {
             siteInfoMeta.siProp = siProp;
-            siteInfoMeta.url += "&siprop=" + siProp.stream()
+            siteInfoMeta.apiUrl.putQuery("siprop", siProp.stream()
                     .map(SiProp::getValue)
-                    .collect(Collectors.joining("%7C"));
+                    .collect(Collectors.joining("|")));
             return this;
         }
 
@@ -97,7 +97,7 @@ public class SiteInfoMeta extends AbstractMeta {
          */
         public Builder siShowAllDb() {
             siteInfoMeta.siShowAllDb = true;
-            siteInfoMeta.url += "&sishowalldb=1";
+            siteInfoMeta.apiUrl.putQuery("sishowalldb", "1");
             return this;
         }
 
@@ -107,7 +107,7 @@ public class SiteInfoMeta extends AbstractMeta {
          */
         public Builder siNumberInGroup() {
             siteInfoMeta.siNumberInGroup = true;
-            siteInfoMeta.url += "&sinumberingroup=1";
+            siteInfoMeta.apiUrl.putQuery("sinumberingroup", "1");
             return this;
         }
 

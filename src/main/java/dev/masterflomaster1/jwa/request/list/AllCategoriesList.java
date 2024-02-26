@@ -2,8 +2,6 @@ package dev.masterflomaster1.jwa.request.list;
 
 import dev.masterflomaster1.jwa.common.Dir;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -26,7 +24,7 @@ public class AllCategoriesList extends AbstractList {
     private Set<AcProp> acProp;
 
     private AllCategoriesList() {
-        url = "&list=allcategories";
+        name = "allcategories";
     }
 
     public String getAcFrom() {
@@ -98,7 +96,7 @@ public class AllCategoriesList extends AbstractList {
          */
         public Builder acFrom(String acFrom) {
             allCategoriesList.acFrom = acFrom;
-            allCategoriesList.url += "&acfrom=" + URLEncoder.encode(acFrom, StandardCharsets.UTF_8);
+            allCategoriesList.apiUrl.putQuery("acfrom", acFrom);
             return this;
         }
 
@@ -110,7 +108,7 @@ public class AllCategoriesList extends AbstractList {
          */
         public Builder acContinue(String acContinue) {
             allCategoriesList.acContinue = acContinue;
-            allCategoriesList.url += "&accontinue=" + URLEncoder.encode(acContinue, StandardCharsets.UTF_8);
+            allCategoriesList.apiUrl.putQuery("accontinue", acContinue);
             return this;
         }
 
@@ -120,7 +118,7 @@ public class AllCategoriesList extends AbstractList {
          */
         public Builder acTo(String acTo) {
             allCategoriesList.acTo = acTo;
-            allCategoriesList.url += "&acto=" + URLEncoder.encode(acTo, StandardCharsets.UTF_8);
+            allCategoriesList.apiUrl.putQuery("acto", acTo);
             return this;
         }
 
@@ -130,7 +128,7 @@ public class AllCategoriesList extends AbstractList {
          */
         public Builder acPrefix(String acPrefix) {
             allCategoriesList.acPrefix = acPrefix;
-            allCategoriesList.url += "&acprefix=" + URLEncoder.encode(acPrefix, StandardCharsets.UTF_8);
+            allCategoriesList.apiUrl.putQuery("acprefix", acPrefix);
             return this;
         }
 
@@ -140,7 +138,7 @@ public class AllCategoriesList extends AbstractList {
          */
         public Builder acDir(Dir acDir) {
             allCategoriesList.acDir = acDir;
-            allCategoriesList.url += "&acdir=" + acDir.getValue();
+            allCategoriesList.apiUrl.putQuery("acdir", acDir.getValue());
             return this;
         }
 
@@ -150,7 +148,7 @@ public class AllCategoriesList extends AbstractList {
          */
         public Builder acMin(int acMin) {
             allCategoriesList.acMin = acMin;
-            allCategoriesList.url += "&acmin=" + acMin;
+            allCategoriesList.apiUrl.putQuery("acmin", acMin);
             return this;
         }
 
@@ -160,7 +158,7 @@ public class AllCategoriesList extends AbstractList {
          */
         public Builder acMax(int acMax) {
             allCategoriesList.acMax = acMax;
-            allCategoriesList.url += "&acmax=" + acMax;
+            allCategoriesList.apiUrl.putQuery("acmax", acMax);
             return this;
         }
 
@@ -171,7 +169,7 @@ public class AllCategoriesList extends AbstractList {
          */
         public Builder acLimit(int acLimit) {
             allCategoriesList.acLimit = acLimit;
-            allCategoriesList.url += "&aclimit=" + acLimit;
+            allCategoriesList.apiUrl.putQuery("aclimit", acLimit);
             return this;
         }
 
@@ -181,9 +179,9 @@ public class AllCategoriesList extends AbstractList {
          */
         public Builder acProp(Set<AcProp> acProp) {
             allCategoriesList.acProp = acProp;
-            allCategoriesList.url += "&acprop=" + acProp.stream()
+            allCategoriesList.apiUrl.putQuery("acprop", acProp.stream()
                     .map(AcProp::getValue)
-                    .collect(Collectors.joining("%7C"));
+                    .collect(Collectors.joining("|")));
             return this;
         }
 

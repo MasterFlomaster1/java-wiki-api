@@ -1,7 +1,5 @@
 package dev.masterflomaster1.jwa.request.meta;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -16,7 +14,7 @@ public class LanguageInfoMeta extends AbstractMeta {
     private String liContinue;
 
     private LanguageInfoMeta() {
-        url = "&meta=languageinfo";
+        name = "languageinfo";
     }
 
     public Set<LiProp> getLiProp() {
@@ -58,9 +56,9 @@ public class LanguageInfoMeta extends AbstractMeta {
          */
         public Builder liProp(Set<LiProp> liProp) {
             languageInfoMeta.liProp = liProp;
-            languageInfoMeta.url += "&liprop=" + liProp.stream()
+            languageInfoMeta.apiUrl.putQuery("liprop", liProp.stream()
                     .map(LiProp::getValue)
-                    .collect(Collectors.joining("%7C"));
+                    .collect(Collectors.joining("|")));
             return this;
         }
 
@@ -71,9 +69,7 @@ public class LanguageInfoMeta extends AbstractMeta {
          */
         public Builder liCode(Set<String> liCode) {
             languageInfoMeta.liCode = liCode;
-            languageInfoMeta.url += "&licode=" + liCode.stream()
-                    .map(str -> URLEncoder.encode(str, StandardCharsets.UTF_8))
-                    .collect(Collectors.joining("%7C"));
+            languageInfoMeta.apiUrl.putQuery("licode", String.join("|", liCode));
             return this;
         }
 
@@ -85,7 +81,7 @@ public class LanguageInfoMeta extends AbstractMeta {
          */
         public Builder liContinue(String liContinue) {
             languageInfoMeta.liContinue = liContinue;
-            languageInfoMeta.url += "&licontinue=" + URLEncoder.encode(liContinue, StandardCharsets.UTF_8);
+            languageInfoMeta.apiUrl.putQuery("licontinue", liContinue);
             return this;
         }
 

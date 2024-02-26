@@ -1,13 +1,11 @@
 package dev.masterflomaster1.jwa.request.action;
 
+import dev.masterflomaster1.jwa.WikiApiSyntaxException;
 import dev.masterflomaster1.jwa.request.list.AbstractList;
 import dev.masterflomaster1.jwa.request.meta.AbstractMeta;
 import dev.masterflomaster1.jwa.request.prop.AbstractProp;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * Fetch data from and about MediaWiki.
@@ -23,7 +21,7 @@ public class QueryAction extends AbstractAction {
     private Set<String> titles;
 
     private QueryAction() {
-        urlPart = "?action=query";
+        apiUrl.setAction("query");
     }
 
     public Set<AbstractProp> getProp() {
@@ -60,10 +58,11 @@ public class QueryAction extends AbstractAction {
          * @return {@code Builder}
          */
         public Builder prop(Set<AbstractProp> props) {
+            if (queryAction.prop != null)
+                throw new WikiApiSyntaxException("'prop' already set");
+
             queryAction.prop = props;
-            queryAction.urlPart += props.stream()
-                    .map(AbstractProp::getUrl)
-                    .collect(Collectors.joining());
+            props.forEach(e -> queryAction.apiUrl.putProp(e.getName(), e.getApiUrl().build()));
 
             return this;
         }
@@ -75,23 +74,26 @@ public class QueryAction extends AbstractAction {
          * @return {@code Builder}
          */
         public Builder list(Set<AbstractList> list) {
+            if (queryAction.list != null)
+                throw new WikiApiSyntaxException("'list' already set");
+
             queryAction.list = list;
-            queryAction.urlPart += list.stream()
-                    .map(AbstractList::getUrl)
-                    .collect(Collectors.joining());
+            list.forEach(e -> queryAction.apiUrl.putList(e.getName(), e.getApiUrl().build()));
+
             return this;
         }
 
         /**
          * Which metadata to get.
-         * @param meta set of metadata to get
          * @return {@code Builder}
          */
         public Builder meta(Set<AbstractMeta> meta) {
+            if (queryAction.meta != null)
+                throw new WikiApiSyntaxException("'meta' already set");
+
             queryAction.meta = meta;
-            queryAction.urlPart += meta.stream()
-                    .map(AbstractMeta::getUrl)
-                    .collect(Collectors.joining());
+            meta.forEach(e -> queryAction.apiUrl.putMeta(e.getName(), e.getApiUrl().build()));
+
             return this;
         }
 
@@ -101,7 +103,7 @@ public class QueryAction extends AbstractAction {
          */
         public Builder indexPageIds() {
             queryAction.indexPageIDs = true;
-            queryAction.urlPart += "&indexpageids=1";
+            queryAction.apiUrl.putQuery("indexpageids", "1");
             return this;
         }
 
@@ -111,7 +113,7 @@ public class QueryAction extends AbstractAction {
          */
         public Builder export() {
             queryAction.export = true;
-            queryAction.urlPart += "&export=1";
+            queryAction.apiUrl.putQuery("export", "1");
             return this;
         }
 
@@ -123,9 +125,7 @@ public class QueryAction extends AbstractAction {
          */
         public Builder titles(Set<String> titles) {
             queryAction.titles = titles;
-            queryAction.urlPart += "&titles=" + titles.stream()
-                    .map(str -> URLEncoder.encode(str, StandardCharsets.UTF_8))
-                    .collect(Collectors.joining("%7C"));
+            queryAction.apiUrl.putQuery("titles", String.join("|", titles));
             return this;
         }
 

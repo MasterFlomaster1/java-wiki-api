@@ -2,8 +2,6 @@ package dev.masterflomaster1.jwa.request.prop;
 
 import dev.masterflomaster1.jwa.util.TimeHandler;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Set;
@@ -28,7 +26,7 @@ public class RevisionsProp extends AbstractProp {
     private String rvContinue;
 
     private RevisionsProp() {
-        url = "&prop=revisions";
+        name = "revisions";
     }
 
     public Set<RvProp> getRvProp() {
@@ -106,9 +104,9 @@ public class RevisionsProp extends AbstractProp {
          */
         public Builder rvProp(Set<RvProp> rvProp) {
             revisionsProp.rvProp = rvProp;
-            revisionsProp.url += "&rvprop=" + rvProp.stream()
+            revisionsProp.apiUrl.putQuery("rvprop", rvProp.stream()
                     .map(RvProp::getValue)
-                    .collect(Collectors.joining("%7C"));
+                    .collect(Collectors.joining("|")));
             return this;
         }
 
@@ -121,7 +119,7 @@ public class RevisionsProp extends AbstractProp {
          */
         public Builder rvLimit(int rvLimit) {
             revisionsProp.rvLimit = rvLimit;
-            revisionsProp.url += "&rvlimit=" + rvLimit;
+            revisionsProp.apiUrl.putQuery("rvlimit", rvLimit);
             return this;
         }
 
@@ -131,7 +129,7 @@ public class RevisionsProp extends AbstractProp {
          */
         public Builder rvSection(String rvSection) {
             revisionsProp.rvSection = rvSection;
-            revisionsProp.url += "&rvsection=" + URLEncoder.encode(rvSection, StandardCharsets.UTF_8);
+            revisionsProp.apiUrl.putQuery("rvsection", rvSection);
             return this;
         }
 
@@ -142,7 +140,7 @@ public class RevisionsProp extends AbstractProp {
          */
         public Builder rvStart(LocalDateTime rvStart) {
             revisionsProp.rvStart = rvStart;
-            revisionsProp.url += "&rvstart=" + URLEncoder.encode(TimeHandler.formatISO8601(rvStart), StandardCharsets.UTF_8);
+            revisionsProp.apiUrl.putQuery("rvstart", TimeHandler.formatISO8601(rvStart));
             return this;
         }
 
@@ -153,7 +151,7 @@ public class RevisionsProp extends AbstractProp {
          */
         public Builder rvEnd(LocalDateTime rvEnd) {
             revisionsProp.rvEnd = rvEnd;
-            revisionsProp.url += "&rvend=" + URLEncoder.encode(TimeHandler.formatISO8601(rvEnd), StandardCharsets.UTF_8);
+            revisionsProp.apiUrl.putQuery("rvend", TimeHandler.formatISO8601(rvEnd));
             return this;
         }
 
@@ -164,7 +162,7 @@ public class RevisionsProp extends AbstractProp {
          */
         public Builder rvDir(RvDir rvDir) {
             revisionsProp.rvDir = rvDir;
-            revisionsProp.url += "&rvdir=" + rvDir.getValue();
+            revisionsProp.apiUrl.putQuery("rvdir", rvDir.getValue());
             return this;
         }
 
@@ -175,7 +173,7 @@ public class RevisionsProp extends AbstractProp {
          */
         public Builder rvUser(String rvUser) {
             revisionsProp.rvUser = rvUser;
-            revisionsProp.url += "&rvuser=" + URLEncoder.encode(rvUser, StandardCharsets.UTF_8);
+            revisionsProp.apiUrl.putQuery("rvuser", rvUser);
             return this;
         }
 
@@ -186,7 +184,7 @@ public class RevisionsProp extends AbstractProp {
          */
         public Builder rvExcludeUser(String rvExcludeUser) {
             revisionsProp.rvExcludeUser = rvExcludeUser;
-            revisionsProp.url += "&rvexcludeuser=" + URLEncoder.encode(rvExcludeUser, StandardCharsets.UTF_8);
+            revisionsProp.apiUrl.putQuery("rvexcludeuser", rvExcludeUser);
             return this;
         }
 
@@ -196,7 +194,7 @@ public class RevisionsProp extends AbstractProp {
          */
         public Builder rvTag(String rvTag) {
             revisionsProp.rvTag = rvTag;
-            revisionsProp.url += "&rvtag=" + rvTag;
+            revisionsProp.apiUrl.putQuery("rvtag", rvTag);
             return this;
         }
 
@@ -208,7 +206,7 @@ public class RevisionsProp extends AbstractProp {
          */
         public Builder rvContinue(String rvContinue) {
             revisionsProp.rvContinue = rvContinue;
-            revisionsProp.url += "rvcontinue" + URLEncoder.encode(rvContinue, StandardCharsets.UTF_8);
+            revisionsProp.apiUrl.putQuery("rvcontinue", rvContinue);
             return this;
         }
 

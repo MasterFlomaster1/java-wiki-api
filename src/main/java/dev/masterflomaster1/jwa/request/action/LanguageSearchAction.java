@@ -8,7 +8,7 @@ public class LanguageSearchAction extends AbstractAction {
     private int typos;
 
     private LanguageSearchAction() {
-        urlPart = "?action=languagesearch";
+        apiUrl.setAction("languagesearch");
     }
 
     public String getSearch() {
@@ -29,7 +29,7 @@ public class LanguageSearchAction extends AbstractAction {
          */
         public Builder search(String search) {
             languageSearchAction.search = search;
-            languageSearchAction.urlPart += "&search=" + search;
+            languageSearchAction.apiUrl.putQuery("search", search);
             return this;
         }
 
@@ -39,7 +39,7 @@ public class LanguageSearchAction extends AbstractAction {
          */
         public Builder typos(int typos) {
             languageSearchAction.typos = typos;
-            languageSearchAction.urlPart += "&typos=" + typos;
+            languageSearchAction.apiUrl.putQuery("typos", typos);
             return this;
         }
 

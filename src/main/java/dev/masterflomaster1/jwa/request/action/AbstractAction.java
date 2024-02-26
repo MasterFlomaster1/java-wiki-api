@@ -1,10 +1,12 @@
 package dev.masterflomaster1.jwa.request.action;
 
+import dev.masterflomaster1.jwa.util.WikiApiUrl;
+
 public abstract class AbstractAction {
 
-    protected String urlPart;
+    protected final WikiApiUrl apiUrl = new WikiApiUrl();
 
-    public String getUrlPart() {
-        return urlPart;
+    public WikiApiUrl getApiUrl() {
+        return apiUrl;
     }
 }

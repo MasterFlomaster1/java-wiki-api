@@ -3,9 +3,6 @@ package dev.masterflomaster1.jwa.request.action;
 import dev.masterflomaster1.jwa.WikiApiSyntaxException;
 import okhttp3.FormBody;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-
 /**
  * Shorten a long URL into a shorter one.
  *
@@ -17,7 +14,7 @@ public class ShortenUrlAction extends AbstractAction implements IPost {
     private boolean qrCode;
 
     private ShortenUrlAction() {
-        urlPart = "?action=shortenurl";
+        apiUrl.setAction("shortenurl");
     }
 
     public String getUrl() {
@@ -45,7 +42,7 @@ public class ShortenUrlAction extends AbstractAction implements IPost {
          */
         public Builder url(String url) {
             shortenUrlAction.url = url;
-            shortenUrlAction.urlPart += "&url=" + URLEncoder.encode(url, StandardCharsets.UTF_8);
+            shortenUrlAction.apiUrl.putQuery("url", url);
             return this;
         }
 
@@ -55,7 +52,7 @@ public class ShortenUrlAction extends AbstractAction implements IPost {
          */
         public Builder qrCode() {
             shortenUrlAction.qrCode = true;
-            shortenUrlAction.urlPart += "&qrcode=1";
+            shortenUrlAction.apiUrl.putQuery("qrcode", "1");
             return this;
         }
 

@@ -14,7 +14,7 @@ public class PageViewsProp extends AbstractProp {
     private String pvIpContinue;
 
     private PageViewsProp() {
-        url += "&prop=pageviews";
+        name = "pageviews";
     }
 
     public int getPvIpDays() {
@@ -52,7 +52,7 @@ public class PageViewsProp extends AbstractProp {
          */
         public Builder pvIpDays(int pvIpDays) {
             pageViewsProp.pvIpDays = pvIpDays;
-            pageViewsProp.url += "&pvipdays=" + pvIpDays;
+            pageViewsProp.apiUrl.putQuery("pvipdays", pvIpDays);
             return this;
         }
 
@@ -64,7 +64,7 @@ public class PageViewsProp extends AbstractProp {
          */
         public Builder pvIpContinue(String pvIpContinue) {
             pageViewsProp.pvIpContinue = pvIpContinue;
-            pageViewsProp.url += "&pvipcontinue=" + pvIpContinue;
+            pageViewsProp.apiUrl.putQuery("pvipcontinue", pvIpContinue);
             return this;
         }
 

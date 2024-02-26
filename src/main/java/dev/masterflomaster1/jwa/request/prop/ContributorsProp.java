@@ -1,9 +1,8 @@
 package dev.masterflomaster1.jwa.request.prop;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Get the list of logged-in contributors and the count of anonymous contributors to a page.
@@ -20,7 +19,7 @@ public class ContributorsProp extends AbstractProp {
     private String pcContinue;
 
     private ContributorsProp() {
-        url += "&prop=contributors";
+        name = "contributors";
     }
 
     public Set<PcGroup> getPcGroup() {
@@ -109,6 +108,9 @@ public class ContributorsProp extends AbstractProp {
          */
         public Builder pcGroup(Set<PcGroup> pcGroup) {
             contributorsProp.pcGroup = pcGroup;
+            contributorsProp.apiUrl.putQuery("pcgroup", pcGroup.stream()
+                    .map(PcGroup::getValue)
+                    .collect(Collectors.joining("|")));
             return this;
         }
 
@@ -119,6 +121,9 @@ public class ContributorsProp extends AbstractProp {
          */
         public Builder pcExcludeGroup(Set<PcGroup> pcExcludeGroup) {
             contributorsProp.pcExcludeGroup = pcExcludeGroup;
+            contributorsProp.apiUrl.putQuery("pcexcludegroup", pcExcludeGroup.stream()
+                    .map(PcGroup::getValue)
+                    .collect(Collectors.joining("|")));
             return this;
         }
 
@@ -130,6 +135,9 @@ public class ContributorsProp extends AbstractProp {
          */
         public Builder pcRights(Set<PcRights> pcRights) {
             contributorsProp.pcRights = pcRights;
+            contributorsProp.apiUrl.putQuery("pcrights", pcRights.stream()
+                    .map(PcRights::getValue)
+                    .collect(Collectors.joining("|")));
             return this;
         }
 
@@ -141,6 +149,9 @@ public class ContributorsProp extends AbstractProp {
          */
         public Builder pcExcludeRights(Set<PcRights> pcExcludeRights) {
             contributorsProp.pcExcludeRights = pcExcludeRights;
+            contributorsProp.apiUrl.putQuery("pcexcluderights", pcExcludeRights.stream()
+                    .map(PcRights::getValue)
+                    .collect(Collectors.joining("|")));
             return this;
         }
 
@@ -151,7 +162,7 @@ public class ContributorsProp extends AbstractProp {
          */
         public Builder pcLimit(int pcLimit) {
             contributorsProp.pcLimit = pcLimit;
-            contributorsProp.url += "&pclimit=" + pcLimit;
+            contributorsProp.apiUrl.putQuery("pclimit", pcLimit);
             return this;
         }
 
@@ -163,7 +174,7 @@ public class ContributorsProp extends AbstractProp {
          */
         public Builder pcContinue(String pcContinue) {
             contributorsProp.pcContinue = pcContinue;
-            contributorsProp.url += "&pccontinue=" + URLEncoder.encode(pcContinue, StandardCharsets.UTF_8);
+            contributorsProp.apiUrl.putQuery("pccontinue", pcContinue);
             return this;
         }
 

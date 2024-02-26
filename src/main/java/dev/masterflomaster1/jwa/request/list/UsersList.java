@@ -1,7 +1,5 @@
 package dev.masterflomaster1.jwa.request.list;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -19,7 +17,7 @@ public class UsersList extends AbstractList {
     private Set<Integer> usUserIds;
 
     private UsersList() {
-        url = "&list=users";
+        name = "users";
     }
 
     public Set<UsProp> getUsProp() {
@@ -67,9 +65,9 @@ public class UsersList extends AbstractList {
          */
         public Builder usProp(Set<UsProp> usProp) {
             usersList.usProp = usProp;
-            usersList.url += "&usprop=" + usProp.stream()
+            usersList.apiUrl.putQuery("usprop", usProp.stream()
                     .map(UsProp::getValue)
-                    .collect(Collectors.joining("%7C"));
+                    .collect(Collectors.joining("|")));
             return this;
         }
 
@@ -79,7 +77,7 @@ public class UsersList extends AbstractList {
          */
         public Builder usAttachedWiki(String usAttachedWiki) {
             usersList.usAttachedWiki = usAttachedWiki;
-            usersList.url += "&usattachedwiki=" + usAttachedWiki;
+            usersList.apiUrl.putQuery("usattachedwiki", usAttachedWiki);
             return this;
         }
 
@@ -90,9 +88,7 @@ public class UsersList extends AbstractList {
          */
         public Builder usUsers(Set<String> usUsers) {
             usersList.usUsers = usUsers;
-            usersList.url += "&ususers=" + usUsers.stream()
-                    .map(str -> URLEncoder.encode(str, StandardCharsets.UTF_8))
-                    .collect(Collectors.joining("%7C"));
+            usersList.apiUrl.putQuery("ususers", String.join("|", usUsers));
             return this;
         }
 
@@ -103,9 +99,9 @@ public class UsersList extends AbstractList {
          */
         public Builder usUserIds(Set<Integer> usUserIds) {
             usersList.usUserIds = usUserIds;
-            usersList.url += "&ususerids=" + usUserIds.stream()
+            usersList.apiUrl.putQuery("ususerids", usUserIds.stream()
                     .map(String::valueOf)
-                    .collect(Collectors.joining("%7C"));
+                    .collect(Collectors.joining("|")));
             return this;
         }
 

@@ -2,9 +2,6 @@ package dev.masterflomaster1.jwa.request.action;
 
 import dev.masterflomaster1.jwa.WikiApiSyntaxException;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-
 /**
  * Check the validity of a token from {@code action=query&meta=tokens}.
  *
@@ -17,7 +14,7 @@ public class CheckTokenAction extends AbstractAction {
     private int maxTokenAge;
 
     private CheckTokenAction() {
-        urlPart = "?action=checktoken";
+        apiUrl.setAction("checktoken");
     }
 
     public Type getType() {
@@ -42,7 +39,7 @@ public class CheckTokenAction extends AbstractAction {
          */
         public Builder type(Type type) {
             checkTokenAction.type = type;
-            checkTokenAction.urlPart += "&type=" + type.getValue();
+            checkTokenAction.apiUrl.putQuery("type", type.getValue());
             return this;
         }
 
@@ -52,7 +49,7 @@ public class CheckTokenAction extends AbstractAction {
          */
         public Builder token(String token) {
             checkTokenAction.token = token;
-            checkTokenAction.urlPart += "&token=" + URLEncoder.encode(token, StandardCharsets.UTF_8);
+            checkTokenAction.apiUrl.putQuery("token", token);
             return this;
         }
 
@@ -62,7 +59,7 @@ public class CheckTokenAction extends AbstractAction {
          */
         public Builder maxTokenAge(int maxTokenAge) {
             checkTokenAction.maxTokenAge = maxTokenAge;
-            checkTokenAction.urlPart += "&maxtokenage=" + maxTokenAge;
+            checkTokenAction.apiUrl.putQuery("maxtokenage", maxTokenAge);
             return this;
         }
 

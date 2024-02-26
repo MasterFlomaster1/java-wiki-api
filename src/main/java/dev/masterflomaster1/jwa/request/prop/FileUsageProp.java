@@ -2,10 +2,9 @@ package dev.masterflomaster1.jwa.request.prop;
 
 import dev.masterflomaster1.jwa.common.Namespace;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Find all pages that use the given files.
@@ -21,7 +20,7 @@ public class FileUsageProp extends AbstractProp {
     private String fuContinue;
 
     private FileUsageProp() {
-        url += "&prop=fileusage";
+        name = "fileusage";
     }
 
     public Set<FuProp> getFuProp() {
@@ -130,6 +129,9 @@ public class FileUsageProp extends AbstractProp {
          */
         public Builder fuProp(Set<FuProp> fuProp) {
             fileUsageProp.fuProp = fuProp;
+            fileUsageProp.apiUrl.putQuery("fuprop", fuProp.stream()
+                    .map(FuProp::getValue)
+                    .collect(Collectors.joining("|")));
             return this;
         }
 
@@ -139,6 +141,9 @@ public class FileUsageProp extends AbstractProp {
          */
         public Builder fuNamespace(Set<Namespace> fuNamespace) {
             fileUsageProp.fuNamespace = fuNamespace;
+            fileUsageProp.apiUrl.putQuery("funamespace", fuNamespace.stream()
+                    .map(Namespace::getValue)
+                    .collect(Collectors.joining("|")));
             return this;
         }
 
@@ -148,6 +153,9 @@ public class FileUsageProp extends AbstractProp {
          */
         public Builder fuShow(Set<FuShow> fuShow) {
             fileUsageProp.fuShow = fuShow;
+            fileUsageProp.apiUrl.putQuery("fushow", fuShow.stream()
+                    .map(FuShow::getValue)
+                    .collect(Collectors.joining("|")));
             return this;
         }
 
@@ -158,6 +166,7 @@ public class FileUsageProp extends AbstractProp {
          */
         public Builder fuLimit(int fuLimit) {
             fileUsageProp.fuLimit = fuLimit;
+            fileUsageProp.apiUrl.putQuery("fulimit", fuLimit);
             return this;
         }
 
@@ -169,7 +178,7 @@ public class FileUsageProp extends AbstractProp {
          */
         public Builder fuContinue(String fuContinue) {
             fileUsageProp.fuContinue = fuContinue;
-            fileUsageProp.url += "&fucontinue=" + URLEncoder.encode(fuContinue, StandardCharsets.UTF_8);
+            fileUsageProp.apiUrl.putQuery("fucontinue", fuContinue);
             return this;
         }
 

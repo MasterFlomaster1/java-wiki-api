@@ -18,7 +18,7 @@ public class ValidatePasswordAction extends AbstractAction implements IPost {
     private String realName;
 
     private ValidatePasswordAction() {
-        urlPart = "?action=validatepassword";
+        apiUrl.setAction("validatepassword");
     }
 
     public String getPassword() {
@@ -56,7 +56,6 @@ public class ValidatePasswordAction extends AbstractAction implements IPost {
          */
         public Builder password(String password) {
             validatePasswordAction.password = password;
-//            validatePasswordAction.urlPart += "&password=" + password;
             return this;
         }
 
@@ -67,7 +66,7 @@ public class ValidatePasswordAction extends AbstractAction implements IPost {
          */
         public Builder user(String user) {
             validatePasswordAction.user = user;
-            validatePasswordAction.urlPart += "&user=" + user;
+            validatePasswordAction.apiUrl.putQuery("user", user);
             return this;
         }
 
@@ -77,7 +76,7 @@ public class ValidatePasswordAction extends AbstractAction implements IPost {
          */
         public Builder email(String email) {
             validatePasswordAction.email = email;
-            validatePasswordAction.urlPart += "&email=" + email;
+            validatePasswordAction.apiUrl.putQuery("email", email);
             return this;
         }
 
@@ -87,7 +86,7 @@ public class ValidatePasswordAction extends AbstractAction implements IPost {
          */
         public Builder realName(String realName) {
             validatePasswordAction.realName = realName;
-            validatePasswordAction.urlPart += "&realname" + realName;
+            validatePasswordAction.apiUrl.putQuery("realname", realName);
             return this;
         }
 

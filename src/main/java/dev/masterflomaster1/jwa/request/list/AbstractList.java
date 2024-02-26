@@ -1,11 +1,17 @@
 package dev.masterflomaster1.jwa.request.list;
 
+import dev.masterflomaster1.jwa.util.WikiApiUrl;
+
 public abstract class AbstractList {
 
-    protected String url = "";
+    protected String name;
+    protected final WikiApiUrl apiUrl = new WikiApiUrl();
 
-    public String getUrl() {
-        return url;
+    public String getName() {
+        return name;
     }
 
+    public WikiApiUrl getApiUrl() {
+        return apiUrl;
+    }
 }
