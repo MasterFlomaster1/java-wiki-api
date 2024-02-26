@@ -3,14 +3,13 @@ package dev.masterflomaster1.jwa.request.action;
 import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
-import dev.masterflomaster1.jwa.WikiApiSyntaxException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assumptions.assumeFalse;
 
 class ThankActionTest {
@@ -24,7 +23,7 @@ class ThankActionTest {
 
     @Test
     @DisplayName("Send thanks for revision ID 456, with the source being a diff page")
-    void testExample1() throws WikiApiSyntaxException, IOException {
+    void testExample1() throws IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new ThankAction.Builder()
                         .rev(456)
@@ -39,7 +38,7 @@ class ThankActionTest {
     }
 
     @Test
-    void testBuilder() throws WikiApiSyntaxException {
+    void testBuilder() {
         var a = new ThankAction.Builder()
                 .rev(456)
                 .log(456)

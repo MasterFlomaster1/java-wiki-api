@@ -5,8 +5,6 @@ import dev.masterflomaster1.jwa.common.Namespace;
 import dev.masterflomaster1.jwa.common.Tags;
 import okhttp3.FormBody;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -104,7 +102,7 @@ public class BlockAction extends AbstractAction implements IPost {
     }
 
     private BlockAction() {
-        urlPart = "?action=block";
+        apiUrl.setAction("block");
     }
 
     @Override
@@ -126,7 +124,7 @@ public class BlockAction extends AbstractAction implements IPost {
          */
         public Builder user(String user) {
             blockAction.user = user;
-            blockAction.urlPart += "&user=" + user;
+            blockAction.apiUrl.putQuery("user", user);
             return this;
         }
 
@@ -139,7 +137,7 @@ public class BlockAction extends AbstractAction implements IPost {
          */
         public Builder expiry(String expiry) {
             blockAction.expiry = expiry;
-            blockAction.urlPart += "&expiry=" + URLEncoder.encode(expiry, StandardCharsets.UTF_8);
+            blockAction.apiUrl.putQuery("expiry", expiry);
             return this;
         }
 
@@ -150,7 +148,7 @@ public class BlockAction extends AbstractAction implements IPost {
          */
         public Builder reason(String reason) {
             blockAction.reason = reason;
-            blockAction.urlPart += "&reason=" + URLEncoder.encode(reason, StandardCharsets.UTF_8);
+            blockAction.apiUrl.putQuery("reason", reason);
             return this;
         }
 
@@ -161,7 +159,7 @@ public class BlockAction extends AbstractAction implements IPost {
          */
         public Builder anonOnly() {
             blockAction.anonOnly = true;
-            blockAction.urlPart += "&anononly=1";
+            blockAction.apiUrl.putQuery("anononly", "1");
             return this;
         }
 
@@ -171,7 +169,7 @@ public class BlockAction extends AbstractAction implements IPost {
          */
         public Builder noCreate() {
             blockAction.noCreate = true;
-            blockAction.urlPart += "&nocreate=1";
+            blockAction.apiUrl.putQuery("nocreate", "1");
             return this;
         }
 
@@ -181,7 +179,7 @@ public class BlockAction extends AbstractAction implements IPost {
          */
         public Builder autoBlock() {
             blockAction.autoBlock = true;
-            blockAction.urlPart += "&autoblock=1";
+            blockAction.apiUrl.putQuery("autoblock", "1");
             return this;
         }
 
@@ -191,7 +189,7 @@ public class BlockAction extends AbstractAction implements IPost {
          */
         public Builder noEmail() {
             blockAction.noEmail = true;
-            blockAction.urlPart += "&noemail=1";
+            blockAction.apiUrl.putQuery("noemail", 1);
             return this;
         }
 
@@ -201,7 +199,7 @@ public class BlockAction extends AbstractAction implements IPost {
          */
         public Builder hideName() {
             blockAction.hideName = true;
-            blockAction.urlPart += "&hidename=1";
+            blockAction.apiUrl.putQuery("hidename", "1");
             return this;
         }
 
@@ -211,7 +209,7 @@ public class BlockAction extends AbstractAction implements IPost {
          */
         public Builder allowUserTalk() {
             blockAction.allowUserTalk = true;
-            blockAction.urlPart += "&allowusertalk=1";
+            blockAction.apiUrl.putQuery("allowusertalk", "1");
             return this;
         }
 
@@ -221,7 +219,7 @@ public class BlockAction extends AbstractAction implements IPost {
          */
         public Builder reBlock() {
             blockAction.reBlock = true;
-            blockAction.urlPart += "&reblock=1";
+            blockAction.apiUrl.putQuery("reblock", "1");
             return this;
         }
 
@@ -231,7 +229,7 @@ public class BlockAction extends AbstractAction implements IPost {
          */
         public Builder watchUser() {
             blockAction.watchUser = true;
-            blockAction.urlPart += "&watchuser=1";
+            blockAction.apiUrl.putQuery("watchuser", "1");
             return this;
         }
 
@@ -241,7 +239,7 @@ public class BlockAction extends AbstractAction implements IPost {
          */
         public Builder watchlistExpiry(String watchlistExpiry) {
             blockAction.watchlistExpiry = watchlistExpiry;
-            blockAction.urlPart += "&watchlistexpiry=" + watchlistExpiry;
+            blockAction.apiUrl.putQuery("watchlistexpiry", watchlistExpiry);
             return this;
         }
 
@@ -251,9 +249,9 @@ public class BlockAction extends AbstractAction implements IPost {
          */
         public Builder tags(Set<Tags> tags) {
             blockAction.tags = tags;
-            blockAction.urlPart += "&tags=" + tags.stream()
+            blockAction.apiUrl.putQuery("tags", tags.stream()
                     .map(Tags::getValue)
-                    .collect(Collectors.joining("%7C"));
+                    .collect(Collectors.joining("|")));
             return this;
         }
 
@@ -263,7 +261,7 @@ public class BlockAction extends AbstractAction implements IPost {
          */
         public Builder partial() {
             blockAction.partial = true;
-            blockAction.urlPart += "&partial=1";
+            blockAction.apiUrl.putQuery("partial", "1");
             return this;
         }
 
@@ -273,9 +271,7 @@ public class BlockAction extends AbstractAction implements IPost {
          */
         public Builder pageRestrictions(Set<String> pageRestrictions) {
             blockAction.pageRestrictions = pageRestrictions;
-            blockAction.urlPart += "&pagerestrictions=" + pageRestrictions.stream()
-                    .map(str -> URLEncoder.encode(str, StandardCharsets.UTF_8))
-                    .collect(Collectors.joining("%7C"));
+            blockAction.apiUrl.putQuery("pagerestrictions", String.join("|", pageRestrictions));
             return this;
         }
 
@@ -285,9 +281,9 @@ public class BlockAction extends AbstractAction implements IPost {
          */
         public Builder namespaceRestrictions(Set<Namespace> namespaceRestrictions) {
             blockAction.namespaceRestrictions = namespaceRestrictions;
-            blockAction.urlPart += "&namespacerestrictions=" + namespaceRestrictions.stream()
+            blockAction.apiUrl.putQuery("namespacerestrictions", namespaceRestrictions.stream()
                     .map(Namespace::getValue)
-                    .collect(Collectors.joining("%7C"));
+                    .collect(Collectors.joining("|")));
             return this;
         }
 
@@ -299,7 +295,6 @@ public class BlockAction extends AbstractAction implements IPost {
          */
         public Builder token(String token) {
             blockAction.token = token;
-//            blockAction.urlPart += "&token=" + URLEncoder.encode(token, StandardCharsets.UTF_8);
             return this;
         }
 

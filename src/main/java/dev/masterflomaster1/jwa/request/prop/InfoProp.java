@@ -1,9 +1,8 @@
 package dev.masterflomaster1.jwa.request.prop;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Get basic page information.
@@ -16,7 +15,7 @@ public class InfoProp extends AbstractProp {
     private String inContinue;
 
     private InfoProp() {
-        url = "&prop=info";
+        name = "info";
     }
 
     public Set<InProp> getInProp() {
@@ -141,6 +140,9 @@ public class InfoProp extends AbstractProp {
          */
         public Builder inProp(Set<InProp> inProp) {
             infoProp.inProp = inProp;
+            infoProp.apiUrl.putQuery("inprop", inProp.stream()
+                    .map(InProp::getValue)
+                    .collect(Collectors.joining("|")));
             return this;
         }
 
@@ -152,7 +154,7 @@ public class InfoProp extends AbstractProp {
          */
         public Builder inContinue(String inContinue) {
             infoProp.inContinue = inContinue;
-            infoProp.url += "&incontinue=" + URLEncoder.encode(inContinue, StandardCharsets.UTF_8);
+            infoProp.apiUrl.putQuery("incontinue", inContinue);
             return this;
         }
 

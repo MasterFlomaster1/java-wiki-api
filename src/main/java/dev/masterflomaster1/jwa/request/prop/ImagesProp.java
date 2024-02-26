@@ -2,11 +2,8 @@ package dev.masterflomaster1.jwa.request.prop;
 
 import dev.masterflomaster1.jwa.common.Dir;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * Returns all files contained on the given pages.
@@ -21,7 +18,7 @@ public class ImagesProp extends AbstractProp {
     private Dir imDir;
 
     private ImagesProp() {
-        url += "&prop=images";
+        name = "images";
     }
 
     public int getImLimit() {
@@ -69,7 +66,7 @@ public class ImagesProp extends AbstractProp {
          */
         public Builder imLimit(int imLimit) {
             imagesProp.imLimit = imLimit;
-            imagesProp.url += "&imlimit=" + imLimit;
+            imagesProp.apiUrl.putQuery("imlimit", imLimit);
             return this;
         }
 
@@ -81,7 +78,7 @@ public class ImagesProp extends AbstractProp {
          */
         public Builder imContinue(String imContinue) {
             imagesProp.imContinue = imContinue;
-            imagesProp.url += "&imcontinue=" + URLEncoder.encode(imContinue, StandardCharsets.UTF_8);
+            imagesProp.apiUrl.putQuery("imcontinue", imContinue);
             return this;
         }
 
@@ -92,9 +89,7 @@ public class ImagesProp extends AbstractProp {
          */
         public Builder imImages(Set<String> imImages) {
             imagesProp.imImages = imImages;
-            imagesProp.url += "&imimages=" + imImages.stream()
-                    .map(str -> URLEncoder.encode(str, StandardCharsets.UTF_8))
-                    .collect(Collectors.joining("%7C"));
+            imagesProp.apiUrl.putQuery("imimages", String.join("|", imImages));
             return this;
         }
 
@@ -104,7 +99,7 @@ public class ImagesProp extends AbstractProp {
          */
         public Builder imDir(Dir imDir) {
             imagesProp.imDir = imDir;
-            imagesProp.url += "&imdir=" + imDir.getValue();
+            imagesProp.apiUrl.putQuery("imdir", imDir.getValue());
             return this;
         }
 

@@ -3,7 +3,6 @@ package dev.masterflomaster1.jwa.request.action;
 import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
-import dev.masterflomaster1.jwa.WikiApiSyntaxException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,7 +22,7 @@ class ShortenUrlActionTest {
 
     @Test
     @DisplayName("Get the short URL for https://en.wikipedia.org/wiki/Arctica.")
-    void testExample1() throws WikiApiSyntaxException, IOException {
+    void testExample1() throws IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new ShortenUrlAction.Builder()
                         .url("https://en.wikipedia.org/wiki/Arctica")
@@ -38,7 +37,7 @@ class ShortenUrlActionTest {
     }
 
     @Test
-    void testBuilder() throws WikiApiSyntaxException {
+    void testBuilder() {
         var a = new ShortenUrlAction.Builder()
                 .url("https://en.wikipedia.org/wiki/Arctica")
                 .qrCode()

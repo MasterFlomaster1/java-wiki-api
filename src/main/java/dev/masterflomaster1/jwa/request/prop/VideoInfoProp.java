@@ -3,8 +3,6 @@ package dev.masterflomaster1.jwa.request.prop;
 import dev.masterflomaster1.jwa.common.Prop;
 import dev.masterflomaster1.jwa.util.TimeHandler;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Set;
@@ -28,7 +26,7 @@ public class VideoInfoProp extends AbstractProp {
     private boolean viLocalOnly;
 
     private VideoInfoProp() {
-        url = "&prop=videoinfo";
+        name = "videoinfo";
     }
 
     public Set<Prop> getViProp() {
@@ -131,9 +129,9 @@ public class VideoInfoProp extends AbstractProp {
          */
         public Builder viProp(Set<Prop> viProp) {
             videoInfoProp.viProp = viProp;
-            videoInfoProp.url += "&viprop=" + viProp.stream()
+            videoInfoProp.apiUrl.putQuery("viprop", viProp.stream()
                     .map(Prop::getValue)
-                    .collect(Collectors.joining("%7C"));
+                    .collect(Collectors.joining("|")));
             return this;
         }
 
@@ -144,7 +142,7 @@ public class VideoInfoProp extends AbstractProp {
          */
         public Builder viLimit(int viLimit) {
             videoInfoProp.viLimit = viLimit;
-            videoInfoProp.url += "&vilimit=" + viLimit;
+            videoInfoProp.apiUrl.putQuery("vilimit", viLimit);
             return this;
         }
 
@@ -154,7 +152,7 @@ public class VideoInfoProp extends AbstractProp {
          */
         public Builder viStart(LocalDateTime viStart) {
             videoInfoProp.viStart = viStart;
-            videoInfoProp.url += "&vistart=" + URLEncoder.encode(TimeHandler.formatISO8601(viStart), StandardCharsets.UTF_8);
+            videoInfoProp.apiUrl.putQuery("vistart", TimeHandler.formatISO8601(viStart));
             return this;
         }
 
@@ -164,7 +162,7 @@ public class VideoInfoProp extends AbstractProp {
          */
         public Builder viEnd(LocalDateTime viEnd) {
             videoInfoProp.viEnd = viEnd;
-            videoInfoProp.url += "&viend=" + URLEncoder.encode(TimeHandler.formatISO8601(viEnd), StandardCharsets.UTF_8);
+            videoInfoProp.apiUrl.putQuery("viend", TimeHandler.formatISO8601(viEnd));
             return this;
         }
 
@@ -175,7 +173,7 @@ public class VideoInfoProp extends AbstractProp {
          */
         public Builder viUrlWidth(int viUrlWidth) {
             videoInfoProp.viUrlWidth = viUrlWidth;
-            videoInfoProp.url += "&viurlwidth=" + viUrlWidth;
+            videoInfoProp.apiUrl.putQuery("viurlwidth", viUrlWidth);
             return this;
         }
 
@@ -185,7 +183,7 @@ public class VideoInfoProp extends AbstractProp {
          */
         public Builder viUrlHeight(int viUrlHeight) {
             videoInfoProp.viUrlHeight = viUrlHeight;
-            videoInfoProp.url += "&viurlheight=" + viUrlHeight;
+            videoInfoProp.apiUrl.putQuery("viurlheight", viUrlHeight);
             return this;
         }
 
@@ -196,7 +194,7 @@ public class VideoInfoProp extends AbstractProp {
          */
         public Builder viMetadataVersion(String viMetadataVersion) {
             videoInfoProp.viMetadataVersion = viMetadataVersion;
-            videoInfoProp.url += "&vimetadataversion=" + viMetadataVersion;
+            videoInfoProp.apiUrl.putQuery("vimetadataversion", viMetadataVersion);
             return this;
         }
 
@@ -207,7 +205,7 @@ public class VideoInfoProp extends AbstractProp {
          */
         public Builder viExtMetadataLanguage(String viExtMetadataLanguage) {
             videoInfoProp.viExtMetadataLanguage = viExtMetadataLanguage;
-            videoInfoProp.url += "&viextmetadatalanguage=" + viExtMetadataLanguage;
+            videoInfoProp.apiUrl.putQuery("viextmetadatalanguage", viExtMetadataLanguage);
             return this;
         }
 
@@ -217,7 +215,7 @@ public class VideoInfoProp extends AbstractProp {
          */
         public Builder viExtMetadataMultiLang() {
             videoInfoProp.viExtMetadataMultiLang = true;
-            videoInfoProp.url += "&viextmetadatamultilang=1";
+            videoInfoProp.apiUrl.putQuery("viextmetadatamultilang", "1");
             return this;
         }
 
@@ -228,9 +226,7 @@ public class VideoInfoProp extends AbstractProp {
          */
         public Builder viExtMetadataFilter(Set<String> viExtMetadataFilter) {
             videoInfoProp.viExtMetadataFilter = viExtMetadataFilter;
-            videoInfoProp.url += "&viextmetadatafilter=" +viExtMetadataFilter.stream()
-                    .map(str -> URLEncoder.encode(str, StandardCharsets.UTF_8))
-                    .collect(Collectors.joining("%7C"));
+            videoInfoProp.apiUrl.putQuery("viextmetadatafilter", String.join("|", viExtMetadataFilter));
             return this;
         }
 
@@ -242,7 +238,7 @@ public class VideoInfoProp extends AbstractProp {
          */
         public Builder viUrlParam(String viUrlParam) {
             videoInfoProp.viUrlParam = viUrlParam;
-            videoInfoProp.url += "&viurlparam=" + URLEncoder.encode(viUrlParam, StandardCharsets.UTF_8);
+            videoInfoProp.apiUrl.putQuery("viurlparam", viUrlParam);
             return this;
         }
 
@@ -253,7 +249,7 @@ public class VideoInfoProp extends AbstractProp {
          */
         public Builder viBadFileContextTitle(String viBadFileContextTitle) {
             videoInfoProp.viBadFileContextTitle = viBadFileContextTitle;
-            videoInfoProp.url += "&vibadfilecontexttitle=" + URLEncoder.encode(viBadFileContextTitle, StandardCharsets.UTF_8);
+            videoInfoProp.apiUrl.putQuery("vibadfilecontexttitle", viBadFileContextTitle);
             return this;
         }
 
@@ -265,7 +261,7 @@ public class VideoInfoProp extends AbstractProp {
          */
         public Builder viContinue(String viContinue) {
             videoInfoProp.viContinue = viContinue;
-            videoInfoProp.url += "&vicontinue=" + URLEncoder.encode(viContinue, StandardCharsets.UTF_8);
+            videoInfoProp.apiUrl.putQuery("vicontinue", viContinue);
             return this;
         }
 
@@ -275,7 +271,7 @@ public class VideoInfoProp extends AbstractProp {
          */
         public Builder viLocalOnly() {
             videoInfoProp.viLocalOnly = true;
-            videoInfoProp.url += "&vilocalonly=1";
+            videoInfoProp.apiUrl.putQuery("vilocalonly", "1");
             return this;
         }
 

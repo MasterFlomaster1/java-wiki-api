@@ -82,6 +82,9 @@ public final class Page {
     @SerializedName("videoinfo")
     private List<VideoInfo> videoInfo;
 
+    @SerializedName("fileusage")
+    private List<FileUsage> fileUsage;
+
     private Page() {
 
     }
@@ -170,6 +173,10 @@ public final class Page {
         return videoInfo;
     }
 
+    public List<FileUsage> getFileUsage() {
+        return fileUsage;
+    }
+
     @Override
     public String toString() {
         return "Page{" +
@@ -198,6 +205,7 @@ public final class Page {
                 ", images=" + images +
                 ", redirects=" + redirects +
                 ", videoInfo=" + videoInfo +
+                ", fileUsage=" + fileUsage +
                 '}';
     }
 }

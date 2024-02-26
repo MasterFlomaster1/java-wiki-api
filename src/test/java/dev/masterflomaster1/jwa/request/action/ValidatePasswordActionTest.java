@@ -3,7 +3,6 @@ package dev.masterflomaster1.jwa.request.action;
 import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
-import dev.masterflomaster1.jwa.WikiApiSyntaxException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,7 +22,7 @@ class ValidatePasswordActionTest {
 
     @Test
     @DisplayName("Validate the password foobar for the current user.")
-    void testExample1() throws WikiApiSyntaxException, IOException {
+    void testExample1() throws IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new ValidatePasswordAction.Builder()
                         .password("foobar")
@@ -40,7 +39,7 @@ class ValidatePasswordActionTest {
 
     @Test
     @DisplayName("Validate the password qwerty for creating user Example.")
-    void testExample2() throws WikiApiSyntaxException, IOException {
+    void testExample2() throws IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new ValidatePasswordAction.Builder()
                         .password("qwerty")
@@ -54,7 +53,7 @@ class ValidatePasswordActionTest {
     }
 
     @Test
-    void testBuilder() throws WikiApiSyntaxException {
+    void testBuilder() {
         var a = new ValidatePasswordAction.Builder()
                 .password("12345")
                 .user("user")

@@ -3,8 +3,6 @@ package dev.masterflomaster1.jwa.request.prop;
 import dev.masterflomaster1.jwa.common.Dir;
 import dev.masterflomaster1.jwa.common.Namespace;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -23,7 +21,7 @@ public class TemplatesProp extends AbstractProp {
     private Dir tlDir;
 
     private TemplatesProp() {
-        url += "&prop=templates";
+        name = "templates";
     }
 
     public Set<Namespace> getTlNamespace() {
@@ -75,9 +73,9 @@ public class TemplatesProp extends AbstractProp {
          */
         public Builder tlNamespace(Set<Namespace> tlNamespace) {
             templatesProp.tlNamespace = tlNamespace;
-            templatesProp.url += "&tlnamespace=" + tlNamespace.stream()
+            templatesProp.apiUrl.putQuery("tlnamespace", tlNamespace.stream()
                     .map(Namespace::getValue)
-                    .collect(Collectors.joining("%7C"));
+                    .collect(Collectors.joining("|")));
             return this;
         }
 
@@ -88,7 +86,7 @@ public class TemplatesProp extends AbstractProp {
          */
         public Builder tlLimit(int tlLimit) {
             templatesProp.tlLimit = tlLimit;
-            templatesProp.url = "&tllimit=" + tlLimit;
+            templatesProp.apiUrl.putQuery("tllimit", tlLimit);
             return this;
         }
 
@@ -100,7 +98,7 @@ public class TemplatesProp extends AbstractProp {
          */
         public Builder tlContinue(String tlContinue) {
             templatesProp.tlContinue = tlContinue;
-            templatesProp.url += "&tlcontinue=" + URLEncoder.encode(tlContinue, StandardCharsets.UTF_8);
+            templatesProp.apiUrl.putQuery("tlcontinue", tlContinue);
             return this;
         }
 
@@ -111,9 +109,7 @@ public class TemplatesProp extends AbstractProp {
          */
         public Builder tlTemplates(Set<String> tlTemplates) {
             templatesProp.tlTemplates = tlTemplates;
-            templatesProp.url += "&tltemplates=" + tlTemplates.stream()
-                    .map(str -> URLEncoder.encode(str, StandardCharsets.UTF_8))
-                    .collect(Collectors.joining("%7C"));
+            templatesProp.apiUrl.putQuery("tltemplates", String.join("|", tlTemplates));
             return this;
         }
 
@@ -123,7 +119,7 @@ public class TemplatesProp extends AbstractProp {
          */
         public Builder tlDir(Dir tlDir) {
             templatesProp.tlDir = tlDir;
-            templatesProp.url += "?tldir=" + tlDir.getValue();
+            templatesProp.apiUrl.putQuery("tldir", tlDir.getValue());
             return this;
         }
 

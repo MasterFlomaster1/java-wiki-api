@@ -2,8 +2,6 @@ package dev.masterflomaster1.jwa.request.prop;
 
 import dev.masterflomaster1.jwa.common.Namespace;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -17,7 +15,7 @@ public class RedirectsProp extends AbstractProp {
     private String rdContinue;
 
     private RedirectsProp() {
-        url += "&prop=redirects";
+        name = "redirects";
     }
 
     public Set<RdProp> getRdProp() {
@@ -69,9 +67,9 @@ public class RedirectsProp extends AbstractProp {
          */
         public Builder rdProp(Set<RdProp> rdProp) {
             redirectsProp.rdProp = rdProp;
-            redirectsProp.url += "&rdprop=" + rdProp.stream()
+            redirectsProp.apiUrl.putQuery("rdprop", rdProp.stream()
                     .map(RdProp::getValue)
-                    .collect(Collectors.joining("%7C"));
+                    .collect(Collectors.joining("|")));
             return this;
         }
 
@@ -84,9 +82,9 @@ public class RedirectsProp extends AbstractProp {
          */
         public Builder rdNamespace(Set<Namespace> rdNamespace) {
             redirectsProp.rdNamespace = rdNamespace;
-            redirectsProp.url += "&rdnamespace=" + rdNamespace.stream()
+            redirectsProp.apiUrl.putQuery("rdnamespace", rdNamespace.stream()
                     .map(Namespace::getValue)
-                    .collect(Collectors.joining("%7C"));
+                    .collect(Collectors.joining("|")));
             return this;
         }
 
@@ -96,7 +94,7 @@ public class RedirectsProp extends AbstractProp {
          */
         public Builder rdShow(RdShow rdShow) {
             redirectsProp.rdShow = rdShow;
-            redirectsProp.url += "&rdshow=" + rdShow.getValue();
+            redirectsProp.apiUrl.putQuery("rdshow", rdShow.getValue());
             return this;
         }
 
@@ -108,7 +106,7 @@ public class RedirectsProp extends AbstractProp {
          */
         public Builder rdLimit(int rdLimit) {
             redirectsProp.rdLimit = rdLimit;
-            redirectsProp.url += "&rdlimit=" + rdLimit;
+            redirectsProp.apiUrl.putQuery("rdlimit", rdLimit);
             return this;
         }
 
@@ -120,7 +118,7 @@ public class RedirectsProp extends AbstractProp {
          */
         public Builder rdContinue(String rdContinue) {
             redirectsProp.rdContinue = rdContinue;
-            redirectsProp.url += "&rdcontinue=" + URLEncoder.encode(rdContinue, StandardCharsets.UTF_8);
+            redirectsProp.apiUrl.putQuery("rdcontinue", rdContinue);
             return this;
         }
 

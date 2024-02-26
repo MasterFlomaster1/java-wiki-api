@@ -14,7 +14,7 @@ public class TokensMeta extends AbstractMeta {
     private Set<Type> type;
 
     private TokensMeta() {
-        url = "&meta=tokens";
+        name = "tokens";
     }
 
     public Set<Type> getType() {
@@ -46,9 +46,9 @@ public class TokensMeta extends AbstractMeta {
          */
         public Builder type(Set<Type> type) {
             tokensMeta.type = type;
-            tokensMeta.url += "&type=" + type.stream()
+            tokensMeta.apiUrl.putQuery("type", type.stream()
                     .map(Type::getValue)
-                    .collect(Collectors.joining("%7C"));
+                    .collect(Collectors.joining("|")));
             return this;
         }
 

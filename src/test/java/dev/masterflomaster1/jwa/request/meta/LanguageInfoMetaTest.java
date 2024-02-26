@@ -3,7 +3,6 @@ package dev.masterflomaster1.jwa.request.meta;
 import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
-import dev.masterflomaster1.jwa.WikiApiSyntaxException;
 import dev.masterflomaster1.jwa.request.action.QueryAction;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -13,7 +12,8 @@ import java.io.IOException;
 import java.util.Set;
 
 import static dev.masterflomaster1.jwa.request.meta.LanguageInfoMeta.LiProp.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class LanguageInfoMetaTest {
 
@@ -26,7 +26,7 @@ class LanguageInfoMetaTest {
 
     @Test
     @DisplayName("Get the language codes of all supported languages.")
-    void testExample1() throws WikiApiSyntaxException, IOException {
+    void testExample1() throws IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .meta(Set.of(
@@ -43,7 +43,7 @@ class LanguageInfoMetaTest {
 
     @Test
     @DisplayName("Get the autonyms and German names of all supported languages.")
-    void testExample2() throws WikiApiSyntaxException, IOException {
+    void testExample2() throws IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .meta(Set.of(
@@ -62,7 +62,7 @@ class LanguageInfoMetaTest {
 
     @Test
     @DisplayName("Get the fallback languages and variants of Occitan.")
-    void testExample3() throws WikiApiSyntaxException, IOException {
+    void testExample3() throws IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .meta(Set.of(
@@ -82,7 +82,7 @@ class LanguageInfoMetaTest {
 
     @Test
     @DisplayName("Get the BCP-47 language code and direction of all supported languages.")
-    void testExample4() throws WikiApiSyntaxException, IOException {
+    void testExample4() throws IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .meta(Set.of(

@@ -71,7 +71,7 @@ public class WikiApiRequest {
          */
         public Builder action(AbstractAction action) {
             wikiApiRequest.action = action;
-            wikiApiRequest.url += action.getUrlPart();
+            wikiApiRequest.url += action.getApiUrl().build();
             return this;
         }
 

@@ -3,7 +3,6 @@ package dev.masterflomaster1.jwa.request.action;
 import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
-import dev.masterflomaster1.jwa.WikiApiSyntaxException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,7 +23,7 @@ class LanguageSearchActionTest {
 
     @Test
     @DisplayName("Search for 'Te'")
-    void testExample1() throws WikiApiSyntaxException, IOException {
+    void testExample1() throws IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new LanguageSearchAction.Builder()
                         .search("Te")
@@ -38,7 +37,7 @@ class LanguageSearchActionTest {
 
     @Test
     @DisplayName("Search for 'ഫി'")
-    void testExample2() throws WikiApiSyntaxException, IOException {
+    void testExample2() throws IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new LanguageSearchAction.Builder()
                         .search("ഫി")
@@ -52,7 +51,7 @@ class LanguageSearchActionTest {
 
     @Test
     @DisplayName("Search for 'ഫി', allowing one typo")
-    void testExample3() throws WikiApiSyntaxException, IOException {
+    void testExample3() throws IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new LanguageSearchAction.Builder()
                         .search("ഫി")
@@ -66,7 +65,7 @@ class LanguageSearchActionTest {
     }
 
     @Test
-    void testBuilder() throws WikiApiSyntaxException {
+    void testBuilder() {
         var a = new LanguageSearchAction.Builder()
                 .search("Te")
                 .typos(1)

@@ -1,7 +1,5 @@
 package dev.masterflomaster1.jwa.request.meta;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -17,7 +15,7 @@ public class UserInfoMeta extends AbstractMeta {
     private String uiAttachedWiki;
 
     private UserInfoMeta() {
-        url = "&meta=userinfo";
+        name = "userinfo";
     }
 
     public Set<UiProp> getUiProp() {
@@ -54,9 +52,9 @@ public class UserInfoMeta extends AbstractMeta {
          */
         public Builder uiProp(Set<UiProp> uiProp) {
             userInfoMeta.uiProp = uiProp;
-            userInfoMeta.url += "&uiprop=" + uiProp.stream()
+            userInfoMeta.apiUrl.putQuery("uiprop", uiProp.stream()
                     .map(UiProp::getValue)
-                    .collect(Collectors.joining("%7C"));
+                    .collect(Collectors.joining("|")));
             return this;
         }
 
@@ -66,7 +64,7 @@ public class UserInfoMeta extends AbstractMeta {
          */
         public Builder uiAttachedWiki(String uiAttachedWiki) {
             userInfoMeta.uiAttachedWiki = uiAttachedWiki;
-            userInfoMeta.url += "&uiattachedwiki=" + URLEncoder.encode(uiAttachedWiki, StandardCharsets.UTF_8);
+            userInfoMeta.apiUrl.putQuery("uiattachedwiki", uiAttachedWiki);
             return this;
         }
 

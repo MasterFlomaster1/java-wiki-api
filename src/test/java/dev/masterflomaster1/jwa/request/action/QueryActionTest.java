@@ -1,16 +1,63 @@
 package dev.masterflomaster1.jwa.request.action;
 
+import dev.masterflomaster1.jwa.Response;
+import dev.masterflomaster1.jwa.WikiApi;
+import dev.masterflomaster1.jwa.WikiApiRequest;
+import dev.masterflomaster1.jwa.request.list.RecentChangesList;
 import dev.masterflomaster1.jwa.request.list.UsersList;
 import dev.masterflomaster1.jwa.request.meta.SiteInfoMeta;
+import dev.masterflomaster1.jwa.request.prop.CategoriesProp;
+import dev.masterflomaster1.jwa.request.prop.ContributorsProp;
+import dev.masterflomaster1.jwa.request.prop.ImagesProp;
 import dev.masterflomaster1.jwa.request.prop.RevisionsProp;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class QueryActionTest {
+
+    private static WikiApi api;
+
+    @BeforeAll
+    static void before() {
+        api = new WikiApi();
+    }
+
+    @Test
+    void testMultipleListProp() throws IOException {
+        var a = new WikiApiRequest.Builder()
+                .action(new QueryAction.Builder()
+                        .prop(Set.of(
+                                new CategoriesProp.Builder()
+                                        .build(),
+                                new ContributorsProp.Builder()
+                                        .build(),
+                                new ImagesProp.Builder()
+                                        .build()
+                        ))
+                        .list(Set.of(
+                                new RecentChangesList.Builder()
+                                        .build(),
+                                new UsersList.Builder()
+                                        .build()
+                        ))
+                        .titles(Set.of("PAVE"))
+                        .build()
+                )
+                .build();
+
+        Response r = api.execute(a);
+
+        assertNotNull(r.getQuery().getPages().get(0).getCategories());
+        assertNotNull(r.getQuery().getPages().get(0).getContributors());
+        assertNotNull(r.getQuery().getPages().get(0).getImages());
+        assertNotNull(r.getQuery().getUsers());
+        assertNotNull(r.getQuery().getRecentChanges());
+    }
 
     @Test
     void testBuilder() {

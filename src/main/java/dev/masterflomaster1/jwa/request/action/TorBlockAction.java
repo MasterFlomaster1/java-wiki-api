@@ -16,7 +16,7 @@ public class TorBlockAction extends AbstractAction {
     }
 
     private TorBlockAction() {
-        urlPart = "?action=torblock";
+        apiUrl.setAction("torblock");
     }
 
     public static class Builder {
@@ -29,7 +29,7 @@ public class TorBlockAction extends AbstractAction {
          */
         public Builder ip(String ip) {
             torBlockAction.ip = ip;
-            torBlockAction.urlPart += "&ip=" + ip;
+            torBlockAction.apiUrl.putQuery("ip", ip);
             return this;
         }
 

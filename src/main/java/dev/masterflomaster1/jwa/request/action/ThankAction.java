@@ -16,7 +16,7 @@ public class ThankAction extends AbstractAction implements IPost {
     private String source;
 
     private ThankAction() {
-        urlPart = "?action=thank";
+        apiUrl.setAction("thank");
     }
 
     public int getRev() {
@@ -54,7 +54,7 @@ public class ThankAction extends AbstractAction implements IPost {
          */
         public Builder rev(int rev) {
             thankAction.rev = rev;
-            thankAction.urlPart += "&rev=" + rev;
+            thankAction.apiUrl.putQuery("rev", rev);
             return this;
         }
 
@@ -65,7 +65,7 @@ public class ThankAction extends AbstractAction implements IPost {
          */
         public Builder log(int log) {
             thankAction.log = log;
-            thankAction.urlPart += "&log=" + log;
+            thankAction.apiUrl.putQuery("log", log);
             return this;
         }
 
@@ -77,7 +77,6 @@ public class ThankAction extends AbstractAction implements IPost {
          */
         public Builder token(String token) {
             thankAction.token = token;
-//            thankAction.urlPart += "&token=" + URLEncoder.encode(token, StandardCharsets.UTF_8);
             return this;
         }
 
@@ -87,7 +86,7 @@ public class ThankAction extends AbstractAction implements IPost {
          */
         public Builder source(String source) {
             thankAction.source = source;
-            thankAction.urlPart += "&source=" + source;
+            thankAction.apiUrl.putQuery("source", source);
             return this;
         }
 

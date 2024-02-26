@@ -1,5 +1,7 @@
 package dev.masterflomaster1.jwa.request.prop;
 
+import dev.masterflomaster1.jwa.util.WikiApiUrl;
+
 /**
  * Properties are data about a page, such as categories, or content on a page, such as images or links.
  * To request a property, you pass the prop parameter of your query a valid property submodule, corresponding
@@ -11,10 +13,14 @@ package dev.masterflomaster1.jwa.request.prop;
  */
 public abstract class AbstractProp {
 
-    protected String url = "";
+    protected String name;
+    protected final WikiApiUrl apiUrl = new WikiApiUrl();
 
-    public String getUrl() {
-        return url;
+    public String getName() {
+        return name;
     }
 
+    public WikiApiUrl getApiUrl() {
+        return apiUrl;
+    }
 }

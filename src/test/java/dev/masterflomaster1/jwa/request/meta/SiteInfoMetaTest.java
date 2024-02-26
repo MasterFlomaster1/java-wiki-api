@@ -3,7 +3,6 @@ package dev.masterflomaster1.jwa.request.meta;
 import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
-import dev.masterflomaster1.jwa.WikiApiSyntaxException;
 import dev.masterflomaster1.jwa.request.action.QueryAction;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -25,7 +24,7 @@ class SiteInfoMetaTest {
 
     @Test
     @DisplayName("Fetch site information.")
-    void testExample1() throws WikiApiSyntaxException, IOException {
+    void testExample1() throws IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .meta(Set.of(

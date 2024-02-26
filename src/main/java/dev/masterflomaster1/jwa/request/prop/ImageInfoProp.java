@@ -3,8 +3,6 @@ package dev.masterflomaster1.jwa.request.prop;
 import dev.masterflomaster1.jwa.common.Prop;
 import dev.masterflomaster1.jwa.util.TimeHandler;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Set;
@@ -27,7 +25,7 @@ public class ImageInfoProp extends AbstractProp {
     private boolean iiExtMetadataMultiLang;
 
     private ImageInfoProp() {
-        url = "&prop=imageinfo";
+        name = "imageinfo";
     }
 
     public Set<Prop> getIiProp() {
@@ -95,9 +93,9 @@ public class ImageInfoProp extends AbstractProp {
          */
         public Builder iiProp(Set<Prop> iiProp) {
             imageInfoProp.iiProp = iiProp;
-            imageInfoProp.url += "&iiprop=" + iiProp.stream()
+            imageInfoProp.apiUrl.putQuery("iiprop", iiProp.stream()
                     .map(Prop::getValue)
-                    .collect(Collectors.joining("%7C"));
+                    .collect(Collectors.joining("|")));
             return this;
         }
 
@@ -108,7 +106,7 @@ public class ImageInfoProp extends AbstractProp {
          */
         public Builder iiLimit(int iiLimit) {
             imageInfoProp.iiLimit = iiLimit;
-            imageInfoProp.url += "&iilimit=" + iiLimit;
+            imageInfoProp.apiUrl.putQuery("iilimit", iiLimit);
             return this;
         }
 
@@ -118,7 +116,7 @@ public class ImageInfoProp extends AbstractProp {
          */
         public Builder iiStart(LocalDateTime iiStart) {
             imageInfoProp.iiStart = iiStart;
-            imageInfoProp.url += "&iistart=" + URLEncoder.encode(TimeHandler.formatISO8601(iiStart), StandardCharsets.UTF_8);
+            imageInfoProp.apiUrl.putQuery("iistart", TimeHandler.formatISO8601(iiStart));
             return this;
         }
 
@@ -128,7 +126,7 @@ public class ImageInfoProp extends AbstractProp {
          */
         public Builder iiEnd(LocalDateTime iiEnd) {
             imageInfoProp.iiEnd = iiEnd;
-            imageInfoProp.url += "&iiend=" + URLEncoder.encode(TimeHandler.formatISO8601(iiEnd), StandardCharsets.UTF_8);
+            imageInfoProp.apiUrl.putQuery("iiend", TimeHandler.formatISO8601(iiEnd));
             return this;
         }
 
@@ -139,7 +137,7 @@ public class ImageInfoProp extends AbstractProp {
          */
         public Builder iiUrlWidth(int iiUrlWidth) {
             imageInfoProp.iiUrlWidth = iiUrlWidth;
-            imageInfoProp.url += "iiurlwidth=" + iiUrlWidth;
+            imageInfoProp.apiUrl.putQuery("iiurlwidth", iiUrlWidth);
             return this;
         }
 
@@ -149,7 +147,7 @@ public class ImageInfoProp extends AbstractProp {
          */
         public Builder iiUrlHeight(int iiUrlHeight) {
             imageInfoProp.iiUrlHeight = iiUrlHeight;
-            imageInfoProp.url += "iiurlheight=" + iiUrlHeight;
+            imageInfoProp.apiUrl.putQuery("iiurlheight", iiUrlHeight);
             return this;
         }
 
@@ -161,6 +159,7 @@ public class ImageInfoProp extends AbstractProp {
          */
         public Builder iiExtMetadataLanguage(String iiExtMetadataLanguage) {
             imageInfoProp.iiExtMetadataLanguage = iiExtMetadataLanguage;
+            imageInfoProp.apiUrl.putQuery("iiextmetadatalanguage", iiExtMetadataLanguage);
             return this;
         }
 
@@ -170,6 +169,7 @@ public class ImageInfoProp extends AbstractProp {
          */
         public Builder iiExtMetadataMultiLang() {
             imageInfoProp.iiExtMetadataMultiLang = true;
+            imageInfoProp.apiUrl.putQuery("iiextmetadatamultilang", "1");
             return this;
         }
 

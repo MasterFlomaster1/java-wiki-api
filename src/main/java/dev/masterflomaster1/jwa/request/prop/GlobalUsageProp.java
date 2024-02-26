@@ -2,8 +2,6 @@ package dev.masterflomaster1.jwa.request.prop;
 
 import dev.masterflomaster1.jwa.common.Namespace;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -22,7 +20,7 @@ public class GlobalUsageProp extends AbstractProp {
     private boolean guFilterLocal;
 
     private GlobalUsageProp() {
-        url = "&prop=globalusage";
+        name = "globalusage";
     }
 
     public Set<GuProp> getGuProp() {
@@ -74,9 +72,9 @@ public class GlobalUsageProp extends AbstractProp {
          */
         public Builder guProp(Set<GuProp> guProp) {
             globalUsageProp.guProp = guProp;
-            globalUsageProp.url += "&guprop=" + guProp.stream()
+            globalUsageProp.apiUrl.putQuery("guprop", guProp.stream()
                     .map(GuProp::getValue)
-                    .collect(Collectors.joining("%7C"));
+                    .collect(Collectors.joining("|")));
             return this;
         }
 
@@ -87,7 +85,7 @@ public class GlobalUsageProp extends AbstractProp {
          */
         public Builder guLimit(int guLimit) {
             globalUsageProp.guLimit = guLimit;
-            globalUsageProp.url += "&gulimit=" + guLimit;
+            globalUsageProp.apiUrl.putQuery("gulimit", guLimit);
             return this;
         }
 
@@ -97,9 +95,9 @@ public class GlobalUsageProp extends AbstractProp {
          */
         public Builder guNamespace(Set<Namespace> guNamespace) {
             globalUsageProp.guNamespace = guNamespace;
-            globalUsageProp.url += "&gunamespace=" + guNamespace.stream()
+            globalUsageProp.apiUrl.putQuery("gunamespace", guNamespace.stream()
                     .map(Namespace::getValue)
-                    .collect(Collectors.joining("%7C"));
+                    .collect(Collectors.joining("|")));
             return this;
         }
 
@@ -111,7 +109,7 @@ public class GlobalUsageProp extends AbstractProp {
          */
         public Builder guContinue(String guContinue) {
             globalUsageProp.guContinue = guContinue;
-            globalUsageProp.url += "&gucontinue=" + URLEncoder.encode(guContinue, StandardCharsets.UTF_8);
+            globalUsageProp.apiUrl.putQuery("gucontinue", guContinue);
             return this;
         }
 
@@ -121,7 +119,7 @@ public class GlobalUsageProp extends AbstractProp {
          */
         public Builder guFilterLocal() {
             globalUsageProp.guFilterLocal = true;
-            globalUsageProp.url += "&gufilterlocal=1";
+            globalUsageProp.apiUrl.putQuery("gufilterlocal", "1");
             return this;
         }
 

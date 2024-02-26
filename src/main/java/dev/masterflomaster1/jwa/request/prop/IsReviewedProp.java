@@ -3,7 +3,7 @@ package dev.masterflomaster1.jwa.request.prop;
 public class IsReviewedProp extends AbstractProp {
 
     private IsReviewedProp() {
-        url += "&prop=isreviewed";
+        name = "isreviewed";
     }
 
     public static class Builder {

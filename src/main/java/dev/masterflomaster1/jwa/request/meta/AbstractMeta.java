@@ -1,11 +1,18 @@
 package dev.masterflomaster1.jwa.request.meta;
 
+import dev.masterflomaster1.jwa.util.WikiApiUrl;
+
 public abstract class AbstractMeta {
 
-    protected String url;
+    protected final WikiApiUrl apiUrl = new WikiApiUrl();
+    protected String name;
 
-    public String getUrl() {
-        return url;
+    public WikiApiUrl getApiUrl() {
+        return apiUrl;
+    }
+
+    public String getName() {
+        return name;
     }
 
 }

@@ -1,7 +1,5 @@
 package dev.masterflomaster1.jwa.request.prop;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
 /**
@@ -17,7 +15,7 @@ public class ExtLinksProp extends AbstractProp {
     private String elQuery;
 
     private ExtLinksProp() {
-        url = "&prop=extlinks";
+        name = "extlinks";
     }
 
     public int getElLimit() {
@@ -65,7 +63,7 @@ public class ExtLinksProp extends AbstractProp {
          */
         public Builder elLimit(int elLimit) {
             extLinksProp.elLimit = elLimit;
-            extLinksProp.url += "&ellimit=" + elLimit;
+            extLinksProp.apiUrl.putQuery("ellimit", elLimit);
             return this;
         }
 
@@ -77,7 +75,7 @@ public class ExtLinksProp extends AbstractProp {
          */
         public Builder elContinue(String elContinue) {
             extLinksProp.elContinue = elContinue;
-            extLinksProp.url += "&elcontinue=" + URLEncoder.encode(elContinue, StandardCharsets.UTF_8);
+            extLinksProp.apiUrl.putQuery("elcontinue", elContinue);
             return this;
         }
 
@@ -88,7 +86,7 @@ public class ExtLinksProp extends AbstractProp {
          */
         public Builder elProtocol(ElProtocol elProtocol) {
             extLinksProp.elProtocol = elProtocol;
-            extLinksProp.url += "&elprotocol=" + elProtocol.value;
+            extLinksProp.apiUrl.putQuery("elprotocol", elProtocol.value);
             return this;
         }
 
@@ -98,7 +96,7 @@ public class ExtLinksProp extends AbstractProp {
          */
         public Builder elQuery(String elQuery) {
             extLinksProp.elQuery = elQuery;
-            extLinksProp.url += "&elquery=" + elQuery;
+            extLinksProp.apiUrl.putQuery("elquery", elQuery);
             return this;
         }
 

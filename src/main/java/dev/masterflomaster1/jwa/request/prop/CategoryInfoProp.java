@@ -1,7 +1,5 @@
 package dev.masterflomaster1.jwa.request.prop;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
 /**
@@ -14,7 +12,7 @@ public class CategoryInfoProp extends AbstractProp {
     private String ciContinue;
 
     private CategoryInfoProp() {
-        url += "&prop=categoryinfo";
+        name = "categoryinfo";
     }
 
     public String getCiContinue() {
@@ -48,7 +46,7 @@ public class CategoryInfoProp extends AbstractProp {
          */
         public Builder ciContinue(String ciContinue) {
             categoryInfoProp.ciContinue = ciContinue;
-            categoryInfoProp.url += "&cicontinue=" + URLEncoder.encode(ciContinue, StandardCharsets.UTF_8);
+            categoryInfoProp.apiUrl.putQuery("cicontinue", ciContinue);
             return this;
         }
 

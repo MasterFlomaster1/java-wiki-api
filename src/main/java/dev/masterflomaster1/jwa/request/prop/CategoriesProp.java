@@ -2,8 +2,6 @@ package dev.masterflomaster1.jwa.request.prop;
 
 import dev.masterflomaster1.jwa.common.Dir;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -23,7 +21,7 @@ public class CategoriesProp extends AbstractProp {
     private Dir clDir;
 
     private CategoriesProp() {
-        url += "&prop=categories";
+        name = "categories";
     }
 
     public Set<ClProp> getClProp() {
@@ -80,9 +78,9 @@ public class CategoriesProp extends AbstractProp {
          */
         public Builder clProp(Set<ClProp> clProp) {
             categoriesProp.clProp = clProp;
-            categoriesProp.url += "&clProp=" + clProp.stream()
+            categoriesProp.apiUrl.putQuery("clProp", clProp.stream()
                     .map(ClProp::getValue)
-                    .collect(Collectors.joining("%7C"));
+                    .collect(Collectors.joining("|")));
             return this;
         }
 
@@ -92,7 +90,7 @@ public class CategoriesProp extends AbstractProp {
          */
         public Builder clShow(ClShow clShow) {
             categoriesProp.clShow = clShow;
-            categoriesProp.url += "&clshow=" + clShow.value;
+            categoriesProp.apiUrl.putQuery("clshow", clShow.value);
             return this;
         }
 
@@ -102,7 +100,7 @@ public class CategoriesProp extends AbstractProp {
          */
         public Builder clLimit(int clLimit) {
             categoriesProp.clLimit = clLimit;
-            categoriesProp.url += "&cllimit=" + clLimit;
+            categoriesProp.apiUrl.putQuery("cllimit", clLimit);
             return this;
         }
 
@@ -114,7 +112,7 @@ public class CategoriesProp extends AbstractProp {
          */
         public Builder clContinue(String clContinue) {
             categoriesProp.clContinue = clContinue;
-            categoriesProp.url += "&clcontinue=" + URLEncoder.encode(clContinue, StandardCharsets.UTF_8);
+            categoriesProp.apiUrl.putQuery("clcontinue", clContinue);
             return this;
         }
 
@@ -125,9 +123,7 @@ public class CategoriesProp extends AbstractProp {
          */
         public Builder clCategories(Set<String> clCategories) {
             categoriesProp.clCategories = clCategories;
-            categoriesProp.url += "&clcategories=" + clCategories.stream()
-                    .map(str -> URLEncoder.encode(str, StandardCharsets.UTF_8))
-                    .collect(Collectors.joining("%7C"));
+            categoriesProp.apiUrl.putQuery("clcategories", String.join("|", clCategories));
             return this;
         }
 
@@ -137,7 +133,7 @@ public class CategoriesProp extends AbstractProp {
          */
         public Builder clDir(Dir clDir) {
             categoriesProp.clDir = clDir;
-            categoriesProp.url += "&cldir=" + clDir.getValue();
+            categoriesProp.apiUrl.putQuery("cldir", clDir.getValue());
             return this;
         }
 

@@ -3,7 +3,6 @@ package dev.masterflomaster1.jwa.request.prop;
 import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
-import dev.masterflomaster1.jwa.WikiApiSyntaxException;
 import dev.masterflomaster1.jwa.request.action.QueryAction;
 import dev.masterflomaster1.jwa.response.Page;
 import org.junit.jupiter.api.BeforeAll;
@@ -26,7 +25,7 @@ class CategoryInfoPropTest {
     }
 
     @Test
-    void test() throws WikiApiSyntaxException, IOException {
+    void test() throws IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .prop(Set.of(
@@ -60,7 +59,7 @@ class CategoryInfoPropTest {
     }
 
     @Test
-    void test3() throws WikiApiSyntaxException, IOException {
+    void test3() throws IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .prop(Set.of(
@@ -80,7 +79,7 @@ class CategoryInfoPropTest {
 
     @Test
     @DisplayName("Trigger limit error")
-    void triggerLimitError() throws WikiApiSyntaxException, IOException {
+    void triggerLimitError() throws IOException {
         var cats = Set.of(
                 "Category:Business architecture",
                 "Category:Business intelligence",

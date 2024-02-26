@@ -8,7 +8,7 @@ package dev.masterflomaster1.jwa.request.action;
 public class CentralAuthTokenAction extends AbstractAction {
 
     private CentralAuthTokenAction() {
-        urlPart = "?action=centralauthtoken";
+        apiUrl.setAction("centralauthtoken");
     }
 
     public static class Builder {

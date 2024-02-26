@@ -3,7 +3,6 @@ package dev.masterflomaster1.jwa.request.action;
 import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
-import dev.masterflomaster1.jwa.WikiApiSyntaxException;
 import dev.masterflomaster1.jwa.common.Namespace;
 import dev.masterflomaster1.jwa.common.Tags;
 import org.junit.jupiter.api.BeforeAll;
@@ -27,7 +26,7 @@ class BlockActionTest {
 
     @Test
     @DisplayName("Block IP address 192.0.2.5 for three days with a reason.")
-    void testExample1() throws WikiApiSyntaxException, IOException {
+    void testExample1() throws IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new BlockAction.Builder()
                         .user("192.0.2.5")
@@ -46,7 +45,7 @@ class BlockActionTest {
 
     @Test
     @DisplayName("Block user Vandal indefinitely with a reason, and prevent new account creation and email sending.")
-    void testExample2() throws WikiApiSyntaxException, IOException {
+    void testExample2() throws IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new BlockAction.Builder()
                         .user("Vandal")
@@ -68,7 +67,7 @@ class BlockActionTest {
     }
 
     @Test
-    void testBuilder() throws WikiApiSyntaxException {
+    void testBuilder() {
         var a = new BlockAction.Builder()
                 .user("Name")
                 .expiry("2014-09-18T12:34:56Z")

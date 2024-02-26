@@ -1,7 +1,5 @@
 package dev.masterflomaster1.jwa.request.meta;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -16,7 +14,7 @@ public class GlobalUserInfoMeta extends AbstractMeta {
     private Set<GuiProp> guiProp;
 
     private GlobalUserInfoMeta() {
-        url = "&meta=globaluserinfo";
+        name = "globaluserinfo";
     }
 
     public String getGuiUser() {
@@ -59,7 +57,7 @@ public class GlobalUserInfoMeta extends AbstractMeta {
          */
         public Builder guiUser(String guiUser) {
             globalUserInfoMeta.guiUser = guiUser;
-            globalUserInfoMeta.url += "&guiuser=" + URLEncoder.encode(guiUser, StandardCharsets.UTF_8);
+            globalUserInfoMeta.apiUrl.putQuery("guiuser", guiUser);
             return this;
         }
 
@@ -70,7 +68,7 @@ public class GlobalUserInfoMeta extends AbstractMeta {
          */
         public Builder guiId(int guiId) {
             globalUserInfoMeta.guiId = guiId;
-            globalUserInfoMeta.url += "&guiid=" + guiId;
+            globalUserInfoMeta.apiUrl.putQuery("guiid", guiId);
             return this;
         }
 
@@ -80,9 +78,9 @@ public class GlobalUserInfoMeta extends AbstractMeta {
          */
         public Builder guiProp(Set<GuiProp> guiProp) {
             globalUserInfoMeta.guiProp = guiProp;
-            globalUserInfoMeta.url += "&guiprop=" + guiProp.stream()
+            globalUserInfoMeta.apiUrl.putQuery("guiprop", guiProp.stream()
                     .map(GuiProp::getValue)
-                    .collect(Collectors.joining("%7C"));
+                    .collect(Collectors.joining("|")));
             return this;
         }
 

@@ -3,7 +3,6 @@ package dev.masterflomaster1.jwa.request.action;
 import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
-import dev.masterflomaster1.jwa.WikiApiSyntaxException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,7 +23,7 @@ class TorBlockActionTest {
 
     @Test
     @DisplayName("Check if the IP address 192.0.2.18 is blocked as a Tor exit node.")
-    void test() throws IOException, WikiApiSyntaxException {
+    void test() throws IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new TorBlockAction.Builder()
                         .ip("192.0.2.18")
@@ -37,7 +36,7 @@ class TorBlockActionTest {
     }
 
     @Test
-    void getIp() throws WikiApiSyntaxException {
+    void getIp() {
         var a = new TorBlockAction.Builder()
                 .ip("127.0.0.1")
                 .build();
