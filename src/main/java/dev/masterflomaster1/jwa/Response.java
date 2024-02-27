@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 import dev.masterflomaster1.jwa.response.Error;
 import dev.masterflomaster1.jwa.response.*;
 
+import java.util.List;
 import java.util.Map;
 
 public final class Response {
@@ -58,6 +59,27 @@ public final class Response {
 
     @SerializedName("antispoof")
     private AntiSpoof antiSpoof;
+
+    @SerializedName("compare")
+    private Compare compare;
+
+    @SerializedName("delete")
+    private Delete delete;
+
+    @SerializedName("emailuser")
+    private EmailUser emailUser;
+
+    @SerializedName("sitematrix")
+    private Map<String, Object> siteMatrix;
+
+    @SerializedName("spamblacklist")
+    private SpamBlacklist spamBlacklist;
+
+    @SerializedName("titleblacklist")
+    private TitleBlacklist titleBlacklist;
+
+    @SerializedName("watch")
+    private List<Map<String, Object>> watch;
 
     private Response() {
 
@@ -131,6 +153,34 @@ public final class Response {
         return antiSpoof;
     }
 
+    public Compare getCompare() {
+        return compare;
+    }
+
+    public Delete getDelete() {
+        return delete;
+    }
+
+    public EmailUser getEmailUser() {
+        return emailUser;
+    }
+
+    public Map<String, Object> getSiteMatrix() {
+        return siteMatrix;
+    }
+
+    public SpamBlacklist getSpamBlacklist() {
+        return spamBlacklist;
+    }
+
+    public TitleBlacklist getTitleBlacklist() {
+        return titleBlacklist;
+    }
+
+    public List<Map<String, Object>> getWatch() {
+        return watch;
+    }
+
     @Override
     public String toString() {
         return "Response{" +
@@ -151,6 +201,13 @@ public final class Response {
                 ", block=" + block +
                 ", checkToken=" + checkToken +
                 ", antiSpoof=" + antiSpoof +
+                ", compare=" + compare +
+                ", delete=" + delete +
+                ", emailUser=" + emailUser +
+                ", siteMatrix=" + siteMatrix +
+                ", spamBlacklist=" + spamBlacklist +
+                ", titleBlacklist=" + titleBlacklist +
+                ", watch=" + watch +
                 '}';
     }
 }
