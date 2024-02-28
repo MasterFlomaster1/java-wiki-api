@@ -37,6 +37,12 @@ public final class Query {
     @SerializedName("siteviews")
     private Map<String, Integer> siteViews;
 
+    @SerializedName("allfileusages")
+    private List<Map<String, String>> allFileUsages;
+
+    @SerializedName("allimages")
+    private List<Map<String, String>> allImages;
+
     public List<Page> getPages() {
         return pages;
     }
@@ -77,6 +83,14 @@ public final class Query {
         return siteViews;
     }
 
+    public List<Map<String, String>> getAllFileUsages() {
+        return allFileUsages;
+    }
+
+    public List<Map<String, String>> getAllImages() {
+        return allImages;
+    }
+
     private Query() {
 
     }
@@ -94,6 +108,8 @@ public final class Query {
                 ", globalUserInfo=" + globalUserInfo +
                 ", languageInfo=" + languageInfo +
                 ", siteViews=" + siteViews +
+                ", allFileUsages=" + allFileUsages +
+                ", allImages=" + allImages +
                 '}';
     }
 }

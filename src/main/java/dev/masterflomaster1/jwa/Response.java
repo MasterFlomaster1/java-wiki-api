@@ -81,6 +81,12 @@ public final class Response {
     @SerializedName("watch")
     private List<Map<String, Object>> watch;
 
+    @SerializedName("parse")
+    private Map<String, Object> parse;
+
+    @SerializedName("usercontribs")
+    private List<Map<String, Object>> userContribs;
+
     private Response() {
 
     }
@@ -181,6 +187,14 @@ public final class Response {
         return watch;
     }
 
+    public Map<String, Object> getParse() {
+        return parse;
+    }
+
+    public List<Map<String, Object>> getUserContribs() {
+        return userContribs;
+    }
+
     @Override
     public String toString() {
         return "Response{" +
@@ -208,6 +222,8 @@ public final class Response {
                 ", spamBlacklist=" + spamBlacklist +
                 ", titleBlacklist=" + titleBlacklist +
                 ", watch=" + watch +
+                ", parse=" + parse +
+                ", userContribs=" + userContribs +
                 '}';
     }
 }

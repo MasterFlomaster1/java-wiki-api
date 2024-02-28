@@ -131,7 +131,7 @@ public class WatchAction extends AbstractAction implements IPost {
         public Builder pageIds(Set<Integer> pageIds) {
             watchAction.pageIds = pageIds;
             watchAction.apiUrl.putQuery("pageids", pageIds.stream()
-                            .map(Object::toString)
+                    .map(Object::toString)
                     .collect(Collectors.joining("|")));
             return this;
         }
