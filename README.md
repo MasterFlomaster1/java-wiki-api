@@ -7,6 +7,8 @@ Download the latest build on the [releases page](https://github.com/MasterFlomas
 
 ### Usage
 
+Requirements: Java 17 and above
+
 ```java
 WikiApi api = new WikiApi();
 
@@ -17,7 +19,74 @@ var a = new WikiApiRequest.Builder()
 Response r = api.execute(a);
 ```
 
-Requirements: Java 17 and above
+#### Actions:
+
+| Name             | Description                                                                      |
+|------------------|----------------------------------------------------------------------------------|
+| antispoof        | Check a username against AntiSpoof's normalisation checks                        |
+| block            | Block a user                                                                     |
+| centralauthtoken | Fetch a centralauthtoken for making an authenticated request to an attached wiki |
+| checktoken       | Check the validity of a token                                                    |
+| compare          | Get the difference between two pages                                             |
+| createaccount    | Create a new user account                                                        |
+| delete           | Delete a page                                                                    |
+| emailuser        | Email a user                                                                     |
+| languagesearch   | Search for language names in any script                                          |
+| opensearch       | Search the wiki using the OpenSearch protocol                                    |
+| parse            | Parses content and returns parser output                                         |
+| query            | Fetch data from and about MediaWiki                                              |
+| review           | Review a revision by approving or de-approving it                                |
+| shortenurl       | Shorten a long URL into a shorter one                                            |
+| sitematrix       | Get Wikimedia sites list                                                         |
+| spamblacklist    | Validate one or more URLs against the spam block list                            |
+| thank            | Send a thank-you notification to an editor                                       |
+| titleblacklist   | Validate a page title, filename, or username against the TitleBlacklist          |
+| torblock         | Check if an IP address is blocked as a Tor exit node                             |
+| validatepassword | Validate a password against the wiki's password policies                         |
+| watch            | Add or remove pages from the current user's watchlist                            |
+
+#### Props:
+
+| Name         | Description                                                                              |
+|--------------|------------------------------------------------------------------------------------------|
+| categories   | List all categories the pages belong to                                                  |
+| categoryinfo | Returns information about the given categories                                           |
+| contributors | Get the list of logged-in contributors and the count of anonymous contributors to a page |
+| extlinks     | Returns all external URLs (not interwikis) from the given pages                          |
+| fileusage    | Find all pages that use the given files                                                  |
+| globalusage  | Returns global image usage for a certain image                                           |
+| imageinfo    | Returns file information and upload history                                              |
+| images       | Returns all files contained on the given pages                                           |
+| info         | Get basic page information                                                               |
+| isreviewed   | Determine if a page is marked as reviewed                                                |
+| pageviews    | Shows per-page pageview data                                                             |
+| redirects    | Returns all redirects to the given pages                                                 |
+| revisions    | Get revision information                                                                 |
+| templates    | Returns all pages transcluded on the given pages                                         |
+| videoinfo    | Extends imageinfo to include video source (derivatives) information                      |
+
+
+#### List:
+
+| Name          | Description                                  |
+|---------------|----------------------------------------------|
+| allcategories | Enumerate all categories                     |
+| allfileusages | List all file usages, including non-existing |
+| allimages     | Enumerate all images sequentially            |
+| recentchanges | Enumerate recent changes                     |
+| usercontribs  | Get all edits by a user                      |
+| users         | Get information about a list of users        |
+
+#### Meta:
+
+| Name           | Description                                  |
+|----------------|----------------------------------------------|
+| globaluserinfo | Show information about a global user         |
+| languageinfo   | Return information about available languages |
+| siteinfo       | Return general information about the site    |
+| siteviews      | Shows sitewide pageview data                 |
+| tokens         | Gets tokens for data-modifying actions       |
+| userinfo       | Get information about the current user       |
 
 ### Contributing
 Feel free to open an issue if you've found a bug or want to raise a question, or discuss a possible feature.
