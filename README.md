@@ -1,5 +1,10 @@
 ## 🌎 Java Wiki Api
 
+![GitHub License](https://img.shields.io/github/license/MasterFlomaster1/java-wiki-api)
+![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/MasterFlomaster1/java-wiki-api/total)
+![GitHub Release](https://img.shields.io/github/v/release/MasterFlomaster1/java-wiki-api)
+
+
 Java Wiki Api is a comprehensive tool for flexible creation of detailed queries to the Wikipedia online encyclopedia.
 
 ### Getting started
