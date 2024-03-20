@@ -303,5 +303,18 @@ var a = new WikiApiRequest.Builder()
 Response r = api.execute(a);
 System.out.println(r.getQuery().getPages().get(0).getRevisions());
 ```
+##### Check if the IP address 192.0.2.18 is blocked as a Tor exit node.
+```java
+var a = new WikiApiRequest.Builder()
+                .action(new TorBlockAction.Builder()
+                        .ip("192.0.2.18")
+                        .build()
+                )
+                .build();
+
+Response r = api.execute(a);
+System.out.println(r.getTorBlock());
+```
+
 Please refer to the [Wikipedia API Sandbox](https://en.wikipedia.org/wiki/Special:ApiSandbox) for in-depth exploration.
 
