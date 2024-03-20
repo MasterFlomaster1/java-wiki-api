@@ -1,6 +1,13 @@
 ## 🌎 Java Wiki Api
 
+![GitHub License](https://img.shields.io/github/license/MasterFlomaster1/java-wiki-api)
+![GitHub Release](https://img.shields.io/github/v/release/MasterFlomaster1/java-wiki-api)
+
+
 Java Wiki Api is a comprehensive tool for flexible creation of detailed queries to the Wikipedia online encyclopedia.
+
+> [!CAUTION]
+> This project is still in very early stages of development. Use at your own risk.
 
 ### Getting started
 Download the latest build on the [releases page](https://github.com/MasterFlomaster1/java-wiki-api/releases).
@@ -296,5 +303,18 @@ var a = new WikiApiRequest.Builder()
 Response r = api.execute(a);
 System.out.println(r.getQuery().getPages().get(0).getRevisions());
 ```
+##### Check if the IP address 192.0.2.18 is blocked as a Tor exit node.
+```java
+var a = new WikiApiRequest.Builder()
+                .action(new TorBlockAction.Builder()
+                        .ip("192.0.2.18")
+                        .build()
+                )
+                .build();
+
+Response r = api.execute(a);
+System.out.println(r.getTorBlock());
+```
+
 Please refer to the [Wikipedia API Sandbox](https://en.wikipedia.org/wiki/Special:ApiSandbox) for in-depth exploration.
 
