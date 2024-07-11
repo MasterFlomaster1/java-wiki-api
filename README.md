@@ -1,5 +1,6 @@
 ## 🌎 Java Wiki Api
 
+[![build](https://github.com/MasterFlomaster1/java-wiki-api/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/MasterFlomaster1/java-wiki-api/actions/workflows/build.yml)
 ![GitHub License](https://img.shields.io/github/license/MasterFlomaster1/java-wiki-api)
 ![GitHub Release](https://img.shields.io/github/v/release/MasterFlomaster1/java-wiki-api)
 
