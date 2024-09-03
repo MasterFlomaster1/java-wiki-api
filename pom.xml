@@ -6,7 +6,7 @@
 
     <groupId>dev.masterflomaster1</groupId>
     <artifactId>java-wiki-api</artifactId>
-    <version>0.7.2</version>
+    <version>0.8.0</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
