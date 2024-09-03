@@ -1,6 +1,6 @@
 package dev.masterflomaster1.jwa.request.action;
 
-import dev.masterflomaster1.jwa.WikiApiSyntaxException;
+import lombok.Getter;
 import okhttp3.FormBody;
 
 /**
@@ -10,6 +10,7 @@ import okhttp3.FormBody;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:Validatepassword">API:Validatepassword</a>
  */
+@Getter
 public final class ValidatePasswordAction extends AbstractAction implements IPost {
 
     private String password;
@@ -19,22 +20,6 @@ public final class ValidatePasswordAction extends AbstractAction implements IPos
 
     private ValidatePasswordAction() {
         apiUrl.setAction("validatepassword");
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getUser() {
-        return user;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getRealName() {
-        return realName;
     }
 
     @Override
@@ -90,9 +75,9 @@ public final class ValidatePasswordAction extends AbstractAction implements IPos
             return this;
         }
 
-        public ValidatePasswordAction build() throws WikiApiSyntaxException {
+        public ValidatePasswordAction build() {
             if (validatePasswordAction.password == null)
-                throw new WikiApiSyntaxException("Parameter 'password' is required");
+                throw new IllegalArgumentException("Parameter 'password' is required");
 
             return validatePasswordAction;
         }

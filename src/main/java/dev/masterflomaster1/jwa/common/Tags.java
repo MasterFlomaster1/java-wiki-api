@@ -1,5 +1,8 @@
 package dev.masterflomaster1.jwa.common;
 
+import lombok.Getter;
+
+@Getter
 public enum Tags {
 
     CONVENIENT_DISCUSSIONS ("convenient-discussions"),
@@ -12,7 +15,4 @@ public enum Tags {
         this.value = value;
     }
 
-    public String getValue() {
-        return value;
-    }
 }

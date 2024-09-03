@@ -1,5 +1,8 @@
 package dev.masterflomaster1.jwa.request.action;
 
+import lombok.Getter;
+import lombok.ToString;
+
 import java.util.Set;
 
 /**
@@ -7,16 +10,14 @@ import java.util.Set;
  *
  * @see <a href="https://www.mediawiki.org/wiki/Extension:SpamBlacklist/API">Extension:SpamBlacklist</a>
  */
+@Getter
+@ToString
 public final class SpamBlacklistAction extends AbstractAction {
 
     private Set<String> url;
 
     private SpamBlacklistAction() {
         apiUrl.setAction("spamblacklist");
-    }
-
-    public Set<String> getUrl() {
-        return url;
     }
 
     public static class Builder {

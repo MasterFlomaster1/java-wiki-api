@@ -1,6 +1,7 @@
 package dev.masterflomaster1.jwa.request.action;
 
-import dev.masterflomaster1.jwa.WikiApiSyntaxException;
+import lombok.Getter;
+import lombok.ToString;
 import okhttp3.FormBody;
 
 /**
@@ -8,6 +9,8 @@ import okhttp3.FormBody;
  *
  * @see <a href="https://www.mediawiki.org/wiki/Special:MyLanguage/API:Delete">API:Delete</a>
  */
+@Getter
+@ToString
 public final class DeleteAction extends AbstractAction implements IPost {
 
     private String title;
@@ -21,38 +24,6 @@ public final class DeleteAction extends AbstractAction implements IPost {
 
     private DeleteAction() {
         apiUrl.setAction("delete");
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public int getPageId() {
-        return pageId;
-    }
-
-    public String getReason() {
-        return reason;
-    }
-
-    public boolean isDeleteTalk() {
-        return deleteTalk;
-    }
-
-    public Watchlist getWatchlist() {
-        return watchlist;
-    }
-
-    public String getWatchlistExpiry() {
-        return watchlistExpiry;
-    }
-
-    public String getOldImage() {
-        return oldImage;
-    }
-
-    public String getToken() {
-        return token;
     }
 
     @Override
@@ -150,13 +121,14 @@ public final class DeleteAction extends AbstractAction implements IPost {
 
         public DeleteAction build() {
             if (deleteAction.token == null)
-                throw new WikiApiSyntaxException("Parameter 'token' is required");
+                throw new IllegalArgumentException("Parameter 'token' is required");
 
             return deleteAction;
         }
 
     }
 
+    @Getter
     public enum Watchlist {
 
         NO_CHANGE ("nochange"),
@@ -168,10 +140,6 @@ public final class DeleteAction extends AbstractAction implements IPost {
 
         Watchlist(String value) {
             this.value = value;
-        }
-
-        public String getValue() {
-            return value;
         }
 
     }

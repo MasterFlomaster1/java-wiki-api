@@ -1,8 +1,10 @@
 package dev.masterflomaster1.jwa.request.list;
 
 import dev.masterflomaster1.jwa.common.Dir;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -11,6 +13,9 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:Allcategories">API:Allcategories</a>
  */
+@Getter
+@ToString
+@EqualsAndHashCode(callSuper = false)
 public final class AllCategoriesList extends AbstractList {
 
     private String acFrom;
@@ -25,65 +30,6 @@ public final class AllCategoriesList extends AbstractList {
 
     private AllCategoriesList() {
         name = "allcategories";
-    }
-
-    public String getAcFrom() {
-        return acFrom;
-    }
-
-    public String getAcContinue() {
-        return acContinue;
-    }
-
-    public String getAcTo() {
-        return acTo;
-    }
-
-    public String getAcPrefix() {
-        return acPrefix;
-    }
-
-    public Dir getAcDir() {
-        return acDir;
-    }
-
-    public int getAcMin() {
-        return acMin;
-    }
-
-    public int getAcMax() {
-        return acMax;
-    }
-
-    public int getAcLimit() {
-        return acLimit;
-    }
-
-    public Set<AcProp> getAcProp() {
-        return acProp;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        AllCategoriesList that = (AllCategoriesList) o;
-
-        if (acMin != that.acMin) return false;
-        if (acMax != that.acMax) return false;
-        if (acLimit != that.acLimit) return false;
-        if (!Objects.equals(acFrom, that.acFrom)) return false;
-        if (!Objects.equals(acContinue, that.acContinue)) return false;
-        if (!Objects.equals(acTo, that.acTo)) return false;
-        if (!Objects.equals(acPrefix, that.acPrefix)) return false;
-        if (acDir != that.acDir) return false;
-        return Objects.equals(acProp, that.acProp);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(acFrom, acContinue, acTo, acPrefix, acDir, acMin, acMax, acLimit, acProp);
     }
 
     public static class Builder {
@@ -191,6 +137,7 @@ public final class AllCategoriesList extends AbstractList {
 
     }
 
+    @Getter
     public enum AcProp {
         HIDDEN ("hidden"),
         SIZE ("size");
@@ -201,9 +148,6 @@ public final class AllCategoriesList extends AbstractList {
             this.value = value;
         }
 
-        public String getValue() {
-            return value;
-        }
     }
 
 }

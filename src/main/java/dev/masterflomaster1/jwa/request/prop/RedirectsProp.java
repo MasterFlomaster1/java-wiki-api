@@ -1,11 +1,16 @@
 package dev.masterflomaster1.jwa.request.prop;
 
 import dev.masterflomaster1.jwa.common.Namespace;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Getter
+@ToString
+@EqualsAndHashCode(callSuper = false)
 public final class RedirectsProp extends AbstractProp {
 
     private Set<RdProp> rdProp;
@@ -16,45 +21,6 @@ public final class RedirectsProp extends AbstractProp {
 
     private RedirectsProp() {
         name = "redirects";
-    }
-
-    public Set<RdProp> getRdProp() {
-        return rdProp;
-    }
-
-    public Set<Namespace> getRdNamespace() {
-        return rdNamespace;
-    }
-
-    public RdShow getRdShow() {
-        return rdShow;
-    }
-
-    public int getRdLimit() {
-        return rdLimit;
-    }
-
-    public String getRdContinue() {
-        return rdContinue;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        RedirectsProp that = (RedirectsProp) o;
-
-        if (rdLimit != that.rdLimit) return false;
-        if (!Objects.equals(rdProp, that.rdProp)) return false;
-        if (!Objects.equals(rdNamespace, that.rdNamespace)) return false;
-        if (rdShow != that.rdShow) return false;
-        return Objects.equals(rdContinue, that.rdContinue);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(rdProp, rdNamespace, rdShow, rdLimit, rdContinue);
     }
 
     public static class Builder {
@@ -128,6 +94,7 @@ public final class RedirectsProp extends AbstractProp {
 
     }
 
+    @Getter
     public enum RdProp {
 
         /**
@@ -151,12 +118,9 @@ public final class RedirectsProp extends AbstractProp {
             this.value = value;
         }
 
-        public String getValue() {
-            return value;
-        }
-
     }
 
+    @Getter
     public enum RdShow {
 
         /**
@@ -175,9 +139,6 @@ public final class RedirectsProp extends AbstractProp {
             this.value = value;
         }
 
-        public String getValue() {
-            return value;
-        }
     }
 
 }

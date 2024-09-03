@@ -1,12 +1,15 @@
 package dev.masterflomaster1.jwa.request.action;
 
-import dev.masterflomaster1.jwa.WikiApiSyntaxException;
+import lombok.Getter;
+import lombok.ToString;
 
 /**
  * Check the validity of a token from {@code action=query&meta=tokens}.
  *
  * @see <a href="https://www.mediawiki.org/wiki/Special:MyLanguage/API:Checktoken">API:Checktoken</a>
  */
+@Getter
+@ToString
 public final class CheckTokenAction extends AbstractAction {
 
     private Type type;
@@ -15,18 +18,6 @@ public final class CheckTokenAction extends AbstractAction {
 
     private CheckTokenAction() {
         apiUrl.setAction("checktoken");
-    }
-
-    public Type getType() {
-        return type;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public int getMaxTokenAge() {
-        return maxTokenAge;
     }
 
     public static class Builder {
@@ -63,18 +54,19 @@ public final class CheckTokenAction extends AbstractAction {
             return this;
         }
 
-        public CheckTokenAction build() throws WikiApiSyntaxException {
+        public CheckTokenAction build() {
             if (checkTokenAction.type == null)
-                throw new WikiApiSyntaxException("Parameter 'type' is required");
+                throw new IllegalArgumentException("Parameter 'type' is required");
 
             if (checkTokenAction.token == null)
-                throw new WikiApiSyntaxException("Parameter 'token' is required");
+                throw new IllegalArgumentException("Parameter 'token' is required");
 
             return checkTokenAction;
         }
 
     }
 
+    @Getter
     public enum Type {
 
         CREATE_ACCOUNT ("createaccount"),
@@ -91,10 +83,6 @@ public final class CheckTokenAction extends AbstractAction {
 
         Type(String value) {
             this.value = value;
-        }
-
-        public String getValue() {
-            return value;
         }
 
     }

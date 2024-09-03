@@ -1,9 +1,13 @@
 package dev.masterflomaster1.jwa.response;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.util.List;
 
+@Getter
+@ToString
 public final class User {
 
     @SerializedName("userid")
@@ -15,43 +19,11 @@ public final class User {
     @SerializedName("editcount")
     private Integer editCount;
 
+    @SerializedName("groups")
     private List<String> groups;
 
     @SerializedName("gender")
     private String gender;
 
-    private User() {
-
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Integer getEditCount() {
-        return editCount;
-    }
-
-    public List<String> getGroups() {
-        return groups;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", name='" + name + '\'' +
-                ", editCount=" + editCount +
-                ", groups=" + groups +
-                ", gender='" + gender + '\'' +
-                '}';
-    }
+    private User() { }
 }

@@ -1,7 +1,11 @@
 package dev.masterflomaster1.jwa.response;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.Getter;
+import lombok.ToString;
 
+@Getter
+@ToString
 public final class General {
 
     @SerializedName("mainpage")
@@ -19,18 +23,5 @@ public final class General {
     @SerializedName("dbversion")
     private String dbVersion;
 
-    private General() {
-
-    }
-
-    @Override
-    public String toString() {
-        return "General{" +
-                "mainPage='" + mainPage + '\'' +
-                ", base='" + base + '\'' +
-                ", siteName='" + siteName + '\'' +
-                ", phpVersion='" + phpVersion + '\'' +
-                ", dbVersion='" + dbVersion + '\'' +
-                '}';
-    }
+    private General() { }
 }

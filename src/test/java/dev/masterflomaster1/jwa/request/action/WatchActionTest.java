@@ -90,7 +90,7 @@ class WatchActionTest {
 
         assertEquals("1 month", a.getExpiry());
         assertTrue(a.isUnwatch());
-        assertEquals("cont", a.getContinue());
+        assertEquals("cont", a.getContinue_());
         assertEquals(Set.of("Main Page"), a.getTitles());
         assertEquals(Set.of(12), a.getPageIds());
         assertEquals(Set.of(24L), a.getRevIds());

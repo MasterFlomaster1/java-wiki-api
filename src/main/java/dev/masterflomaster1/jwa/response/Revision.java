@@ -1,7 +1,11 @@
 package dev.masterflomaster1.jwa.response;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.Getter;
+import lombok.ToString;
 
+@Getter
+@ToString
 public final class Revision {
 
     @SerializedName("revid")
@@ -43,78 +47,5 @@ public final class Revision {
     @SerializedName("parsedcomment")
     private String parsedComment;
 
-    private Revision() {
-
-    }
-
-    public Long getRevId() {
-        return revId;
-    }
-
-    public Long getParentId() {
-        return parentId;
-    }
-
-    public Boolean isMinor() {
-        return minor;
-    }
-
-    public String getUser() {
-        return user;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public String getTimestamp() {
-        return timestamp;
-    }
-
-    public Integer getSize() {
-        return size;
-    }
-
-    public String getSha1() {
-        return sha1;
-    }
-
-    public String getContentModel() {
-        return contentModel;
-    }
-
-    public String getContentFormat() {
-        return contentFormat;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public String getParsedComment() {
-        return parsedComment;
-    }
-
-    @Override
-    public String toString() {
-        return "Revision{" +
-                "revId=" + revId +
-                ", parentId=" + parentId +
-                ", minor=" + minor +
-                ", user='" + user + '\'' +
-                ", userId=" + userId +
-                ", timestamp='" + timestamp + '\'' +
-                ", size=" + size +
-                ", sha1='" + sha1 + '\'' +
-                ", contentModel='" + contentModel + '\'' +
-                ", contentFormat='" + contentFormat + '\'' +
-                ", content='" + content + '\'' +
-                ", comment='" + comment + '\'' +
-                ", parsedComment='" + parsedComment + '\'' +
-                '}';
-    }
+    private Revision() { }
 }

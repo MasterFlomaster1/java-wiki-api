@@ -1,9 +1,11 @@
 package dev.masterflomaster1.jwa.request.list;
 
 import dev.masterflomaster1.jwa.common.Namespace;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -12,6 +14,9 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/Special:MyLanguage/API:Usercontribs">API:Usercontribs</a>
  */
+@Getter
+@ToString
+@EqualsAndHashCode(callSuper = false)
 public final class UsersContribsList extends AbstractList {
 
     private int ucLimit;
@@ -30,86 +35,6 @@ public final class UsersContribsList extends AbstractList {
 
     private UsersContribsList() {
         name = "usercontribs";
-    }
-
-    public int getUcLimit() {
-        return ucLimit;
-    }
-
-    public LocalDateTime getUcStart() {
-        return ucStart;
-    }
-
-    public LocalDateTime getUcEnd() {
-        return ucEnd;
-    }
-
-    public String getUcContinue() {
-        return ucContinue;
-    }
-
-    public Set<String> getUcUser() {
-        return ucUser;
-    }
-
-    public Set<Integer> getUcUserIds() {
-        return ucUserIds;
-    }
-
-    public String getUcUserPrefix() {
-        return ucUserPrefix;
-    }
-
-    public String getUcIpRange() {
-        return ucIpRange;
-    }
-
-    public UcDir getUcDir() {
-        return ucDir;
-    }
-
-    public Set<Namespace> getUcNamespace() {
-        return ucNamespace;
-    }
-
-    public Set<UcProp> getUcProp() {
-        return ucProp;
-    }
-
-    public Set<UcShow> getUcShow() {
-        return ucShow;
-    }
-
-    public String getUcTag() {
-        return ucTag;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        UsersContribsList that = (UsersContribsList) o;
-
-        if (ucLimit != that.ucLimit) return false;
-        if (!Objects.equals(ucStart, that.ucStart)) return false;
-        if (!Objects.equals(ucEnd, that.ucEnd)) return false;
-        if (!Objects.equals(ucContinue, that.ucContinue)) return false;
-        if (!Objects.equals(ucUser, that.ucUser)) return false;
-        if (!Objects.equals(ucUserIds, that.ucUserIds)) return false;
-        if (!Objects.equals(ucUserPrefix, that.ucUserPrefix)) return false;
-        if (!Objects.equals(ucIpRange, that.ucIpRange)) return false;
-        if (ucDir != that.ucDir) return false;
-        if (!Objects.equals(ucNamespace, that.ucNamespace)) return false;
-        if (!Objects.equals(ucProp, that.ucProp)) return false;
-        if (!Objects.equals(ucShow, that.ucShow)) return false;
-        return Objects.equals(ucTag, that.ucTag);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(ucLimit, ucStart, ucEnd, ucContinue, ucUser, ucUserIds, ucUserPrefix, ucIpRange, ucDir,
-                ucNamespace, ucProp, ucShow, ucTag);
     }
 
     public static class Builder {
@@ -269,6 +194,7 @@ public final class UsersContribsList extends AbstractList {
 
     }
 
+    @Getter
     public enum UcDir {
 
         NEWER ("newer"),
@@ -280,12 +206,9 @@ public final class UsersContribsList extends AbstractList {
             this.value = value;
         }
 
-        public String getValue() {
-            return value;
-        }
-
     }
 
+    @Getter
     public enum UcProp {
 
         COMMENT ("comment"),
@@ -306,12 +229,9 @@ public final class UsersContribsList extends AbstractList {
             this.value = value;
         }
 
-        public String getValue() {
-            return value;
-        }
-
     }
 
+    @Getter
     public enum UcShow {
 
         NOT_AUTO_PATROLLED ("!autopatrolled"),
@@ -333,9 +253,6 @@ public final class UsersContribsList extends AbstractList {
             this.value = value;
         }
 
-        public String getValue() {
-            return value;
-        }
     }
 
 }

@@ -1,12 +1,17 @@
 package dev.masterflomaster1.jwa.request.meta;
 
-import java.util.Objects;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 
 /**
  * Shows sitewide pageview data (daily pageview totals for each of the last {@code pvisdays} days).
  *
  * @see <a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:PageViewInfo">Extension:PageViewInfo</a>
  */
+@Getter
+@ToString
+@EqualsAndHashCode(callSuper = false)
 public final class SiteViewsMeta extends AbstractMeta {
 
     private PvIsMetric pvIsMetric;
@@ -14,19 +19,6 @@ public final class SiteViewsMeta extends AbstractMeta {
 
     private SiteViewsMeta() {
         name = "siteviews";
-    }
-
-    public PvIsMetric getPvIsMetric() {
-        return pvIsMetric;
-    }
-
-    public int getPvIsDays() {
-        return pvIsDays;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(pvIsDays, pvIsMetric);
     }
 
     public static class Builder {
@@ -60,6 +52,7 @@ public final class SiteViewsMeta extends AbstractMeta {
 
     }
 
+    @Getter
     public enum PvIsMetric {
 
         /**
@@ -76,10 +69,6 @@ public final class SiteViewsMeta extends AbstractMeta {
 
         PvIsMetric(String value) {
             this.value = value;
-        }
-
-        public String getValue() {
-            return value;
         }
 
     }

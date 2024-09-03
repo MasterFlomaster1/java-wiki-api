@@ -2,8 +2,10 @@ package dev.masterflomaster1.jwa.request.prop;
 
 import dev.masterflomaster1.jwa.common.Dir;
 import dev.masterflomaster1.jwa.common.Namespace;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -12,6 +14,9 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:Templates">API:Templates</a>
  */
+@Getter
+@ToString
+@EqualsAndHashCode(callSuper = false)
 public final class TemplatesProp extends AbstractProp {
 
     private Set<Namespace> tlNamespace;
@@ -22,45 +27,6 @@ public final class TemplatesProp extends AbstractProp {
 
     private TemplatesProp() {
         name = "templates";
-    }
-
-    public Set<Namespace> getTlNamespace() {
-        return tlNamespace;
-    }
-
-    public int getTlLimit() {
-        return tlLimit;
-    }
-
-    public String getTlContinue() {
-        return tlContinue;
-    }
-
-    public Set<String> getTlTemplates() {
-        return tlTemplates;
-    }
-
-    public Dir getTlDir() {
-        return tlDir;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        TemplatesProp that = (TemplatesProp) o;
-
-        if (tlLimit != that.tlLimit) return false;
-        if (!Objects.equals(tlNamespace, that.tlNamespace)) return false;
-        if (!Objects.equals(tlContinue, that.tlContinue)) return false;
-        if (!Objects.equals(tlTemplates, that.tlTemplates)) return false;
-        return tlDir == that.tlDir;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(tlNamespace, tlLimit, tlContinue, tlTemplates, tlDir);
     }
 
     public static class Builder {

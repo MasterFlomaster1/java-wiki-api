@@ -1,9 +1,13 @@
 package dev.masterflomaster1.jwa.response;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.util.List;
 
+@Getter
+@ToString
 public final class RecentChange {
 
     @SerializedName("type")
@@ -63,108 +67,5 @@ public final class RecentChange {
     @SerializedName("sha1")
     private String sha1;
 
-    private RecentChange() {
-
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public Integer getNs() {
-        return ns;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public Integer getPageId() {
-        return pageId;
-    }
-
-    public Long getRevId() {
-        return revId;
-    }
-
-    public Long getOldRevId() {
-        return oldRevId;
-    }
-
-    public Long getRcId() {
-        return rcId;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public Boolean getBot() {
-        return bot;
-    }
-
-    public Boolean getaNew() {
-        return aNew;
-    }
-
-    public Boolean getMinor() {
-        return minor;
-    }
-
-    public Integer getOldLen() {
-        return oldLen;
-    }
-
-    public Integer getNewLen() {
-        return newLen;
-    }
-
-    public String getTimestamp() {
-        return timestamp;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public String getParsedComment() {
-        return parsedComment;
-    }
-
-    public Boolean getRedirect() {
-        return redirect;
-    }
-
-    public List<String> getTags() {
-        return tags;
-    }
-
-    public String getSha1() {
-        return sha1;
-    }
-
-    @Override
-    public String toString() {
-        return "RecentChange{" +
-                "type='" + type + '\'' +
-                ", ns=" + ns +
-                ", title='" + title + '\'' +
-                ", pageId=" + pageId +
-                ", revId=" + revId +
-                ", oldRevId=" + oldRevId +
-                ", rcId=" + rcId +
-                ", userId=" + userId +
-                ", bot=" + bot +
-                ", aNew=" + aNew +
-                ", minor=" + minor +
-                ", oldLen=" + oldLen +
-                ", newLen=" + newLen +
-                ", timestamp='" + timestamp + '\'' +
-                ", comment='" + comment + '\'' +
-                ", parsedComment='" + parsedComment + '\'' +
-                ", redirect=" + redirect +
-                ", tags=" + tags +
-                ", sha1='" + sha1 + '\'' +
-                '}';
-    }
+    private RecentChange() { }
 }

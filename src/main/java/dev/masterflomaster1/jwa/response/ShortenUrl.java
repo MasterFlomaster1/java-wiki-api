@@ -1,7 +1,11 @@
 package dev.masterflomaster1.jwa.response;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.Getter;
+import lombok.ToString;
 
+@Getter
+@ToString
 public final class ShortenUrl {
 
     @SerializedName("shorturl")
@@ -13,28 +17,5 @@ public final class ShortenUrl {
     @SerializedName("qrcode")
     private String qrCode;
 
-    private ShortenUrl() {
-
-    }
-
-    public String getShortUrl() {
-        return shortUrl;
-    }
-
-    public String getShortUrlAlt() {
-        return shortUrlAlt;
-    }
-
-    public String getQrCode() {
-        return qrCode;
-    }
-
-    @Override
-    public String toString() {
-        return "ShortenUrl{" +
-                "shortUrl='" + shortUrl + '\'' +
-                ", shortUrlAlt='" + shortUrlAlt + '\'' +
-                ", qrCode='" + qrCode + '\'' +
-                '}';
-    }
+    private ShortenUrl() { }
 }

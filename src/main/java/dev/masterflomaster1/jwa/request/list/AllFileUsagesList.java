@@ -1,8 +1,10 @@
 package dev.masterflomaster1.jwa.request.list;
 
 import dev.masterflomaster1.jwa.common.Dir;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -11,6 +13,9 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/Special:MyLanguage/API:Allfileusages">API:Allfileusages</a>
  */
+@Getter
+@ToString
+@EqualsAndHashCode(callSuper = false)
 public final class AllFileUsagesList extends AbstractList {
 
     private String afContinue;
@@ -24,60 +29,6 @@ public final class AllFileUsagesList extends AbstractList {
 
     private AllFileUsagesList() {
         name = "allfileusages";
-    }
-
-    public String getAfContinue() {
-        return afContinue;
-    }
-
-    public String getAfFrom() {
-        return afFrom;
-    }
-
-    public String getAfTo() {
-        return afTo;
-    }
-
-    public String getAfPrefix() {
-        return afPrefix;
-    }
-
-    public boolean isAfUnique() {
-        return afUnique;
-    }
-
-    public Set<AfProp> getAfProp() {
-        return afProp;
-    }
-
-    public int getAfLimit() {
-        return afLimit;
-    }
-
-    public Dir getAfDir() {
-        return afDir;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        AllFileUsagesList that = (AllFileUsagesList) o;
-
-        if (afUnique != that.afUnique) return false;
-        if (afLimit != that.afLimit) return false;
-        if (!Objects.equals(afContinue, that.afContinue)) return false;
-        if (!Objects.equals(afFrom, that.afFrom)) return false;
-        if (!Objects.equals(afTo, that.afTo)) return false;
-        if (!Objects.equals(afPrefix, that.afPrefix)) return false;
-        if (!Objects.equals(afProp, that.afProp)) return false;
-        return afDir == that.afDir;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(afContinue, afFrom, afTo, afPrefix, afUnique, afProp, afLimit, afDir);
     }
 
     public static class Builder {
@@ -176,6 +127,7 @@ public final class AllFileUsagesList extends AbstractList {
 
     }
 
+    @Getter
     public enum AfProp {
 
         IDS ("ids"),
@@ -185,10 +137,6 @@ public final class AllFileUsagesList extends AbstractList {
 
         AfProp(String value) {
             this.value = value;
-        }
-
-        public String getValue() {
-            return value;
         }
 
     }

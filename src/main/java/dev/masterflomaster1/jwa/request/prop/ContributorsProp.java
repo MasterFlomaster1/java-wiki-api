@@ -1,6 +1,9 @@
 package dev.masterflomaster1.jwa.request.prop;
 
-import java.util.Objects;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
+
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -9,6 +12,9 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:Contributors">API:Contributors</a>
  */
+@Getter
+@ToString
+@EqualsAndHashCode(callSuper = false)
 public final class ContributorsProp extends AbstractProp {
 
     private Set<PcGroup> pcGroup;
@@ -22,52 +28,7 @@ public final class ContributorsProp extends AbstractProp {
         name = "contributors";
     }
 
-    public Set<PcGroup> getPcGroup() {
-        return pcGroup;
-    }
-
-    public Set<PcGroup> getPcExcludeGroup() {
-        return pcExcludeGroup;
-    }
-
-    public Set<PcRights> getPcRights() {
-        return pcRights;
-    }
-
-    public Set<PcRights> getPcExcludeRights() {
-        return pcExcludeRights;
-    }
-
-    public int getPcLimit() {
-        return pcLimit;
-    }
-
-    public String getPcContinue() {
-        return pcContinue;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        ContributorsProp that = (ContributorsProp) o;
-
-        if (pcLimit != that.pcLimit) return false;
-        if (!Objects.equals(pcGroup, that.pcGroup)) return false;
-        if (!Objects.equals(pcExcludeGroup, that.pcExcludeGroup))
-            return false;
-        if (!Objects.equals(pcRights, that.pcRights)) return false;
-        if (!Objects.equals(pcExcludeRights, that.pcExcludeRights))
-            return false;
-        return Objects.equals(pcContinue, that.pcContinue);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(pcGroup, pcExcludeGroup, pcRights, pcExcludeRights, pcLimit, pcContinue);
-    }
-
+    @Getter
     public enum PcGroup {
 
         ABUSE_FILTER ("");
@@ -78,11 +39,9 @@ public final class ContributorsProp extends AbstractProp {
             this.value = value;
         }
 
-        public String getValue() {
-            return value;
-        }
     }
 
+    @Getter
     public enum PcRights {
         EDIT ("edit");
 
@@ -92,9 +51,6 @@ public final class ContributorsProp extends AbstractProp {
             this.value = value;
         }
 
-        public String getValue() {
-            return value;
-        }
     }
 
     public static class Builder {

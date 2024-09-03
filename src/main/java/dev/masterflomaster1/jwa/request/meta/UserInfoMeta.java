@@ -1,6 +1,9 @@
 package dev.masterflomaster1.jwa.request.meta;
 
-import java.util.Objects;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
+
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -9,6 +12,9 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/Special:MyLanguage/API:Userinfo">API:Userinfo</a>
  */
+@Getter
+@ToString
+@EqualsAndHashCode(callSuper = false)
 public final class UserInfoMeta extends AbstractMeta {
 
     private Set<UiProp> uiProp;
@@ -16,30 +22,6 @@ public final class UserInfoMeta extends AbstractMeta {
 
     private UserInfoMeta() {
         name = "userinfo";
-    }
-
-    public Set<UiProp> getUiProp() {
-        return uiProp;
-    }
-
-    public String getUiAttachedWiki() {
-        return uiAttachedWiki;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        UserInfoMeta that = (UserInfoMeta) o;
-
-        if (!Objects.equals(uiProp, that.uiProp)) return false;
-        return Objects.equals(uiAttachedWiki, that.uiAttachedWiki);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(uiProp, uiAttachedWiki);
     }
 
     public static class Builder {
@@ -74,6 +56,7 @@ public final class UserInfoMeta extends AbstractMeta {
 
     }
 
+    @Getter
     public enum UiProp {
 
         /**
@@ -178,10 +161,6 @@ public final class UserInfoMeta extends AbstractMeta {
 
         UiProp(String value) {
             this.value = value;
-        }
-
-        public String getValue() {
-            return value;
         }
 
     }

@@ -1,10 +1,14 @@
 package dev.masterflomaster1.jwa.response;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.util.List;
 import java.util.Map;
 
+@Getter
+@ToString
 public final class UserInfo {
 
     @SerializedName("id")
@@ -52,88 +56,5 @@ public final class UserInfo {
     @SerializedName("cancreateaccount")
     private Boolean canCreateAccount;
 
-    private UserInfo() {
-
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Boolean getMessages() {
-        return messages;
-    }
-
-    public List<String> getGroups() {
-        return groups;
-    }
-
-    public List<String> getGroupMemberships() {
-        return groupMemberships;
-    }
-
-    public List<String> getImplicitGroups() {
-        return implicitGroups;
-    }
-
-    public List<String> getRights() {
-        return rights;
-    }
-
-    public Map<String, List<String>> getChangeableGroups() {
-        return changeableGroups;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getEmailAuthenticated() {
-        return emailAuthenticated;
-    }
-
-    public String getRegistrationDate() {
-        return registrationDate;
-    }
-
-    public Integer getUnreadCount() {
-        return unreadCount;
-    }
-
-    public Map<String, Integer> getCentralIds() {
-        return centralIds;
-    }
-
-    public Map<String, Boolean> getAttachedLocal() {
-        return attachedLocal;
-    }
-
-    public Boolean getCanCreateAccount() {
-        return canCreateAccount;
-    }
-
-    @Override
-    public String toString() {
-        return "UserInfo{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", messages=" + messages +
-                ", groups=" + groups +
-                ", groupMemberships=" + groupMemberships +
-                ", implicitGroups=" + implicitGroups +
-                ", rights=" + rights +
-                ", changeableGroups=" + changeableGroups +
-                ", email='" + email + '\'' +
-                ", emailAuthenticated='" + emailAuthenticated + '\'' +
-                ", registrationDate='" + registrationDate + '\'' +
-                ", unreadCount=" + unreadCount +
-                ", centralIds=" + centralIds +
-                ", attachedLocal=" + attachedLocal +
-                ", canCreateAccount=" + canCreateAccount +
-                '}';
-    }
+    private UserInfo() { }
 }

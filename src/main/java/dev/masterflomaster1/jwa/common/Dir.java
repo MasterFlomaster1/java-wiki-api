@@ -1,8 +1,11 @@
 package dev.masterflomaster1.jwa.common;
 
+import lombok.Getter;
+
 /**
  * The direction in which to list.
  */
+@Getter
 public enum Dir {
 
     ASCENDING ("ascending"),
@@ -12,10 +15,6 @@ public enum Dir {
 
     Dir(String value) {
         this.value = value;
-    }
-
-    public String getValue() {
-        return value;
     }
 
 }

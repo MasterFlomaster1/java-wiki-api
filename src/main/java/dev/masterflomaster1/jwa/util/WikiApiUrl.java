@@ -48,21 +48,21 @@ public class WikiApiUrl {
         if (action != null)
             urlBuilder.append("?action=").append(action);
 
-        if (propMap.size() > 0) {
+        if (!propMap.isEmpty()) {
             urlBuilder
                     .append("&prop=")
                     .append(String.join("%7C", propMap.keySet()))
                     .append(String.join("", propMap.values()));
         }
 
-        if (listMap.size() > 0) {
+        if (!listMap.isEmpty()) {
             urlBuilder
                     .append("&list=")
                     .append(String.join("%7C", listMap.keySet()))
                     .append(String.join("", listMap.values()));
         }
 
-        if (metaMap.size() > 0) {
+        if (!metaMap.isEmpty()) {
             urlBuilder
                     .append("&meta=")
                     .append(String.join("%7C", metaMap.keySet()))

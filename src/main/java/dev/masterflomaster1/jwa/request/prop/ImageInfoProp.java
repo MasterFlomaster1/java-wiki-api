@@ -2,9 +2,11 @@ package dev.masterflomaster1.jwa.request.prop;
 
 import dev.masterflomaster1.jwa.common.Prop;
 import dev.masterflomaster1.jwa.util.TimeHandler;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -13,6 +15,9 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:Imageinfo">API:Imageinfo</a>
  */
+@Getter
+@ToString
+@EqualsAndHashCode(callSuper = false)
 public final class ImageInfoProp extends AbstractProp {
 
     private Set<Prop> iiProp;
@@ -26,61 +31,6 @@ public final class ImageInfoProp extends AbstractProp {
 
     private ImageInfoProp() {
         name = "imageinfo";
-    }
-
-    public Set<Prop> getIiProp() {
-        return iiProp;
-    }
-
-    public int getIiLimit() {
-        return iiLimit;
-    }
-
-    public LocalDateTime getIiStart() {
-        return iiStart;
-    }
-
-    public LocalDateTime getIiEnd() {
-        return iiEnd;
-    }
-
-    public int getIiUrlWidth() {
-        return iiUrlWidth;
-    }
-
-    public int getIiUrlHeight() {
-        return iiUrlHeight;
-    }
-
-    public String getIiExtMetadataLanguage() {
-        return iiExtMetadataLanguage;
-    }
-
-    public boolean isIiExtMetadataMultiLang() {
-        return iiExtMetadataMultiLang;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        ImageInfoProp that = (ImageInfoProp) o;
-
-        if (iiLimit != that.iiLimit) return false;
-        if (iiUrlWidth != that.iiUrlWidth) return false;
-        if (iiUrlHeight != that.iiUrlHeight) return false;
-        if (iiExtMetadataMultiLang != that.iiExtMetadataMultiLang) return false;
-        if (!Objects.equals(iiProp, that.iiProp)) return false;
-        if (!Objects.equals(iiStart, that.iiStart)) return false;
-        if (!Objects.equals(iiEnd, that.iiEnd)) return false;
-        return Objects.equals(iiExtMetadataLanguage, that.iiExtMetadataLanguage);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(iiProp, iiLimit, iiStart, iiEnd, iiUrlWidth, iiUrlHeight, iiExtMetadataLanguage,
-                iiExtMetadataMultiLang);
     }
 
     public static class Builder {

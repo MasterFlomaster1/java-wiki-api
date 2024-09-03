@@ -1,9 +1,10 @@
 package dev.masterflomaster1.jwa.request.action;
 
-import dev.masterflomaster1.jwa.WikiApiSyntaxException;
 import dev.masterflomaster1.jwa.request.list.AbstractList;
 import dev.masterflomaster1.jwa.request.meta.AbstractMeta;
 import dev.masterflomaster1.jwa.request.prop.AbstractProp;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.util.Set;
 
@@ -11,6 +12,8 @@ import java.util.Set;
  * Fetch data from and about MediaWiki.
  * All data modifications will first have to use query to acquire a token to prevent abuse from malicious sites.
  */
+@Getter
+@ToString
 public final class QueryAction extends AbstractAction {
 
     private Set<AbstractProp> prop;
@@ -24,30 +27,6 @@ public final class QueryAction extends AbstractAction {
         apiUrl.setAction("query");
     }
 
-    public Set<AbstractProp> getProp() {
-        return prop;
-    }
-
-    public Set<AbstractList> getList() {
-        return list;
-    }
-
-    public Set<AbstractMeta> getMeta() {
-        return meta;
-    }
-
-    public boolean isIndexPageIDs() {
-        return indexPageIDs;
-    }
-
-    public boolean isExport() {
-        return export;
-    }
-
-    public Set<String> getTitles() {
-        return titles;
-    }
-
     public static class Builder {
 
         private final QueryAction queryAction = new QueryAction();
@@ -59,7 +38,7 @@ public final class QueryAction extends AbstractAction {
          */
         public Builder prop(Set<AbstractProp> props) {
             if (queryAction.prop != null)
-                throw new WikiApiSyntaxException("'prop' already set");
+                throw new IllegalArgumentException("'prop' already set");
 
             queryAction.prop = props;
             props.forEach(e -> queryAction.apiUrl.putProp(e.getName(), e.getApiUrl().build()));
@@ -75,7 +54,7 @@ public final class QueryAction extends AbstractAction {
          */
         public Builder list(Set<AbstractList> list) {
             if (queryAction.list != null)
-                throw new WikiApiSyntaxException("'list' already set");
+                throw new IllegalArgumentException("'list' already set");
 
             queryAction.list = list;
             list.forEach(e -> queryAction.apiUrl.putList(e.getName(), e.getApiUrl().build()));
@@ -89,7 +68,7 @@ public final class QueryAction extends AbstractAction {
          */
         public Builder meta(Set<AbstractMeta> meta) {
             if (queryAction.meta != null)
-                throw new WikiApiSyntaxException("'meta' already set");
+                throw new IllegalArgumentException("'meta' already set");
 
             queryAction.meta = meta;
             meta.forEach(e -> queryAction.apiUrl.putMeta(e.getName(), e.getApiUrl().build()));

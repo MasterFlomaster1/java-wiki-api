@@ -1,7 +1,11 @@
 package dev.masterflomaster1.jwa.response;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.Getter;
+import lombok.ToString;
 
+@Getter
+@ToString
 public final class Category {
 
     @SerializedName("ns")
@@ -10,23 +14,5 @@ public final class Category {
     @SerializedName("title")
     private String title;
 
-    private Category() {
-
-    }
-
-    public Integer getNs() {
-        return ns;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
-    public String toString() {
-        return "Category{" +
-                "ns=" + ns +
-                ", title='" + title + '\'' +
-                '}';
-    }
+    private Category() { }
 }

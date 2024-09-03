@@ -1,7 +1,11 @@
 package dev.masterflomaster1.jwa.response;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.Getter;
+import lombok.ToString;
 
+@Getter
+@ToString
 public final class CategoryInfo {
 
     @SerializedName("size")
@@ -22,43 +26,5 @@ public final class CategoryInfo {
     @SerializedName("category")
     private String category;
 
-    private CategoryInfo() {
-
-    }
-
-    public Integer getSize() {
-        return size;
-    }
-
-    public Integer getPages() {
-        return pages;
-    }
-
-    public Integer getFiles() {
-        return files;
-    }
-
-    public Integer getSubCats() {
-        return subCats;
-    }
-
-    public Boolean isHidden() {
-        return hidden;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    @Override
-    public String toString() {
-        return "CategoryInfo{" +
-                "size=" + size +
-                ", pages=" + pages +
-                ", files=" + files +
-                ", subCats=" + subCats +
-                ", hidden=" + hidden +
-                ", category='" + category + '\'' +
-                '}';
-    }
+    private CategoryInfo() { }
 }

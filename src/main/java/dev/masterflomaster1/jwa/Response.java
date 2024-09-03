@@ -15,10 +15,14 @@ import dev.masterflomaster1.jwa.response.SpamBlacklist;
 import dev.masterflomaster1.jwa.response.TitleBlacklist;
 import dev.masterflomaster1.jwa.response.TorBlock;
 import dev.masterflomaster1.jwa.response.ValidatePassword;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.util.List;
 import java.util.Map;
 
+@Getter
+@ToString
 public final class Response {
 
     @SerializedName("batchcomplete")
@@ -99,143 +103,5 @@ public final class Response {
     @SerializedName("usercontribs")
     private List<Map<String, Object>> userContribs;
 
-    private Response() {
-
-    }
-
-    public Boolean isBatchComplete() {
-        return batchComplete;
-    }
-
-    public Map<String, String> getContinue() {
-        return aContinue;
-    }
-
-    public Error getError() {
-        return error;
-    }
-
-    public String getServedBy() {
-        return servedBy;
-    }
-
-    public String getCurTimestamp() {
-        return curTimestamp;
-    }
-
-    public String getUserLang() {
-        return userLang;
-    }
-
-    public String getErrorLang() {
-        return errorLang;
-    }
-
-    public Query getQuery() {
-        return query;
-    }
-
-    public TorBlock getTorBlock() {
-        return torBlock;
-    }
-
-    public CentralAuthToken getCentralAuthToken() {
-        return centralAuthToken;
-    }
-
-    public ShortenUrl getShortenUrl() {
-        return shortenUrl;
-    }
-
-    public Map<String, String> getLanguageSearch() {
-        return languageSearch;
-    }
-
-    public String getRequestId() {
-        return requestId;
-    }
-
-    public ValidatePassword getValidatePassword() {
-        return validatePassword;
-    }
-
-    public Block getBlock() {
-        return block;
-    }
-
-    public CheckToken getCheckToken() {
-        return checkToken;
-    }
-
-    public AntiSpoof getAntiSpoof() {
-        return antiSpoof;
-    }
-
-    public Compare getCompare() {
-        return compare;
-    }
-
-    public Delete getDelete() {
-        return delete;
-    }
-
-    public EmailUser getEmailUser() {
-        return emailUser;
-    }
-
-    public Map<String, Object> getSiteMatrix() {
-        return siteMatrix;
-    }
-
-    public SpamBlacklist getSpamBlacklist() {
-        return spamBlacklist;
-    }
-
-    public TitleBlacklist getTitleBlacklist() {
-        return titleBlacklist;
-    }
-
-    public List<Map<String, Object>> getWatch() {
-        return watch;
-    }
-
-    public Map<String, Object> getParse() {
-        return parse;
-    }
-
-    public List<Map<String, Object>> getUserContribs() {
-        return userContribs;
-    }
-
-    @Override
-    public String toString() {
-        return "Response{" +
-                "batchComplete=" + batchComplete +
-                ", aContinue=" + aContinue +
-                ", error=" + error +
-                ", servedBy='" + servedBy + '\'' +
-                ", curTimestamp='" + curTimestamp + '\'' +
-                ", userLang='" + userLang + '\'' +
-                ", errorLang='" + errorLang + '\'' +
-                ", query=" + query +
-                ", torBlock=" + torBlock +
-                ", centralAuthToken=" + centralAuthToken +
-                ", shortenUrl=" + shortenUrl +
-                ", languageSearch=" + languageSearch +
-                ", requestId='" + requestId + '\'' +
-                ", validatePassword=" + validatePassword +
-                ", block=" + block +
-                ", checkToken=" + checkToken +
-                ", antiSpoof=" + antiSpoof +
-                ", compare=" + compare +
-                ", delete=" + delete +
-                ", emailUser=" + emailUser +
-                ", siteMatrix=" + siteMatrix +
-                ", spamBlacklist=" + spamBlacklist +
-                ", titleBlacklist=" + titleBlacklist +
-                ", watch=" + watch +
-                ", parse=" + parse +
-                ", userContribs=" + userContribs +
-                '}';
-    }
+    private Response() { }
 }

@@ -1,11 +1,14 @@
 package dev.masterflomaster1.jwa.request.action;
 
-import dev.masterflomaster1.jwa.WikiApiSyntaxException;
 import dev.masterflomaster1.jwa.common.Namespace;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Getter
+@ToString
 public final class OpenSearchAction extends AbstractAction {
 
     private String search;
@@ -18,34 +21,6 @@ public final class OpenSearchAction extends AbstractAction {
 
     private OpenSearchAction() {
         apiUrl.setAction("opensearch");
-    }
-
-    public String getSearch() {
-        return search;
-    }
-
-    public Set<Namespace> getNamespace() {
-        return namespace;
-    }
-
-    public int getLimit() {
-        return limit;
-    }
-
-    public Profile getProfile() {
-        return profile;
-    }
-
-    public Redirects getRedirects() {
-        return redirects;
-    }
-
-    public Format getFormat() {
-        return format;
-    }
-
-    public boolean isWarningsAsError() {
-        return warningsAsError;
     }
 
     public static class Builder {
@@ -128,13 +103,14 @@ public final class OpenSearchAction extends AbstractAction {
 
         public OpenSearchAction build() {
             if (openSearchAction.search == null)
-                throw new WikiApiSyntaxException("Parameter 'search' is required");
+                throw new IllegalArgumentException("Parameter 'search' is required");
 
             return openSearchAction;
         }
 
     }
 
+    @Getter
     public enum Profile {
 
         /**
@@ -173,11 +149,9 @@ public final class OpenSearchAction extends AbstractAction {
             this.value = value;
         }
 
-        public String getValue() {
-            return value;
-        }
     }
 
+    @Getter
     public enum Redirects {
 
         /**
@@ -196,12 +170,9 @@ public final class OpenSearchAction extends AbstractAction {
             this.value = value;
         }
 
-        public String getValue() {
-            return value;
-        }
-
     }
 
+    @Getter
     public enum Format {
 
         JSON ("json"),
@@ -213,10 +184,6 @@ public final class OpenSearchAction extends AbstractAction {
 
         Format(String value) {
             this.value = value;
-        }
-
-        public String getValue() {
-            return value;
         }
 
     }

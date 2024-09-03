@@ -1,19 +1,18 @@
 package dev.masterflomaster1.jwa.request.action;
 
-import dev.masterflomaster1.jwa.WikiApiSyntaxException;
+import lombok.Getter;
+import lombok.ToString;
 
 /**
  * Check if an IP address is blocked as a Tor exit node.
  *
  * @see <a href="https://www.mediawiki.org/w/api.php?action=help&modules=torblock">www.mediawiki.org</a>
  */
+@Getter
+@ToString
 public final class TorBlockAction extends AbstractAction {
 
     private String ip;
-
-    public String getIp() {
-        return ip;
-    }
 
     private TorBlockAction() {
         apiUrl.setAction("torblock");
@@ -33,9 +32,9 @@ public final class TorBlockAction extends AbstractAction {
             return this;
         }
 
-        public TorBlockAction build() throws WikiApiSyntaxException {
+        public TorBlockAction build() {
             if (torBlockAction.ip == null)
-                throw new WikiApiSyntaxException("Parameter 'ip' is required");
+                throw new IllegalArgumentException("Parameter 'ip' is required");
 
             return torBlockAction;
         }
