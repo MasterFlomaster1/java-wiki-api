@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class ValidityMessage {
+public final class ValidityMessage {
 
     @SerializedName("message")
     private String message;

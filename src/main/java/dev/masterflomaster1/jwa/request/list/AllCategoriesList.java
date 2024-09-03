@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:Allcategories">API:Allcategories</a>
  */
-public class AllCategoriesList extends AbstractList {
+public final class AllCategoriesList extends AbstractList {
 
     private String acFrom;
     private String acContinue;

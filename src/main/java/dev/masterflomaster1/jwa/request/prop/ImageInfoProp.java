@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:Imageinfo">API:Imageinfo</a>
  */
-public class ImageInfoProp extends AbstractProp {
+public final class ImageInfoProp extends AbstractProp {
 
     private Set<Prop> iiProp;
     private int iiLimit;

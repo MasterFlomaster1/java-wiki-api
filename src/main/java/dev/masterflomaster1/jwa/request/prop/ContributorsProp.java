@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:Contributors">API:Contributors</a>
  */
-public class ContributorsProp extends AbstractProp {
+public final class ContributorsProp extends AbstractProp {
 
     private Set<PcGroup> pcGroup;
     private Set<PcGroup> pcExcludeGroup;

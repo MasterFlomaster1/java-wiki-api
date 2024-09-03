@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:Fileusage">API:Fileusage</a>
  */
-public class FileUsageProp extends AbstractProp {
+public final class FileUsageProp extends AbstractProp {
 
     private Set<FuProp> fuProp;
     private Set<Namespace> fuNamespace;

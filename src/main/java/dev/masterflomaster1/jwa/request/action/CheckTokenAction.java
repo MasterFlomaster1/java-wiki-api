@@ -7,7 +7,7 @@ import dev.masterflomaster1.jwa.WikiApiSyntaxException;
  *
  * @see <a href="https://www.mediawiki.org/wiki/Special:MyLanguage/API:Checktoken">API:Checktoken</a>
  */
-public class CheckTokenAction extends AbstractAction {
+public final class CheckTokenAction extends AbstractAction {
 
     private Type type;
     private String token;

@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:RecentChanges">API:RecentChanges</a>
  */
-public class RecentChangesList extends AbstractList {
+public final class RecentChangesList extends AbstractList {
 
     private LocalDateTime rcStart;
     private LocalDateTime rcEnd;

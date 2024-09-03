@@ -2,7 +2,7 @@ package dev.masterflomaster1.jwa.request.action;
 
 import dev.masterflomaster1.jwa.WikiApiSyntaxException;
 
-public class LanguageSearchAction extends AbstractAction {
+public final class LanguageSearchAction extends AbstractAction {
 
     private String search;
     private int typos;

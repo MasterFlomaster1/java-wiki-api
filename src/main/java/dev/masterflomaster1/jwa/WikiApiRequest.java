@@ -4,7 +4,7 @@ import dev.masterflomaster1.jwa.request.JsonFormat;
 import dev.masterflomaster1.jwa.request.action.AbstractAction;
 import dev.masterflomaster1.jwa.request.AbstractFormat;
 
-public class WikiApiRequest {
+public final class WikiApiRequest {
 
     private String url = "https://en.wikipedia.org/w/api.php";
     private AbstractAction action;

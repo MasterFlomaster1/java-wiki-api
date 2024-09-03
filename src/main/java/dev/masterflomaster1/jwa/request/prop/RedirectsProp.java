@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class RedirectsProp extends AbstractProp {
+public final class RedirectsProp extends AbstractProp {
 
     private Set<RdProp> rdProp;
     private Set<Namespace> rdNamespace;

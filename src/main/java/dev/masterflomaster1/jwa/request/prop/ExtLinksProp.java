@@ -7,7 +7,7 @@ import java.util.Objects;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:Extlinks">API:Extlinks</a>
  */
-public class ExtLinksProp extends AbstractProp {
+public final class ExtLinksProp extends AbstractProp {
 
     private int elLimit;
     private String elContinue;

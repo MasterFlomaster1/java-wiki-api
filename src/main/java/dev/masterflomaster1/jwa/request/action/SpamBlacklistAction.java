@@ -7,7 +7,7 @@ import java.util.Set;
  *
  * @see <a href="https://www.mediawiki.org/wiki/Extension:SpamBlacklist/API">Extension:SpamBlacklist</a>
  */
-public class SpamBlacklistAction extends AbstractAction {
+public final class SpamBlacklistAction extends AbstractAction {
 
     private Set<String> url;
 

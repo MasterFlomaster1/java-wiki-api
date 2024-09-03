@@ -8,7 +8,7 @@ import okhttp3.FormBody;
  *
  * @see <a href="https://www.mediawiki.org/wiki/Special:MyLanguage/API:Delete">API:Delete</a>
  */
-public class DeleteAction extends AbstractAction implements IPost {
+public final class DeleteAction extends AbstractAction implements IPost {
 
     private String title;
     private int pageId;

@@ -10,7 +10,7 @@ import java.util.Set;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:Images">API:Images</a>
  */
-public class ImagesProp extends AbstractProp {
+public final class ImagesProp extends AbstractProp {
 
     private int imLimit;
     private String imContinue;

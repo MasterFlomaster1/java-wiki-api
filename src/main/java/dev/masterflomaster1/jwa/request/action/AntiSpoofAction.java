@@ -7,7 +7,7 @@ import dev.masterflomaster1.jwa.WikiApiSyntaxException;
  *
  * @see <a href="https://www.mediawiki.org/w/api.php?action=help&modules=antispoof">mediawiki.org</a>
  */
-public class AntiSpoofAction extends AbstractAction {
+public final class AntiSpoofAction extends AbstractAction {
 
     private String username;
 

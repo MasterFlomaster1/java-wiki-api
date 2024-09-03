@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/w/api.php?action=help&modules=query%2Bglobalusage">www.mediawiki.org</a>
  */
-public class GlobalUsageProp extends AbstractProp {
+public final class GlobalUsageProp extends AbstractProp {
 
     private Set<GuProp> guProp;
     private int guLimit;

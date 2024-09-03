@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:Parsing_wikitext">API:Parsing wikitext</a>
  */
-public class ParseAction extends AbstractAction {
+public final class ParseAction extends AbstractAction {
 
     private String title;
     private String text;

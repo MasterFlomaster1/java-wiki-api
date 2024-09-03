@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/Special:MyLanguage/API:Allfileusages">API:Allfileusages</a>
  */
-public class AllFileUsagesList extends AbstractList {
+public final class AllFileUsagesList extends AbstractList {
 
     private String afContinue;
     private String afFrom;

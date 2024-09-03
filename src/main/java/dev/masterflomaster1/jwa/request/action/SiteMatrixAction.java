@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/Special:MyLanguage/API:Sitematrix">API:Sitematrix</a>
  */
-public class SiteMatrixAction extends AbstractAction {
+public final class SiteMatrixAction extends AbstractAction {
 
     private Set<SmType> smType;
     private Set<SmState> smState;

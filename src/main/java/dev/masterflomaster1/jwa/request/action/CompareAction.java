@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:Compare">API:Compare</a>
  */
-public class CompareAction extends AbstractAction {
+public final class CompareAction extends AbstractAction {
 
     private String fromTitle;
     private int fromId;

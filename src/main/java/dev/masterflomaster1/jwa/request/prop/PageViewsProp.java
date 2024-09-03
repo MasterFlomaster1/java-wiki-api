@@ -8,7 +8,7 @@ import java.util.Objects;
  * @see <a href="https://www.mediawiki.org/w/api.php?action=help&modules=query%2Bpageviews">www.mediawiki.org</a>
  * @see <a href="https://www.mediawiki.org/wiki/Extension:PageViewInfo">Extension:PageViewInfo</a>
  */
-public class PageViewsProp extends AbstractProp {
+public final class PageViewsProp extends AbstractProp {
 
     private int pvIpDays;
     private String pvIpContinue;

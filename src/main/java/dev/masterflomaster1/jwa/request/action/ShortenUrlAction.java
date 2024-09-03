@@ -8,7 +8,7 @@ import okhttp3.FormBody;
  *
  * @see <a href="https://www.mediawiki.org/w/api.php?action=help&modules=shortenurl">https://www.mediawiki.org/</a>
  */
-public class ShortenUrlAction extends AbstractAction implements IPost {
+public final class ShortenUrlAction extends AbstractAction implements IPost {
 
     private String url;
     private boolean qrCode;

@@ -6,7 +6,7 @@ import okhttp3.FormBody;
 /**
  * Review a revision by approving or de-approving it.
  */
-public class ReviewAction extends AbstractAction implements IPost {
+public final class ReviewAction extends AbstractAction implements IPost {
 
     private long revId;
     private String comment;

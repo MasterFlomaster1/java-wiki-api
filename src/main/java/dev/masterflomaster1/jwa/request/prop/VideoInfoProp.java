@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class VideoInfoProp extends AbstractProp {
+public final class VideoInfoProp extends AbstractProp {
 
     private Set<Prop> viProp;
     private int viLimit;

@@ -6,7 +6,7 @@ import dev.masterflomaster1.jwa.common.Namespace;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class OpenSearchAction extends AbstractAction {
+public final class OpenSearchAction extends AbstractAction {
 
     private String search;
     private Set<Namespace> namespace;

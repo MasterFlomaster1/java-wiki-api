@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:Categories">API:Categories</a>
  */
-public class CategoriesProp extends AbstractProp {
+public final class CategoriesProp extends AbstractProp {
 
     private Set<ClProp> clProp;
     private ClShow clShow;

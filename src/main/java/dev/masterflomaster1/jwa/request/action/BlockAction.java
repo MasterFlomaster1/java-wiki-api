@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:Block">API:Block</a>
  */
-public class BlockAction extends AbstractAction implements IPost {
+public final class BlockAction extends AbstractAction implements IPost {
 
     private String user;
     private String expiry;

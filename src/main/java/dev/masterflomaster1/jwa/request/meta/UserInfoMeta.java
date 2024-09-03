@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/Special:MyLanguage/API:Userinfo">API:Userinfo</a>
  */
-public class UserInfoMeta extends AbstractMeta {
+public final class UserInfoMeta extends AbstractMeta {
 
     private Set<UiProp> uiProp;
     private String uiAttachedWiki;

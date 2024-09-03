@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/Special:MyLanguage/API:Usercontribs">API:Usercontribs</a>
  */
-public class UsersContribsList extends AbstractList {
+public final class UsersContribsList extends AbstractList {
 
     private int ucLimit;
     private LocalDateTime ucStart;

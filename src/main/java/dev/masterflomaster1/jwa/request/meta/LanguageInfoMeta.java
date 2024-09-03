@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 /**
  * Return information about available languages.
  */
-public class LanguageInfoMeta extends AbstractMeta {
+public final class LanguageInfoMeta extends AbstractMeta {
 
     private Set<LiProp> liProp;
     private Set<String> liCode;

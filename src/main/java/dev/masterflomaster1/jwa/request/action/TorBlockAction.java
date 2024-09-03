@@ -7,7 +7,7 @@ import dev.masterflomaster1.jwa.WikiApiSyntaxException;
  *
  * @see <a href="https://www.mediawiki.org/w/api.php?action=help&modules=torblock">www.mediawiki.org</a>
  */
-public class TorBlockAction extends AbstractAction {
+public final class TorBlockAction extends AbstractAction {
 
     private String ip;
 

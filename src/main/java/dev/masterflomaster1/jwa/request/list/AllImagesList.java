@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/Special:MyLanguage/API:Allimages">API:Allimages</a>
  */
-public class AllImagesList extends AbstractList {
+public final class AllImagesList extends AbstractList {
 
     private AiSort aiSort;
     private AiDir aiDir;

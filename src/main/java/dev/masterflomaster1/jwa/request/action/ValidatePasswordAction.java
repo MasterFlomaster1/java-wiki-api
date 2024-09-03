@@ -10,7 +10,7 @@ import okhttp3.FormBody;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:Validatepassword">API:Validatepassword</a>
  */
-public class ValidatePasswordAction extends AbstractAction implements IPost {
+public final class ValidatePasswordAction extends AbstractAction implements IPost {
 
     private String password;
     private String user;

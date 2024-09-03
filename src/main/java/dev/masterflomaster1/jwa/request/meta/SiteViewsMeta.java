@@ -7,7 +7,7 @@ import java.util.Objects;
  *
  * @see <a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:PageViewInfo">Extension:PageViewInfo</a>
  */
-public class SiteViewsMeta extends AbstractMeta {
+public final class SiteViewsMeta extends AbstractMeta {
 
     private PvIsMetric pvIsMetric;
     private int pvIsDays;

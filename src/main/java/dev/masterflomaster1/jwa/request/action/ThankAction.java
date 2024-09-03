@@ -8,7 +8,7 @@ import okhttp3.FormBody;
  *
  * @see <a href="https://www.mediawiki.org/wiki/Extension:Thanks#API_Documentation">Extension:Thanks</a>
  */
-public class ThankAction extends AbstractAction implements IPost {
+public final class ThankAction extends AbstractAction implements IPost {
 
     private int rev;
     private int log;

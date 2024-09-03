@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:Siteinfo">https://www.mediawiki.org/wiki/API:Siteinfo</a>
  */
-public class SiteInfoMeta extends AbstractMeta {
+public final class SiteInfoMeta extends AbstractMeta {
 
     private Set<SiProp> siProp;
     private boolean siShowAllDb;

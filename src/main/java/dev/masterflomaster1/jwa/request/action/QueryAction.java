@@ -11,7 +11,7 @@ import java.util.Set;
  * Fetch data from and about MediaWiki.
  * All data modifications will first have to use query to acquire a token to prevent abuse from malicious sites.
  */
-public class QueryAction extends AbstractAction {
+public final class QueryAction extends AbstractAction {
 
     private Set<AbstractProp> prop;
     private Set<AbstractList> list;

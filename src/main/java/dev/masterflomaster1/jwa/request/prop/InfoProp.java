@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:Info">API:Info</a>
  */
-public class InfoProp extends AbstractProp {
+public final class InfoProp extends AbstractProp {
 
     private Set<InProp> inProp;
     private String inContinue;

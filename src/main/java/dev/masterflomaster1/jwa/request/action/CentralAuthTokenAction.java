@@ -5,7 +5,7 @@ package dev.masterflomaster1.jwa.request.action;
  *
  * @see <a href="https://www.mediawiki.org/w/api.php?action=help&modules=centralauthtoken">mediawiki.org</a>
  */
-public class CentralAuthTokenAction extends AbstractAction {
+public final class CentralAuthTokenAction extends AbstractAction {
 
     private CentralAuthTokenAction() {
         apiUrl.setAction("centralauthtoken");

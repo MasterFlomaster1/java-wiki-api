@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:Tokens">API:Tokens</a>
  */
-public class TokensMeta extends AbstractMeta {
+public final class TokensMeta extends AbstractMeta {
 
     private Set<Type> type;
 

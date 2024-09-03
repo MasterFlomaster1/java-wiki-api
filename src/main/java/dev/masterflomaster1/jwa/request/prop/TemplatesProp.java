@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:Templates">API:Templates</a>
  */
-public class TemplatesProp extends AbstractProp {
+public final class TemplatesProp extends AbstractProp {
 
     private Set<Namespace> tlNamespace;
     private int tlLimit;

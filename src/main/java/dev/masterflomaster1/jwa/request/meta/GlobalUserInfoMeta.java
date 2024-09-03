@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 /**
  * Show information about a global user.
  */
-public class GlobalUserInfoMeta extends AbstractMeta {
+public final class GlobalUserInfoMeta extends AbstractMeta {
 
     private String guiUser;
     private int guiId;

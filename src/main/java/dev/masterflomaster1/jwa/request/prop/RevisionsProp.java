@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:Revisions">API:Revisions</a>
  */
-public class RevisionsProp extends AbstractProp {
+public final class RevisionsProp extends AbstractProp {
 
     private Set<RvProp> rvProp;
     private int rvLimit;

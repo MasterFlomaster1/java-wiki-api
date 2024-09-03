@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:Users">API:Users</a>
  */
-public class UsersList extends AbstractList {
+public final class UsersList extends AbstractList {
 
     private Set<UsProp> usProp;
     private String usAttachedWiki;

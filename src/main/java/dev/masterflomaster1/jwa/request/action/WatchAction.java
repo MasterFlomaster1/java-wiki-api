@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/Special:MyLanguage/API:Watch">API:Watch</a>
  */
-public class WatchAction extends AbstractAction implements IPost {
+public final class WatchAction extends AbstractAction implements IPost {
 
     private String expiry;
     private boolean unwatch;

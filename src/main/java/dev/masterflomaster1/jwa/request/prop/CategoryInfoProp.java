@@ -7,7 +7,7 @@ import java.util.Objects;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:Categoryinfo">API:Categoryinfo</a>
  */
-public class CategoryInfoProp extends AbstractProp {
+public final class CategoryInfoProp extends AbstractProp {
 
     private String ciContinue;
 

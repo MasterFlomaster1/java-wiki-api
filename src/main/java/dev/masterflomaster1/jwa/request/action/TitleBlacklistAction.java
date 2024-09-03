@@ -3,7 +3,7 @@ package dev.masterflomaster1.jwa.request.action;
 /**
  * Validate a page title, filename, or username against the TitleBlacklist.
  */
-public class TitleBlacklistAction extends AbstractAction {
+public final class TitleBlacklistAction extends AbstractAction {
 
     private String tbTitle;
     private TbAction tbAction;
