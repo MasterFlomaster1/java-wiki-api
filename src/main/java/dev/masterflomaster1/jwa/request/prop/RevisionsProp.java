@@ -1,9 +1,11 @@
 package dev.masterflomaster1.jwa.request.prop;
 
 import dev.masterflomaster1.jwa.util.TimeHandler;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -12,7 +14,10 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:Revisions">API:Revisions</a>
  */
-public class RevisionsProp extends AbstractProp {
+@Getter
+@ToString
+@EqualsAndHashCode(callSuper = false)
+public final class RevisionsProp extends AbstractProp {
 
     private Set<RvProp> rvProp;
     private int rvLimit;
@@ -27,71 +32,6 @@ public class RevisionsProp extends AbstractProp {
 
     private RevisionsProp() {
         name = "revisions";
-    }
-
-    public Set<RvProp> getRvProp() {
-        return rvProp;
-    }
-
-    public int getRvLimit() {
-        return rvLimit;
-    }
-
-    public String getRvSection() {
-        return rvSection;
-    }
-
-    public LocalDateTime getRvStart() {
-        return rvStart;
-    }
-
-    public LocalDateTime getRvEnd() {
-        return rvEnd;
-    }
-
-    public RvDir getRvDir() {
-        return rvDir;
-    }
-
-    public String getRvUser() {
-        return rvUser;
-    }
-
-    public String getRvExcludeUser() {
-        return rvExcludeUser;
-    }
-
-    public String getRvTag() {
-        return rvTag;
-    }
-
-    public String getRvContinue() {
-        return rvContinue;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        RevisionsProp that = (RevisionsProp) o;
-
-        if (rvLimit != that.rvLimit) return false;
-        if (!Objects.equals(rvProp, that.rvProp)) return false;
-        if (!Objects.equals(rvSection, that.rvSection)) return false;
-        if (!Objects.equals(rvStart, that.rvStart)) return false;
-        if (!Objects.equals(rvEnd, that.rvEnd)) return false;
-        if (rvDir != that.rvDir) return false;
-        if (!Objects.equals(rvUser, that.rvUser)) return false;
-        if (!Objects.equals(rvExcludeUser, that.rvExcludeUser))
-            return false;
-        if (!Objects.equals(rvTag, that.rvTag)) return false;
-        return Objects.equals(rvContinue, that.rvContinue);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(rvProp, rvLimit, rvSection, rvStart, rvEnd, rvDir, rvUser, rvExcludeUser, rvTag, rvContinue);
     }
 
     public static class Builder {
@@ -216,6 +156,7 @@ public class RevisionsProp extends AbstractProp {
 
     }
 
+    @Getter
     public enum RvProp {
 
         /**
@@ -307,11 +248,9 @@ public class RevisionsProp extends AbstractProp {
             this.value = value;
         }
 
-        public String getValue() {
-            return value;
-        }
     }
 
+    @Getter
     public enum RvDir {
 
         NEWER ("newer"),
@@ -321,10 +260,6 @@ public class RevisionsProp extends AbstractProp {
 
         RvDir(String value) {
             this.value = value;
-        }
-
-        public String getValue() {
-            return value;
         }
 
     }

@@ -1,5 +1,8 @@
 package dev.masterflomaster1.jwa.common;
 
+import lombok.Getter;
+
+@Getter
 public enum Generator {
 
     /**
@@ -221,10 +224,6 @@ public enum Generator {
 
     Generator(String value) {
         this.value = value;
-    }
-
-    public String getValue() {
-        return value;
     }
 
 }

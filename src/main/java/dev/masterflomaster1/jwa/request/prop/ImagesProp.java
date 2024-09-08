@@ -1,8 +1,10 @@
 package dev.masterflomaster1.jwa.request.prop;
 
 import dev.masterflomaster1.jwa.common.Dir;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 
-import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -10,7 +12,10 @@ import java.util.Set;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:Images">API:Images</a>
  */
-public class ImagesProp extends AbstractProp {
+@Getter
+@ToString
+@EqualsAndHashCode(callSuper = false)
+public final class ImagesProp extends AbstractProp {
 
     private int imLimit;
     private String imContinue;
@@ -19,40 +24,6 @@ public class ImagesProp extends AbstractProp {
 
     private ImagesProp() {
         name = "images";
-    }
-
-    public int getImLimit() {
-        return imLimit;
-    }
-
-    public String getImContinue() {
-        return imContinue;
-    }
-
-    public Set<String> getImImages() {
-        return imImages;
-    }
-
-    public Dir getImDir() {
-        return imDir;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        ImagesProp that = (ImagesProp) o;
-
-        if (imLimit != that.imLimit) return false;
-        if (!Objects.equals(imContinue, that.imContinue)) return false;
-        if (!Objects.equals(imImages, that.imImages)) return false;
-        return imDir == that.imDir;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(imLimit, imContinue, imImages, imDir);
     }
 
     public static class Builder {

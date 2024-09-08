@@ -1,13 +1,18 @@
 package dev.masterflomaster1.jwa.request.prop;
 
-import java.util.Objects;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 
 /**
  * Returns all external URLs (not interwikis) from the given pages.
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:Extlinks">API:Extlinks</a>
  */
-public class ExtLinksProp extends AbstractProp {
+@Getter
+@ToString
+@EqualsAndHashCode(callSuper = false)
+public final class ExtLinksProp extends AbstractProp {
 
     private int elLimit;
     private String elContinue;
@@ -16,40 +21,6 @@ public class ExtLinksProp extends AbstractProp {
 
     private ExtLinksProp() {
         name = "extlinks";
-    }
-
-    public int getElLimit() {
-        return elLimit;
-    }
-
-    public String getElContinue() {
-        return elContinue;
-    }
-
-    public ElProtocol getElProtocol() {
-        return elProtocol;
-    }
-
-    public String getElQuery() {
-        return elQuery;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        ExtLinksProp that = (ExtLinksProp) o;
-
-        if (elLimit != that.elLimit) return false;
-        if (!Objects.equals(elContinue, that.elContinue)) return false;
-        if (elProtocol != that.elProtocol) return false;
-        return Objects.equals(elQuery, that.elQuery);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(elLimit, elContinue, elProtocol, elQuery);
     }
 
     public static class Builder {
@@ -106,6 +77,7 @@ public class ExtLinksProp extends AbstractProp {
 
     }
 
+    @Getter
     public enum ElProtocol {
         BITCOIN ("bitcoin"),
         FTP ("ftp"),
@@ -142,9 +114,6 @@ public class ExtLinksProp extends AbstractProp {
             this.value = value;
         }
 
-        public String getValue() {
-            return value;
-        }
     }
 
 }

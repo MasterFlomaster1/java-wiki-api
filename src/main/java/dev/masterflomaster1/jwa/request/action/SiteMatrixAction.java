@@ -1,5 +1,8 @@
 package dev.masterflomaster1.jwa.request.action;
 
+import lombok.Getter;
+import lombok.ToString;
+
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -8,7 +11,9 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/Special:MyLanguage/API:Sitematrix">API:Sitematrix</a>
  */
-public class SiteMatrixAction extends AbstractAction {
+@Getter
+@ToString
+public final class SiteMatrixAction extends AbstractAction {
 
     private Set<SmType> smType;
     private Set<SmState> smState;
@@ -19,30 +24,6 @@ public class SiteMatrixAction extends AbstractAction {
 
     private SiteMatrixAction() {
         apiUrl.setAction("sitematrix");
-    }
-
-    public Set<SmType> getSmType() {
-        return smType;
-    }
-
-    public Set<SmState> getSmState() {
-        return smState;
-    }
-
-    public Set<SmLangProp> getSmLangProp() {
-        return smLangProp;
-    }
-
-    public Set<SmSiteProp> getSmSiteProp() {
-        return smSiteProp;
-    }
-
-    public int getSmLimit() {
-        return smLimit;
-    }
-
-    public String getSmContinue() {
-        return smContinue;
     }
 
     public static class Builder {
@@ -126,6 +107,7 @@ public class SiteMatrixAction extends AbstractAction {
 
     }
 
+    @Getter
     public enum SmType {
 
         /**
@@ -144,12 +126,9 @@ public class SiteMatrixAction extends AbstractAction {
             this.value = value;
         }
 
-        public String getValue() {
-            return value;
-        }
-
     }
 
+    @Getter
     public enum SmState {
 
         ALL ("all"),
@@ -164,12 +143,9 @@ public class SiteMatrixAction extends AbstractAction {
             this.value = value;
         }
 
-        public String getValue() {
-            return value;
-        }
-
     }
 
+    @Getter
     public enum SmLangProp {
 
         CODE ("code"),
@@ -184,12 +160,9 @@ public class SiteMatrixAction extends AbstractAction {
             this.value = value;
         }
 
-        public String getValue() {
-            return value;
-        }
-
     }
 
+    @Getter
     public enum SmSiteProp {
 
         CODE ("code"),
@@ -202,10 +175,6 @@ public class SiteMatrixAction extends AbstractAction {
 
         SmSiteProp(String value) {
             this.value = value;
-        }
-
-        public String getValue() {
-            return value;
         }
 
     }

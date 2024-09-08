@@ -1,6 +1,7 @@
 package dev.masterflomaster1.jwa.request.prop;
 
 import dev.masterflomaster1.jwa.util.WikiApiUrl;
+import lombok.Getter;
 
 /**
  * Properties are data about a page, such as categories, or content on a page, such as images or links.
@@ -11,16 +12,10 @@ import dev.masterflomaster1.jwa.util.WikiApiUrl;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:Properties">API:Properties</a>
  */
+@Getter
 public abstract class AbstractProp {
 
     protected String name;
     protected final WikiApiUrl apiUrl = new WikiApiUrl();
 
-    public String getName() {
-        return name;
-    }
-
-    public WikiApiUrl getApiUrl() {
-        return apiUrl;
-    }
 }

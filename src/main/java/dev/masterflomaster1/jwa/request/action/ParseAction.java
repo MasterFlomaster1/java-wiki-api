@@ -2,6 +2,8 @@ package dev.masterflomaster1.jwa.request.action;
 
 import dev.masterflomaster1.jwa.common.ContentFormat;
 import dev.masterflomaster1.jwa.common.ContentModel;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -11,7 +13,9 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:Parsing_wikitext">API:Parsing wikitext</a>
  */
-public class ParseAction extends AbstractAction {
+@Getter
+@ToString
+public final class ParseAction extends AbstractAction {
 
     private String title;
     private String text;
@@ -39,110 +43,6 @@ public class ParseAction extends AbstractAction {
     private ContentFormat contentFormat;
     private ContentModel contentModel;
     private boolean mobileFormat;
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public long getRevId() {
-        return revId;
-    }
-
-    public String getSummary() {
-        return summary;
-    }
-
-    public String getPage() {
-        return page;
-    }
-
-    public int getPageId() {
-        return pageId;
-    }
-
-    public boolean isRedirects() {
-        return redirects;
-    }
-
-    public long getOldId() {
-        return oldId;
-    }
-
-    public Set<Prop> getProp() {
-        return prop;
-    }
-
-    public String getWrapOutputClass() {
-        return wrapOutputClass;
-    }
-
-    public boolean isParsoid() {
-        return parsoid;
-    }
-
-    public boolean isPst() {
-        return pst;
-    }
-
-    public boolean isOnlyPst() {
-        return onlyPst;
-    }
-
-    public String getSection() {
-        return section;
-    }
-
-    public String getSectionTitle() {
-        return sectionTitle;
-    }
-
-    public boolean isDisableLimitReport() {
-        return disableLimitReport;
-    }
-
-    public boolean isDisableEditSection() {
-        return disableEditSection;
-    }
-
-    public boolean isDisableStyleDeduplication() {
-        return disableStyleDeduplication;
-    }
-
-    public boolean isShowStrategyKeys() {
-        return showStrategyKeys;
-    }
-
-    public boolean isPreview() {
-        return preview;
-    }
-
-    public boolean isSectionPreview() {
-        return sectionPreview;
-    }
-
-    public boolean isDisableToc() {
-        return disableToc;
-    }
-
-    public UseSkin getUseSkin() {
-        return useSkin;
-    }
-
-    public ContentFormat getContentFormat() {
-        return contentFormat;
-    }
-
-    public ContentModel getContentModel() {
-        return contentModel;
-    }
-
-    public boolean isMobileFormat() {
-        return mobileFormat;
-    }
 
     private ParseAction() {
         apiUrl.setAction("parse");
@@ -429,6 +329,7 @@ public class ParseAction extends AbstractAction {
 
     }
 
+    @Getter
     public enum Prop {
 
         CATEGORIES ("categories");
@@ -439,12 +340,9 @@ public class ParseAction extends AbstractAction {
             this.value = value;
         }
 
-        public String getValue() {
-            return value;
-        }
-
     }
 
+    @Getter
     public enum UseSkin {
 
         API_OUTPUT ("apioutput"),
@@ -462,10 +360,6 @@ public class ParseAction extends AbstractAction {
 
         UseSkin(String value) {
             this.value = value;
-        }
-
-        public String getValue() {
-            return value;
         }
 
     }

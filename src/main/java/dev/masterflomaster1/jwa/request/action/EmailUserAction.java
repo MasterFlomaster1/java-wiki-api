@@ -1,6 +1,7 @@
 package dev.masterflomaster1.jwa.request.action;
 
-import dev.masterflomaster1.jwa.WikiApiSyntaxException;
+import lombok.Getter;
+import lombok.ToString;
 import okhttp3.FormBody;
 
 /**
@@ -8,7 +9,9 @@ import okhttp3.FormBody;
  *
  * @see <a href="https://www.mediawiki.org/wiki/Special:MyLanguage/API:Email">API:Email</a>
  */
-public class EmailUserAction extends AbstractAction implements IPost {
+@Getter
+@ToString
+public final class EmailUserAction extends AbstractAction implements IPost {
 
     private String target;
     private String subject;
@@ -18,26 +21,6 @@ public class EmailUserAction extends AbstractAction implements IPost {
 
     private EmailUserAction() {
         apiUrl.setAction("emailuser");
-    }
-
-    public String getTarget() {
-        return target;
-    }
-
-    public String getSubject() {
-        return subject;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public boolean isCcMe() {
-        return ccMe;
-    }
-
-    public String getToken() {
-        return token;
     }
 
     @Override
@@ -104,16 +87,16 @@ public class EmailUserAction extends AbstractAction implements IPost {
 
         public EmailUserAction build() {
             if (emailUserAction.target == null)
-                throw new WikiApiSyntaxException("Parameter 'target' is required");
+                throw new IllegalArgumentException("Parameter 'target' is required");
 
             if (emailUserAction.subject == null)
-                throw new WikiApiSyntaxException("Parameter 'subject' is required");
+                throw new IllegalArgumentException("Parameter 'subject' is required");
 
             if (emailUserAction.text == null)
-                throw new WikiApiSyntaxException("Parameter 'text' is required");
+                throw new IllegalArgumentException("Parameter 'text' is required");
 
             if (emailUserAction.token == null)
-                throw new WikiApiSyntaxException("Parameter 'token' is required");
+                throw new IllegalArgumentException("Parameter 'token' is required");
 
             return emailUserAction;
         }

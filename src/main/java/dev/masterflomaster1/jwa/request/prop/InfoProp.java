@@ -1,6 +1,9 @@
 package dev.masterflomaster1.jwa.request.prop;
 
-import java.util.Objects;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
+
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -9,7 +12,10 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:Info">API:Info</a>
  */
-public class InfoProp extends AbstractProp {
+@Getter
+@ToString
+@EqualsAndHashCode(callSuper = false)
+public final class InfoProp extends AbstractProp {
 
     private Set<InProp> inProp;
     private String inContinue;
@@ -18,33 +24,10 @@ public class InfoProp extends AbstractProp {
         name = "info";
     }
 
-    public Set<InProp> getInProp() {
-        return inProp;
-    }
-
-    public String getInContinue() {
-        return inContinue;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        InfoProp infoProp = (InfoProp) o;
-
-        if (!Objects.equals(inProp, infoProp.inProp)) return false;
-        return Objects.equals(inContinue, infoProp.inContinue);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(inProp, inContinue);
-    }
-
     /**
      * Additional properties to get
      */
+    @Getter
     public enum InProp {
 
         /**
@@ -125,9 +108,6 @@ public class InfoProp extends AbstractProp {
             this.value = value;
         }
 
-        public String getValue() {
-            return value;
-        }
     }
 
     public static class Builder {

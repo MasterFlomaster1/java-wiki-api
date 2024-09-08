@@ -1,24 +1,15 @@
 package dev.masterflomaster1.jwa.response;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.Getter;
+import lombok.ToString;
 
+@Getter
+@ToString
 public final class TitleBlacklist {
 
     @SerializedName("result")
     private String result;
 
-    private TitleBlacklist() {
-
-    }
-
-    public String getResult() {
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        return "TitleBlacklist{" +
-                "result='" + result + '\'' +
-                '}';
-    }
+    private TitleBlacklist() { }
 }

@@ -28,8 +28,8 @@ class IsReviewedPropTest {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .prop(Set.of(
-                                        new IsReviewedProp.Builder()
-                                                .build()
+                                new IsReviewedProp.Builder()
+                                        .build()
                                 )
                         )
                         .titles(Set.of("Main Page"))
@@ -38,7 +38,7 @@ class IsReviewedPropTest {
                 .build();
 
         Response r = api.execute(a);
-        assertTrue(r.getQuery().getPages().get(0).isReviewed());
+        assertTrue(r.getQuery().getPages().get(0).getIsReviewed());
     }
 
 }

@@ -1,12 +1,15 @@
 package dev.masterflomaster1.jwa.request.action;
 
-import dev.masterflomaster1.jwa.WikiApiSyntaxException;
+import lombok.Getter;
+import lombok.ToString;
 import okhttp3.FormBody;
 
 /**
  * Review a revision by approving or de-approving it.
  */
-public class ReviewAction extends AbstractAction implements IPost {
+@Getter
+@ToString
+public final class ReviewAction extends AbstractAction implements IPost {
 
     private long revId;
     private String comment;
@@ -15,22 +18,6 @@ public class ReviewAction extends AbstractAction implements IPost {
 
     private ReviewAction() {
         apiUrl.setAction("review");
-    }
-
-    public long getRevId() {
-        return revId;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public boolean isUnApprove() {
-        return unApprove;
-    }
-
-    public String getToken() {
-        return token;
     }
 
     @Override
@@ -87,7 +74,7 @@ public class ReviewAction extends AbstractAction implements IPost {
 
         public ReviewAction build() {
             if (reviewAction.token == null)
-                throw new WikiApiSyntaxException("Parameter 'token' is required");
+                throw new IllegalArgumentException("Parameter 'token' is required");
 
             return reviewAction;
         }

@@ -1,8 +1,9 @@
 package dev.masterflomaster1.jwa.request.action;
 
-import dev.masterflomaster1.jwa.WikiApiSyntaxException;
 import dev.masterflomaster1.jwa.common.Namespace;
 import dev.masterflomaster1.jwa.common.Tags;
+import lombok.Getter;
+import lombok.ToString;
 import okhttp3.FormBody;
 
 import java.util.Set;
@@ -13,7 +14,9 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:Block">API:Block</a>
  */
-public class BlockAction extends AbstractAction implements IPost {
+@Getter
+@ToString
+public final class BlockAction extends AbstractAction implements IPost {
 
     private String user;
     private String expiry;
@@ -32,74 +35,6 @@ public class BlockAction extends AbstractAction implements IPost {
     private Set<String> pageRestrictions;
     private Set<Namespace> namespaceRestrictions;
     private String token;
-
-    public String getUser() {
-        return user;
-    }
-
-    public String getExpiry() {
-        return expiry;
-    }
-
-    public String getReason() {
-        return reason;
-    }
-
-    public boolean isAnonOnly() {
-        return anonOnly;
-    }
-
-    public boolean isNoCreate() {
-        return noCreate;
-    }
-
-    public boolean isAutoBlock() {
-        return autoBlock;
-    }
-
-    public boolean isNoEmail() {
-        return noEmail;
-    }
-
-    public boolean isHideName() {
-        return hideName;
-    }
-
-    public boolean isAllowUserTalk() {
-        return allowUserTalk;
-    }
-
-    public boolean isReBlock() {
-        return reBlock;
-    }
-
-    public boolean isWatchUser() {
-        return watchUser;
-    }
-
-    public String getWatchlistExpiry() {
-        return watchlistExpiry;
-    }
-
-    public Set<Tags> getTags() {
-        return tags;
-    }
-
-    public boolean isPartial() {
-        return partial;
-    }
-
-    public Set<String> getPageRestrictions() {
-        return pageRestrictions;
-    }
-
-    public Set<Namespace> getNamespaceRestrictions() {
-        return namespaceRestrictions;
-    }
-
-    public String getToken() {
-        return token;
-    }
 
     private BlockAction() {
         apiUrl.setAction("block");
@@ -298,9 +233,9 @@ public class BlockAction extends AbstractAction implements IPost {
             return this;
         }
 
-        public BlockAction build() throws WikiApiSyntaxException {
+        public BlockAction build() {
             if (blockAction.token == null)
-                throw new WikiApiSyntaxException("Parameter 'token' is required");
+                throw new IllegalArgumentException("Parameter 'token' is required");
 
             return blockAction;
         }

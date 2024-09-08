@@ -1,22 +1,21 @@
 package dev.masterflomaster1.jwa.request.action;
 
-import dev.masterflomaster1.jwa.WikiApiSyntaxException;
+import lombok.Getter;
+import lombok.ToString;
 
 /**
  * Check a username against AntiSpoof's normalisation checks.
  *
  * @see <a href="https://www.mediawiki.org/w/api.php?action=help&modules=antispoof">mediawiki.org</a>
  */
-public class AntiSpoofAction extends AbstractAction {
+@Getter
+@ToString
+public final class AntiSpoofAction extends AbstractAction {
 
     private String username;
 
     private AntiSpoofAction() {
         apiUrl.setAction("antispoof");
-    }
-
-    public String getUsername() {
-        return username;
     }
 
     public static class Builder {
@@ -33,9 +32,9 @@ public class AntiSpoofAction extends AbstractAction {
             return this;
         }
 
-        public AntiSpoofAction build() throws WikiApiSyntaxException {
+        public AntiSpoofAction build() {
             if (antiSpoofAction.username == null)
-                throw new WikiApiSyntaxException("Parameter 'username' is required");
+                throw new IllegalArgumentException("Parameter 'username' is required");
 
             return antiSpoofAction;
         }

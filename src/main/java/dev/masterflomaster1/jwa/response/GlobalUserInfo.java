@@ -1,10 +1,14 @@
 package dev.masterflomaster1.jwa.response;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.util.List;
 import java.util.Map;
 
+@Getter
+@ToString
 public final class GlobalUserInfo {
 
     @SerializedName("home")
@@ -31,53 +35,5 @@ public final class GlobalUserInfo {
     @SerializedName("editcount")
     private Integer editCount;
 
-    private GlobalUserInfo() {
-
-    }
-
-    public String getHome() {
-        return home;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public String getRegistration() {
-        return registration;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public List<String> getGroups() {
-        return groups;
-    }
-
-    public List<String> getRights() {
-        return rights;
-    }
-
-    public List<Map<String, Object>> getMerged() {
-        return merged;
-    }
-
-    public Integer getEditCount() {
-        return editCount;
-    }
-
-    @Override
-    public String toString() {
-        return "GlobalUserInfo{" +
-                "home='" + home + '\'' +
-                ", id=" + id +
-                ", registration='" + registration + '\'' +
-                ", name='" + name + '\'' +
-                ", groups=" + groups +
-                ", rights=" + rights +
-                ", merged=" + merged +
-                ", editCount=" + editCount +
-                '}';
-    }
+    private GlobalUserInfo() { }
 }

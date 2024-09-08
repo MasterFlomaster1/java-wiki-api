@@ -1,5 +1,8 @@
 package dev.masterflomaster1.jwa.common;
 
+import lombok.Getter;
+
+@Getter
 public enum Prop {
 
     /**
@@ -123,10 +126,6 @@ public enum Prop {
 
     Prop(String value) {
         this.value = value;
-    }
-
-    public String getValue() {
-        return value;
     }
 
 }

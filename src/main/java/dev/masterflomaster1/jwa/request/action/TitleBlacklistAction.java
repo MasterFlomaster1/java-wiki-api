@@ -1,9 +1,14 @@
 package dev.masterflomaster1.jwa.request.action;
 
+import lombok.Getter;
+import lombok.ToString;
+
 /**
  * Validate a page title, filename, or username against the TitleBlacklist.
  */
-public class TitleBlacklistAction extends AbstractAction {
+@Getter
+@ToString
+public final class TitleBlacklistAction extends AbstractAction {
 
     private String tbTitle;
     private TbAction tbAction;
@@ -11,18 +16,6 @@ public class TitleBlacklistAction extends AbstractAction {
 
     private TitleBlacklistAction() {
         apiUrl.setAction("titleblacklist");
-    }
-
-    public String getTbTitle() {
-        return tbTitle;
-    }
-
-    public TbAction getTbAction() {
-        return tbAction;
-    }
-
-    public boolean isTbNoOverride() {
-        return tbNoOverride;
     }
 
     public static class Builder {
@@ -65,6 +58,7 @@ public class TitleBlacklistAction extends AbstractAction {
 
     }
 
+    @Getter
     public enum TbAction {
 
         CREATE ("create"),
@@ -78,10 +72,6 @@ public class TitleBlacklistAction extends AbstractAction {
 
         TbAction(String value) {
             this.value = value;
-        }
-
-        public String getValue() {
-            return value;
         }
 
     }

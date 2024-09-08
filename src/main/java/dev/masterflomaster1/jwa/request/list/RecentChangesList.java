@@ -2,6 +2,9 @@ package dev.masterflomaster1.jwa.request.list;
 
 import dev.masterflomaster1.jwa.common.Namespace;
 import dev.masterflomaster1.jwa.util.TimeHandler;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -12,7 +15,10 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:RecentChanges">API:RecentChanges</a>
  */
-public class RecentChangesList extends AbstractList {
+@Getter
+@ToString
+@EqualsAndHashCode(callSuper = false)
+public final class RecentChangesList extends AbstractList {
 
     private LocalDateTime rcStart;
     private LocalDateTime rcEnd;
@@ -32,66 +38,6 @@ public class RecentChangesList extends AbstractList {
 
     private RecentChangesList() {
         name = "recentchanges";
-    }
-
-    public LocalDateTime getRcStart() {
-        return rcStart;
-    }
-
-    public LocalDateTime getRcEnd() {
-        return rcEnd;
-    }
-
-    public RcDir getRcDir() {
-        return rcDir;
-    }
-
-    public Namespace getRcNamespace() {
-        return rcNamespace;
-    }
-
-    public String getRcUser() {
-        return rcUser;
-    }
-
-    public String getRcExcludeUser() {
-        return rcExcludeUser;
-    }
-
-    public String getRcTag() {
-        return rcTag;
-    }
-
-    public Set<RcProp> getRcProp() {
-        return rcProp;
-    }
-
-    public Set<RcShow> getRcShow() {
-        return rcShow;
-    }
-
-    public int getRcLimit() {
-        return rcLimit;
-    }
-
-    public Set<RcType> getRcType() {
-        return rcType;
-    }
-
-    public boolean isRcTopOnly() {
-        return rcTopOnly;
-    }
-
-    public String getRcTitle() {
-        return rcTitle;
-    }
-
-    public String getRcContinue() {
-        return rcContinue;
-    }
-
-    public boolean isRcGenerateRevisions() {
-        return rcGenerateRevisions;
     }
 
     public static class Builder {
@@ -272,6 +218,7 @@ public class RecentChangesList extends AbstractList {
     /**
      * In which direction to enumerate.
      */
+    @Getter
     public enum RcDir {
         NEWER ("newer"),
         OLDER ("older");
@@ -282,14 +229,12 @@ public class RecentChangesList extends AbstractList {
             this.value = value;
         }
 
-        public String getValue() {
-            return value;
-        }
     }
 
     /**
      * Which types of changes to show.
      */
+    @Getter
     public enum RcType {
         CATEGORIZE ("categorize"),
         EDIT ("edit"),
@@ -303,11 +248,9 @@ public class RecentChangesList extends AbstractList {
             this.value = value;
         }
 
-        public String getValue() {
-            return value;
-        }
     }
 
+    @Getter
     public enum RcProp {
         COMMENT ("comment"),
         FLAGS ("flags"),
@@ -330,11 +273,9 @@ public class RecentChangesList extends AbstractList {
             this.value = value;
         }
 
-        public String getValue() {
-            return value;
-        }
     }
 
+    @Getter
     public enum RcShow {
         NOT_ANON ("!anon"),
         NOT_AUTO_PATROLLED ("!autopatrolled"),
@@ -358,9 +299,6 @@ public class RecentChangesList extends AbstractList {
             this.value = value;
         }
 
-        public String getValue() {
-            return value;
-        }
     }
 
 }

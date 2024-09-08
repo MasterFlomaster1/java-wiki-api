@@ -1,6 +1,7 @@
 package dev.masterflomaster1.jwa.request.action;
 
-import dev.masterflomaster1.jwa.WikiApiSyntaxException;
+import lombok.Getter;
+import lombok.ToString;
 import okhttp3.FormBody;
 
 /**
@@ -8,21 +9,15 @@ import okhttp3.FormBody;
  *
  * @see <a href="https://www.mediawiki.org/w/api.php?action=help&modules=shortenurl">https://www.mediawiki.org/</a>
  */
-public class ShortenUrlAction extends AbstractAction implements IPost {
+@Getter
+@ToString
+public final class ShortenUrlAction extends AbstractAction implements IPost {
 
     private String url;
     private boolean qrCode;
 
     private ShortenUrlAction() {
         apiUrl.setAction("shortenurl");
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public boolean isQrCode() {
-        return qrCode;
     }
 
     @Override
@@ -56,9 +51,9 @@ public class ShortenUrlAction extends AbstractAction implements IPost {
             return this;
         }
 
-        public ShortenUrlAction build() throws WikiApiSyntaxException {
+        public ShortenUrlAction build() {
             if (shortenUrlAction.url == null)
-                throw new WikiApiSyntaxException("Parameter 'url' is required");
+                throw new IllegalArgumentException("Parameter 'url' is required");
 
             return shortenUrlAction;
         }

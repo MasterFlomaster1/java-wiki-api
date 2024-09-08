@@ -1,7 +1,11 @@
 package dev.masterflomaster1.jwa.response;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.Getter;
+import lombok.ToString;
 
+@Getter
+@ToString
 public final class FileUsage {
 
     @SerializedName("pageid")
@@ -16,33 +20,5 @@ public final class FileUsage {
     @SerializedName("redirect")
     private Boolean redirect;
 
-    private FileUsage() {
-
-    }
-
-    public Integer getPageId() {
-        return pageId;
-    }
-
-    public Integer getNs() {
-        return ns;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public Boolean getRedirect() {
-        return redirect;
-    }
-
-    @Override
-    public String toString() {
-        return "FileUsage{" +
-                "pageId=" + pageId +
-                ", ns=" + ns +
-                ", title='" + title + '\'' +
-                ", redirect=" + redirect +
-                '}';
-    }
+    private FileUsage() { }
 }

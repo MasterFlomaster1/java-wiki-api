@@ -2,13 +2,18 @@ package dev.masterflomaster1.jwa.request.prop;
 
 import dev.masterflomaster1.jwa.common.Prop;
 import dev.masterflomaster1.jwa.util.TimeHandler;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class VideoInfoProp extends AbstractProp {
+@Getter
+@ToString
+@EqualsAndHashCode(callSuper = false)
+public final class VideoInfoProp extends AbstractProp {
 
     private Set<Prop> viProp;
     private int viLimit;
@@ -27,96 +32,6 @@ public class VideoInfoProp extends AbstractProp {
 
     private VideoInfoProp() {
         name = "videoinfo";
-    }
-
-    public Set<Prop> getViProp() {
-        return viProp;
-    }
-
-    public int getViLimit() {
-        return viLimit;
-    }
-
-    public LocalDateTime getViStart() {
-        return viStart;
-    }
-
-    public LocalDateTime getViEnd() {
-        return viEnd;
-    }
-
-    public int getViUrlWidth() {
-        return viUrlWidth;
-    }
-
-    public int getViUrlHeight() {
-        return viUrlHeight;
-    }
-
-    public String getViMetadataVersion() {
-        return viMetadataVersion;
-    }
-
-    public String getViExtMetadataLanguage() {
-        return viExtMetadataLanguage;
-    }
-
-    public boolean isViExtMetadataMultiLang() {
-        return viExtMetadataMultiLang;
-    }
-
-    public Set<String> getViExtMetadataFilter() {
-        return viExtMetadataFilter;
-    }
-
-    public String getViUrlParam() {
-        return viUrlParam;
-    }
-
-    public String getViBadFileContextTitle() {
-        return viBadFileContextTitle;
-    }
-
-    public String getViContinue() {
-        return viContinue;
-    }
-
-    public boolean isViLocalOnly() {
-        return viLocalOnly;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        VideoInfoProp that = (VideoInfoProp) o;
-
-        if (viLimit != that.viLimit) return false;
-        if (viUrlWidth != that.viUrlWidth) return false;
-        if (viUrlHeight != that.viUrlHeight) return false;
-        if (viExtMetadataMultiLang != that.viExtMetadataMultiLang) return false;
-        if (viLocalOnly != that.viLocalOnly) return false;
-        if (!Objects.equals(viProp, that.viProp)) return false;
-        if (!Objects.equals(viStart, that.viStart)) return false;
-        if (!Objects.equals(viEnd, that.viEnd)) return false;
-        if (!Objects.equals(viMetadataVersion, that.viMetadataVersion))
-            return false;
-        if (!Objects.equals(viExtMetadataLanguage, that.viExtMetadataLanguage))
-            return false;
-        if (!Objects.equals(viExtMetadataFilter, that.viExtMetadataFilter))
-            return false;
-        if (!Objects.equals(viUrlParam, that.viUrlParam)) return false;
-        if (!Objects.equals(viBadFileContextTitle, that.viBadFileContextTitle))
-            return false;
-        return Objects.equals(viContinue, that.viContinue);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(viProp, viLimit, viStart, viEnd, viUrlWidth, viUrlHeight, viMetadataVersion,
-                viExtMetadataLanguage, viExtMetadataMultiLang, viExtMetadataFilter, viUrlParam, viBadFileContextTitle,
-                viContinue, viLocalOnly);
     }
 
     public static class Builder {

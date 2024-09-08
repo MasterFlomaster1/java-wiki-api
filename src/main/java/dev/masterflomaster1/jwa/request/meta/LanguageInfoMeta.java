@@ -1,13 +1,19 @@
 package dev.masterflomaster1.jwa.request.meta;
 
-import java.util.Objects;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
+
 import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
  * Return information about available languages.
  */
-public class LanguageInfoMeta extends AbstractMeta {
+@Getter
+@ToString
+@EqualsAndHashCode(callSuper = false)
+public final class LanguageInfoMeta extends AbstractMeta {
 
     private Set<LiProp> liProp;
     private Set<String> liCode;
@@ -15,35 +21,6 @@ public class LanguageInfoMeta extends AbstractMeta {
 
     private LanguageInfoMeta() {
         name = "languageinfo";
-    }
-
-    public Set<LiProp> getLiProp() {
-        return liProp;
-    }
-
-    public Set<String> getLiCode() {
-        return liCode;
-    }
-
-    public String getLiContinue() {
-        return liContinue;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        LanguageInfoMeta that = (LanguageInfoMeta) o;
-
-        if (!Objects.equals(liProp, that.liProp)) return false;
-        if (!Objects.equals(liCode, that.liCode)) return false;
-        return Objects.equals(liContinue, that.liContinue);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(liProp, liCode, liContinue);
     }
 
     public static class Builder {
@@ -91,6 +68,7 @@ public class LanguageInfoMeta extends AbstractMeta {
 
     }
 
+    @Getter
     public enum LiProp {
 
         /**
@@ -139,10 +117,6 @@ public class LanguageInfoMeta extends AbstractMeta {
 
         LiProp(String value) {
             this.value = value;
-        }
-
-        public String getValue() {
-            return value;
         }
 
     }

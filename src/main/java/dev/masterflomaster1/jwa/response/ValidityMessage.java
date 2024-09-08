@@ -1,10 +1,14 @@
 package dev.masterflomaster1.jwa.response;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.util.List;
 
-public class ValidityMessage {
+@Getter
+@ToString
+public final class ValidityMessage {
 
     @SerializedName("message")
     private String message;
@@ -18,33 +22,5 @@ public class ValidityMessage {
     @SerializedName("type")
     private String type;
 
-    private ValidityMessage() {
-
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public List<Integer> getParams() {
-        return params;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    @Override
-    public String toString() {
-        return "ValidityMessage{" +
-                "message='" + message + '\'' +
-                ", params=" + params +
-                ", code='" + code + '\'' +
-                ", type='" + type + '\'' +
-                '}';
-    }
+    private ValidityMessage() { }
 }

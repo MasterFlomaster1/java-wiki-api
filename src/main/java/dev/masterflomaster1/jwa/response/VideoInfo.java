@@ -1,7 +1,11 @@
 package dev.masterflomaster1.jwa.response;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.Getter;
+import lombok.ToString;
 
+@Getter
+@ToString
 public final class VideoInfo {
 
     @SerializedName("timestamp")
@@ -46,83 +50,5 @@ public final class VideoInfo {
     @SerializedName("canonicaltitle")
     private String canonicalTitle;
 
-    private VideoInfo() {
-
-    }
-
-    public String getTimestamp() {
-        return timestamp;
-    }
-
-    public String getUser() {
-        return user;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public Integer getSize() {
-        return size;
-    }
-
-    public Integer getWidth() {
-        return width;
-    }
-
-    public Integer getHeight() {
-        return height;
-    }
-
-    public Integer getDuration() {
-        return duration;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public String getSha1() {
-        return sha1;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public String getDescriptionUrl() {
-        return descriptionUrl;
-    }
-
-    public String getDescriptionShortUrl() {
-        return descriptionShortUrl;
-    }
-
-    public Integer getBitDepth() {
-        return bitDepth;
-    }
-
-    public String getCanonicalTitle() {
-        return canonicalTitle;
-    }
-
-    @Override
-    public String toString() {
-        return "VideoInfo{" +
-                "timestamp='" + timestamp + '\'' +
-                ", user='" + user + '\'' +
-                ", userId=" + userId +
-                ", size=" + size +
-                ", width=" + width +
-                ", height=" + height +
-                ", duration=" + duration +
-                ", comment='" + comment + '\'' +
-                ", sha1='" + sha1 + '\'' +
-                ", url='" + url + '\'' +
-                ", descriptionUrl='" + descriptionUrl + '\'' +
-                ", descriptionShortUrl='" + descriptionShortUrl + '\'' +
-                ", bitDepth=" + bitDepth +
-                ", canonicalTitle='" + canonicalTitle + '\'' +
-                '}';
-    }
+    private VideoInfo() { }
 }

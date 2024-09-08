@@ -1,10 +1,14 @@
 package dev.masterflomaster1.jwa.response;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.util.List;
 import java.util.Map;
 
+@Getter
+@ToString
 public final class Page {
 
     @SerializedName("pageid")
@@ -85,127 +89,5 @@ public final class Page {
     @SerializedName("fileusage")
     private List<FileUsage> fileUsage;
 
-    private Page() {
-
-    }
-
-    public Integer getPageId() {
-        return pageId;
-    }
-
-    public Integer getNs() {
-        return ns;
-    }
-
-    public Boolean isMissing() {
-        return missing;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public CategoryInfo getCategoryInfo() {
-        return categoryInfo;
-    }
-
-    public List<Category> getCategories() {
-        return categories;
-    }
-
-    public List<Revision> getRevisions() {
-        return revisions;
-    }
-
-    public List<ImageInfo> getImageInfo() {
-        return imageInfo;
-    }
-
-    public Map<String, Integer> getPageViews() {
-        return pageViews;
-    }
-
-    public List<Template> getTemplates() {
-        return templates;
-    }
-
-    public Integer getAnonContributors() {
-        return anonContributors;
-    }
-
-    public List<Contributor> getContributors() {
-        return contributors;
-    }
-
-    public List<Map<String, String>> getExtLinks() {
-        return extLinks;
-    }
-
-    public List<Map<String, String>> getGlobalUsage() {
-        return globalUsage;
-    }
-
-    public String getTouched() {
-        return touched;
-    }
-
-    public Long getLastRevId() {
-        return lastRevId;
-    }
-
-    public Integer getLength() {
-        return length;
-    }
-
-    public List<Map<String, String>> getImages() {
-        return images;
-    }
-
-    public List<Redirect> getRedirects() {
-        return redirects;
-    }
-
-    public Boolean isReviewed() {
-        return isReviewed;
-    }
-
-    public List<VideoInfo> getVideoInfo() {
-        return videoInfo;
-    }
-
-    public List<FileUsage> getFileUsage() {
-        return fileUsage;
-    }
-
-    @Override
-    public String toString() {
-        return "Page{" +
-                "pageId=" + pageId +
-                ", ns=" + ns +
-                ", missing=" + missing +
-                ", title='" + title + '\'' +
-                ", isReviewed=" + isReviewed +
-                ", anonContributors=" + anonContributors +
-                ", contentModel='" + contentModel + '\'' +
-                ", pageLanguage='" + pageLanguage + '\'' +
-                ", pageLanguageHtmlCode='" + pageLanguageHtmlCode + '\'' +
-                ", pageLanguageDir='" + pageLanguageDir + '\'' +
-                ", touched='" + touched + '\'' +
-                ", lastRevId=" + lastRevId +
-                ", length=" + length +
-                ", categoryInfo=" + categoryInfo +
-                ", categories=" + categories +
-                ", revisions=" + revisions +
-                ", imageInfo=" + imageInfo +
-                ", templates=" + templates +
-                ", pageViews=" + pageViews +
-                ", contributors=" + contributors +
-                ", extLinks=" + extLinks +
-                ", globalUsage=" + globalUsage +
-                ", images=" + images +
-                ", redirects=" + redirects +
-                ", videoInfo=" + videoInfo +
-                ", fileUsage=" + fileUsage +
-                '}';
-    }
+    private Page() { }
 }

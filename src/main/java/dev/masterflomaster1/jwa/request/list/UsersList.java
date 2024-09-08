@@ -1,6 +1,9 @@
 package dev.masterflomaster1.jwa.request.list;
 
-import java.util.Objects;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
+
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -9,7 +12,10 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:Users">API:Users</a>
  */
-public class UsersList extends AbstractList {
+@Getter
+@ToString
+@EqualsAndHashCode(callSuper = false)
+public final class UsersList extends AbstractList {
 
     private Set<UsProp> usProp;
     private String usAttachedWiki;
@@ -18,41 +24,6 @@ public class UsersList extends AbstractList {
 
     private UsersList() {
         name = "users";
-    }
-
-    public Set<UsProp> getUsProp() {
-        return usProp;
-    }
-
-    public String getUsAttachedWiki() {
-        return usAttachedWiki;
-    }
-
-    public Set<String> getUsUsers() {
-        return usUsers;
-    }
-
-    public Set<Integer> getUsUserIds() {
-        return usUserIds;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        UsersList usersList = (UsersList) o;
-
-        if (!Objects.equals(usProp, usersList.usProp)) return false;
-        if (!Objects.equals(usAttachedWiki, usersList.usAttachedWiki))
-            return false;
-        if (!Objects.equals(usUsers, usersList.usUsers)) return false;
-        return Objects.equals(usUserIds, usersList.usUserIds);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(usUsers, usAttachedWiki, usUsers, usUserIds);
     }
 
     public static class Builder {
@@ -114,6 +85,7 @@ public class UsersList extends AbstractList {
     /**
      * Which pieces of information to include
      */
+    @Getter
     public enum UsProp {
 
         /** Tags if the user is blocked, by whom, and for what reason. */
@@ -161,10 +133,6 @@ public class UsersList extends AbstractList {
 
         UsProp(String value) {
             this.value = value;
-        }
-
-        public String getValue() {
-            return value;
         }
 
     }

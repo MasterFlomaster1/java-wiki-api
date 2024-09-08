@@ -1,8 +1,10 @@
 package dev.masterflomaster1.jwa.request.prop;
 
 import dev.masterflomaster1.jwa.common.Dir;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -11,7 +13,10 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:Categories">API:Categories</a>
  */
-public class CategoriesProp extends AbstractProp {
+@Getter
+@ToString
+@EqualsAndHashCode(callSuper = false)
+public final class CategoriesProp extends AbstractProp {
 
     private Set<ClProp> clProp;
     private ClShow clShow;
@@ -22,50 +27,6 @@ public class CategoriesProp extends AbstractProp {
 
     private CategoriesProp() {
         name = "categories";
-    }
-
-    public Set<ClProp> getClProp() {
-        return clProp;
-    }
-
-    public ClShow getClShow() {
-        return clShow;
-    }
-
-    public int getClLimit() {
-        return clLimit;
-    }
-
-    public String getClContinue() {
-        return clContinue;
-    }
-
-    public Set<String> getClCategories() {
-        return clCategories;
-    }
-
-    public Dir getClDir() {
-        return clDir;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        CategoriesProp that = (CategoriesProp) o;
-
-        if (clLimit != that.clLimit) return false;
-        if (!Objects.equals(clProp, that.clProp)) return false;
-        if (clShow != that.clShow) return false;
-        if (!Objects.equals(clContinue, that.clContinue)) return false;
-        if (!Objects.equals(clCategories, that.clCategories)) return false;
-        return clDir == that.clDir;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(clProp, clShow, clLimit, clContinue, clCategories, clDir);
     }
 
     public static class Builder {
@@ -146,6 +107,7 @@ public class CategoriesProp extends AbstractProp {
     /**
      * Which additional properties to get for each category:
      */
+    @Getter
     public enum ClProp {
 
         /**
@@ -169,14 +131,12 @@ public class CategoriesProp extends AbstractProp {
             this.value = value;
         }
 
-        public String getValue() {
-            return value;
-        }
     }
 
     /**
      * Which kind of categories to show.
      */
+    @Getter
     public enum ClShow {
         HIDDEN ("hidden"),
         UNHIDDEN ("!hidden");
@@ -187,9 +147,6 @@ public class CategoriesProp extends AbstractProp {
             this.value = value;
         }
 
-        public String getValue() {
-            return value;
-        }
     }
 
 }

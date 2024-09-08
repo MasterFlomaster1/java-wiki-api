@@ -1,5 +1,8 @@
 package dev.masterflomaster1.jwa.request.action;
 
+import lombok.Getter;
+import lombok.ToString;
+
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -8,7 +11,9 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:Compare">API:Compare</a>
  */
-public class CompareAction extends AbstractAction {
+@Getter
+@ToString
+public final class CompareAction extends AbstractAction {
 
     private String fromTitle;
     private int fromId;
@@ -25,54 +30,6 @@ public class CompareAction extends AbstractAction {
 
     private CompareAction() {
         apiUrl.setAction("compare");
-    }
-
-    public String getFromTitle() {
-        return fromTitle;
-    }
-
-    public int getFromId() {
-        return fromId;
-    }
-
-    public long getFromRev() {
-        return fromRev;
-    }
-
-    public boolean isFromPst() {
-        return fromPst;
-    }
-
-    public String getToTitle() {
-        return toTitle;
-    }
-
-    public int getToId() {
-        return toId;
-    }
-
-    public long getToRev() {
-        return toRev;
-    }
-
-    public ToRelative getToRelative() {
-        return toRelative;
-    }
-
-    public boolean isToPst() {
-        return toPst;
-    }
-
-    public Set<Prop> getProp() {
-        return prop;
-    }
-
-    public Set<Slots> getSlots() {
-        return slots;
-    }
-
-    public DiffType getDiffType() {
-        return diffType;
     }
 
     public static class Builder {
@@ -210,6 +167,7 @@ public class CompareAction extends AbstractAction {
 
     }
 
+    @Getter
     public enum ToRelative {
 
         CUR ("cur"),
@@ -222,12 +180,9 @@ public class CompareAction extends AbstractAction {
             this.value = value;
         }
 
-        public String getValue() {
-            return value;
-        }
-
     }
 
+    @Getter
     public enum Prop {
 
         /**
@@ -289,12 +244,9 @@ public class CompareAction extends AbstractAction {
             this.value = value;
         }
 
-        public String getValue() {
-            return value;
-        }
-
     }
 
+    @Getter
     public enum Slots {
         ALL_VALUES ("*"),
         MAIN ("main");
@@ -305,11 +257,9 @@ public class CompareAction extends AbstractAction {
             this.value = value;
         }
 
-        public String getValue() {
-            return value;
-        }
     }
 
+    @Getter
     public enum DiffType {
 
         INLINE ("inline"),
@@ -320,10 +270,6 @@ public class CompareAction extends AbstractAction {
 
         DiffType(String value) {
             this.value = value;
-        }
-
-        public String getValue() {
-            return value;
         }
 
     }

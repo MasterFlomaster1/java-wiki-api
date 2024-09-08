@@ -1,8 +1,11 @@
 package dev.masterflomaster1.jwa.common;
 
+import lombok.Getter;
+
 /**
  * @see <a href="https://en.wikipedia.org/wiki/Wikipedia:Namespace">Wikipedia:Namespace</a>
  */
+@Getter
 public enum Namespace {
 
     ALL_NAMESPACES ("*"),
@@ -43,7 +46,4 @@ public enum Namespace {
         this.value = value;
     }
 
-    public String getValue() {
-        return value;
-    }
 }

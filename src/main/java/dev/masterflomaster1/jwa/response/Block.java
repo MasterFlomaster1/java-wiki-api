@@ -1,7 +1,11 @@
 package dev.masterflomaster1.jwa.response;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.Getter;
+import lombok.ToString;
 
+@Getter
+@ToString
 public final class Block {
 
     @SerializedName("user")
@@ -25,48 +29,5 @@ public final class Block {
     @SerializedName("noemail")
     private String noEmail;
 
-    private Block() {
-
-    }
-
-    public String getUser() {
-        return user;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public String getExpiry() {
-        return expiry;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getReason() {
-        return reason;
-    }
-
-    public String getNoCreate() {
-        return noCreate;
-    }
-
-    public String getNoEmail() {
-        return noEmail;
-    }
-
-    @Override
-    public String toString() {
-        return "Block{" +
-                "user='" + user + '\'' +
-                ", userId=" + userId +
-                ", expiry='" + expiry + '\'' +
-                ", id='" + id + '\'' +
-                ", reason='" + reason + '\'' +
-                ", noCreate='" + noCreate + '\'' +
-                ", noEmail='" + noEmail + '\'' +
-                '}';
-    }
+    private Block() { }
 }

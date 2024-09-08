@@ -1,6 +1,9 @@
 package dev.masterflomaster1.jwa.request.meta;
 
-import java.util.Objects;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
+
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -9,31 +12,15 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:Tokens">API:Tokens</a>
  */
-public class TokensMeta extends AbstractMeta {
+@Getter
+@ToString
+@EqualsAndHashCode(callSuper = false)
+public final class TokensMeta extends AbstractMeta {
 
     private Set<Type> type;
 
     private TokensMeta() {
         name = "tokens";
-    }
-
-    public Set<Type> getType() {
-        return type;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        TokensMeta that = (TokensMeta) o;
-
-        return type == that.type;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(type);
     }
 
     public static class Builder {
@@ -58,6 +45,7 @@ public class TokensMeta extends AbstractMeta {
 
     }
 
+    @Getter
     public enum Type {
 
         ALL_VALUES ("*"),
@@ -77,9 +65,6 @@ public class TokensMeta extends AbstractMeta {
             this.value = value;
         }
 
-        public String getValue() {
-            return value;
-        }
     }
 
 }

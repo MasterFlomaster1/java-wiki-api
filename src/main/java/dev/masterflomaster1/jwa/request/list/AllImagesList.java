@@ -2,9 +2,11 @@ package dev.masterflomaster1.jwa.request.list;
 
 import dev.masterflomaster1.jwa.common.Prop;
 import dev.masterflomaster1.jwa.util.TimeHandler;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -14,7 +16,10 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/Special:MyLanguage/API:Allimages">API:Allimages</a>
  */
-public class AllImagesList extends AbstractList {
+@Getter
+@ToString
+@EqualsAndHashCode(callSuper = false)
+public final class AllImagesList extends AbstractList {
 
     private AiSort aiSort;
     private AiDir aiDir;
@@ -35,101 +40,6 @@ public class AllImagesList extends AbstractList {
 
     private AllImagesList() {
         name = "allimages";
-    }
-
-    public AiSort getAiSort() {
-        return aiSort;
-    }
-
-    public AiDir getAiDir() {
-        return aiDir;
-    }
-
-    public String getAiFrom() {
-        return aiFrom;
-    }
-
-    public String getAiTo() {
-        return aiTo;
-    }
-
-    public String getAiContinue() {
-        return aiContinue;
-    }
-
-    public LocalDateTime getAiStart() {
-        return aiStart;
-    }
-
-    public LocalDateTime getAiEnd() {
-        return aiEnd;
-    }
-
-    public Set<Prop> getAiProp() {
-        return aiProp;
-    }
-
-    public String getAiPrefix() {
-        return aiPrefix;
-    }
-
-    public long getAiMinSize() {
-        return aiMinSize;
-    }
-
-    public long getAiMaxSize() {
-        return aiMaxSize;
-    }
-
-    public String getAiSha1() {
-        return aiSha1;
-    }
-
-    public String getAiSha1Base36() {
-        return aiSha1Base36;
-    }
-
-    public String getAiUser() {
-        return aiUser;
-    }
-
-    public AiFilterBots getAiFilterBots() {
-        return aiFilterBots;
-    }
-
-    public int getAiLimit() {
-        return aiLimit;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        AllImagesList that = (AllImagesList) o;
-
-        if (aiMinSize != that.aiMinSize) return false;
-        if (aiMaxSize != that.aiMaxSize) return false;
-        if (aiLimit != that.aiLimit) return false;
-        if (aiSort != that.aiSort) return false;
-        if (aiDir != that.aiDir) return false;
-        if (!Objects.equals(aiFrom, that.aiFrom)) return false;
-        if (!Objects.equals(aiTo, that.aiTo)) return false;
-        if (!Objects.equals(aiContinue, that.aiContinue)) return false;
-        if (!Objects.equals(aiStart, that.aiStart)) return false;
-        if (!Objects.equals(aiEnd, that.aiEnd)) return false;
-        if (!Objects.equals(aiProp, that.aiProp)) return false;
-        if (!Objects.equals(aiPrefix, that.aiPrefix)) return false;
-        if (!Objects.equals(aiSha1, that.aiSha1)) return false;
-        if (!Objects.equals(aiSha1Base36, that.aiSha1Base36)) return false;
-        if (!Objects.equals(aiUser, that.aiUser)) return false;
-        return aiFilterBots == that.aiFilterBots;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(aiSort, aiDir, aiFrom, aiTo, aiContinue, aiStart, aiEnd, aiProp, aiPrefix, aiMinSize,
-                aiMaxSize, aiSha1, aiSha1Base36, aiUser, aiFilterBots, aiLimit);
     }
 
     public static class Builder {
@@ -309,6 +219,7 @@ public class AllImagesList extends AbstractList {
 
     }
 
+    @Getter
     public enum AiSort {
 
         NAME ("name"),
@@ -320,12 +231,9 @@ public class AllImagesList extends AbstractList {
             this.value = value;
         }
 
-        public String getValue() {
-            return value;
-        }
-
     }
 
+    @Getter
     public enum AiDir {
 
         ASCENDING ("ascending"),
@@ -339,12 +247,9 @@ public class AllImagesList extends AbstractList {
             this.value = value;
         }
 
-        public String getValue() {
-            return value;
-        }
-
     }
 
+    @Getter
     public enum AiFilterBots {
 
         ALL ("all"),
@@ -355,10 +260,6 @@ public class AllImagesList extends AbstractList {
 
         AiFilterBots(String value) {
             this.value = value;
-        }
-
-        public String getValue() {
-            return value;
         }
 
     }

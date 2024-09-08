@@ -1,6 +1,13 @@
 package dev.masterflomaster1.jwa.request.prop;
 
-public class IsReviewedProp extends AbstractProp {
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
+
+@Getter
+@ToString
+@EqualsAndHashCode(callSuper = false)
+public final class IsReviewedProp extends AbstractProp {
 
     private IsReviewedProp() {
         name = "isreviewed";

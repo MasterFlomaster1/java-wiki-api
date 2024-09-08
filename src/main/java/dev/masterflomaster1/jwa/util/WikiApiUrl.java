@@ -1,5 +1,7 @@
 package dev.masterflomaster1.jwa.util;
 
+import lombok.Setter;
+
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -7,15 +9,12 @@ import java.util.Map;
 
 public class WikiApiUrl {
 
+    @Setter
     private String action;
     private final HashMap<String, String> map = new HashMap<>();
     private final HashMap<String, String> propMap = new HashMap<>();
     private final HashMap<String, String> listMap = new HashMap<>();
     private final HashMap<String, String> metaMap = new HashMap<>();
-
-    public void setAction(String value) {
-        action = value;
-    }
 
     public void putQuery(String k, Object v) {
         map.put(k, v.toString());
@@ -48,21 +47,21 @@ public class WikiApiUrl {
         if (action != null)
             urlBuilder.append("?action=").append(action);
 
-        if (propMap.size() > 0) {
+        if (!propMap.isEmpty()) {
             urlBuilder
                     .append("&prop=")
                     .append(String.join("%7C", propMap.keySet()))
                     .append(String.join("", propMap.values()));
         }
 
-        if (listMap.size() > 0) {
+        if (!listMap.isEmpty()) {
             urlBuilder
                     .append("&list=")
                     .append(String.join("%7C", listMap.keySet()))
                     .append(String.join("", listMap.values()));
         }
 
-        if (metaMap.size() > 0) {
+        if (!metaMap.isEmpty()) {
             urlBuilder
                     .append("&meta=")
                     .append(String.join("%7C", metaMap.keySet()))

@@ -1,6 +1,7 @@
 package dev.masterflomaster1.jwa.request.action;
 
-import dev.masterflomaster1.jwa.WikiApiSyntaxException;
+import lombok.Getter;
+import lombok.ToString;
 import okhttp3.FormBody;
 
 /**
@@ -8,7 +9,9 @@ import okhttp3.FormBody;
  *
  * @see <a href="https://www.mediawiki.org/wiki/Extension:Thanks#API_Documentation">Extension:Thanks</a>
  */
-public class ThankAction extends AbstractAction implements IPost {
+@Getter
+@ToString
+public final class ThankAction extends AbstractAction implements IPost {
 
     private int rev;
     private int log;
@@ -17,22 +20,6 @@ public class ThankAction extends AbstractAction implements IPost {
 
     private ThankAction() {
         apiUrl.setAction("thank");
-    }
-
-    public int getRev() {
-        return rev;
-    }
-
-    public int getLog() {
-        return log;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public String getSource() {
-        return source;
     }
 
     @Override
@@ -90,9 +77,9 @@ public class ThankAction extends AbstractAction implements IPost {
             return this;
         }
 
-        public ThankAction build() throws WikiApiSyntaxException {
+        public ThankAction build() {
             if (thankAction.token == null)
-                throw new WikiApiSyntaxException("Parameter 'token' is required");
+                throw new IllegalArgumentException("Parameter 'token' is required");
 
             return thankAction;
         }

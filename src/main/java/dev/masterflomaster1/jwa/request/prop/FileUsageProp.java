@@ -1,8 +1,10 @@
 package dev.masterflomaster1.jwa.request.prop;
 
 import dev.masterflomaster1.jwa.common.Namespace;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -11,7 +13,10 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:Fileusage">API:Fileusage</a>
  */
-public class FileUsageProp extends AbstractProp {
+@Getter
+@ToString
+@EqualsAndHashCode(callSuper = false)
+public final class FileUsageProp extends AbstractProp {
 
     private Set<FuProp> fuProp;
     private Set<Namespace> fuNamespace;
@@ -23,48 +28,10 @@ public class FileUsageProp extends AbstractProp {
         name = "fileusage";
     }
 
-    public Set<FuProp> getFuProp() {
-        return fuProp;
-    }
-
-    public Set<Namespace> getFuNamespace() {
-        return fuNamespace;
-    }
-
-    public Set<FuShow> getFuShow() {
-        return fuShow;
-    }
-
-    public int getFuLimit() {
-        return fuLimit;
-    }
-
-    public String getFuContinue() {
-        return fuContinue;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        FileUsageProp that = (FileUsageProp) o;
-
-        if (fuLimit != that.fuLimit) return false;
-        if (!Objects.equals(fuProp, that.fuProp)) return false;
-        if (!Objects.equals(fuNamespace, that.fuNamespace)) return false;
-        if (!Objects.equals(fuShow, that.fuShow)) return false;
-        return Objects.equals(fuContinue, that.fuContinue);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(fuProp, fuNamespace, fuShow, fuLimit, fuContinue);
-    }
-
     /**
      * Which properties to get
      */
+    @Getter
     public enum FuProp {
 
         /**
@@ -88,14 +55,12 @@ public class FileUsageProp extends AbstractProp {
             this.value = value;
         }
 
-        public String getValue() {
-            return value;
-        }
     }
 
     /**
      * Show only items that meet these criteria.
      */
+    @Getter
     public enum FuShow {
 
         /**
@@ -114,9 +79,6 @@ public class FileUsageProp extends AbstractProp {
             this.value = value;
         }
 
-        public String getValue() {
-            return value;
-        }
     }
 
     public static class Builder {

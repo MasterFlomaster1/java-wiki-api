@@ -1,5 +1,8 @@
 package dev.masterflomaster1.jwa.common;
 
+import lombok.Getter;
+
+@Getter
 public enum ContentModel {
 
     WIKITEXT ("wikitext");
@@ -8,10 +11,6 @@ public enum ContentModel {
 
     ContentModel(String value) {
         this.value = value;
-    }
-
-    public String getValue() {
-        return value;
     }
 
 }

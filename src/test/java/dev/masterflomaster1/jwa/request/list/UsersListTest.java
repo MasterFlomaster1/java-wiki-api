@@ -44,7 +44,7 @@ class UsersListTest {
 
         Response r = api.execute(a);
 
-        assertTrue(r.isBatchComplete());
+        assertTrue(r.getBatchComplete());
         assertNotNull(r.getQuery().getUsers());
     }
 

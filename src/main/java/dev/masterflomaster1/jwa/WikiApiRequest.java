@@ -3,8 +3,12 @@ package dev.masterflomaster1.jwa;
 import dev.masterflomaster1.jwa.request.JsonFormat;
 import dev.masterflomaster1.jwa.request.action.AbstractAction;
 import dev.masterflomaster1.jwa.request.AbstractFormat;
+import lombok.Getter;
+import lombok.ToString;
 
-public class WikiApiRequest {
+@Getter
+@ToString
+public final class WikiApiRequest {
 
     private String url = "https://en.wikipedia.org/w/api.php";
     private AbstractAction action;
@@ -18,46 +22,6 @@ public class WikiApiRequest {
     private String variant;
 
     private WikiApiRequest() {
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public AbstractAction getAction() {
-        return action;
-    }
-
-    public AbstractFormat getFormat() {
-        return format;
-    }
-
-    public String getAssertUser() {
-        return assertUser;
-    }
-
-    public String getRequestId() {
-        return requestId;
-    }
-
-    public boolean isServedBy() {
-        return servedBy;
-    }
-
-    public boolean isCurTimestamp() {
-        return curTimestamp;
-    }
-
-    public boolean isResponseLangInfo() {
-        return responseLangInfo;
-    }
-
-    public String getVariant() {
-        return variant;
-    }
-
-    public String getUseLang() {
-        return useLang;
     }
 
     public static class Builder {
@@ -147,9 +111,9 @@ public class WikiApiRequest {
             return this;
         }
 
-        public WikiApiRequest build() throws WikiApiSyntaxException {
+        public WikiApiRequest build() {
             if (wikiApiRequest.action == null)
-                throw new WikiApiSyntaxException("You must specify one action to generate a request");
+                throw new IllegalArgumentException("You must specify one action to generate a request");
 
             wikiApiRequest.url += "&format=json";
             wikiApiRequest.url += "&formatversion=2";

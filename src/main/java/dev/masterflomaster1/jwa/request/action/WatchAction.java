@@ -1,6 +1,8 @@
 package dev.masterflomaster1.jwa.request.action;
 
 import dev.masterflomaster1.jwa.common.Generator;
+import lombok.Getter;
+import lombok.ToString;
 import okhttp3.FormBody;
 
 import java.util.Objects;
@@ -12,7 +14,9 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/Special:MyLanguage/API:Watch">API:Watch</a>
  */
-public class WatchAction extends AbstractAction implements IPost {
+@Getter
+@ToString
+public final class WatchAction extends AbstractAction implements IPost {
 
     private String expiry;
     private boolean unwatch;
@@ -27,46 +31,6 @@ public class WatchAction extends AbstractAction implements IPost {
 
     private WatchAction() {
         apiUrl.setAction("watch");
-    }
-
-    public String getExpiry() {
-        return expiry;
-    }
-
-    public boolean isUnwatch() {
-        return unwatch;
-    }
-
-    public String getContinue() {
-        return continue_;
-    }
-
-    public Set<String> getTitles() {
-        return titles;
-    }
-
-    public Set<Integer> getPageIds() {
-        return pageIds;
-    }
-
-    public Set<Long> getRevIds() {
-        return revIds;
-    }
-
-    public Generator getGenerator() {
-        return generator;
-    }
-
-    public boolean isRedirects() {
-        return redirects;
-    }
-
-    public boolean isConvertTitles() {
-        return convertTitles;
-    }
-
-    public String getToken() {
-        return token;
     }
 
     @Override

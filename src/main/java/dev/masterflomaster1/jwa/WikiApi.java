@@ -2,11 +2,13 @@ package dev.masterflomaster1.jwa;
 
 import com.google.gson.Gson;
 import dev.masterflomaster1.jwa.request.action.IPost;
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 
 import java.io.IOException;
 
+@Slf4j
 public class WikiApi {
 
     private OkHttpClient client;
@@ -26,6 +28,8 @@ public class WikiApi {
     public Response execute(WikiApiRequest request) throws IOException {
 
         if (request.getAction() instanceof IPost) {
+            log.info("POST {}", request.getUrl());
+
             Request request1 = new Request.Builder()
                     .url(request.getUrl())
                     .post(((IPost) request.getAction()).getPostBody())
@@ -36,6 +40,8 @@ public class WikiApi {
                 return gson.fromJson(response.body().string(), Response.class);
             }
         }
+
+        log.info("GET {}", request.getUrl());
 
         Request request1 = new Request.Builder()
                 .url(request.getUrl())

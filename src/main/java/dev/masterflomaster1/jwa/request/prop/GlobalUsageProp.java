@@ -1,8 +1,10 @@
 package dev.masterflomaster1.jwa.request.prop;
 
 import dev.masterflomaster1.jwa.common.Namespace;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -11,7 +13,10 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/w/api.php?action=help&modules=query%2Bglobalusage">www.mediawiki.org</a>
  */
-public class GlobalUsageProp extends AbstractProp {
+@Getter
+@ToString
+@EqualsAndHashCode(callSuper = false)
+public final class GlobalUsageProp extends AbstractProp {
 
     private Set<GuProp> guProp;
     private int guLimit;
@@ -21,45 +26,6 @@ public class GlobalUsageProp extends AbstractProp {
 
     private GlobalUsageProp() {
         name = "globalusage";
-    }
-
-    public Set<GuProp> getGuProp() {
-        return guProp;
-    }
-
-    public int getGuLimit() {
-        return guLimit;
-    }
-
-    public Set<Namespace> getGuNamespace() {
-        return guNamespace;
-    }
-
-    public String getGuContinue() {
-        return guContinue;
-    }
-
-    public boolean isGuFilterLocal() {
-        return guFilterLocal;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        GlobalUsageProp that = (GlobalUsageProp) o;
-
-        if (guLimit != that.guLimit) return false;
-        if (guFilterLocal != that.guFilterLocal) return false;
-        if (!Objects.equals(guProp, that.guProp)) return false;
-        if (!Objects.equals(guNamespace, that.guNamespace)) return false;
-        return Objects.equals(guContinue, that.guContinue);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(guProp, guLimit, guNamespace, guContinue, guFilterLocal);
     }
 
     public static class Builder {
@@ -129,6 +95,7 @@ public class GlobalUsageProp extends AbstractProp {
 
     }
 
+    @Getter
     public enum GuProp {
         NAMESPACE ("namespace"),
         PAGE_ID ("pageid"),
@@ -140,9 +107,6 @@ public class GlobalUsageProp extends AbstractProp {
             this.value = value;
         }
 
-        public String getValue() {
-            return value;
-        }
     }
 
 }

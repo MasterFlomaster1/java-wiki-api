@@ -1,10 +1,14 @@
 package dev.masterflomaster1.jwa.response;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.util.List;
 import java.util.Map;
 
+@Getter
+@ToString
 public final class LanguageInfo {
 
     @SerializedName("code")
@@ -31,53 +35,5 @@ public final class LanguageInfo {
     @SerializedName("variantnames")
     private Map<String, String> variantNames;
 
-    private LanguageInfo() {
-
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public String getBcp47() {
-        return bcp47;
-    }
-
-    public String getDir() {
-        return dir;
-    }
-
-    public String getAutonym() {
-        return autonym;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public List<String> getFallbacks() {
-        return fallbacks;
-    }
-
-    public List<String> getVariants() {
-        return variants;
-    }
-
-    public Map<String, String> getVariantNames() {
-        return variantNames;
-    }
-
-    @Override
-    public String toString() {
-        return "LanguageInfo{" +
-                "code='" + code + '\'' +
-                ", bcp47='" + bcp47 + '\'' +
-                ", dir='" + dir + '\'' +
-                ", autonym='" + autonym + '\'' +
-                ", name='" + name + '\'' +
-                ", fallbacks=" + fallbacks +
-                ", variants=" + variants +
-                ", variantNames=" + variantNames +
-                '}';
-    }
+    private LanguageInfo() { }
 }

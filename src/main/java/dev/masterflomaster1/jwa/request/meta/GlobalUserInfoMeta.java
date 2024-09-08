@@ -1,13 +1,19 @@
 package dev.masterflomaster1.jwa.request.meta;
 
-import java.util.Objects;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
+
 import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
  * Show information about a global user.
  */
-public class GlobalUserInfoMeta extends AbstractMeta {
+@Getter
+@ToString
+@EqualsAndHashCode(callSuper = false)
+public final class GlobalUserInfoMeta extends AbstractMeta {
 
     private String guiUser;
     private int guiId;
@@ -15,35 +21,6 @@ public class GlobalUserInfoMeta extends AbstractMeta {
 
     private GlobalUserInfoMeta() {
         name = "globaluserinfo";
-    }
-
-    public String getGuiUser() {
-        return guiUser;
-    }
-
-    public int getGuiId() {
-        return guiId;
-    }
-
-    public Set<GuiProp> getGuiProp() {
-        return guiProp;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        GlobalUserInfoMeta that = (GlobalUserInfoMeta) o;
-
-        if (guiId != that.guiId) return false;
-        if (!Objects.equals(guiUser, that.guiUser)) return false;
-        return Objects.equals(guiProp, that.guiProp);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(guiUser, guiId, guiProp);
     }
 
     public static class Builder {
@@ -90,6 +67,7 @@ public class GlobalUserInfoMeta extends AbstractMeta {
 
     }
 
+    @Getter
     public enum GuiProp {
 
         /**
@@ -121,10 +99,6 @@ public class GlobalUserInfoMeta extends AbstractMeta {
 
         GuiProp(String value) {
             this.value = value;
-        }
-
-        public String getValue() {
-            return value;
         }
 
     }

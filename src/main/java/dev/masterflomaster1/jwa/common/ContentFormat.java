@@ -1,5 +1,8 @@
 package dev.masterflomaster1.jwa.common;
 
+import lombok.Getter;
+
+@Getter
 public enum ContentFormat {
 
     APPLICATION_JSON ("application/json"),
@@ -17,10 +20,6 @@ public enum ContentFormat {
 
     ContentFormat(String value) {
         this.value = value;
-    }
-
-    public String getValue() {
-        return value;
     }
 
 }

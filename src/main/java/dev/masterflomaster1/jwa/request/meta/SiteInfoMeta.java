@@ -1,6 +1,9 @@
 package dev.masterflomaster1.jwa.request.meta;
 
-import java.util.Objects;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
+
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -9,7 +12,10 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://www.mediawiki.org/wiki/API:Siteinfo">https://www.mediawiki.org/wiki/API:Siteinfo</a>
  */
-public class SiteInfoMeta extends AbstractMeta {
+@Getter
+@ToString
+@EqualsAndHashCode(callSuper = false)
+public final class SiteInfoMeta extends AbstractMeta {
 
     private Set<SiProp> siProp;
     private boolean siShowAllDb;
@@ -19,35 +25,7 @@ public class SiteInfoMeta extends AbstractMeta {
         name = "siteinfo";
     }
 
-    public Set<SiProp> getSiProp() {
-        return siProp;
-    }
-
-    public boolean isSiShowAllDb() {
-        return siShowAllDb;
-    }
-
-    public boolean isSiNumberInGroup() {
-        return siNumberInGroup;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        SiteInfoMeta that = (SiteInfoMeta) o;
-
-        if (siShowAllDb != that.siShowAllDb) return false;
-        if (siNumberInGroup != that.siNumberInGroup) return false;
-        return Objects.equals(siProp, that.siProp);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(siProp, siShowAllDb, siNumberInGroup);
-    }
-
+    @Getter
     public enum SiProp {
 
         /**
@@ -69,9 +47,6 @@ public class SiteInfoMeta extends AbstractMeta {
             this.value = value;
         }
 
-        public String getValue() {
-            return value;
-        }
     }
 
     public static class Builder {
