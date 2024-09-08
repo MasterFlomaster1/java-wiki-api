@@ -2,20 +2,38 @@
 
 [![build](https://github.com/MasterFlomaster1/java-wiki-api/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/MasterFlomaster1/java-wiki-api/actions/workflows/build.yml)
 ![GitHub License](https://img.shields.io/github/license/MasterFlomaster1/java-wiki-api)
-![GitHub Release](https://img.shields.io/github/v/release/MasterFlomaster1/java-wiki-api)
-
+![Maven Central](https://img.shields.io/maven-central/v/io.github.masterflomaster1/java-wiki-api)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/dc6369acab554b63921e5502baa3df26)](https://app.codacy.com/gh/MasterFlomaster1/java-wiki-api/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
 Java Wiki Api is a comprehensive tool for flexible creation of detailed queries to the Wikipedia online encyclopedia.
+It uses declarative approach and provides built-in types for results.
 
-> [!CAUTION]
-> This project is still in very early stages of development. Use at your own risk.
+## Installation
 
-### Getting started
-Download the latest build on the [releases page](https://github.com/MasterFlomaster1/java-wiki-api/releases).
+This library is available on maven central. The latest version is always shown in the [releases page](https://github.com/MasterFlomaster1/java-wiki-api/releases).
 
-### Usage
+The build requires JDK 17 or later.
 
-Requirements: Java 17 and above
+### Maven
+
+```xml
+<dependency>
+    <groupId>io.github.masterflomaster1</groupId>
+    <artifactId>java-wiki-api</artifactId>
+    <version>0.8.1</version>
+</dependency>
+```
+
+### Gradle
+```grale
+dependencies {
+    implementation("io.github.masterflomaster1:java-wiki-api:0.8.1")
+}
+```
+
+## Usage
+
+This section explains the basic principles of working with the **MediaWiki API**, commonly used in Wikipedia and other MediaWiki-based projects. The API allows you to retrieve and manipulate wiki data by sending requests with specific parameters like **action**, **prop**, **list**, and **meta**.
 
 ```java
 WikiApi api = new WikiApi();
@@ -27,7 +45,9 @@ var a = new WikiApiRequest.Builder()
 Response r = api.execute(a);
 ```
 
-#### Actions:
+### 1. Action
+
+The `action` parameter defines what action the API should perform. Supported actions:
 
 | Name             | Description                                                                      |
 |------------------|----------------------------------------------------------------------------------|
@@ -53,7 +73,17 @@ Response r = api.execute(a);
 | validatepassword | Validate a password against the wiki's password policies                         |
 | watch            | Add or remove pages from the current user's watchlist                            |
 
-#### Props:
+**Example:**
+
+```java
+var a = new WikiApiRequest.Builder()
+        .action(new QueryAction.Builder().build())
+        .build();
+```
+
+### 2. Properties
+
+When using `query` action, the prop parameter specifies which properties of pages or objects you want to retrieve. This includes page content, contributors, templates, and more. Supported props:
 
 | Name         | Description                                                                              |
 |--------------|------------------------------------------------------------------------------------------|
@@ -73,8 +103,23 @@ Response r = api.execute(a);
 | templates    | Returns all pages transcluded on the given pages                                         |
 | videoinfo    | Extends imageinfo to include video source (derivatives) information                      |
 
+**Example:**
 
-#### List:
+Returns all files contained on the [wikipedia page about Java](https://en.wikipedia.org/wiki/Java_(programming_language))
+
+```java
+var a = new WikiApiRequest.Builder()
+        .action(new QueryAction.Builder()
+                .prop(Set.of(new ImagesProp.Builder().build()))
+                .titles(Set.of("Java (programming language)"))
+                .build()
+        )
+        .build();
+```
+
+### 3. Lists
+
+The `list` parameter is used to retrieve lists of various objects, such as pages, categories, users, or links. Supported lists:
 
 | Name          | Description                                  |
 |---------------|----------------------------------------------|
@@ -85,7 +130,22 @@ Response r = api.execute(a);
 | usercontribs  | Get all edits by a user                      |
 | users         | Get information about a list of users        |
 
-#### Meta:
+**Example:**
+
+List recent changes.
+
+```java
+var a = new WikiApiRequest.Builder()
+        .action(new QueryAction.Builder()
+                .list(Set.of(new RecentChangesList.Builder().build()))
+                .build()
+        )
+        .build();
+```
+
+### 4. Meta
+
+The `meta` parameter is used to retrieve general information about the wiki, users, or statistics. Supported meta:
 
 | Name           | Description                                  |
 |----------------|----------------------------------------------|
@@ -96,11 +156,28 @@ Response r = api.execute(a);
 | tokens         | Gets tokens for data-modifying actions       |
 | userinfo       | Get information about the current user       |
 
-### Contributing
+**Example:**
+
+Show sitewide pageview totals.
+
+```java
+var a = new WikiApiRequest.Builder()
+        .action(new QueryAction.Builder()
+                .meta(Set.of(
+                        new SiteViewsMeta.Builder()
+                                .pvIsMetric(SiteViewsMeta.PvIsMetric.UNIQUES)
+                                .build()
+                ))
+                .build()
+        )
+        .build();
+```
+
+## Contributing
 Feel free to open an issue if you've found a bug or want to raise a question, or discuss a possible feature.
 Any help is appreciated :)
 
-### Examples
+## More Examples
 
 ##### Get a list of categories the page Albert Einstein belongs to
 ```java
