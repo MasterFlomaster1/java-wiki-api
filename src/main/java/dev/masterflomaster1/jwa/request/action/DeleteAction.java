@@ -11,6 +11,7 @@ import okhttp3.FormBody;
  */
 @Getter
 @ToString
+@SuppressWarnings("SpellCheckingInspection")
 public final class DeleteAction extends AbstractAction implements IPost {
 
     private String title;

@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
  */
 @Getter
 @ToString
+@SuppressWarnings("SpellCheckingInspection")
 public final class WatchAction extends AbstractAction implements IPost {
 
     private String expiry;

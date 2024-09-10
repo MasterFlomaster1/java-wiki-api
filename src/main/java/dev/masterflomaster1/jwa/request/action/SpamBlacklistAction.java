@@ -12,6 +12,7 @@ import java.util.Set;
  */
 @Getter
 @ToString
+@SuppressWarnings("SpellCheckingInspection")
 public final class SpamBlacklistAction extends AbstractAction {
 
     private Set<String> url;

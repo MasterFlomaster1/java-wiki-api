@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 @Getter
 @ToString
 @EqualsAndHashCode(callSuper = false)
+@SuppressWarnings("SpellCheckingInspection")
 public final class CategoriesProp extends AbstractProp {
 
     private Set<ClProp> clProp;

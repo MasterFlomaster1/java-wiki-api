@@ -6,25 +6,15 @@ import lombok.ToString;
 
 @Getter
 @ToString
+@SuppressWarnings("SpellCheckingInspection")
 public final class CategoryInfo {
 
-    @SerializedName("size")
-    private Integer size;
-
-    @SerializedName("pages")
-    private Integer pages;
-
-    @SerializedName("files")
-    private Integer files;
-
-    @SerializedName("subcats")
-    private Integer subCats;
-
-    @SerializedName("hidden")
-    private Boolean hidden;
-
-    @SerializedName("category")
-    private String category;
+    @SerializedName("size")     private Integer size;
+    @SerializedName("pages")    private Integer pages;
+    @SerializedName("files")    private Integer files;
+    @SerializedName("subcats")  private Integer subCats;
+    @SerializedName("hidden")   private Boolean hidden;
+    @SerializedName("category") private String category;
 
     private CategoryInfo() { }
 }

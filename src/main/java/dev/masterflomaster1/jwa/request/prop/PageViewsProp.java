@@ -13,6 +13,7 @@ import lombok.ToString;
 @Getter
 @ToString
 @EqualsAndHashCode(callSuper = false)
+@SuppressWarnings("SpellCheckingInspection")
 public final class PageViewsProp extends AbstractProp {
 
     private int pvIpDays;

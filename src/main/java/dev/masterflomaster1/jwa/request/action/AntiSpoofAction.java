@@ -10,6 +10,7 @@ import lombok.ToString;
  */
 @Getter
 @ToString
+@SuppressWarnings("SpellCheckingInspection")
 public final class AntiSpoofAction extends AbstractAction {
 
     private String username;

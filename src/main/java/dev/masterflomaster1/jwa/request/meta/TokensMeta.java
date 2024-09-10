@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 @Getter
 @ToString
 @EqualsAndHashCode(callSuper = false)
+@SuppressWarnings("SpellCheckingInspection")
 public final class TokensMeta extends AbstractMeta {
 
     private Set<Type> type;

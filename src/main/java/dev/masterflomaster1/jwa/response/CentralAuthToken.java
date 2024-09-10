@@ -6,10 +6,10 @@ import lombok.ToString;
 
 @Getter
 @ToString
+@SuppressWarnings("SpellCheckingInspection")
 public final class CentralAuthToken {
 
-    @SerializedName("centralauthtoken")
-    private String centralAuthToken;
+    @SerializedName("centralauthtoken") private String centralAuthToken;
 
     private CentralAuthToken() { }
 }

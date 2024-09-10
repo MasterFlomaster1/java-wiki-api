@@ -6,16 +6,12 @@ import lombok.ToString;
 
 @Getter
 @ToString
+@SuppressWarnings("SpellCheckingInspection")
 public final class Delete {
 
-    @SerializedName("title")
-    private String title;
-
-    @SerializedName("reason")
-    private String reason;
-
-    @SerializedName("logid")
-    private int logId;
+    @SerializedName("title")  private String title;
+    @SerializedName("reason") private String reason;
+    @SerializedName("logid")  private int logId;
 
     private Delete() { }
 }

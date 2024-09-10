@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 @Getter
 @ToString
 @EqualsAndHashCode(callSuper = false)
+@SuppressWarnings("SpellCheckingInspection")
 public final class LanguageInfoMeta extends AbstractMeta {
 
     private Set<LiProp> liProp;

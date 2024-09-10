@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 @Getter
 @ToString
 @EqualsAndHashCode(callSuper = false)
+@SuppressWarnings("SpellCheckingInspection")
 public final class ImageInfoProp extends AbstractProp {
 
     private Set<Prop> iiProp;

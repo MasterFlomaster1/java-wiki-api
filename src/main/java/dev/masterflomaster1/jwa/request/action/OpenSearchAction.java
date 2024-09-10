@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 @Getter
 @ToString
+@SuppressWarnings("SpellCheckingInspection")
 public final class OpenSearchAction extends AbstractAction {
 
     private String search;

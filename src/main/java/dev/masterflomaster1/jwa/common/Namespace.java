@@ -46,4 +46,14 @@ public enum Namespace {
         this.value = value;
     }
 
+    public static Namespace of(String value) {
+        for (Namespace namespace : Namespace.values()) {
+            if (namespace.value.equals(value)) {
+                return namespace;
+            }
+        }
+
+        throw new IllegalArgumentException("No such namespace: " + value);
+    }
+
 }

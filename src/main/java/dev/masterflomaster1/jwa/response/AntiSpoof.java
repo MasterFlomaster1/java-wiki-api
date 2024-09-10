@@ -10,17 +10,10 @@ import java.util.List;
 @ToString
 public final class AntiSpoof {
 
-    @SerializedName("username")
-    private String username;
-
-    @SerializedName("normalized")
-    private String normalized;
-
-    @SerializedName("result")
-    private String result;
-
-    @SerializedName("users")
-    private List<String> users;
+    @SerializedName("username")   private String username;
+    @SerializedName("normalized") private String normalized;
+    @SerializedName("result")     private String result;
+    @SerializedName("users")      private List<String> users;
 
     private AntiSpoof() { }
 }

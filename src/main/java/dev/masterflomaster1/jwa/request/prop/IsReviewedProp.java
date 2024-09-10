@@ -7,6 +7,7 @@ import lombok.ToString;
 @Getter
 @ToString
 @EqualsAndHashCode(callSuper = false)
+@SuppressWarnings("SpellCheckingInspection")
 public final class IsReviewedProp extends AbstractProp {
 
     private IsReviewedProp() {

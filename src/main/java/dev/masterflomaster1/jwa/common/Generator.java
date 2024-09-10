@@ -3,6 +3,7 @@ package dev.masterflomaster1.jwa.common;
 import lombok.Getter;
 
 @Getter
+@SuppressWarnings("SpellCheckingInspection")
 public enum Generator {
 
     /**

@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
  */
 @Getter
 @ToString
+@SuppressWarnings("SpellCheckingInspection")
 public final class BlockAction extends AbstractAction implements IPost {
 
     private String user;

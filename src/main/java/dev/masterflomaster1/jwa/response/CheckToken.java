@@ -8,8 +8,7 @@ import lombok.ToString;
 @ToString
 public final class CheckToken {
 
-    @SerializedName("result")
-    private String result;
+    @SerializedName("result") private String result;
 
     private CheckToken() { }
 }

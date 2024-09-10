@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 @Getter
 @ToString
 @EqualsAndHashCode(callSuper = false)
+@SuppressWarnings("SpellCheckingInspection")
 public final class UserInfoMeta extends AbstractMeta {
 
     private Set<UiProp> uiProp;

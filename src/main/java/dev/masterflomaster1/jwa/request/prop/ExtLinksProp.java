@@ -12,6 +12,7 @@ import lombok.ToString;
 @Getter
 @ToString
 @EqualsAndHashCode(callSuper = false)
+@SuppressWarnings("SpellCheckingInspection")
 public final class ExtLinksProp extends AbstractProp {
 
     private int elLimit;

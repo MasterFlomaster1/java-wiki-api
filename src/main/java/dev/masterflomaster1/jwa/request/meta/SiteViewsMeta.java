@@ -12,6 +12,7 @@ import lombok.ToString;
 @Getter
 @ToString
 @EqualsAndHashCode(callSuper = false)
+@SuppressWarnings("SpellCheckingInspection")
 public final class SiteViewsMeta extends AbstractMeta {
 
     private PvIsMetric pvIsMetric;

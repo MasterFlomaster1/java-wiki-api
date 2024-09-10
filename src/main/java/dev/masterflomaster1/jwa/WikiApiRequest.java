@@ -21,8 +21,7 @@ public final class WikiApiRequest {
     private String useLang;
     private String variant;
 
-    private WikiApiRequest() {
-    }
+    private WikiApiRequest() { }
 
     public static class Builder {
 

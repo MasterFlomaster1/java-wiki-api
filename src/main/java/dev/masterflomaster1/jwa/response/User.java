@@ -8,22 +8,14 @@ import java.util.List;
 
 @Getter
 @ToString
+@SuppressWarnings("SpellCheckingInspection")
 public final class User {
 
-    @SerializedName("userid")
-    private Integer userId;
-
-    @SerializedName("name")
-    private String name;
-
-    @SerializedName("editcount")
-    private Integer editCount;
-
-    @SerializedName("groups")
-    private List<String> groups;
-
-    @SerializedName("gender")
-    private String gender;
+    @SerializedName("userid")    private Integer userId;
+    @SerializedName("name")      private String name;
+    @SerializedName("editcount") private Integer editCount;
+    @SerializedName("groups")    private List<String> groups;
+    @SerializedName("gender")    private String gender;
 
     private User() { }
 }

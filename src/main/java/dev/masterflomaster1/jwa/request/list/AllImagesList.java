@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 @Getter
 @ToString
 @EqualsAndHashCode(callSuper = false)
+@SuppressWarnings("SpellCheckingInspection")
 public final class AllImagesList extends AbstractList {
 
     private AiSort aiSort;

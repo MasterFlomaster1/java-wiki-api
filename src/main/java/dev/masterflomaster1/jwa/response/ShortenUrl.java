@@ -6,16 +6,12 @@ import lombok.ToString;
 
 @Getter
 @ToString
+@SuppressWarnings("SpellCheckingInspection")
 public final class ShortenUrl {
 
-    @SerializedName("shorturl")
-    private String shortUrl;
-
-    @SerializedName("shorturlalt")
-    private String shortUrlAlt;
-
-    @SerializedName("qrcode")
-    private String qrCode;
+    @SerializedName("shorturl")    private String shortUrl;
+    @SerializedName("shorturlalt") private String shortUrlAlt;
+    @SerializedName("qrcode")      private String qrCode;
 
     private ShortenUrl() { }
 }

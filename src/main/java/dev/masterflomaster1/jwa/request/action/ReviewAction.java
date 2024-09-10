@@ -9,6 +9,7 @@ import okhttp3.FormBody;
  */
 @Getter
 @ToString
+@SuppressWarnings("SpellCheckingInspection")
 public final class ReviewAction extends AbstractAction implements IPost {
 
     private long revId;

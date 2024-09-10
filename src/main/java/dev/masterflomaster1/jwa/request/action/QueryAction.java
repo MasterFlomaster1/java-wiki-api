@@ -14,6 +14,7 @@ import java.util.Set;
  */
 @Getter
 @ToString
+@SuppressWarnings("SpellCheckingInspection")
 public final class QueryAction extends AbstractAction {
 
     private Set<AbstractProp> prop;

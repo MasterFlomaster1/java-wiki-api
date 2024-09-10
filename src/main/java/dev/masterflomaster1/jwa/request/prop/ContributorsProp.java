@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 @Getter
 @ToString
 @EqualsAndHashCode(callSuper = false)
+@SuppressWarnings("SpellCheckingInspection")
 public final class ContributorsProp extends AbstractProp {
 
     private Set<PcGroup> pcGroup;

@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
  */
 @Getter
 @ToString
+@SuppressWarnings("SpellCheckingInspection")
 public final class CompareAction extends AbstractAction {
 
     private String fromTitle;

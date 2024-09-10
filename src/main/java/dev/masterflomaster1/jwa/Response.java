@@ -23,85 +23,35 @@ import java.util.Map;
 
 @Getter
 @ToString
+@SuppressWarnings("SpellCheckingInspection")
 public final class Response {
 
-    @SerializedName("batchcomplete")
-    private Boolean batchComplete;
-
-    @SerializedName("continue")
-    private Map<String, String> aContinue;
-
-    @SerializedName("error")
-    private Error error;
-
-    @SerializedName("servedby")
-    private String servedBy;
-
-    @SerializedName("curtimestamp")
-    private String curTimestamp;
-
-    @SerializedName("uselang")
-    private String userLang;
-
-    @SerializedName("errorlang")
-    private String errorLang;
-
-    @SerializedName("query")
-    private Query query;
-
-    @SerializedName("torblock")
-    private TorBlock torBlock;
-
-    @SerializedName("centralauthtoken")
-    private CentralAuthToken centralAuthToken;
-
-    @SerializedName("shortenurl")
-    private ShortenUrl shortenUrl;
-
-    @SerializedName("languagesearch")
-    private Map<String, String> languageSearch;
-
-    @SerializedName("requestid")
-    private String requestId;
-
-    @SerializedName("validatepassword")
-    private ValidatePassword validatePassword;
-
-    @SerializedName("block")
-    private Block block;
-
-    @SerializedName("checktoken")
-    private CheckToken checkToken;
-
-    @SerializedName("antispoof")
-    private AntiSpoof antiSpoof;
-
-    @SerializedName("compare")
-    private Compare compare;
-
-    @SerializedName("delete")
-    private Delete delete;
-
-    @SerializedName("emailuser")
-    private EmailUser emailUser;
-
-    @SerializedName("sitematrix")
-    private Map<String, Object> siteMatrix;
-
-    @SerializedName("spamblacklist")
-    private SpamBlacklist spamBlacklist;
-
-    @SerializedName("titleblacklist")
-    private TitleBlacklist titleBlacklist;
-
-    @SerializedName("watch")
-    private List<Map<String, Object>> watch;
-
-    @SerializedName("parse")
-    private Map<String, Object> parse;
-
-    @SerializedName("usercontribs")
-    private List<Map<String, Object>> userContribs;
+    @SerializedName("batchcomplete")    private Boolean batchComplete;
+    @SerializedName("continue")         private Map<String, String> aContinue;
+    @SerializedName("error")            private Error error;
+    @SerializedName("servedby")         private String servedBy;
+    @SerializedName("curtimestamp")     private String curTimestamp;
+    @SerializedName("uselang")          private String userLang;
+    @SerializedName("errorlang")        private String errorLang;
+    @SerializedName("query")            private Query query;
+    @SerializedName("torblock")         private TorBlock torBlock;
+    @SerializedName("centralauthtoken") private CentralAuthToken centralAuthToken;
+    @SerializedName("shortenurl")       private ShortenUrl shortenUrl;
+    @SerializedName("languagesearch")   private Map<String, String> languageSearch;
+    @SerializedName("requestid")        private String requestId;
+    @SerializedName("validatepassword") private ValidatePassword validatePassword;
+    @SerializedName("block")            private Block block;
+    @SerializedName("checktoken")       private CheckToken checkToken;
+    @SerializedName("antispoof")        private AntiSpoof antiSpoof;
+    @SerializedName("compare")          private Compare compare;
+    @SerializedName("delete")           private Delete delete;
+    @SerializedName("emailuser")        private EmailUser emailUser;
+    @SerializedName("sitematrix")       private Map<String, Object> siteMatrix;
+    @SerializedName("spamblacklist")    private SpamBlacklist spamBlacklist;
+    @SerializedName("titleblacklist")   private TitleBlacklist titleBlacklist;
+    @SerializedName("watch")            private List<Map<String, Object>> watch;
+    @SerializedName("parse")            private Map<String, Object> parse;
+    @SerializedName("usercontribs")     private List<Map<String, Object>> userContribs;
 
     private Response() { }
 }

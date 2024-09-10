@@ -9,31 +9,17 @@ import java.util.Map;
 
 @Getter
 @ToString
+@SuppressWarnings("SpellCheckingInspection")
 public final class LanguageInfo {
 
-    @SerializedName("code")
-    private String code;
-
-    @SerializedName("bcp")
-    private String bcp47;
-
-    @SerializedName("dir")
-    private String dir;
-
-    @SerializedName("autonym")
-    private String autonym;
-
-    @SerializedName("name")
-    private String name;
-
-    @SerializedName("fallbacks")
-    private List<String> fallbacks;
-
-    @SerializedName("variants")
-    private List<String> variants;
-
-    @SerializedName("variantnames")
-    private Map<String, String> variantNames;
+    @SerializedName("code")         private String code;
+    @SerializedName("bcp")          private String bcp47;
+    @SerializedName("dir")          private String dir;
+    @SerializedName("autonym")      private String autonym;
+    @SerializedName("name")         private String name;
+    @SerializedName("fallbacks")    private List<String> fallbacks;
+    @SerializedName("variants")     private List<String> variants;
+    @SerializedName("variantnames") private Map<String, String> variantNames;
 
     private LanguageInfo() { }
 }

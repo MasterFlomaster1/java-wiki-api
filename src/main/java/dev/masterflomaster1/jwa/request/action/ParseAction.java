@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
  */
 @Getter
 @ToString
+@SuppressWarnings("SpellCheckingInspection")
 public final class ParseAction extends AbstractAction {
 
     private String title;

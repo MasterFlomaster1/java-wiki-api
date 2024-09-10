@@ -10,17 +10,10 @@ import java.util.List;
 @ToString
 public final class ValidityMessage {
 
-    @SerializedName("message")
-    private String message;
-
-    @SerializedName("params")
-    private List<Integer> params;
-
-    @SerializedName("code")
-    private String code;
-
-    @SerializedName("type")
-    private String type;
+    @SerializedName("message") private String message;
+    @SerializedName("params")  private List<Integer> params;
+    @SerializedName("code")    private String code;
+    @SerializedName("type")    private String type;
 
     private ValidityMessage() { }
 }

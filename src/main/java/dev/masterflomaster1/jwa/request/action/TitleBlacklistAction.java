@@ -8,6 +8,7 @@ import lombok.ToString;
  */
 @Getter
 @ToString
+@SuppressWarnings("SpellCheckingInspection")
 public final class TitleBlacklistAction extends AbstractAction {
 
     private String tbTitle;

@@ -15,6 +15,7 @@ import java.util.Set;
 @Getter
 @ToString
 @EqualsAndHashCode(callSuper = false)
+@SuppressWarnings("SpellCheckingInspection")
 public final class ImagesProp extends AbstractProp {
 
     private int imLimit;

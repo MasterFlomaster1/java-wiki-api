@@ -8,13 +8,11 @@ import java.util.List;
 
 @Getter
 @ToString
+@SuppressWarnings("SpellCheckingInspection")
 public final class ValidatePassword {
 
-    @SerializedName("validity")
-    private String validity;
-
-    @SerializedName("validitymessages")
-    private List<ValidityMessage> validityMessages;
+    @SerializedName("validity")         private String validity;
+    @SerializedName("validitymessages") private List<ValidityMessage> validityMessages;
 
     private ValidatePassword() { }
 }

@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 @Getter
 @ToString
 @EqualsAndHashCode(callSuper = false)
+@SuppressWarnings("SpellCheckingInspection")
 public final class VideoInfoProp extends AbstractProp {
 
     private Set<Prop> viProp;

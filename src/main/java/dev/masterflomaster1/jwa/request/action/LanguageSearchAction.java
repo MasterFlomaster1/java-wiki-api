@@ -5,6 +5,7 @@ import lombok.ToString;
 
 @Getter
 @ToString
+@SuppressWarnings("SpellCheckingInspection")
 public final class LanguageSearchAction extends AbstractAction {
 
     private String search;

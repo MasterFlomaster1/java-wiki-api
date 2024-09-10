@@ -6,13 +6,11 @@ import lombok.ToString;
 
 @Getter
 @ToString
+@SuppressWarnings("SpellCheckingInspection")
 public final class Compare {
 
-    @SerializedName("fromid")
-    private Integer fromId;
-
-    @SerializedName("fromrevid")
-    private Long fromRevId;
+    @SerializedName("fromid")    private Integer fromId;
+    @SerializedName("fromrevid") private Long fromRevId;
 
     private Compare() { }
 }

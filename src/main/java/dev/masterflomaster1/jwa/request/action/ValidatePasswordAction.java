@@ -1,6 +1,7 @@
 package dev.masterflomaster1.jwa.request.action;
 
 import lombok.Getter;
+import lombok.ToString;
 import okhttp3.FormBody;
 
 /**
@@ -11,6 +12,8 @@ import okhttp3.FormBody;
  * @see <a href="https://www.mediawiki.org/wiki/API:Validatepassword">API:Validatepassword</a>
  */
 @Getter
+@ToString
+@SuppressWarnings("SpellCheckingInspection")
 public final class ValidatePasswordAction extends AbstractAction implements IPost {
 
     private String password;
