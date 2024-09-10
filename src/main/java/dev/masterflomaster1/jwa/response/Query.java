@@ -25,6 +25,7 @@ public final class Query {
     @SerializedName("allfileusages")   private List<Map<String, String>> allFileUsages;
     @SerializedName("allimages")       private List<Map<String, String>> allImages;
     @SerializedName("categorymembers") private List<CategoryMember> categoryMembers;
+    @SerializedName("random")          private List<BasePage> random;
 
     private Query() { }
 }
