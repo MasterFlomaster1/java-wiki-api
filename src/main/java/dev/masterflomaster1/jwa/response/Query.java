@@ -47,5 +47,8 @@ public final class Query {
     @SerializedName("allimages")
     private List<Map<String, String>> allImages;
 
+    @SerializedName("categorymembers")
+    private List<CategoryMember> categoryMembers;
+
     private Query() { }
 }
