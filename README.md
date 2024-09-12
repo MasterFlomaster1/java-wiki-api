@@ -121,14 +121,17 @@ var a = new WikiApiRequest.Builder()
 
 The `list` parameter is used to retrieve lists of various objects, such as pages, categories, users, or links. Supported lists:
 
-| Name          | Description                                  |
-|---------------|----------------------------------------------|
-| allcategories | Enumerate all categories                     |
-| allfileusages | List all file usages, including non-existing |
-| allimages     | Enumerate all images sequentially            |
-| recentchanges | Enumerate recent changes                     |
-| usercontribs  | Get all edits by a user                      |
-| users         | Get information about a list of users        |
+| Name            | Description                                  |
+|-----------------|----------------------------------------------|
+| allcategories   | Enumerate all categories                     |
+| allfileusages   | List all file usages, including non-existing |
+| allimages       | Enumerate all images sequentially            |
+| categorymembers | List all pages in a given category           |
+| random          | Get a set of random pages                    |
+| recentchanges   | Enumerate recent changes                     |
+| tags            | List change tags                             |
+| usercontribs    | Get all edits by a user                      |
+| users           | Get information about a list of users        |
 
 **Example:**
 
