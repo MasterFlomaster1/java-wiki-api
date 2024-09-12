@@ -127,6 +127,7 @@ The `list` parameter is used to retrieve lists of various objects, such as pages
 | allfileusages   | List all file usages, including non-existing |
 | allimages       | Enumerate all images sequentially            |
 | categorymembers | List all pages in a given category           |
+| prefixsearch    | Perform a prefix search for page titles      |
 | random          | Get a set of random pages                    |
 | recentchanges   | Enumerate recent changes                     |
 | tags            | List change tags                             |

@@ -27,6 +27,7 @@ public final class Query {
     @SerializedName("categorymembers") private List<CategoryMember> categoryMembers;
     @SerializedName("random")          private List<BasePage> random;
     @SerializedName("tags")            private List<Tag> tags;
+    @SerializedName("prefixsearch")    private List<DefaultPage> prefixSearch;
 
     private Query() { }
 }

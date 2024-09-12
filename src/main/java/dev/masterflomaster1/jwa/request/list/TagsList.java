@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @ToString
 @EqualsAndHashCode(callSuper = false)
 @SuppressWarnings("SpellCheckingInspection")
-public class TagsList extends AbstractList {
+public final class TagsList extends AbstractList {
 
     private String tgContinue;
     private int tgLimit;
@@ -28,7 +28,7 @@ public class TagsList extends AbstractList {
 
     public static class Builder {
 
-        private TagsList tagsList = new TagsList();
+        private final TagsList tagsList = new TagsList();
 
         /**
          * When more results are available, use this to continue.

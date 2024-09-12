@@ -9,7 +9,7 @@ import java.util.List;
 @Getter
 @ToString
 @SuppressWarnings("SpellCheckingInspection")
-public class Tag {
+public final class Tag {
 
     @SerializedName("name")        private String name;
     @SerializedName("displayname") private String displayName;
