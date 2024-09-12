@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.time.ZoneOffset;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -101,8 +102,8 @@ class RevisionsPropTest {
                 .rvProp(Set.of(RevisionsProp.RvProp.USER, RevisionsProp.RvProp.USER_ID))
                 .rvLimit(5)
                 .rvSection("section")
-                .rvStart(LocalDateTime.of(2013, Month.AUGUST, 22, 2, 2, 2))
-                .rvEnd(LocalDateTime.of(2013, Month.AUGUST, 22, 2, 2, 2))
+                .rvStart(LocalDateTime.of(2013, Month.AUGUST, 22, 2, 2, 2).toInstant(ZoneOffset.UTC))
+                .rvEnd(LocalDateTime.of(2013, Month.AUGUST, 22, 2, 2, 2).toInstant(ZoneOffset.UTC))
                 .rvDir(RevisionsProp.RvDir.OLDER)
                 .rvUser("User123")
                 .rvExcludeUser("User123")
@@ -113,8 +114,8 @@ class RevisionsPropTest {
         assertEquals(Set.of(RevisionsProp.RvProp.USER, RevisionsProp.RvProp.USER_ID), a.getRvProp());
         assertEquals(5, a.getRvLimit());
         assertEquals("section", a.getRvSection());
-        assertEquals(LocalDateTime.of(2013, Month.AUGUST, 22, 2, 2, 2), a.getRvStart());
-        assertEquals(LocalDateTime.of(2013, Month.AUGUST, 22, 2, 2, 2), a.getRvEnd());
+        assertEquals(LocalDateTime.of(2013, Month.AUGUST, 22, 2, 2, 2).toInstant(ZoneOffset.UTC), a.getRvStart());
+        assertEquals(LocalDateTime.of(2013, Month.AUGUST, 22, 2, 2, 2).toInstant(ZoneOffset.UTC), a.getRvEnd());
         assertEquals(RevisionsProp.RvDir.OLDER, a.getRvDir());
         assertEquals("User123", a.getRvUser());
         assertEquals("User123", a.getRvExcludeUser());

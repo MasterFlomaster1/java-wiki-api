@@ -4,9 +4,11 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import dev.masterflomaster1.jwa.common.Namespace;
 import dev.masterflomaster1.jwa.json.NamespaceDeserializer;
+import dev.masterflomaster1.jwa.json.TimestampDeserializer;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.time.Instant;
 import java.util.List;
 
 @Getter
@@ -14,12 +16,15 @@ import java.util.List;
 @SuppressWarnings("SpellCheckingInspection")
 public final class RecentChange {
 
-    @SerializedName("type")          private String type;
-
     @SerializedName("ns")
     @JsonAdapter(NamespaceDeserializer.class)
     private Namespace ns;
 
+    @SerializedName("timestamp")
+    @JsonAdapter(TimestampDeserializer.class)
+    private Instant timestamp;
+
+    @SerializedName("type")          private String type;
     @SerializedName("title")         private String title;
     @SerializedName("pageid")        private Integer pageId;
     @SerializedName("revid")         private Long revId;
@@ -31,7 +36,6 @@ public final class RecentChange {
     @SerializedName("minor")         private Boolean minor;
     @SerializedName("oldlen")        private Integer oldLen;
     @SerializedName("newlen")        private Integer newLen;
-    @SerializedName("timestamp")     private String timestamp;
     @SerializedName("comment")       private String comment;
     @SerializedName("parsedcomment") private String parsedComment;
     @SerializedName("redirect")      private Boolean redirect;

@@ -1,11 +1,10 @@
 package dev.masterflomaster1.jwa.request.prop;
 
-import dev.masterflomaster1.jwa.util.TimeHandler;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -23,8 +22,8 @@ public final class RevisionsProp extends AbstractProp {
     private Set<RvProp> rvProp;
     private int rvLimit;
     private String rvSection;
-    private LocalDateTime rvStart;
-    private LocalDateTime rvEnd;
+    private Instant rvStart;
+    private Instant rvEnd;
     private RvDir rvDir;
     private String rvUser;
     private String rvExcludeUser;
@@ -79,9 +78,9 @@ public final class RevisionsProp extends AbstractProp {
          * May only be used with a single page (mode #2).
          * @return {@code Builder}
          */
-        public Builder rvStart(LocalDateTime rvStart) {
+        public Builder rvStart(Instant rvStart) {
             revisionsProp.rvStart = rvStart;
-            revisionsProp.apiUrl.putQuery("rvstart", TimeHandler.formatISO8601(rvStart));
+            revisionsProp.apiUrl.putQuery("rvstart", rvStart.toString());
             return this;
         }
 
@@ -90,9 +89,9 @@ public final class RevisionsProp extends AbstractProp {
          * May only be used with a single page (mode #2).
          * @return {@code Builder}
          */
-        public Builder rvEnd(LocalDateTime rvEnd) {
+        public Builder rvEnd(Instant rvEnd) {
             revisionsProp.rvEnd = rvEnd;
-            revisionsProp.apiUrl.putQuery("rvend", TimeHandler.formatISO8601(rvEnd));
+            revisionsProp.apiUrl.putQuery("rvend", rvEnd.toString());
             return this;
         }
 

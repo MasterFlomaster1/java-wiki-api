@@ -1,12 +1,11 @@
 package dev.masterflomaster1.jwa.request.list;
 
 import dev.masterflomaster1.jwa.common.Prop;
-import dev.masterflomaster1.jwa.util.TimeHandler;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -27,8 +26,8 @@ public final class AllImagesList extends AbstractList {
     private String aiFrom;
     private String aiTo;
     private String aiContinue;
-    private LocalDateTime aiStart;
-    private LocalDateTime aiEnd;
+    private Instant aiStart;
+    private Instant aiEnd;
     private Set<Prop> aiProp;
     private String aiPrefix;
     private long aiMinSize;
@@ -103,9 +102,9 @@ public final class AllImagesList extends AbstractList {
          * The timestamp to start enumerating from. Can only be used with {@code aisort=timestamp}.
          * @return {@code Builder}
          */
-        public Builder aiStart(LocalDateTime aiStart) {
+        public Builder aiStart(Instant aiStart) {
             allImagesList.aiStart = aiStart;
-            allImagesList.apiUrl.putQuery("aistart", TimeHandler.formatISO8601(aiStart));
+            allImagesList.apiUrl.putQuery("aistart", aiStart.toString());
             return this;
         }
 
@@ -113,9 +112,9 @@ public final class AllImagesList extends AbstractList {
          * The timestamp to end enumerating. Can only be used with {@code aisort=timestamp}.
          * @return {@code Builder}
          */
-        public Builder aiEnd(LocalDateTime aiEnd) {
+        public Builder aiEnd(Instant aiEnd) {
             allImagesList.aiEnd = aiEnd;
-            allImagesList.apiUrl.putQuery("aiend", aiEnd);
+            allImagesList.apiUrl.putQuery("aiend", aiEnd.toString());
             return this;
         }
 

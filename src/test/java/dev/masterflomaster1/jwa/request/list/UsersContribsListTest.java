@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.time.ZoneOffset;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -51,8 +52,8 @@ class UsersContribsListTest {
     void testBuilder() {
         var a = new UsersContribsList.Builder()
                 .ucLimit(10)
-                .ucStart(LocalDateTime.of(2023, Month.AUGUST, 8, 12, 35))
-                .ucEnd(LocalDateTime.of(2023, Month.AUGUST, 8, 12, 35))
+                .ucStart(LocalDateTime.of(2023, Month.AUGUST, 8, 12, 35).toInstant(ZoneOffset.UTC))
+                .ucEnd(LocalDateTime.of(2023, Month.AUGUST, 8, 12, 35).toInstant(ZoneOffset.UTC))
                 .ucContinue("cont")
                 .ucUser(Set.of("Example"))
                 .ucUserIds(Set.of(333))
@@ -66,8 +67,8 @@ class UsersContribsListTest {
                 .build();
 
         assertEquals(10, a.getUcLimit());
-        assertEquals(LocalDateTime.of(2023, Month.AUGUST, 8, 12, 35), a.getUcStart());
-        assertEquals(LocalDateTime.of(2023, Month.AUGUST, 8, 12, 35), a.getUcEnd());
+        assertEquals(LocalDateTime.of(2023, Month.AUGUST, 8, 12, 35).toInstant(ZoneOffset.UTC), a.getUcStart());
+        assertEquals(LocalDateTime.of(2023, Month.AUGUST, 8, 12, 35).toInstant(ZoneOffset.UTC), a.getUcEnd());
         assertEquals("cont", a.getUcContinue());
         assertEquals(Set.of("Example"), a.getUcUser());
         assertEquals(Set.of(333), a.getUcUserIds());

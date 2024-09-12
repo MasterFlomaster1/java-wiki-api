@@ -1,12 +1,11 @@
 package dev.masterflomaster1.jwa.request.list;
 
 import dev.masterflomaster1.jwa.common.Namespace;
-import dev.masterflomaster1.jwa.util.TimeHandler;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -30,8 +29,8 @@ public final class CategoryMembersList extends AbstractList {
     private int cmLimit;
     private CmSort cmSort;
     private CmDir cmDir;
-    private LocalDateTime cmStart;
-    private LocalDateTime cmEnd;
+    private Instant cmStart;
+    private Instant cmEnd;
     private String cmStartHexSortKey;
     private String cmEndHexSortKey;
     private String cmStartSortKeyPrefix;
@@ -150,9 +149,9 @@ public final class CategoryMembersList extends AbstractList {
          * Timestamp to start listing from. Can only be used with {@code cmsort=timestamp}.
          * @return {@code Builder}
          */
-        public Builder cmStart(final LocalDateTime cmStart) {
+        public Builder cmStart(final Instant cmStart) {
             categoryMembersList.cmStart = cmStart;
-            categoryMembersList.apiUrl.putQuery("cmstart", TimeHandler.formatISO8601(cmStart));
+            categoryMembersList.apiUrl.putQuery("cmstart", cmStart.toString());
             return this;
         }
 
@@ -160,9 +159,9 @@ public final class CategoryMembersList extends AbstractList {
          * Timestamp to end listing at. Can only be used with {@code cmsort=timestamp}.
          * @return {@code Builder}
          */
-        public Builder cmEnd(final LocalDateTime cmEnd) {
+        public Builder cmEnd(final Instant cmEnd) {
             categoryMembersList.cmEnd = cmEnd;
-            categoryMembersList.apiUrl.putQuery("cmend", TimeHandler.formatISO8601(cmEnd));
+            categoryMembersList.apiUrl.putQuery("cmend", cmEnd.toString());
             return this;
         }
 

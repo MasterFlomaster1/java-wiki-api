@@ -1,12 +1,11 @@
 package dev.masterflomaster1.jwa.request.prop;
 
 import dev.masterflomaster1.jwa.common.Prop;
-import dev.masterflomaster1.jwa.util.TimeHandler;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -23,8 +22,8 @@ public final class ImageInfoProp extends AbstractProp {
 
     private Set<Prop> iiProp;
     private int iiLimit;
-    private LocalDateTime iiStart;
-    private LocalDateTime iiEnd;
+    private Instant iiStart;
+    private Instant iiEnd;
     private int iiUrlWidth;
     private int iiUrlHeight;
     private String iiExtMetadataLanguage;
@@ -65,9 +64,9 @@ public final class ImageInfoProp extends AbstractProp {
          * Timestamp to start listing from.
          * @return {@code Builder}
          */
-        public Builder iiStart(LocalDateTime iiStart) {
+        public Builder iiStart(Instant iiStart) {
             imageInfoProp.iiStart = iiStart;
-            imageInfoProp.apiUrl.putQuery("iistart", TimeHandler.formatISO8601(iiStart));
+            imageInfoProp.apiUrl.putQuery("iistart", iiStart.toString());
             return this;
         }
 
@@ -75,9 +74,9 @@ public final class ImageInfoProp extends AbstractProp {
          * Timestamp to stop listing at.
          * @return {@code Builder}
          */
-        public Builder iiEnd(LocalDateTime iiEnd) {
+        public Builder iiEnd(Instant iiEnd) {
             imageInfoProp.iiEnd = iiEnd;
-            imageInfoProp.apiUrl.putQuery("iiend", TimeHandler.formatISO8601(iiEnd));
+            imageInfoProp.apiUrl.putQuery("iiend", iiEnd.toString());
             return this;
         }
 

@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -49,8 +50,8 @@ class VideoInfoPropTest {
         var a = new VideoInfoProp.Builder()
                 .viProp(Set.of(Prop.USER_ID))
                 .viLimit(20)
-                .viStart(LocalDateTime.parse("2007-12-31T23:59:59"))
-                .viEnd(LocalDateTime.parse("2007-12-31T23:59:59"))
+                .viStart(LocalDateTime.parse("2007-12-31T23:59:59").toInstant(ZoneOffset.UTC))
+                .viEnd(LocalDateTime.parse("2007-12-31T23:59:59").toInstant(ZoneOffset.UTC))
                 .viUrlWidth(50)
                 .viUrlHeight(50)
                 .viMetadataVersion("1")
@@ -65,8 +66,8 @@ class VideoInfoPropTest {
 
         assertEquals(Set.of(Prop.USER_ID), a.getViProp());
         assertEquals(20, a.getViLimit());
-        assertEquals(LocalDateTime.parse("2007-12-31T23:59:59"), a.getViStart());
-        assertEquals(LocalDateTime.parse("2007-12-31T23:59:59"), a.getViEnd());
+        assertEquals(LocalDateTime.parse("2007-12-31T23:59:59").toInstant(ZoneOffset.UTC), a.getViStart());
+        assertEquals(LocalDateTime.parse("2007-12-31T23:59:59").toInstant(ZoneOffset.UTC), a.getViEnd());
         assertEquals(50, a.getViUrlWidth());
         assertEquals(50, a.getViUrlHeight());
         assertEquals("1", a.getViMetadataVersion());

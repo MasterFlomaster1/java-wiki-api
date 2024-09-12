@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.time.ZoneOffset;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -48,8 +49,8 @@ class RecentChangesListTest {
     @Test
     void testBuilder() {
         var a = new RecentChangesList.Builder()
-                .rcStart(LocalDateTime.of(2023, Month.AUGUST, 8, 12, 35))
-                .rcEnd(LocalDateTime.of(2023, Month.AUGUST, 8, 12, 35))
+                .rcStart(LocalDateTime.of(2023, Month.AUGUST, 8, 12, 35).toInstant(ZoneOffset.UTC))
+                .rcEnd(LocalDateTime.of(2023, Month.AUGUST, 8, 12, 35).toInstant(ZoneOffset.UTC))
                 .rcDir(RecentChangesList.RcDir.OLDER)
                 .rcNamespace(Namespace.TALK)
                 .rcUser("User1")
@@ -65,8 +66,8 @@ class RecentChangesListTest {
                 .rcGenerateRevisions()
                 .build();
 
-        assertEquals(LocalDateTime.of(2023, Month.AUGUST, 8, 12, 35), a.getRcStart());
-        assertEquals(LocalDateTime.of(2023, Month.AUGUST, 8, 12, 35), a.getRcEnd());
+        assertEquals(LocalDateTime.of(2023, Month.AUGUST, 8, 12, 35).toInstant(ZoneOffset.UTC), a.getRcStart());
+        assertEquals(LocalDateTime.of(2023, Month.AUGUST, 8, 12, 35).toInstant(ZoneOffset.UTC), a.getRcEnd());
         assertEquals(RecentChangesList.RcDir.OLDER, a.getRcDir());
         assertEquals(Namespace.TALK, a.getRcNamespace());
         assertEquals("User1", a.getRcUser());

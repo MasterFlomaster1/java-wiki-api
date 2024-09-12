@@ -5,7 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -21,8 +21,8 @@ import java.util.stream.Collectors;
 public final class UsersContribsList extends AbstractList {
 
     private int ucLimit;
-    private LocalDateTime ucStart;
-    private LocalDateTime ucEnd;
+    private Instant ucStart;
+    private Instant ucEnd;
     private String ucContinue;
     private Set<String> ucUser;
     private Set<Integer> ucUserIds;
@@ -57,9 +57,9 @@ public final class UsersContribsList extends AbstractList {
          * The start timestamp to return from, i.e. revisions before this timestamp.
          * @return {@code Builder}
          */
-        public Builder ucStart(LocalDateTime ucStart) {
+        public Builder ucStart(Instant ucStart) {
             usersContribsList.ucStart = ucStart;
-            usersContribsList.apiUrl.putQuery("ucstart", ucStart);
+            usersContribsList.apiUrl.putQuery("ucstart", ucStart.toString());
             return this;
         }
 
@@ -67,9 +67,9 @@ public final class UsersContribsList extends AbstractList {
          * The end timestamp to return to, i.e. revisions after this timestamp.
          * @return {@code Builder}
          */
-        public Builder ucEnd(LocalDateTime ucEnd) {
+        public Builder ucEnd(Instant ucEnd) {
             usersContribsList.ucEnd = ucEnd;
-            usersContribsList.apiUrl.putQuery("ucend", ucEnd);
+            usersContribsList.apiUrl.putQuery("ucend", ucEnd.toString());
             return this;
         }
 

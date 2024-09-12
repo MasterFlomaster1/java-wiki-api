@@ -1,12 +1,11 @@
 package dev.masterflomaster1.jwa.request.prop;
 
 import dev.masterflomaster1.jwa.common.Prop;
-import dev.masterflomaster1.jwa.util.TimeHandler;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -18,8 +17,8 @@ public final class VideoInfoProp extends AbstractProp {
 
     private Set<Prop> viProp;
     private int viLimit;
-    private LocalDateTime viStart;
-    private LocalDateTime viEnd;
+    private Instant viStart;
+    private Instant viEnd;
     private int viUrlWidth;
     private int viUrlHeight;
     private String viMetadataVersion;
@@ -66,9 +65,9 @@ public final class VideoInfoProp extends AbstractProp {
          * Timestamp to start listing from.
          * @return {@code Builder}
          */
-        public Builder viStart(LocalDateTime viStart) {
+        public Builder viStart(Instant viStart) {
             videoInfoProp.viStart = viStart;
-            videoInfoProp.apiUrl.putQuery("vistart", TimeHandler.formatISO8601(viStart));
+            videoInfoProp.apiUrl.putQuery("vistart", viStart.toString());
             return this;
         }
 
@@ -76,9 +75,9 @@ public final class VideoInfoProp extends AbstractProp {
          * Timestamp to stop listing at.
          * @return {@code Builder}
          */
-        public Builder viEnd(LocalDateTime viEnd) {
+        public Builder viEnd(Instant viEnd) {
             videoInfoProp.viEnd = viEnd;
-            videoInfoProp.apiUrl.putQuery("viend", TimeHandler.formatISO8601(viEnd));
+            videoInfoProp.apiUrl.putQuery("viend", viEnd.toString());
             return this;
         }
 

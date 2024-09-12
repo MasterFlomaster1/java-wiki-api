@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.time.ZoneOffset;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -55,8 +56,8 @@ class CategoryMembersListTest {
                 .cmLimit(344)
                 .cmSort(CategoryMembersList.CmSort.TIMESTAMP)
                 .cmDir(CategoryMembersList.CmDir.NEWER)
-                .cmStart(LocalDateTime.of(2023, Month.AUGUST, 8, 12, 35))
-                .cmEnd(LocalDateTime.of(2023, Month.SEPTEMBER, 8, 12, 35))
+                .cmStart(LocalDateTime.of(2023, Month.AUGUST, 8, 12, 35).toInstant(ZoneOffset.UTC))
+                .cmEnd(LocalDateTime.of(2023, Month.SEPTEMBER, 8, 12, 35).toInstant(ZoneOffset.UTC))
                 .cmStartHexSortKey("test1")
                 .cmEndHexSortKey("test2")
                 .cmStartSortKeyPrefix("test3")
@@ -72,8 +73,8 @@ class CategoryMembersListTest {
         assertEquals(344, a.getCmLimit());
         assertEquals(CategoryMembersList.CmSort.TIMESTAMP, a.getCmSort());
         assertEquals(CategoryMembersList.CmDir.NEWER, a.getCmDir());
-        assertEquals(LocalDateTime.of(2023, Month.AUGUST, 8, 12, 35), a.getCmStart());
-        assertEquals(LocalDateTime.of(2023, Month.SEPTEMBER, 8, 12, 35), a.getCmEnd());
+        assertEquals(LocalDateTime.of(2023, Month.AUGUST, 8, 12, 35).toInstant(ZoneOffset.UTC), a.getCmStart());
+        assertEquals(LocalDateTime.of(2023, Month.SEPTEMBER, 8, 12, 35).toInstant(ZoneOffset.UTC), a.getCmEnd());
         assertEquals("test1", a.getCmStartHexSortKey());
         assertEquals("test2", a.getCmEndHexSortKey());
         assertEquals("test3", a.getCmStartSortKeyPrefix());

@@ -1,12 +1,11 @@
 package dev.masterflomaster1.jwa.request.list;
 
 import dev.masterflomaster1.jwa.common.Namespace;
-import dev.masterflomaster1.jwa.util.TimeHandler;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -21,8 +20,8 @@ import java.util.stream.Collectors;
 @SuppressWarnings("SpellCheckingInspection")
 public final class RecentChangesList extends AbstractList {
 
-    private LocalDateTime rcStart;
-    private LocalDateTime rcEnd;
+    private Instant rcStart;
+    private Instant rcEnd;
     private RcDir rcDir;
     private Namespace rcNamespace;
     private String rcUser;
@@ -49,9 +48,9 @@ public final class RecentChangesList extends AbstractList {
          * The timestamp to start enumerating from.
          * @return {@code Builder}
          */
-        public Builder rcStart(LocalDateTime rcStart) {
+        public Builder rcStart(Instant rcStart) {
             recentChangesList.rcStart = rcStart;
-            recentChangesList.apiUrl.putQuery("rcstart", TimeHandler.formatISO8601(rcStart));
+            recentChangesList.apiUrl.putQuery("rcstart", rcStart.toString());
             return this;
         }
 
@@ -59,9 +58,9 @@ public final class RecentChangesList extends AbstractList {
          * The timestamp to end enumerating.
          * @return {@code Builder}
          */
-        public Builder rcEnd(LocalDateTime rcEnd) {
+        public Builder rcEnd(Instant rcEnd) {
             recentChangesList.rcEnd = rcEnd;
-            recentChangesList.apiUrl.putQuery("rcend", TimeHandler.formatISO8601(rcEnd));
+            recentChangesList.apiUrl.putQuery("rcend", rcEnd.toString());
             return this;
         }
 

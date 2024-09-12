@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -55,7 +56,7 @@ class ImageInfoPropTest {
                                                 Prop.URL
                                         ))
                                         .iiLimit(50)
-                                        .iiEnd(LocalDateTime.of(2007, 12, 31, 23, 59, 59))
+                                        .iiEnd(LocalDateTime.of(2007, 12, 31, 23, 59, 59).toInstant(ZoneOffset.UTC))
                                         .build()
                                 )
                         )
@@ -96,8 +97,8 @@ class ImageInfoPropTest {
         var a = new ImageInfoProp.Builder()
                 .iiProp(Set.of(Prop.TIMESTAMP, Prop.USER_ID))
                 .iiLimit(20)
-                .iiStart(LocalDateTime.of(2007, 12, 31, 23, 59, 59))
-                .iiEnd(LocalDateTime.of(2007, 12, 31, 23, 59, 59))
+                .iiStart(LocalDateTime.of(2007, 12, 31, 23, 59, 59).toInstant(ZoneOffset.UTC))
+                .iiEnd(LocalDateTime.of(2007, 12, 31, 23, 59, 59).toInstant(ZoneOffset.UTC))
                 .iiUrlWidth(50)
                 .iiUrlHeight(50)
                 .iiExtMetadataLanguage("en")
@@ -106,8 +107,8 @@ class ImageInfoPropTest {
 
         assertEquals(Set.of(Prop.TIMESTAMP, Prop.USER_ID), a.getIiProp());
         assertEquals(20, a.getIiLimit());
-        assertEquals(LocalDateTime.of(2007, 12, 31, 23, 59, 59), a.getIiStart());
-        assertEquals(LocalDateTime.of(2007, 12, 31, 23, 59, 59), a.getIiEnd());
+        assertEquals(LocalDateTime.of(2007, 12, 31, 23, 59, 59).toInstant(ZoneOffset.UTC), a.getIiStart());
+        assertEquals(LocalDateTime.of(2007, 12, 31, 23, 59, 59).toInstant(ZoneOffset.UTC), a.getIiEnd());
         assertEquals(50, a.getIiUrlWidth());
         assertEquals(50, a.getIiUrlHeight());
         assertEquals("en", a.getIiExtMetadataLanguage());

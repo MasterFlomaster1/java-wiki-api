@@ -11,11 +11,13 @@ import lombok.ToString;
 @ToString
 public class BasePage {
 
-    @SerializedName("id") private Integer pageId;
-    @SerializedName("title")  private String title;
+    @SerializedName("id")    private Integer pageId;
+    @SerializedName("title") private String title;
 
     @SerializedName("ns")
     @JsonAdapter(NamespaceDeserializer.class)
     private Namespace ns;
+
+    private BasePage() { }
 
 }

@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @ToString
 @EqualsAndHashCode(callSuper = false)
 @SuppressWarnings("SpellCheckingInspection")
-public class RandomList extends AbstractList {
+public final class RandomList extends AbstractList {
 
     private EnumSet<Namespace> rnNamespace;
     private RnFilterRedir rnFilterRedir;
