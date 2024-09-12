@@ -10,6 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.EnumSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -48,7 +49,7 @@ class CategoriesPropTest {
     @Test
     void testBuilder() {
         var a = new CategoriesProp.Builder()
-                .clProp(Set.of(CategoriesProp.ClProp.TIMESTAMP, CategoriesProp.ClProp.HIDDEN))
+                .clProp(EnumSet.of(CategoriesProp.ClProp.TIMESTAMP, CategoriesProp.ClProp.HIDDEN))
                 .clShow(CategoriesProp.ClShow.UNHIDDEN)
                 .clLimit(5)
                 .clContinue("736|Academic_staff_of_the_University_of_Bern")
@@ -56,7 +57,7 @@ class CategoriesPropTest {
                 .clDir(Dir.DESCENDING)
                 .build();
 
-        assertEquals(Set.of(CategoriesProp.ClProp.TIMESTAMP, CategoriesProp.ClProp.HIDDEN), a.getClProp());
+        assertEquals(EnumSet.of(CategoriesProp.ClProp.TIMESTAMP, CategoriesProp.ClProp.HIDDEN), a.getClProp());
         assertEquals(CategoriesProp.ClShow.UNHIDDEN, a.getClShow());
         assertEquals(a.getClLimit(), 5);
         assertEquals(5, a.getClLimit());

@@ -11,7 +11,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.Set;
+import java.util.EnumSet;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -45,7 +45,7 @@ class OpenSearchActionTest {
     void testBuilder() {
         var a = new OpenSearchAction.Builder()
                 .search("Te")
-                .namespace(Set.of(Namespace.FILE))
+                .namespace(EnumSet.of(Namespace.FILE))
                 .limit(5)
                 .profile(OpenSearchAction.Profile.CLASSIC)
                 .redirects(OpenSearchAction.Redirects.RESOLVE)
@@ -54,7 +54,7 @@ class OpenSearchActionTest {
                 .build();
 
         assertEquals("Te", a.getSearch());
-        assertEquals(Set.of(Namespace.FILE), a.getNamespace());
+        assertEquals(EnumSet.of(Namespace.FILE), a.getNamespace());
         assertEquals(5, a.getLimit());
         assertEquals(OpenSearchAction.Profile.CLASSIC, a.getProfile());
         assertEquals(OpenSearchAction.Redirects.RESOLVE, a.getRedirects());

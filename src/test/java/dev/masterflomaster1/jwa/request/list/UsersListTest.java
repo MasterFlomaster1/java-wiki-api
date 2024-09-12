@@ -9,6 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.EnumSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -29,7 +30,7 @@ class UsersListTest {
                 .action(new QueryAction.Builder()
                         .list(Set.of(
                                 new UsersList.Builder()
-                                        .usProp(Set.of(
+                                        .usProp(EnumSet.of(
                                                 UsersList.UsProp.GROUPS,
                                                 UsersList.UsProp.EDIT_COUNT,
                                                 UsersList.UsProp.GENDER
@@ -51,13 +52,13 @@ class UsersListTest {
     @Test
     void testBuilder() {
         var a = new UsersList.Builder()
-                .usProp(Set.of(UsersList.UsProp.GROUPS))
+                .usProp(EnumSet.of(UsersList.UsProp.GROUPS))
                 .usAttachedWiki("id")
                 .usUsers(Set.of("Example"))
                 .usUserIds(Set.of(2222))
                 .build();
 
-        assertEquals(Set.of(UsersList.UsProp.GROUPS), a.getUsProp());
+        assertEquals(EnumSet.of(UsersList.UsProp.GROUPS), a.getUsProp());
         assertEquals("id", a.getUsAttachedWiki());
         assertEquals(Set.of("Example"), a.getUsUsers());
         assertEquals(Set.of(2222), a.getUsUserIds());

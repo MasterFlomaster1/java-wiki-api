@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.ZoneOffset;
+import java.util.EnumSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -49,9 +50,9 @@ class CategoryMembersListTest {
         var a = new CategoryMembersList.Builder()
                 .cmTitle("Category:Physics")
                 .cmPageId(32)
-                .cmProp(Set.of(CategoryMembersList.CmProp.IDS, CategoryMembersList.CmProp.TITLE))
-                .cmNamespace(Set.of(Namespace.TEMPLATE, Namespace.CATEGORY))
-                .cmType(Set.of(CategoryMembersList.CmType.PAGE, CategoryMembersList.CmType.FILE))
+                .cmProp(EnumSet.of(CategoryMembersList.CmProp.IDS, CategoryMembersList.CmProp.TITLE))
+                .cmNamespace(EnumSet.of(Namespace.TEMPLATE, Namespace.CATEGORY))
+                .cmType(EnumSet.of(CategoryMembersList.CmType.PAGE, CategoryMembersList.CmType.FILE))
                 .cmContinue("test")
                 .cmLimit(344)
                 .cmSort(CategoryMembersList.CmSort.TIMESTAMP)
@@ -66,9 +67,9 @@ class CategoryMembersListTest {
 
         assertEquals("Category:Physics", a.getCmTitle());
         assertEquals(32, a.getCmPageId());
-        assertEquals(Set.of(CategoryMembersList.CmProp.IDS, CategoryMembersList.CmProp.TITLE), a.getCmProp());
-        assertEquals(Set.of(Namespace.TEMPLATE, Namespace.CATEGORY), a.getCmNamespace());
-        assertEquals(Set.of(CategoryMembersList.CmType.PAGE, CategoryMembersList.CmType.FILE), a.getCmType());
+        assertEquals(EnumSet.of(CategoryMembersList.CmProp.IDS, CategoryMembersList.CmProp.TITLE), a.getCmProp());
+        assertEquals(EnumSet.of(Namespace.TEMPLATE, Namespace.CATEGORY), a.getCmNamespace());
+        assertEquals(EnumSet.of(CategoryMembersList.CmType.PAGE, CategoryMembersList.CmType.FILE), a.getCmType());
         assertEquals("test", a.getCmContinue());
         assertEquals(344, a.getCmLimit());
         assertEquals(CategoryMembersList.CmSort.TIMESTAMP, a.getCmSort());

@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.ToString;
 
 import java.time.Instant;
-import java.util.Set;
+import java.util.EnumSet;
 import java.util.stream.Collectors;
 
 /**
@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @SuppressWarnings("SpellCheckingInspection")
 public final class RevisionsProp extends AbstractProp {
 
-    private Set<RvProp> rvProp;
+    private EnumSet<RvProp> rvProp;
     private int rvLimit;
     private String rvSection;
     private Instant rvStart;
@@ -42,7 +42,7 @@ public final class RevisionsProp extends AbstractProp {
          * Which properties to get for each revision.
          * @return {@code Builder}
          */
-        public Builder rvProp(Set<RvProp> rvProp) {
+        public Builder rvProp(EnumSet<RvProp> rvProp) {
             revisionsProp.rvProp = rvProp;
             revisionsProp.apiUrl.putQuery("rvprop", rvProp.stream()
                     .map(RvProp::getValue)

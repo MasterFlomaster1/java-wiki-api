@@ -4,6 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.util.EnumSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -18,7 +19,7 @@ import java.util.stream.Collectors;
 @SuppressWarnings("SpellCheckingInspection")
 public final class UsersList extends AbstractList {
 
-    private Set<UsProp> usProp;
+    private EnumSet<UsProp> usProp;
     private String usAttachedWiki;
     private Set<String> usUsers;
     private Set<Integer> usUserIds;
@@ -35,7 +36,7 @@ public final class UsersList extends AbstractList {
          * Which pieces of information to include
          * @return {@code Builder}
          */
-        public Builder usProp(Set<UsProp> usProp) {
+        public Builder usProp(EnumSet<UsProp> usProp) {
             usersList.usProp = usProp;
             usersList.apiUrl.putQuery("usprop", usProp.stream()
                     .map(UsProp::getValue)

@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.ZoneOffset;
+import java.util.EnumSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -44,10 +45,6 @@ class UsersContribsListTest {
         Response r = api.execute(a);
     }
 
-    void testExample2() {
-
-    }
-
     @Test
     void testBuilder() {
         var a = new UsersContribsList.Builder()
@@ -60,9 +57,9 @@ class UsersContribsListTest {
                 .ucUserPrefix("pref")
                 .ucIpRange("range")
                 .ucDir(UsersContribsList.UcDir.NEWER)
-                .ucNamespace(Set.of(Namespace.TALK))
-                .ucProp(Set.of(UsersContribsList.UcProp.IDS))
-                .ucShow(Set.of(UsersContribsList.UcShow.MINOR))
+                .ucNamespace(EnumSet.of(Namespace.TALK))
+                .ucProp(EnumSet.of(UsersContribsList.UcProp.IDS))
+                .ucShow(EnumSet.of(UsersContribsList.UcShow.MINOR))
                 .ucTag("tag")
                 .build();
 
@@ -74,9 +71,9 @@ class UsersContribsListTest {
         assertEquals(Set.of(333), a.getUcUserIds());
         assertEquals("range", a.getUcIpRange());
         assertEquals(UsersContribsList.UcDir.NEWER, a.getUcDir());
-        assertEquals(Set.of(Namespace.TALK), a.getUcNamespace());
-        assertEquals(Set.of(UsersContribsList.UcProp.IDS), a.getUcProp());
-        assertEquals(Set.of(UsersContribsList.UcShow.MINOR), a.getUcShow());
+        assertEquals(EnumSet.of(Namespace.TALK), a.getUcNamespace());
+        assertEquals(EnumSet.of(UsersContribsList.UcProp.IDS), a.getUcProp());
+        assertEquals(EnumSet.of(UsersContribsList.UcShow.MINOR), a.getUcShow());
         assertEquals("tag", a.getUcTag());
     }
 

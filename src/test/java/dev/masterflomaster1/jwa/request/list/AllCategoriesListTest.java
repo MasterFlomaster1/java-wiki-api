@@ -10,6 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.EnumSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -31,7 +32,7 @@ class AllCategoriesListTest {
                 .action(new QueryAction.Builder()
                         .list(Set.of(
                                 new AllCategoriesList.Builder()
-                                        .acProp(Set.of(AllCategoriesList.AcProp.SIZE))
+                                        .acProp(EnumSet.of(AllCategoriesList.AcProp.SIZE))
                                         .build()
                                 )
                         )
@@ -54,7 +55,7 @@ class AllCategoriesListTest {
                 .acMin(2)
                 .acMax(10)
                 .acLimit(20)
-                .acProp(Set.of(AllCategoriesList.AcProp.HIDDEN))
+                .acProp(EnumSet.of(AllCategoriesList.AcProp.HIDDEN))
                 .build();
 
         assertEquals("Java APIs", a.getAcFrom());
@@ -65,7 +66,7 @@ class AllCategoriesListTest {
         assertEquals(2, a.getAcMin());
         assertEquals(10, a.getAcMax());
         assertEquals(20, a.getAcLimit());
-        assertEquals(Set.of(AllCategoriesList.AcProp.HIDDEN), a.getAcProp());
+        assertEquals(EnumSet.of(AllCategoriesList.AcProp.HIDDEN), a.getAcProp());
     }
 
 }

@@ -5,7 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.util.Set;
+import java.util.EnumSet;
 import java.util.stream.Collectors;
 
 /**
@@ -27,7 +27,7 @@ public final class AllCategoriesList extends AbstractList {
     private int acMin;
     private int acMax;
     private int acLimit;
-    private Set<AcProp> acProp;
+    private EnumSet<AcProp> acProp;
 
     private AllCategoriesList() {
         name = "allcategories";
@@ -124,7 +124,7 @@ public final class AllCategoriesList extends AbstractList {
          * Which properties to get.
          * @return {@code Builder}
          */
-        public Builder acProp(Set<AcProp> acProp) {
+        public Builder acProp(EnumSet<AcProp> acProp) {
             allCategoriesList.acProp = acProp;
             allCategoriesList.apiUrl.putQuery("acprop", acProp.stream()
                     .map(AcProp::getValue)

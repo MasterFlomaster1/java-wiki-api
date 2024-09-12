@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.ToString;
 
 import java.time.Instant;
-import java.util.Set;
+import java.util.EnumSet;
 import java.util.stream.Collectors;
 
 /**
@@ -28,7 +28,7 @@ public final class AllImagesList extends AbstractList {
     private String aiContinue;
     private Instant aiStart;
     private Instant aiEnd;
-    private Set<Prop> aiProp;
+    private EnumSet<Prop> aiProp;
     private String aiPrefix;
     private long aiMinSize;
     private long aiMaxSize;
@@ -122,7 +122,7 @@ public final class AllImagesList extends AbstractList {
          * Which file information to get.
          * @return {@code Builder}
          */
-        public Builder aiProp(Set<Prop> aiProp) {
+        public Builder aiProp(EnumSet<Prop> aiProp) {
             allImagesList.aiProp = aiProp;
             allImagesList.apiUrl.putQuery("aiprop", aiProp.stream()
                     .map(Prop::getValue)

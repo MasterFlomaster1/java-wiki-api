@@ -4,7 +4,7 @@ import dev.masterflomaster1.jwa.common.Namespace;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.util.Set;
+import java.util.EnumSet;
 import java.util.stream.Collectors;
 
 @Getter
@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public final class OpenSearchAction extends AbstractAction {
 
     private String search;
-    private Set<Namespace> namespace;
+    private EnumSet<Namespace> namespace;
     private int limit;
     private Profile profile;
     private Redirects redirects;
@@ -42,7 +42,7 @@ public final class OpenSearchAction extends AbstractAction {
          * Namespaces to search. Ignored if search begins with a valid namespace prefix.
          * @return {@code Builder}
          */
-        public Builder namespace(Set<Namespace> namespace) {
+        public Builder namespace(EnumSet<Namespace> namespace) {
             openSearchAction.namespace = namespace;
             openSearchAction.apiUrl.putQuery("namespace", namespace.stream()
                     .map(Namespace::getValue)

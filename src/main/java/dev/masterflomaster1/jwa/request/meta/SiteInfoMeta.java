@@ -4,7 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.util.Set;
+import java.util.EnumSet;
 import java.util.stream.Collectors;
 
 /**
@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @SuppressWarnings("SpellCheckingInspection")
 public final class SiteInfoMeta extends AbstractMeta {
 
-    private Set<SiProp> siProp;
+    private EnumSet<SiProp> siProp;
     private boolean siShowAllDb;
     private boolean siNumberInGroup;
 
@@ -59,7 +59,7 @@ public final class SiteInfoMeta extends AbstractMeta {
          * @param siProp value
          * @return {@code Builder}
          */
-        public Builder siProp(Set<SiProp> siProp) {
+        public Builder siProp(EnumSet<SiProp> siProp) {
             siteInfoMeta.siProp = siProp;
             siteInfoMeta.apiUrl.putQuery("siprop", siProp.stream()
                     .map(SiProp::getValue)

@@ -10,6 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.EnumSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -81,10 +82,10 @@ class BlockActionTest {
                 .reBlock()
                 .watchUser()
                 .watchlistExpiry("test")
-                .tags(Set.of(Tags.CONVENIENT_DISCUSSIONS, Tags.REPEATING_CHARACTERS))
+                .tags(EnumSet.of(Tags.CONVENIENT_DISCUSSIONS, Tags.REPEATING_CHARACTERS))
                 .partial()
                 .pageRestrictions(Set.of("Java_(programming_language)"))
-                .namespaceRestrictions(Set.of(Namespace.TALK))
+                .namespaceRestrictions(EnumSet.of(Namespace.TALK))
                 .token("token")
                 .build();
 

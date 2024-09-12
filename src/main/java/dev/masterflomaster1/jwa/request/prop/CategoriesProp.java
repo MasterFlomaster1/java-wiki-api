@@ -5,6 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.util.EnumSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -19,7 +20,7 @@ import java.util.stream.Collectors;
 @SuppressWarnings("SpellCheckingInspection")
 public final class CategoriesProp extends AbstractProp {
 
-    private Set<ClProp> clProp;
+    private EnumSet<ClProp> clProp;
     private ClShow clShow;
     private int clLimit;
     private String clContinue;
@@ -38,7 +39,7 @@ public final class CategoriesProp extends AbstractProp {
          * Which additional properties to get for each category
          * @return {@code Builder}
          */
-        public Builder clProp(Set<ClProp> clProp) {
+        public Builder clProp(EnumSet<ClProp> clProp) {
             categoriesProp.clProp = clProp;
             categoriesProp.apiUrl.putQuery("clProp", clProp.stream()
                     .map(ClProp::getValue)

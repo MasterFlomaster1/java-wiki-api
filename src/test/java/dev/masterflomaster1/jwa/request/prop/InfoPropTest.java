@@ -10,6 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.EnumSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -49,11 +50,11 @@ class InfoPropTest {
     @Test
     void testBuilder() {
         var a = new InfoProp.Builder()
-                .inProp(Set.of(InfoProp.InProp.URL, InfoProp.InProp.TALK_ID))
+                .inProp(EnumSet.of(InfoProp.InProp.URL, InfoProp.InProp.TALK_ID))
                 .inContinue("test")
                 .build();
 
-        assertEquals(Set.of(InfoProp.InProp.URL, InfoProp.InProp.TALK_ID), a.getInProp());
+        assertEquals(EnumSet.of(InfoProp.InProp.URL, InfoProp.InProp.TALK_ID), a.getInProp());
         assertEquals("test", a.getInContinue());
     }
 

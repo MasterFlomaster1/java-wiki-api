@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.ZoneOffset;
+import java.util.EnumSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -56,10 +57,10 @@ class RecentChangesListTest {
                 .rcUser("User1")
                 .rcExcludeUser("User1")
                 .rcTag("edit")
-                .rcProp(Set.of(RecentChangesList.RcProp.USER, RecentChangesList.RcProp.TIMESTAMP))
-                .rcShow(Set.of(RecentChangesList.RcShow.BOT, RecentChangesList.RcShow.ANON))
+                .rcProp(EnumSet.of(RecentChangesList.RcProp.USER, RecentChangesList.RcProp.TIMESTAMP))
+                .rcShow(EnumSet.of(RecentChangesList.RcShow.BOT, RecentChangesList.RcShow.ANON))
                 .rcLimit(50)
-                .rcType(Set.of(RecentChangesList.RcType.LOG))
+                .rcType(EnumSet.of(RecentChangesList.RcType.LOG))
                 .rcTopOnly()
                 .rcTitle("title")
                 .rcContinue("20240219090350|1744507853")
@@ -73,10 +74,10 @@ class RecentChangesListTest {
         assertEquals("User1", a.getRcUser());
         assertEquals("User1", a.getRcExcludeUser());
         assertEquals("edit", a.getRcTag());
-        assertEquals(Set.of(RecentChangesList.RcProp.USER, RecentChangesList.RcProp.TIMESTAMP), a.getRcProp());
-        assertEquals(Set.of(RecentChangesList.RcShow.BOT, RecentChangesList.RcShow.ANON), a.getRcShow());
+        assertEquals(EnumSet.of(RecentChangesList.RcProp.USER, RecentChangesList.RcProp.TIMESTAMP), a.getRcProp());
+        assertEquals(EnumSet.of(RecentChangesList.RcShow.BOT, RecentChangesList.RcShow.ANON), a.getRcShow());
         assertEquals(50, a.getRcLimit());
-        assertEquals(Set.of(RecentChangesList.RcType.LOG), a.getRcType());
+        assertEquals(EnumSet.of(RecentChangesList.RcType.LOG), a.getRcType());
         assertTrue(a.isRcTopOnly());
         assertEquals("title", a.getRcTitle());
         assertEquals("20240219090350|1744507853", a.getRcContinue());

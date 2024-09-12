@@ -4,7 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.util.Set;
+import java.util.EnumSet;
 import java.util.stream.Collectors;
 
 /**
@@ -18,10 +18,10 @@ import java.util.stream.Collectors;
 @SuppressWarnings("SpellCheckingInspection")
 public final class ContributorsProp extends AbstractProp {
 
-    private Set<PcGroup> pcGroup;
-    private Set<PcGroup> pcExcludeGroup;
-    private Set<PcRights> pcRights;
-    private Set<PcRights> pcExcludeRights;
+    private EnumSet<PcGroup> pcGroup;
+    private EnumSet<PcGroup> pcExcludeGroup;
+    private EnumSet<PcRights> pcRights;
+    private EnumSet<PcRights> pcExcludeRights;
     private int pcLimit;
     private String pcContinue;
 
@@ -63,7 +63,7 @@ public final class ContributorsProp extends AbstractProp {
          * autoconfirmed.
          * @return {@code Builder}
          */
-        public Builder pcGroup(Set<PcGroup> pcGroup) {
+        public Builder pcGroup(EnumSet<PcGroup> pcGroup) {
             contributorsProp.pcGroup = pcGroup;
             contributorsProp.apiUrl.putQuery("pcgroup", pcGroup.stream()
                     .map(PcGroup::getValue)
@@ -76,7 +76,7 @@ public final class ContributorsProp extends AbstractProp {
          * autoconfirmed.
          * @return {@code Builder}
          */
-        public Builder pcExcludeGroup(Set<PcGroup> pcExcludeGroup) {
+        public Builder pcExcludeGroup(EnumSet<PcGroup> pcExcludeGroup) {
             contributorsProp.pcExcludeGroup = pcExcludeGroup;
             contributorsProp.apiUrl.putQuery("pcexcludegroup", pcExcludeGroup.stream()
                     .map(PcGroup::getValue)
@@ -90,7 +90,7 @@ public final class ContributorsProp extends AbstractProp {
          * Maximum number of values is 50 (500 for clients that are allowed higher limits).
          * @return {@code Builder}
          */
-        public Builder pcRights(Set<PcRights> pcRights) {
+        public Builder pcRights(EnumSet<PcRights> pcRights) {
             contributorsProp.pcRights = pcRights;
             contributorsProp.apiUrl.putQuery("pcrights", pcRights.stream()
                     .map(PcRights::getValue)
@@ -104,7 +104,7 @@ public final class ContributorsProp extends AbstractProp {
          * Maximum number of values is 50 (500 for clients that are allowed higher limits).
          * @return {@code Builder}
          */
-        public Builder pcExcludeRights(Set<PcRights> pcExcludeRights) {
+        public Builder pcExcludeRights(EnumSet<PcRights> pcExcludeRights) {
             contributorsProp.pcExcludeRights = pcExcludeRights;
             contributorsProp.apiUrl.putQuery("pcexcluderights", pcExcludeRights.stream()
                     .map(PcRights::getValue)

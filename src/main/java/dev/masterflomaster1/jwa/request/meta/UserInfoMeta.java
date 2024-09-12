@@ -4,7 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.util.Set;
+import java.util.EnumSet;
 import java.util.stream.Collectors;
 
 /**
@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @SuppressWarnings("SpellCheckingInspection")
 public final class UserInfoMeta extends AbstractMeta {
 
-    private Set<UiProp> uiProp;
+    private EnumSet<UiProp> uiProp;
     private String uiAttachedWiki;
 
     private UserInfoMeta() {
@@ -33,7 +33,7 @@ public final class UserInfoMeta extends AbstractMeta {
          * Which pieces of information to include.
          * @return {@code Builder}
          */
-        public Builder uiProp(Set<UiProp> uiProp) {
+        public Builder uiProp(EnumSet<UiProp> uiProp) {
             userInfoMeta.uiProp = uiProp;
             userInfoMeta.apiUrl.putQuery("uiprop", uiProp.stream()
                     .map(UiProp::getValue)

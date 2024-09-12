@@ -9,6 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.EnumSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -45,18 +46,18 @@ class ContributorsPropTest {
     @Test
     void testBuilder() {
         var a = new ContributorsProp.Builder()
-                .pcGroup(Set.of(ContributorsProp.PcGroup.ABUSE_FILTER))
-                .pcExcludeGroup(Set.of(ContributorsProp.PcGroup.ABUSE_FILTER))
-                .pcRights(Set.of(ContributorsProp.PcRights.EDIT))
-                .pcExcludeRights(Set.of(ContributorsProp.PcRights.EDIT))
+                .pcGroup(EnumSet.of(ContributorsProp.PcGroup.ABUSE_FILTER))
+                .pcExcludeGroup(EnumSet.of(ContributorsProp.PcGroup.ABUSE_FILTER))
+                .pcRights(EnumSet.of(ContributorsProp.PcRights.EDIT))
+                .pcExcludeRights(EnumSet.of(ContributorsProp.PcRights.EDIT))
                 .pcLimit(60)
                 .pcContinue("15580374|1029")
                 .build();
 
-        assertEquals(Set.of(ContributorsProp.PcGroup.ABUSE_FILTER), a.getPcGroup());
-        assertEquals(Set.of(ContributorsProp.PcGroup.ABUSE_FILTER), a.getPcExcludeGroup());
-        assertEquals(Set.of(ContributorsProp.PcRights.EDIT), a.getPcRights());
-        assertEquals(Set.of(ContributorsProp.PcRights.EDIT), a.getPcExcludeRights());
+        assertEquals(EnumSet.of(ContributorsProp.PcGroup.ABUSE_FILTER), a.getPcGroup());
+        assertEquals(EnumSet.of(ContributorsProp.PcGroup.ABUSE_FILTER), a.getPcExcludeGroup());
+        assertEquals(EnumSet.of(ContributorsProp.PcRights.EDIT), a.getPcRights());
+        assertEquals(EnumSet.of(ContributorsProp.PcRights.EDIT), a.getPcExcludeRights());
         assertEquals(60, a.getPcLimit());
         assertEquals("15580374|1029", a.getPcContinue());
     }

@@ -4,7 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.util.Set;
+import java.util.EnumSet;
 import java.util.stream.Collectors;
 
 /**
@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @SuppressWarnings("SpellCheckingInspection")
 public final class TokensMeta extends AbstractMeta {
 
-    private Set<Type> type;
+    private EnumSet<Type> type;
 
     private TokensMeta() {
         name = "tokens";
@@ -32,7 +32,7 @@ public final class TokensMeta extends AbstractMeta {
          * Types of token to request.
          * @return {@code Builder}
          */
-        public Builder type(Set<Type> type) {
+        public Builder type(EnumSet<Type> type) {
             tokensMeta.type = type;
             tokensMeta.apiUrl.putQuery("type", type.stream()
                     .map(Type::getValue)

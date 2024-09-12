@@ -4,7 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.util.Set;
+import java.util.EnumSet;
 import java.util.stream.Collectors;
 
 /**
@@ -18,7 +18,7 @@ public final class GlobalUserInfoMeta extends AbstractMeta {
 
     private String guiUser;
     private int guiId;
-    private Set<GuiProp> guiProp;
+    private EnumSet<GuiProp> guiProp;
 
     private GlobalUserInfoMeta() {
         name = "globaluserinfo";
@@ -54,7 +54,7 @@ public final class GlobalUserInfoMeta extends AbstractMeta {
          * Which properties to get.
          * @return {@code Builder}
          */
-        public Builder guiProp(Set<GuiProp> guiProp) {
+        public Builder guiProp(EnumSet<GuiProp> guiProp) {
             globalUserInfoMeta.guiProp = guiProp;
             globalUserInfoMeta.apiUrl.putQuery("guiprop", guiProp.stream()
                     .map(GuiProp::getValue)

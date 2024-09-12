@@ -10,6 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.EnumSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -31,7 +32,7 @@ class AllFileUsagesListTest {
                         .list(Set.of(
                                 new AllFileUsagesList.Builder()
                                         .afFrom("B")
-                                        .afProp(Set.of(AllFileUsagesList.AfProp.IDS, AllFileUsagesList.AfProp.TITLE))
+                                        .afProp(EnumSet.of(AllFileUsagesList.AfProp.IDS, AllFileUsagesList.AfProp.TITLE))
                                         .build()
                                 )
                         )
@@ -72,7 +73,7 @@ class AllFileUsagesListTest {
                 .afTo("C")
                 .afPrefix("D")
                 .afUnique()
-                .afProp(Set.of(AllFileUsagesList.AfProp.IDS, AllFileUsagesList.AfProp.TITLE))
+                .afProp(EnumSet.of(AllFileUsagesList.AfProp.IDS, AllFileUsagesList.AfProp.TITLE))
                 .afLimit(20)
                 .afDir(Dir.DESCENDING)
                 .build();
@@ -82,7 +83,7 @@ class AllFileUsagesListTest {
         assertEquals("C", a.getAfTo());
         assertEquals("D", a.getAfPrefix());
         assertTrue(a.isAfUnique());
-        assertEquals(Set.of(AllFileUsagesList.AfProp.IDS, AllFileUsagesList.AfProp.TITLE), a.getAfProp());
+        assertEquals(EnumSet.of(AllFileUsagesList.AfProp.IDS, AllFileUsagesList.AfProp.TITLE), a.getAfProp());
         assertEquals(20, a.getAfLimit());
         assertEquals(Dir.DESCENDING, a.getAfDir());
     }

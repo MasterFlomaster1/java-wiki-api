@@ -5,7 +5,7 @@ import dev.masterflomaster1.jwa.common.ContentModel;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.util.Set;
+import java.util.EnumSet;
 import java.util.stream.Collectors;
 
 /**
@@ -26,7 +26,7 @@ public final class ParseAction extends AbstractAction {
     private int pageId;
     private boolean redirects;
     private long oldId;
-    private Set<Prop> prop;
+    private EnumSet<Prop> prop;
     private String wrapOutputClass;
     private boolean parsoid;
     private boolean pst;
@@ -139,7 +139,7 @@ public final class ParseAction extends AbstractAction {
          * Which pieces of information to get
          * @return {@code Builder}
          */
-        public Builder prop(Set<Prop> prop) {
+        public Builder prop(EnumSet<Prop> prop) {
             parseAction.prop = prop;
             parseAction.apiUrl.putQuery("prop", prop.stream()
                     .map(Prop::getValue)

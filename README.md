@@ -205,7 +205,7 @@ var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .meta(Set.of(
                                 new SiteInfoMeta.Builder()
-                                        .siProp(Set.of(
+                                        .siProp(EnumSet.of(
                                                 SiteInfoMeta.SiProp.GENERAL,
                                                 SiteInfoMeta.SiProp.NAMESPACES,
                                                 SiteInfoMeta.SiProp.NAMESPACE_ALIASES,
@@ -228,7 +228,7 @@ var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .list(Set.of(
                                 new UsersList.Builder()
-                                        .usProp(Set.of(
+                                        .usProp(EnumSet.of(
                                                 UsersList.UsProp.GROUPS,
                                                 UsersList.UsProp.EDIT_COUNT,
                                                 UsersList.UsProp.GENDER
@@ -287,7 +287,7 @@ var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .prop(Set.of(
                                 new ImageInfoProp.Builder()
-                                        .iiProp(Set.of(ImageInfoProp.IIProp.TIMESTAMP,
+                                        .iiProp(EnumSet.of(ImageInfoProp.IIProp.TIMESTAMP,
                                                 ImageInfoProp.IIProp.USER,
                                                 ImageInfoProp.IIProp.URL
                                         ))
@@ -364,7 +364,7 @@ var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .prop(Set.of(
                                 new RevisionsProp.Builder()
-                                        .rvProp(Set.of(
+                                        .rvProp(EnumSet.of(
                                                 RevisionsProp.RvProp.TIMESTAMP,
                                                 RevisionsProp.RvProp.USER,
                                                 RevisionsProp.RvProp.COMMENT

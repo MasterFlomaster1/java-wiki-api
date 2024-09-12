@@ -7,6 +7,7 @@ import dev.masterflomaster1.jwa.request.meta.TokensMeta;
 import dev.masterflomaster1.jwa.response.Tokens;
 
 import java.io.IOException;
+import java.util.EnumSet;
 import java.util.Set;
 
 class Shared {
@@ -28,7 +29,7 @@ class Shared {
                     .action(new QueryAction.Builder()
                             .meta(Set.of(
                                     new TokensMeta.Builder()
-                                            .type(Set.of(TokensMeta.Type.ALL_VALUES))
+                                            .type(EnumSet.of(TokensMeta.Type.ALL_VALUES))
                                             .build()
                             ))
                             .build()

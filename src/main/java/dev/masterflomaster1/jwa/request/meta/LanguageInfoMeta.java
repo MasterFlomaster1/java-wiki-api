@@ -4,6 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.util.EnumSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -16,7 +17,7 @@ import java.util.stream.Collectors;
 @SuppressWarnings("SpellCheckingInspection")
 public final class LanguageInfoMeta extends AbstractMeta {
 
-    private Set<LiProp> liProp;
+    private EnumSet<LiProp> liProp;
     private Set<String> liCode;
     private String liContinue;
 
@@ -32,7 +33,7 @@ public final class LanguageInfoMeta extends AbstractMeta {
          * Which information to get for each language.
          * @return {@code Builder}
          */
-        public Builder liProp(Set<LiProp> liProp) {
+        public Builder liProp(EnumSet<LiProp> liProp) {
             languageInfoMeta.liProp = liProp;
             languageInfoMeta.apiUrl.putQuery("liprop", liProp.stream()
                     .map(LiProp::getValue)

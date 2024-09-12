@@ -4,7 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.util.Set;
+import java.util.EnumSet;
 import java.util.stream.Collectors;
 
 /**
@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @SuppressWarnings("SpellCheckingInspection")
 public final class InfoProp extends AbstractProp {
 
-    private Set<InProp> inProp;
+    private EnumSet<InProp> inProp;
     private String inContinue;
 
     private InfoProp() {
@@ -119,7 +119,7 @@ public final class InfoProp extends AbstractProp {
          * Which additional properties to get
          * @return {@code Builder}
          */
-        public Builder inProp(Set<InProp> inProp) {
+        public Builder inProp(EnumSet<InProp> inProp) {
             infoProp.inProp = inProp;
             infoProp.apiUrl.putQuery("inprop", inProp.stream()
                     .map(InProp::getValue)

@@ -9,6 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.EnumSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -29,7 +30,7 @@ class TokensMetaTest {
                 .action(new QueryAction.Builder()
                         .meta(Set.of(
                                 new TokensMeta.Builder()
-                                        .type(Set.of(TokensMeta.Type.LOGIN, TokensMeta.Type.CSRF))
+                                        .type(EnumSet.of(TokensMeta.Type.LOGIN, TokensMeta.Type.CSRF))
                                         .build()
                         ))
                         .build()
@@ -64,7 +65,7 @@ class TokensMetaTest {
                 .action(new QueryAction.Builder()
                         .meta(Set.of(
                                 new TokensMeta.Builder()
-                                        .type(Set.of(TokensMeta.Type.WATCH, TokensMeta.Type.PATROL))
+                                        .type(EnumSet.of(TokensMeta.Type.WATCH, TokensMeta.Type.PATROL))
                                         .build()
                         ))
                         .build()
@@ -79,10 +80,10 @@ class TokensMetaTest {
     @Test
     void testBuilder() {
         var a = new TokensMeta.Builder()
-                .type(Set.of(TokensMeta.Type.WATCH, TokensMeta.Type.PATROL))
+                .type(EnumSet.of(TokensMeta.Type.WATCH, TokensMeta.Type.PATROL))
                 .build();
 
-        assertEquals(Set.of(TokensMeta.Type.WATCH, TokensMeta.Type.PATROL), a.getType());
+        assertEquals(EnumSet.of(TokensMeta.Type.WATCH, TokensMeta.Type.PATROL), a.getType());
     }
 
 }

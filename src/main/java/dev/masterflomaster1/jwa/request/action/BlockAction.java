@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.ToString;
 import okhttp3.FormBody;
 
+import java.util.EnumSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -31,10 +32,10 @@ public final class BlockAction extends AbstractAction implements IPost {
     private boolean reBlock;
     private boolean watchUser;
     private String watchlistExpiry;
-    private Set<Tags> tags;
+    private EnumSet<Tags> tags;
     private boolean partial;
     private Set<String> pageRestrictions;
-    private Set<Namespace> namespaceRestrictions;
+    private EnumSet<Namespace> namespaceRestrictions;
     private String token;
 
     private BlockAction() {
@@ -183,7 +184,7 @@ public final class BlockAction extends AbstractAction implements IPost {
          * Change tags to apply to the entry in the block log.
          * @return {@code Builder}
          */
-        public Builder tags(Set<Tags> tags) {
+        public Builder tags(EnumSet<Tags> tags) {
             blockAction.tags = tags;
             blockAction.apiUrl.putQuery("tags", tags.stream()
                     .map(Tags::getValue)
@@ -215,7 +216,7 @@ public final class BlockAction extends AbstractAction implements IPost {
          * List of namespace IDs to block the user from editing. Only applies when {@code partial} is set to true.
          * @return {@code Builder}
          */
-        public Builder namespaceRestrictions(Set<Namespace> namespaceRestrictions) {
+        public Builder namespaceRestrictions(EnumSet<Namespace> namespaceRestrictions) {
             blockAction.namespaceRestrictions = namespaceRestrictions;
             blockAction.apiUrl.putQuery("namespacerestrictions", namespaceRestrictions.stream()
                     .map(Namespace::getValue)

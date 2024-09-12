@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.ToString;
 
 import java.time.Instant;
+import java.util.EnumSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -29,9 +30,9 @@ public final class UsersContribsList extends AbstractList {
     private String ucUserPrefix;
     private String ucIpRange;
     private UcDir ucDir;
-    private Set<Namespace> ucNamespace;
-    private Set<UcProp> ucProp;
-    private Set<UcShow> ucShow;
+    private EnumSet<Namespace> ucNamespace;
+    private EnumSet<UcProp> ucProp;
+    private EnumSet<UcShow> ucShow;
     private String ucTag;
 
     private UsersContribsList() {
@@ -147,7 +148,7 @@ public final class UsersContribsList extends AbstractList {
          * Only list contributions in these namespaces.
          * @return {@code Builder}
          */
-        public Builder ucNamespace(Set<Namespace> ucNamespace) {
+        public Builder ucNamespace(EnumSet<Namespace> ucNamespace) {
             usersContribsList.ucNamespace = ucNamespace;
             usersContribsList.apiUrl.putQuery("ucnamespace", ucNamespace.stream()
                     .map(Namespace::getValue)
@@ -159,7 +160,7 @@ public final class UsersContribsList extends AbstractList {
          * Include additional pieces of information.
          * @return {@code Builder}
          */
-        public Builder ucProp(Set<UcProp> ucProp) {
+        public Builder ucProp(EnumSet<UcProp> ucProp) {
             usersContribsList.ucProp = ucProp;
             usersContribsList.apiUrl.putQuery("ucprop", ucProp.stream()
                     .map(UcProp::getValue)
@@ -171,7 +172,7 @@ public final class UsersContribsList extends AbstractList {
          * Show only items that meet these criteria, e.g. non minor edits only: ucshow=!minor.
          * @return {@code Builder}
          */
-        public Builder ucShow(Set<UcShow> ucShow) {
+        public Builder ucShow(EnumSet<UcShow> ucShow) {
             usersContribsList.ucShow = ucShow;
             usersContribsList.apiUrl.putQuery("ucshow", ucShow.stream()
                     .map(UcShow::getValue)

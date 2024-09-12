@@ -10,10 +10,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.ZoneOffset;
+import java.util.EnumSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -56,7 +56,7 @@ class AllImagesListTest {
                                 new AllImagesList.Builder()
                                         .aiSort(AllImagesList.AiSort.TIMESTAMP)
                                         .aiDir(AllImagesList.AiDir.OLDER)
-                                        .aiProp(Set.of(Prop.USER, Prop.TIMESTAMP, Prop.URL))
+                                        .aiProp(EnumSet.of(Prop.USER, Prop.TIMESTAMP, Prop.URL))
                                         .build()
                                 )
                         )
@@ -78,7 +78,7 @@ class AllImagesListTest {
                 .aiContinue("cont")
                 .aiStart(LocalDateTime.of(2023, Month.AUGUST, 8, 12, 35).toInstant(ZoneOffset.UTC))
                 .aiEnd(LocalDateTime.of(2023, Month.AUGUST, 8, 12, 35).toInstant(ZoneOffset.UTC))
-                .aiProp(Set.of(Prop.USER, Prop.TIMESTAMP, Prop.URL))
+                .aiProp(EnumSet.of(Prop.USER, Prop.TIMESTAMP, Prop.URL))
                 .aiPrefix("D")
                 .aiMinSize(33L)
                 .aiMaxSize(23323L)
@@ -96,6 +96,7 @@ class AllImagesListTest {
         assertEquals("cont", a.getAiContinue());
         assertEquals(LocalDateTime.of(2023, Month.AUGUST, 8, 12, 35).toInstant(ZoneOffset.UTC), a.getAiStart());
         assertEquals(LocalDateTime.of(2023, Month.AUGUST, 8, 12, 35).toInstant(ZoneOffset.UTC), a.getAiEnd());
+        assertEquals(EnumSet.of(Prop.USER, Prop.TIMESTAMP, Prop.URL), a.getAiProp());
         assertEquals("D", a.getAiPrefix());
         assertEquals(33L, a.getAiMinSize());
         assertEquals(23323L, a.getAiMaxSize());

@@ -9,6 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.EnumSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -29,7 +30,7 @@ class SiteInfoMetaTest {
                 .action(new QueryAction.Builder()
                         .meta(Set.of(
                                 new SiteInfoMeta.Builder()
-                                        .siProp(Set.of(
+                                        .siProp(EnumSet.of(
                                                 SiteInfoMeta.SiProp.GENERAL,
                                                 SiteInfoMeta.SiProp.NAMESPACES,
                                                 SiteInfoMeta.SiProp.NAMESPACE_ALIASES,
@@ -50,12 +51,12 @@ class SiteInfoMetaTest {
     @Test
     void testBuilder() {
         var a = new SiteInfoMeta.Builder()
-                .siProp(Set.of(SiteInfoMeta.SiProp.NAMESPACES))
+                .siProp(EnumSet.of(SiteInfoMeta.SiProp.NAMESPACES))
                 .siShowAllDb()
                 .siNumberInGroup()
                 .build();
 
-        assertEquals(Set.of(SiteInfoMeta.SiProp.NAMESPACES), a.getSiProp());
+        assertEquals(EnumSet.of(SiteInfoMeta.SiProp.NAMESPACES), a.getSiProp());
         assertTrue(a.isSiShowAllDb());
         assertTrue(a.isSiNumberInGroup());
     }

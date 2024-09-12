@@ -5,7 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.util.Set;
+import java.util.EnumSet;
 import java.util.stream.Collectors;
 
 /**
@@ -24,7 +24,7 @@ public final class AllFileUsagesList extends AbstractList {
     private String afTo;
     private String afPrefix;
     private boolean afUnique;
-    private Set<AfProp> afProp;
+    private EnumSet<AfProp> afProp;
     private int afLimit;
     private Dir afDir;
 
@@ -93,7 +93,7 @@ public final class AllFileUsagesList extends AbstractList {
          * Which pieces of information to include
          * @return {@code Builder}
          */
-        public Builder afProp(Set<AfProp> afProp) {
+        public Builder afProp(EnumSet<AfProp> afProp) {
             allFileUsagesList.afProp = afProp;
             allFileUsagesList.apiUrl.putQuery("afprop", afProp.stream()
                     .map(AfProp::getValue)

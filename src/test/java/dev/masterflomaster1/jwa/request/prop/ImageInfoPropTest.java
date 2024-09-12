@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.util.EnumSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -51,7 +52,7 @@ class ImageInfoPropTest {
                 .action(new QueryAction.Builder()
                         .prop(Set.of(
                                 new ImageInfoProp.Builder()
-                                        .iiProp(Set.of(Prop.TIMESTAMP,
+                                        .iiProp(EnumSet.of(Prop.TIMESTAMP,
                                                 Prop.USER,
                                                 Prop.URL
                                         ))
@@ -75,7 +76,7 @@ class ImageInfoPropTest {
                 .action(new QueryAction.Builder()
                         .prop(Set.of(
                                 new ImageInfoProp.Builder()
-                                        .iiProp(Set.of(Prop.TIMESTAMP,
+                                        .iiProp(EnumSet.of(Prop.TIMESTAMP,
                                                 Prop.URL,
                                                 Prop.EXTMETADATA
                                         ))
@@ -95,7 +96,7 @@ class ImageInfoPropTest {
     @Test
     void testBuilder() {
         var a = new ImageInfoProp.Builder()
-                .iiProp(Set.of(Prop.TIMESTAMP, Prop.USER_ID))
+                .iiProp(EnumSet.of(Prop.TIMESTAMP, Prop.USER_ID))
                 .iiLimit(20)
                 .iiStart(LocalDateTime.of(2007, 12, 31, 23, 59, 59).toInstant(ZoneOffset.UTC))
                 .iiEnd(LocalDateTime.of(2007, 12, 31, 23, 59, 59).toInstant(ZoneOffset.UTC))
@@ -105,7 +106,7 @@ class ImageInfoPropTest {
                 .iiExtMetadataMultiLang()
                 .build();
 
-        assertEquals(Set.of(Prop.TIMESTAMP, Prop.USER_ID), a.getIiProp());
+        assertEquals(EnumSet.of(Prop.TIMESTAMP, Prop.USER_ID), a.getIiProp());
         assertEquals(20, a.getIiLimit());
         assertEquals(LocalDateTime.of(2007, 12, 31, 23, 59, 59).toInstant(ZoneOffset.UTC), a.getIiStart());
         assertEquals(LocalDateTime.of(2007, 12, 31, 23, 59, 59).toInstant(ZoneOffset.UTC), a.getIiEnd());

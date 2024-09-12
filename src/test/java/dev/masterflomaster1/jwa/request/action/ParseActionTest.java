@@ -10,7 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.Set;
+import java.util.EnumSet;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -79,7 +79,7 @@ class ParseActionTest {
                 .pageId(2333)
                 .redirects()
                 .oldId(7777L)
-                .prop(Set.of(ParseAction.Prop.CATEGORIES))
+                .prop(EnumSet.of(ParseAction.Prop.CATEGORIES))
                 .wrapOutputClass("mw-parser-output")
                 .parsoid()
                 .pst()
@@ -107,7 +107,7 @@ class ParseActionTest {
         assertEquals(2333, a.getPageId());
         assertTrue(a.isRedirects());
         assertEquals(7777L, a.getOldId());
-        assertEquals(Set.of(ParseAction.Prop.CATEGORIES), a.getProp());
+        assertEquals(EnumSet.of(ParseAction.Prop.CATEGORIES), a.getProp());
         assertEquals("mw-parser-output", a.getWrapOutputClass());
         assertTrue(a.isParsoid());
         assertTrue(a.isPst());

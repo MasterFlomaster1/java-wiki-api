@@ -11,6 +11,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.EnumSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -51,7 +52,7 @@ class TemplatesPropTest {
                 .action(new QueryAction.Builder()
                         .prop(Set.of(
                                 new TemplatesProp.Builder()
-                                        .tlNamespace(Set.of(Namespace.USER, Namespace.TEMPLATE))
+                                        .tlNamespace(EnumSet.of(Namespace.USER, Namespace.TEMPLATE))
                                         .build()
                                 )
                         )
@@ -67,14 +68,14 @@ class TemplatesPropTest {
     @Test
     void testBuilder() {
         var a = new TemplatesProp.Builder()
-                .tlNamespace(Set.of(Namespace.USER, Namespace.TEMPLATE))
+                .tlNamespace(EnumSet.of(Namespace.USER, Namespace.TEMPLATE))
                 .tlLimit(4)
                 .tlContinue("15580374|10|Main_Page_interwikis")
                 .tlTemplates(Set.of("Template:Flatlist"))
                 .tlDir(Dir.DESCENDING)
                 .build();
 
-        assertEquals(Set.of(Namespace.USER, Namespace.TEMPLATE), a.getTlNamespace());
+        assertEquals(EnumSet.of(Namespace.USER, Namespace.TEMPLATE), a.getTlNamespace());
         assertEquals(4, a.getTlLimit());
         assertEquals("15580374|10|Main_Page_interwikis", a.getTlContinue());
         assertEquals(Set.of("Template:Flatlist"), a.getTlTemplates());

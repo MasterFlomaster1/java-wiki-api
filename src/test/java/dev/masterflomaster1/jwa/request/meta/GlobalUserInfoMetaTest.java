@@ -9,6 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.EnumSet;
 import java.util.Set;
 
 import static dev.masterflomaster1.jwa.request.meta.GlobalUserInfoMeta.GuiProp.*;
@@ -53,7 +54,7 @@ class GlobalUserInfoMetaTest {
                         .meta(Set.of(
                                 new GlobalUserInfoMeta.Builder()
                                         .guiUser("Example")
-                                        .guiProp(Set.of(GROUPS, MERGED, UNATTACHED))
+                                        .guiProp(EnumSet.of(GROUPS, MERGED, UNATTACHED))
                                         .build()
                         ))
                         .build()
@@ -69,12 +70,12 @@ class GlobalUserInfoMetaTest {
         var a = new GlobalUserInfoMeta.Builder()
                 .guiUser("Example")
                 .guiId(323)
-                .guiProp(Set.of(GROUPS, MERGED, UNATTACHED))
+                .guiProp(EnumSet.of(GROUPS, MERGED, UNATTACHED))
                 .build();
 
         assertEquals("Example", a.getGuiUser());
         assertEquals(323, a.getGuiId());
-        assertEquals(Set.of(GROUPS, MERGED, UNATTACHED), a.getGuiProp());
+        assertEquals(EnumSet.of(GROUPS, MERGED, UNATTACHED), a.getGuiProp());
     }
 
 }

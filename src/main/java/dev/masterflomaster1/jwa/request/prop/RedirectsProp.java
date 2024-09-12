@@ -5,7 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.util.Set;
+import java.util.EnumSet;
 import java.util.stream.Collectors;
 
 @Getter
@@ -14,8 +14,8 @@ import java.util.stream.Collectors;
 @SuppressWarnings("SpellCheckingInspection")
 public final class RedirectsProp extends AbstractProp {
 
-    private Set<RdProp> rdProp;
-    private Set<Namespace> rdNamespace;
+    private EnumSet<RdProp> rdProp;
+    private EnumSet<Namespace> rdNamespace;
     private RdShow rdShow;
     private int rdLimit;
     private String rdContinue;
@@ -32,7 +32,7 @@ public final class RedirectsProp extends AbstractProp {
          * Which properties to get
          * @return {@code Builder}
          */
-        public Builder rdProp(Set<RdProp> rdProp) {
+        public Builder rdProp(EnumSet<RdProp> rdProp) {
             redirectsProp.rdProp = rdProp;
             redirectsProp.apiUrl.putQuery("rdprop", rdProp.stream()
                     .map(RdProp::getValue)
@@ -47,7 +47,7 @@ public final class RedirectsProp extends AbstractProp {
          * may be returned.
          * @return {@code Builder}
          */
-        public Builder rdNamespace(Set<Namespace> rdNamespace) {
+        public Builder rdNamespace(EnumSet<Namespace> rdNamespace) {
             redirectsProp.rdNamespace = rdNamespace;
             redirectsProp.apiUrl.putQuery("rdnamespace", rdNamespace.stream()
                     .map(Namespace::getValue)

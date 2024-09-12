@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.ToString;
 
 import java.time.Instant;
+import java.util.EnumSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -15,7 +16,7 @@ import java.util.stream.Collectors;
 @SuppressWarnings("SpellCheckingInspection")
 public final class VideoInfoProp extends AbstractProp {
 
-    private Set<Prop> viProp;
+    private EnumSet<Prop> viProp;
     private int viLimit;
     private Instant viStart;
     private Instant viEnd;
@@ -42,7 +43,7 @@ public final class VideoInfoProp extends AbstractProp {
          * Which file information to get
          * @return {@code Builder}
          */
-        public Builder viProp(Set<Prop> viProp) {
+        public Builder viProp(EnumSet<Prop> viProp) {
             videoInfoProp.viProp = viProp;
             videoInfoProp.apiUrl.putQuery("viprop", viProp.stream()
                     .map(Prop::getValue)

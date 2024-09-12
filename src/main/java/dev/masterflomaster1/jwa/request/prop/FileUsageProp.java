@@ -5,7 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.util.Set;
+import java.util.EnumSet;
 import java.util.stream.Collectors;
 
 /**
@@ -19,9 +19,9 @@ import java.util.stream.Collectors;
 @SuppressWarnings("SpellCheckingInspection")
 public final class FileUsageProp extends AbstractProp {
 
-    private Set<FuProp> fuProp;
-    private Set<Namespace> fuNamespace;
-    private Set<FuShow> fuShow;
+    private EnumSet<FuProp> fuProp;
+    private EnumSet<Namespace> fuNamespace;
+    private EnumSet<FuShow> fuShow;
     private int fuLimit;
     private String fuContinue;
 
@@ -90,7 +90,7 @@ public final class FileUsageProp extends AbstractProp {
          * Which properties to get
          * @return {@code Builder}
          */
-        public Builder fuProp(Set<FuProp> fuProp) {
+        public Builder fuProp(EnumSet<FuProp> fuProp) {
             fileUsageProp.fuProp = fuProp;
             fileUsageProp.apiUrl.putQuery("fuprop", fuProp.stream()
                     .map(FuProp::getValue)
@@ -102,7 +102,7 @@ public final class FileUsageProp extends AbstractProp {
          * Only include pages in these namespaces.
          * @return {@code Builder}
          */
-        public Builder fuNamespace(Set<Namespace> fuNamespace) {
+        public Builder fuNamespace(EnumSet<Namespace> fuNamespace) {
             fileUsageProp.fuNamespace = fuNamespace;
             fileUsageProp.apiUrl.putQuery("funamespace", fuNamespace.stream()
                     .map(Namespace::getValue)
@@ -114,7 +114,7 @@ public final class FileUsageProp extends AbstractProp {
          * Show only items that meet these criteria.
          * @return {@code Builder}
          */
-        public Builder fuShow(Set<FuShow> fuShow) {
+        public Builder fuShow(EnumSet<FuShow> fuShow) {
             fileUsageProp.fuShow = fuShow;
             fileUsageProp.apiUrl.putQuery("fushow", fuShow.stream()
                     .map(FuShow::getValue)

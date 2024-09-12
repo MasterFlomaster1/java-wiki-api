@@ -3,7 +3,7 @@ package dev.masterflomaster1.jwa.request.action;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.util.Set;
+import java.util.EnumSet;
 import java.util.stream.Collectors;
 
 /**
@@ -25,8 +25,8 @@ public final class CompareAction extends AbstractAction {
     private long toRev;
     private ToRelative toRelative;
     private boolean toPst;
-    private Set<Prop> prop;
-    private Set<Slots> slots;
+    private EnumSet<Prop> prop;
+    private EnumSet<Slots> slots;
     private DiffType diffType;
 
     private CompareAction() {
@@ -132,7 +132,7 @@ public final class CompareAction extends AbstractAction {
          * Which pieces of information to get.
          * @return {@code Builder}
          */
-        public Builder prop(Set<Prop> prop) {
+        public Builder prop(EnumSet<Prop> prop) {
             compareAction.prop = prop;
             compareAction.apiUrl.putQuery("prop", prop.stream()
                     .map(Prop::getValue)
@@ -144,7 +144,7 @@ public final class CompareAction extends AbstractAction {
          * Return individual diffs for these slots, rather than one combined diff for all slots.
          * @return {@code Builder}
          */
-        public Builder slots(Set<Slots> slots) {
+        public Builder slots(EnumSet<Slots> slots) {
             compareAction.slots = slots;
             compareAction.apiUrl.putQuery("slots", slots.stream()
                     .map(Slots::getValue)

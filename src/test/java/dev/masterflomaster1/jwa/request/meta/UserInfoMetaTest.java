@@ -9,6 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.EnumSet;
 import java.util.Set;
 
 import static dev.masterflomaster1.jwa.request.meta.UserInfoMeta.UiProp.*;
@@ -48,7 +49,7 @@ class UserInfoMetaTest {
                 .action(new QueryAction.Builder()
                         .meta(Set.of(
                                 new UserInfoMeta.Builder()
-                                        .uiProp(Set.of(BLOCK_INFO, GROUPS, RIGHTS, HAS_MSG))
+                                        .uiProp(EnumSet.of(BLOCK_INFO, GROUPS, RIGHTS, HAS_MSG))
                                         .build()
                         ))
                         .build()
@@ -62,11 +63,11 @@ class UserInfoMetaTest {
     @Test
     void testBuilder() {
         var a = new UserInfoMeta.Builder()
-                .uiProp(Set.of(BLOCK_INFO, UserInfoMeta.UiProp.GROUPS))
+                .uiProp(EnumSet.of(BLOCK_INFO, UserInfoMeta.UiProp.GROUPS))
                 .uiAttachedWiki("test")
                 .build();
 
-        assertEquals(Set.of(BLOCK_INFO, UserInfoMeta.UiProp.GROUPS), a.getUiProp());
+        assertEquals(EnumSet.of(BLOCK_INFO, UserInfoMeta.UiProp.GROUPS), a.getUiProp());
         assertEquals("test", a.getUiAttachedWiki());
     }
 

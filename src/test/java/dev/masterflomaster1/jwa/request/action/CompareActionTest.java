@@ -7,7 +7,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.Set;
+import java.util.EnumSet;
 
 import static dev.masterflomaster1.jwa.request.action.CompareAction.Prop.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -50,8 +50,8 @@ class CompareActionTest {
                 .toRev(1210047507)
                 .toRelative(CompareAction.ToRelative.CUR)
                 .toPst()
-                .prop(Set.of(DIFF, IDS, TITLE))
-                .slots(Set.of(CompareAction.Slots.ALL_VALUES))
+                .prop(EnumSet.of(DIFF, IDS, TITLE))
+                .slots(EnumSet.of(CompareAction.Slots.ALL_VALUES))
                 .diffType(CompareAction.DiffType.TABLE)
                 .build();
 
@@ -64,8 +64,8 @@ class CompareActionTest {
         assertEquals(1210047507, a.getToRev());
         assertEquals(CompareAction.ToRelative.CUR, a.getToRelative());
         assertTrue(a.isToPst());
-        assertEquals(Set.of(DIFF, IDS, TITLE), a.getProp());
-        assertEquals(Set.of(CompareAction.Slots.ALL_VALUES), a.getSlots());
+        assertEquals(EnumSet.of(DIFF, IDS, TITLE), a.getProp());
+        assertEquals(EnumSet.of(CompareAction.Slots.ALL_VALUES), a.getSlots());
         assertEquals(CompareAction.DiffType.TABLE, a.getDiffType());
     }
 

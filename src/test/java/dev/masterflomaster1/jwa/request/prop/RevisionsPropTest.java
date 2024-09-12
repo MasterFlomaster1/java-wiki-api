@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.ZoneOffset;
+import java.util.EnumSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -33,7 +34,7 @@ class RevisionsPropTest {
                 .action(new QueryAction.Builder()
                         .prop(Set.of(
                                 new RevisionsProp.Builder()
-                                        .rvProp(Set.of(
+                                        .rvProp(EnumSet.of(
                                                 RevisionsProp.RvProp.TIMESTAMP,
                                                 RevisionsProp.RvProp.USER,
                                                 RevisionsProp.RvProp.COMMENT,
@@ -59,7 +60,7 @@ class RevisionsPropTest {
                 .action(new QueryAction.Builder()
                         .prop(Set.of(
                                 new RevisionsProp.Builder()
-                                        .rvProp(Set.of(
+                                        .rvProp(EnumSet.of(
                                                 RevisionsProp.RvProp.TIMESTAMP,
                                                 RevisionsProp.RvProp.USER,
                                                 RevisionsProp.RvProp.COMMENT
@@ -99,7 +100,7 @@ class RevisionsPropTest {
     @Test
     void testBuilder() {
         var a = new RevisionsProp.Builder()
-                .rvProp(Set.of(RevisionsProp.RvProp.USER, RevisionsProp.RvProp.USER_ID))
+                .rvProp(EnumSet.of(RevisionsProp.RvProp.USER, RevisionsProp.RvProp.USER_ID))
                 .rvLimit(5)
                 .rvSection("section")
                 .rvStart(LocalDateTime.of(2013, Month.AUGUST, 22, 2, 2, 2).toInstant(ZoneOffset.UTC))
@@ -111,7 +112,7 @@ class RevisionsPropTest {
                 .rvContinue("20060507062659|51945169")
                 .build();
 
-        assertEquals(Set.of(RevisionsProp.RvProp.USER, RevisionsProp.RvProp.USER_ID), a.getRvProp());
+        assertEquals(EnumSet.of(RevisionsProp.RvProp.USER, RevisionsProp.RvProp.USER_ID), a.getRvProp());
         assertEquals(5, a.getRvLimit());
         assertEquals("section", a.getRvSection());
         assertEquals(LocalDateTime.of(2013, Month.AUGUST, 22, 2, 2, 2).toInstant(ZoneOffset.UTC), a.getRvStart());

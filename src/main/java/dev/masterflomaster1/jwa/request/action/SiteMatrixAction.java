@@ -3,7 +3,7 @@ package dev.masterflomaster1.jwa.request.action;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.util.Set;
+import java.util.EnumSet;
 import java.util.stream.Collectors;
 
 /**
@@ -16,10 +16,10 @@ import java.util.stream.Collectors;
 @SuppressWarnings("SpellCheckingInspection")
 public final class SiteMatrixAction extends AbstractAction {
 
-    private Set<SmType> smType;
-    private Set<SmState> smState;
-    private Set<SmLangProp> smLangProp;
-    private Set<SmSiteProp> smSiteProp;
+    private EnumSet<SmType> smType;
+    private EnumSet<SmState> smState;
+    private EnumSet<SmLangProp> smLangProp;
+    private EnumSet<SmSiteProp> smSiteProp;
     private int smLimit;
     private String smContinue;
 
@@ -35,7 +35,7 @@ public final class SiteMatrixAction extends AbstractAction {
          * Filter the Site Matrix by type
          * @return {@code Builder}
          */
-        public Builder smType(Set<SmType> smType) {
+        public Builder smType(EnumSet<SmType> smType) {
             siteMatrixAction.smType = smType;
             siteMatrixAction.apiUrl.putQuery("smtype", smType.stream()
                     .map(SmType::getValue)
@@ -47,7 +47,7 @@ public final class SiteMatrixAction extends AbstractAction {
          * Filter the Site Matrix by wiki state.
          * @return {@code Builder}
          */
-        public Builder smState(Set<SmState> smState) {
+        public Builder smState(EnumSet<SmState> smState) {
             siteMatrixAction.smState = smState;
             siteMatrixAction.apiUrl.putQuery("smstate", smState.stream()
                     .map(SmState::getValue)
@@ -59,7 +59,7 @@ public final class SiteMatrixAction extends AbstractAction {
          * Which information about a language to return.
          * @return {@code Builder}
          */
-        public Builder smLangProp(Set<SmLangProp> smLangProp) {
+        public Builder smLangProp(EnumSet<SmLangProp> smLangProp) {
             siteMatrixAction.smLangProp = smLangProp;
             siteMatrixAction.apiUrl.putQuery("smlangprop", smLangProp.stream()
                     .map(SmLangProp::getValue)
@@ -71,7 +71,7 @@ public final class SiteMatrixAction extends AbstractAction {
          * Which information about a site to return.
          * @return {@code Builder}
          */
-        public Builder smSiteProp(Set<SmSiteProp> smSiteProp) {
+        public Builder smSiteProp(EnumSet<SmSiteProp> smSiteProp) {
             siteMatrixAction.smSiteProp = smSiteProp;
             siteMatrixAction.apiUrl.putQuery("smsiteprop", smSiteProp.stream()
                     .map(SmSiteProp::getValue)

@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.ToString;
 
 import java.time.Instant;
-import java.util.Set;
+import java.util.EnumSet;
 import java.util.stream.Collectors;
 
 /**
@@ -27,10 +27,10 @@ public final class RecentChangesList extends AbstractList {
     private String rcUser;
     private String rcExcludeUser;
     private String rcTag;
-    private Set<RcProp> rcProp;
-    private Set<RcShow> rcShow;
+    private EnumSet<RcProp> rcProp;
+    private EnumSet<RcShow> rcShow;
     private int rcLimit;
-    private Set<RcType> rcType;
+    private EnumSet<RcType> rcType;
     private boolean rcTopOnly;
     private String rcTitle;
     private String rcContinue;
@@ -120,7 +120,7 @@ public final class RecentChangesList extends AbstractList {
          * Include additional pieces of information.
          * @return {@code Builder}
          */
-        public Builder rcProp(Set<RcProp> rcProp) {
+        public Builder rcProp(EnumSet<RcProp> rcProp) {
             recentChangesList.rcProp = rcProp;
             recentChangesList.apiUrl.putQuery("rcprop", rcProp.stream()
                     .map(RcProp::getValue)
@@ -135,7 +135,7 @@ public final class RecentChangesList extends AbstractList {
          * considered as not needing review even if they would need review if scored.
          * @return {@code Builder}
          */
-        public Builder rcShow(Set<RcShow> rcShow) {
+        public Builder rcShow(EnumSet<RcShow> rcShow) {
             recentChangesList.rcShow = rcShow;
             recentChangesList.apiUrl.putQuery("rcshow", rcShow.stream()
                     .map(RcShow::getValue)
@@ -158,7 +158,7 @@ public final class RecentChangesList extends AbstractList {
          * Which types of changes to show. Default: edit|new|log|categorize
          * @return {@code Builder}
          */
-        public Builder rcType(Set<RcType> rcType) {
+        public Builder rcType(EnumSet<RcType> rcType) {
             recentChangesList.rcType = rcType;
             recentChangesList.apiUrl.putQuery("rctype", rcType.stream()
                     .map(RcType::getValue)

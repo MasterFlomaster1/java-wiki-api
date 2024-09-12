@@ -10,6 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.EnumSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -46,16 +47,16 @@ class FileUsagePropTest {
     @Test
     void testBuilder() {
         var a = new FileUsageProp.Builder()
-                .fuProp(Set.of(FileUsageProp.FuProp.TITLE))
-                .fuNamespace(Set.of(Namespace.TEMPLATE))
-                .fuShow(Set.of(FileUsageProp.FuShow.REDIRECT))
+                .fuProp(EnumSet.of(FileUsageProp.FuProp.TITLE))
+                .fuNamespace(EnumSet.of(Namespace.TEMPLATE))
+                .fuShow(EnumSet.of(FileUsageProp.FuShow.REDIRECT))
                 .fuLimit(40)
                 .fuContinue("test")
                 .build();
 
-        assertEquals(Set.of(FileUsageProp.FuProp.TITLE), a.getFuProp());
-        assertEquals(Set.of(Namespace.TEMPLATE), a.getFuNamespace());
-        assertEquals(Set.of(FileUsageProp.FuShow.REDIRECT), a.getFuShow());
+        assertEquals(EnumSet.of(FileUsageProp.FuProp.TITLE), a.getFuProp());
+        assertEquals(EnumSet.of(Namespace.TEMPLATE), a.getFuNamespace());
+        assertEquals(EnumSet.of(FileUsageProp.FuShow.REDIRECT), a.getFuShow());
         assertEquals(40, a.getFuLimit());
         assertEquals("test", a.getFuContinue());
     }

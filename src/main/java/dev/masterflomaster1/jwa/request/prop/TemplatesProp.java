@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.util.EnumSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -20,7 +21,7 @@ import java.util.stream.Collectors;
 @SuppressWarnings("SpellCheckingInspection")
 public final class TemplatesProp extends AbstractProp {
 
-    private Set<Namespace> tlNamespace;
+    private EnumSet<Namespace> tlNamespace;
     private int tlLimit;
     private String tlContinue;
     private Set<String> tlTemplates;
@@ -38,7 +39,7 @@ public final class TemplatesProp extends AbstractProp {
          * Show templates in these namespaces only.
          * @return {@code Builder}
          */
-        public Builder tlNamespace(Set<Namespace> tlNamespace) {
+        public Builder tlNamespace(EnumSet<Namespace> tlNamespace) {
             templatesProp.tlNamespace = tlNamespace;
             templatesProp.apiUrl.putQuery("tlnamespace", tlNamespace.stream()
                     .map(Namespace::getValue)

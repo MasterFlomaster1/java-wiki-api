@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.ToString;
 
 import java.time.Instant;
-import java.util.Set;
+import java.util.EnumSet;
 import java.util.stream.Collectors;
 
 /**
@@ -22,9 +22,9 @@ public final class CategoryMembersList extends AbstractList {
 
     private String cmTitle;
     private int cmPageId;
-    private Set<CmProp> cmProp;
-    private Set<Namespace> cmNamespace;
-    private Set<CmType> cmType;
+    private EnumSet<CmProp> cmProp;
+    private EnumSet<Namespace> cmNamespace;
+    private EnumSet<CmType> cmType;
     private String cmContinue;
     private int cmLimit;
     private CmSort cmSort;
@@ -69,7 +69,7 @@ public final class CategoryMembersList extends AbstractList {
          * Which pieces of information to include
          * @return {@code Builder}
          */
-        public Builder cmProp(final Set<CmProp> cmProp) {
+        public Builder cmProp(final EnumSet<CmProp> cmProp) {
             categoryMembersList.cmProp = cmProp;
             categoryMembersList.apiUrl.putQuery("cmprop", cmProp.stream()
                     .map(CmProp::getValue)
@@ -82,7 +82,7 @@ public final class CategoryMembersList extends AbstractList {
          * instead of {@code cmnamespace=14 or 6}.
          * @return {@code Builder}
          */
-        public Builder cmNamespace(final Set<Namespace> cmNamespace) {
+        public Builder cmNamespace(final EnumSet<Namespace> cmNamespace) {
             categoryMembersList.cmNamespace = cmNamespace;
             categoryMembersList.apiUrl.putQuery("cmnamespace", cmNamespace.stream()
                     .map(Namespace::getValue)
@@ -94,7 +94,7 @@ public final class CategoryMembersList extends AbstractList {
          * Which type of category members to include. Ignored when {@code cmsort=timestamp} is set.
          * @return {@code Builder}
          */
-        public Builder cmType(final Set<CmType> cmType) {
+        public Builder cmType(final EnumSet<CmType> cmType) {
             categoryMembersList.cmType = cmType;
             categoryMembersList.apiUrl.putQuery("cmtype", cmType.stream()
                     .map(CmType::getValue)

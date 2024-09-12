@@ -8,7 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.Set;
+import java.util.EnumSet;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -37,18 +37,18 @@ class SiteMatrixActionTest {
     @Test
     void testBuilder() {
         var a = new SiteMatrixAction.Builder()
-                .smType(Set.of(SiteMatrixAction.SmType.LANGUAGE))
-                .smState(Set.of(SiteMatrixAction.SmState.PRIVATE))
-                .smLangProp(Set.of(SiteMatrixAction.SmLangProp.NAME))
-                .smSiteProp(Set.of(SiteMatrixAction.SmSiteProp.DB_NAME))
+                .smType(EnumSet.of(SiteMatrixAction.SmType.LANGUAGE))
+                .smState(EnumSet.of(SiteMatrixAction.SmState.PRIVATE))
+                .smLangProp(EnumSet.of(SiteMatrixAction.SmLangProp.NAME))
+                .smSiteProp(EnumSet.of(SiteMatrixAction.SmSiteProp.DB_NAME))
                 .smLimit(30)
                 .smContinue("cont")
                 .build();
 
-        assertEquals(Set.of(SiteMatrixAction.SmType.LANGUAGE), a.getSmType());
-        assertEquals(Set.of(SiteMatrixAction.SmState.PRIVATE), a.getSmState());
-        assertEquals(Set.of(SiteMatrixAction.SmLangProp.NAME), a.getSmLangProp());
-        assertEquals(Set.of(SiteMatrixAction.SmSiteProp.DB_NAME), a.getSmSiteProp());
+        assertEquals(EnumSet.of(SiteMatrixAction.SmType.LANGUAGE), a.getSmType());
+        assertEquals(EnumSet.of(SiteMatrixAction.SmState.PRIVATE), a.getSmState());
+        assertEquals(EnumSet.of(SiteMatrixAction.SmLangProp.NAME), a.getSmLangProp());
+        assertEquals(EnumSet.of(SiteMatrixAction.SmSiteProp.DB_NAME), a.getSmSiteProp());
         assertEquals(30, a.getSmLimit());
         assertEquals("cont", a.getSmContinue());
     }

@@ -9,6 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.EnumSet;
 import java.util.Set;
 
 import static dev.masterflomaster1.jwa.request.meta.LanguageInfoMeta.LiProp.*;
@@ -48,7 +49,7 @@ class LanguageInfoMetaTest {
                 .action(new QueryAction.Builder()
                         .meta(Set.of(
                                 new LanguageInfoMeta.Builder()
-                                        .liProp(Set.of(AUTONYM, NAME))
+                                        .liProp(EnumSet.of(AUTONYM, NAME))
                                         .build()
                         ))
                         .build()
@@ -67,7 +68,7 @@ class LanguageInfoMetaTest {
                 .action(new QueryAction.Builder()
                         .meta(Set.of(
                                 new LanguageInfoMeta.Builder()
-                                        .liProp(Set.of(FALLBACKS, VARIANTS))
+                                        .liProp(EnumSet.of(FALLBACKS, VARIANTS))
                                         .liCode(Set.of("oc"))
                                         .build()
                         ))
@@ -87,7 +88,7 @@ class LanguageInfoMetaTest {
                 .action(new QueryAction.Builder()
                         .meta(Set.of(
                                 new LanguageInfoMeta.Builder()
-                                        .liProp(Set.of(BCP47, DIR))
+                                        .liProp(EnumSet.of(BCP47, DIR))
                                         .build()
                         ))
                         .build()
@@ -101,12 +102,12 @@ class LanguageInfoMetaTest {
     @Test
     void testBuilder() {
         var a = new LanguageInfoMeta.Builder()
-                .liProp(Set.of(BCP47, DIR))
+                .liProp(EnumSet.of(BCP47, DIR))
                 .liCode(Set.of("oc"))
                 .liContinue("test")
                 .build();
 
-        assertEquals(Set.of(BCP47, DIR), a.getLiProp());
+        assertEquals(EnumSet.of(BCP47, DIR), a.getLiProp());
         assertEquals(Set.of("oc"), a.getLiCode());
         assertEquals("test", a.getLiContinue());
     }

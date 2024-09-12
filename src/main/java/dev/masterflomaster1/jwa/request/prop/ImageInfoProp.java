@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.ToString;
 
 import java.time.Instant;
-import java.util.Set;
+import java.util.EnumSet;
 import java.util.stream.Collectors;
 
 /**
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @SuppressWarnings("SpellCheckingInspection")
 public final class ImageInfoProp extends AbstractProp {
 
-    private Set<Prop> iiProp;
+    private EnumSet<Prop> iiProp;
     private int iiLimit;
     private Instant iiStart;
     private Instant iiEnd;
@@ -41,7 +41,7 @@ public final class ImageInfoProp extends AbstractProp {
          * Which file information to get
          * @return {@code Builder}
          */
-        public Builder iiProp(Set<Prop> iiProp) {
+        public Builder iiProp(EnumSet<Prop> iiProp) {
             imageInfoProp.iiProp = iiProp;
             imageInfoProp.apiUrl.putQuery("iiprop", iiProp.stream()
                     .map(Prop::getValue)

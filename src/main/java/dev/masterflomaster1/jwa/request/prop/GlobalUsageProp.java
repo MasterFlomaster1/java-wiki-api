@@ -5,7 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.util.Set;
+import java.util.EnumSet;
 import java.util.stream.Collectors;
 
 /**
@@ -19,9 +19,9 @@ import java.util.stream.Collectors;
 @SuppressWarnings("SpellCheckingInspection")
 public final class GlobalUsageProp extends AbstractProp {
 
-    private Set<GuProp> guProp;
+    private EnumSet<GuProp> guProp;
     private int guLimit;
-    private Set<Namespace> guNamespace;
+    private EnumSet<Namespace> guNamespace;
     private String guContinue;
     private boolean guFilterLocal;
 
@@ -37,7 +37,7 @@ public final class GlobalUsageProp extends AbstractProp {
          * Which properties to return.
          * @return {@code Builder}
          */
-        public Builder guProp(Set<GuProp> guProp) {
+        public Builder guProp(EnumSet<GuProp> guProp) {
             globalUsageProp.guProp = guProp;
             globalUsageProp.apiUrl.putQuery("guprop", guProp.stream()
                     .map(GuProp::getValue)
@@ -60,7 +60,7 @@ public final class GlobalUsageProp extends AbstractProp {
          * Limit results to these namespaces.
          * @return {@code Builder}
          */
-        public Builder guNamespace(Set<Namespace> guNamespace) {
+        public Builder guNamespace(EnumSet<Namespace> guNamespace) {
             globalUsageProp.guNamespace = guNamespace;
             globalUsageProp.apiUrl.putQuery("gunamespace", guNamespace.stream()
                     .map(Namespace::getValue)

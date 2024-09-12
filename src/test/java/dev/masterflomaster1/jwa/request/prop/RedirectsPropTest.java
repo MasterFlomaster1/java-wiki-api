@@ -10,6 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.EnumSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -46,15 +47,15 @@ class RedirectsPropTest {
     @Test
     void testBuilder() {
         var a = new RedirectsProp.Builder()
-                .rdProp(Set.of(RedirectsProp.RdProp.PAGE_ID))
-                .rdNamespace(Set.of(Namespace.FILE))
+                .rdProp(EnumSet.of(RedirectsProp.RdProp.PAGE_ID))
+                .rdNamespace(EnumSet.of(Namespace.FILE))
                 .rdShow(RedirectsProp.RdShow.NOT_FRAGMENT)
                 .rdLimit(260)
                 .rdContinue("4503755")
                 .build();
 
-        assertEquals(Set.of(RedirectsProp.RdProp.PAGE_ID), a.getRdProp());
-        assertEquals(Set.of(Namespace.FILE), a.getRdNamespace());
+        assertEquals(EnumSet.of(RedirectsProp.RdProp.PAGE_ID), a.getRdProp());
+        assertEquals(EnumSet.of(Namespace.FILE), a.getRdNamespace());
         assertEquals(RedirectsProp.RdShow.NOT_FRAGMENT, a.getRdShow());
         assertEquals(260, a.getRdLimit());
         assertEquals("4503755", a.getRdContinue());

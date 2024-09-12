@@ -10,6 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.EnumSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -46,16 +47,16 @@ class GlobalUsagePropTest {
     @Test
     void testBuilder() {
         var a = new GlobalUsageProp.Builder()
-                .guProp(Set.of(GlobalUsageProp.GuProp.URL, GlobalUsageProp.GuProp.PAGE_ID))
+                .guProp(EnumSet.of(GlobalUsageProp.GuProp.URL, GlobalUsageProp.GuProp.PAGE_ID))
                 .guLimit(40)
-                .guNamespace(Set.of(Namespace.TEMPLATE, Namespace.FILE_TALK))
+                .guNamespace(EnumSet.of(Namespace.TEMPLATE, Namespace.FILE_TALK))
                 .guContinue("Example.jpg|amwiki|10356")
                 .guFilterLocal()
                 .build();
 
-        assertEquals(Set.of(GlobalUsageProp.GuProp.URL, GlobalUsageProp.GuProp.PAGE_ID), a.getGuProp());
+        assertEquals(EnumSet.of(GlobalUsageProp.GuProp.URL, GlobalUsageProp.GuProp.PAGE_ID), a.getGuProp());
         assertEquals(40, a.getGuLimit());
-        assertEquals(Set.of(Namespace.TEMPLATE, Namespace.FILE_TALK), a.getGuNamespace());
+        assertEquals(EnumSet.of(Namespace.TEMPLATE, Namespace.FILE_TALK), a.getGuNamespace());
         assertEquals("Example.jpg|amwiki|10356", a.getGuContinue());
         assertTrue(a.isGuFilterLocal());
     }
