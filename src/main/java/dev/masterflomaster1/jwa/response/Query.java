@@ -28,6 +28,7 @@ public final class Query {
     @SerializedName("random")          private List<BasePage> random;
     @SerializedName("tags")            private List<Tag> tags;
     @SerializedName("prefixsearch")    private List<DefaultPage> prefixSearch;
+    @SerializedName("betafeatures")    private Map<String, BetaFeature> betafeatures;
 
     private Query() { }
 }
