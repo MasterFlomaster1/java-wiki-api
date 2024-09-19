@@ -1,8 +1,6 @@
 package dev.masterflomaster1.jwa;
 
-import dev.masterflomaster1.jwa.request.JsonFormat;
 import dev.masterflomaster1.jwa.request.action.AbstractAction;
-import dev.masterflomaster1.jwa.request.AbstractFormat;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -12,7 +10,6 @@ public final class WikiApiRequest {
 
     private String url = "https://en.wikipedia.org/w/api.php";
     private AbstractAction action;
-    private final AbstractFormat format = new JsonFormat();
     private String assertUser;
     private String requestId;
     private boolean servedBy;
