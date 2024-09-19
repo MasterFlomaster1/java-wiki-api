@@ -25,7 +25,7 @@ public final class CategoriesProp extends AbstractProp {
     private int clLimit;
     private String clContinue;
     private Set<String> clCategories;
-    private Dir clDir;
+    private Dir.Order clDir;
 
     private CategoriesProp() {
         name = "categories";
@@ -94,7 +94,7 @@ public final class CategoriesProp extends AbstractProp {
          * The direction in which to list.
          * @return {@code Builder}
          */
-        public Builder clDir(Dir clDir) {
+        public Builder clDir(Dir.Order clDir) {
             categoriesProp.clDir = clDir;
             categoriesProp.apiUrl.putQuery("cldir", clDir.getValue());
             return this;

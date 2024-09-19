@@ -49,13 +49,13 @@ class ImagesPropTest {
                 .imLimit(50)
                 .imContinue("15580374|Wikibooks-logo.svg")
                 .imImages(Set.of("File:MediaWiki-2020-icon.svg"))
-                .imDir(Dir.DESCENDING)
+                .imDir(Dir.Order.DESCENDING)
                 .build();
 
         assertEquals(50, a.getImLimit());
         assertEquals("15580374|Wikibooks-logo.svg", a.getImContinue());
         assertEquals(Set.of("File:MediaWiki-2020-icon.svg"), a.getImImages());
-        assertEquals(Dir.DESCENDING, a.getImDir());
+        assertEquals(Dir.Order.DESCENDING, a.getImDir());
     }
 
 }

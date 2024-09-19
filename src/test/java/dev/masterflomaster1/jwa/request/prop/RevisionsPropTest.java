@@ -3,6 +3,7 @@ package dev.masterflomaster1.jwa.request.prop;
 import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
+import dev.masterflomaster1.jwa.common.Dir;
 import dev.masterflomaster1.jwa.request.action.QueryAction;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -105,7 +106,7 @@ class RevisionsPropTest {
                 .rvSection("section")
                 .rvStart(LocalDateTime.of(2013, Month.AUGUST, 22, 2, 2, 2).toInstant(ZoneOffset.UTC))
                 .rvEnd(LocalDateTime.of(2013, Month.AUGUST, 22, 2, 2, 2).toInstant(ZoneOffset.UTC))
-                .rvDir(RevisionsProp.RvDir.OLDER)
+                .rvDir(Dir.Time.OLDER)
                 .rvUser("User123")
                 .rvExcludeUser("User123")
                 .rvTag("tag")
@@ -117,7 +118,7 @@ class RevisionsPropTest {
         assertEquals("section", a.getRvSection());
         assertEquals(LocalDateTime.of(2013, Month.AUGUST, 22, 2, 2, 2).toInstant(ZoneOffset.UTC), a.getRvStart());
         assertEquals(LocalDateTime.of(2013, Month.AUGUST, 22, 2, 2, 2).toInstant(ZoneOffset.UTC), a.getRvEnd());
-        assertEquals(RevisionsProp.RvDir.OLDER, a.getRvDir());
+        assertEquals(Dir.Time.OLDER, a.getRvDir());
         assertEquals("User123", a.getRvUser());
         assertEquals("User123", a.getRvExcludeUser());
         assertEquals("tag", a.getRvTag());

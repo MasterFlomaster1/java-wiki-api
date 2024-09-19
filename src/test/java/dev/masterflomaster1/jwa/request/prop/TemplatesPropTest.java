@@ -72,14 +72,14 @@ class TemplatesPropTest {
                 .tlLimit(4)
                 .tlContinue("15580374|10|Main_Page_interwikis")
                 .tlTemplates(Set.of("Template:Flatlist"))
-                .tlDir(Dir.DESCENDING)
+                .tlDir(Dir.Order.DESCENDING)
                 .build();
 
         assertEquals(EnumSet.of(Namespace.USER, Namespace.TEMPLATE), a.getTlNamespace());
         assertEquals(4, a.getTlLimit());
         assertEquals("15580374|10|Main_Page_interwikis", a.getTlContinue());
         assertEquals(Set.of("Template:Flatlist"), a.getTlTemplates());
-        assertEquals(Dir.DESCENDING, a.getTlDir());
+        assertEquals(Dir.Order.DESCENDING, a.getTlDir());
     }
 
 }

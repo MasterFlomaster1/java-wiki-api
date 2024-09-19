@@ -75,7 +75,7 @@ class AllFileUsagesListTest {
                 .afUnique()
                 .afProp(EnumSet.of(AllFileUsagesList.AfProp.IDS, AllFileUsagesList.AfProp.TITLE))
                 .afLimit(20)
-                .afDir(Dir.DESCENDING)
+                .afDir(Dir.Order.DESCENDING)
                 .build();
 
         assertEquals("cont", a.getAfContinue());
@@ -85,7 +85,7 @@ class AllFileUsagesListTest {
         assertTrue(a.isAfUnique());
         assertEquals(EnumSet.of(AllFileUsagesList.AfProp.IDS, AllFileUsagesList.AfProp.TITLE), a.getAfProp());
         assertEquals(20, a.getAfLimit());
-        assertEquals(Dir.DESCENDING, a.getAfDir());
+        assertEquals(Dir.Order.DESCENDING, a.getAfDir());
     }
 
 }

@@ -51,7 +51,7 @@ class AllCategoriesListTest {
                 .acContinue("Java_compilers")
                 .acTo("Java Platform")
                 .acPrefix("Java")
-                .acDir(Dir.DESCENDING)
+                .acDir(Dir.Order.DESCENDING)
                 .acMin(2)
                 .acMax(10)
                 .acLimit(20)
@@ -62,7 +62,7 @@ class AllCategoriesListTest {
         assertEquals("Java_compilers", a.getAcContinue());
         assertEquals("Java Platform", a.getAcTo());
         assertEquals("Java", a.getAcPrefix());
-        assertEquals(Dir.DESCENDING, a.getAcDir());
+        assertEquals(Dir.Order.DESCENDING, a.getAcDir());
         assertEquals(2, a.getAcMin());
         assertEquals(10, a.getAcMax());
         assertEquals(20, a.getAcLimit());

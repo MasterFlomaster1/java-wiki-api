@@ -25,7 +25,7 @@ public final class TemplatesProp extends AbstractProp {
     private int tlLimit;
     private String tlContinue;
     private Set<String> tlTemplates;
-    private Dir tlDir;
+    private Dir.Order tlDir;
 
     private TemplatesProp() {
         name = "templates";
@@ -85,7 +85,7 @@ public final class TemplatesProp extends AbstractProp {
          * The direction in which to list. Default: ascending
          * @return {@code Builder}
          */
-        public Builder tlDir(Dir tlDir) {
+        public Builder tlDir(Dir.Order tlDir) {
             templatesProp.tlDir = tlDir;
             templatesProp.apiUrl.putQuery("tldir", tlDir.getValue());
             return this;

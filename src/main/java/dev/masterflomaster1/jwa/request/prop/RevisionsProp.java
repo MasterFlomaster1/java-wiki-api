@@ -1,5 +1,6 @@
 package dev.masterflomaster1.jwa.request.prop;
 
+import dev.masterflomaster1.jwa.common.Dir;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
@@ -24,7 +25,7 @@ public final class RevisionsProp extends AbstractProp {
     private String rvSection;
     private Instant rvStart;
     private Instant rvEnd;
-    private RvDir rvDir;
+    private Dir.Time rvDir;
     private String rvUser;
     private String rvExcludeUser;
     private String rvTag;
@@ -100,7 +101,7 @@ public final class RevisionsProp extends AbstractProp {
          * May only be used with a single page (mode #2).
          * @return {@code Builder}
          */
-        public Builder rvDir(RvDir rvDir) {
+        public Builder rvDir(Dir.Time rvDir) {
             revisionsProp.rvDir = rvDir;
             revisionsProp.apiUrl.putQuery("rvdir", rvDir.getValue());
             return this;
@@ -245,20 +246,6 @@ public final class RevisionsProp extends AbstractProp {
         private final String value;
 
         RvProp(String value) {
-            this.value = value;
-        }
-
-    }
-
-    @Getter
-    public enum RvDir {
-
-        NEWER ("newer"),
-        OLDER ("older");
-
-        private final String value;
-
-        RvDir(String value) {
             this.value = value;
         }
 

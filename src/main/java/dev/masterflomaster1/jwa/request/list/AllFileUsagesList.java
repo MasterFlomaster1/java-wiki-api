@@ -26,7 +26,7 @@ public final class AllFileUsagesList extends AbstractList {
     private boolean afUnique;
     private EnumSet<AfProp> afProp;
     private int afLimit;
-    private Dir afDir;
+    private Dir.Order afDir;
 
     private AllFileUsagesList() {
         name = "allfileusages";
@@ -116,7 +116,7 @@ public final class AllFileUsagesList extends AbstractList {
          * The direction in which to list.
          * @return {@code Builder}
          */
-        public Builder afDir(Dir afDir) {
+        public Builder afDir(Dir.Order afDir) {
             allFileUsagesList.afDir = afDir;
             allFileUsagesList.apiUrl.putQuery("afdir", afDir.getValue());
             return this;

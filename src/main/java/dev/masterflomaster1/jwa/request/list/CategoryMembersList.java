@@ -1,5 +1,6 @@
 package dev.masterflomaster1.jwa.request.list;
 
+import dev.masterflomaster1.jwa.common.Dir;
 import dev.masterflomaster1.jwa.common.Namespace;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -28,7 +29,7 @@ public final class CategoryMembersList extends AbstractList {
     private String cmContinue;
     private int cmLimit;
     private CmSort cmSort;
-    private CmDir cmDir;
+    private Dir.Mixed cmDir;
     private Instant cmStart;
     private Instant cmEnd;
     private String cmStartHexSortKey;
@@ -139,7 +140,7 @@ public final class CategoryMembersList extends AbstractList {
          * In which direction to sort.
          * @return {@code Builder}
          */
-        public Builder cmDir(final CmDir cmDir) {
+        public Builder cmDir(final Dir.Mixed cmDir) {
             categoryMembersList.cmDir = cmDir;
             categoryMembersList.apiUrl.putQuery("cmdir", cmDir.getValue());
             return this;
@@ -257,22 +258,6 @@ public final class CategoryMembersList extends AbstractList {
         private final String value;
 
         CmSort(String value) {
-            this.value = value;
-        }
-
-    }
-
-    @Getter
-    public enum CmDir {
-
-        ASCENDING ("ascending"),
-        DESCENDING ("descending"),
-        NEWER ("newer"),
-        OLDER ("older");
-
-        private final String value;
-
-        CmDir(String value) {
             this.value = value;
         }
 

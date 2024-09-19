@@ -1,5 +1,6 @@
 package dev.masterflomaster1.jwa.request.list;
 
+import dev.masterflomaster1.jwa.common.Dir;
 import dev.masterflomaster1.jwa.common.Namespace;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -22,7 +23,7 @@ public final class RecentChangesList extends AbstractList {
 
     private Instant rcStart;
     private Instant rcEnd;
-    private RcDir rcDir;
+    private Dir.Time rcDir;
     private Namespace rcNamespace;
     private String rcUser;
     private String rcExcludeUser;
@@ -68,9 +69,9 @@ public final class RecentChangesList extends AbstractList {
          * In which direction to enumerate.
          * @return {@code Builder}
          */
-        public Builder rcDir(RcDir rcDir) {
+        public Builder rcDir(Dir.Time rcDir) {
             recentChangesList.rcDir = rcDir;
-            recentChangesList.apiUrl.putQuery("rcdir", rcDir.value);
+            recentChangesList.apiUrl.putQuery("rcdir", rcDir.getValue());
             return this;
         }
 
@@ -211,22 +212,6 @@ public final class RecentChangesList extends AbstractList {
 
         public RecentChangesList build() {
             return recentChangesList;
-        }
-
-    }
-
-    /**
-     * In which direction to enumerate.
-     */
-    @Getter
-    public enum RcDir {
-        NEWER ("newer"),
-        OLDER ("older");
-
-        private final String value;
-
-        RcDir(String value) {
-            this.value = value;
         }
 
     }

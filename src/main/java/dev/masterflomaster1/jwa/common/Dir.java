@@ -5,16 +5,50 @@ import lombok.Getter;
 /**
  * The direction in which to list.
  */
-@Getter
-public enum Dir {
+public abstract class Dir {
 
-    ASCENDING ("ascending"),
-    DESCENDING ("descending");
+    @Getter
+    public enum Time {
 
-    private final String value;
+        NEWER ("newer"),
+        OLDER ("older");
 
-    Dir(String value) {
-        this.value = value;
+        private final String value;
+
+        Time(String value) {
+            this.value = value;
+        }
+
+    }
+
+    @Getter
+    public enum Order {
+
+        ASCENDING ("ascending"),
+        DESCENDING ("descending");
+
+        private final String value;
+
+        Order(String value) {
+            this.value = value;
+        }
+
+    }
+
+    @Getter
+    public enum Mixed {
+
+        ASCENDING ("ascending"),
+        DESCENDING ("descending"),
+        NEWER ("newer"),
+        OLDER ("older");
+
+        private final String value;
+
+        Mixed(String value) {
+            this.value = value;
+        }
+
     }
 
 }

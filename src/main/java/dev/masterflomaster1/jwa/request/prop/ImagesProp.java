@@ -21,7 +21,7 @@ public final class ImagesProp extends AbstractProp {
     private int imLimit;
     private String imContinue;
     private Set<String> imImages;
-    private Dir imDir;
+    private Dir.Order imDir;
 
     private ImagesProp() {
         name = "images";
@@ -69,7 +69,7 @@ public final class ImagesProp extends AbstractProp {
          * The direction in which to list.
          * @return {@code Builder}
          */
-        public Builder imDir(Dir imDir) {
+        public Builder imDir(Dir.Order imDir) {
             imagesProp.imDir = imDir;
             imagesProp.apiUrl.putQuery("imdir", imDir.getValue());
             return this;

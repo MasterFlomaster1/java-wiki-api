@@ -1,5 +1,6 @@
 package dev.masterflomaster1.jwa.request.list;
 
+import dev.masterflomaster1.jwa.common.Dir;
 import dev.masterflomaster1.jwa.common.Namespace;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -29,7 +30,7 @@ public final class UsersContribsList extends AbstractList {
     private Set<Integer> ucUserIds;
     private String ucUserPrefix;
     private String ucIpRange;
-    private UcDir ucDir;
+    private Dir.Time ucDir;
     private EnumSet<Namespace> ucNamespace;
     private EnumSet<UcProp> ucProp;
     private EnumSet<UcShow> ucShow;
@@ -138,7 +139,7 @@ public final class UsersContribsList extends AbstractList {
          * In which direction to enumerate
          * @return {@code Builder}
          */
-        public Builder ucDir(UcDir ucDir) {
+        public Builder ucDir(Dir.Time ucDir) {
             usersContribsList.ucDir = ucDir;
             usersContribsList.apiUrl.putQuery("ucdir", ucDir.getValue());
             return this;
@@ -192,20 +193,6 @@ public final class UsersContribsList extends AbstractList {
 
         public UsersContribsList build() {
             return usersContribsList;
-        }
-
-    }
-
-    @Getter
-    public enum UcDir {
-
-        NEWER ("newer"),
-        OLDER ("older");
-
-        private final String value;
-
-        UcDir(String value) {
-            this.value = value;
         }
 
     }

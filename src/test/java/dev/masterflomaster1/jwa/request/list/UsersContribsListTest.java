@@ -3,6 +3,7 @@ package dev.masterflomaster1.jwa.request.list;
 import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
+import dev.masterflomaster1.jwa.common.Dir;
 import dev.masterflomaster1.jwa.common.Namespace;
 import dev.masterflomaster1.jwa.request.action.QueryAction;
 import org.junit.jupiter.api.BeforeAll;
@@ -56,7 +57,7 @@ class UsersContribsListTest {
                 .ucUserIds(Set.of(333))
                 .ucUserPrefix("pref")
                 .ucIpRange("range")
-                .ucDir(UsersContribsList.UcDir.NEWER)
+                .ucDir(Dir.Time.NEWER)
                 .ucNamespace(EnumSet.of(Namespace.TALK))
                 .ucProp(EnumSet.of(UsersContribsList.UcProp.IDS))
                 .ucShow(EnumSet.of(UsersContribsList.UcShow.MINOR))
@@ -70,7 +71,7 @@ class UsersContribsListTest {
         assertEquals(Set.of("Example"), a.getUcUser());
         assertEquals(Set.of(333), a.getUcUserIds());
         assertEquals("range", a.getUcIpRange());
-        assertEquals(UsersContribsList.UcDir.NEWER, a.getUcDir());
+        assertEquals(Dir.Time.NEWER, a.getUcDir());
         assertEquals(EnumSet.of(Namespace.TALK), a.getUcNamespace());
         assertEquals(EnumSet.of(UsersContribsList.UcProp.IDS), a.getUcProp());
         assertEquals(EnumSet.of(UsersContribsList.UcShow.MINOR), a.getUcShow());

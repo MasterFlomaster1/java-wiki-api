@@ -1,5 +1,6 @@
 package dev.masterflomaster1.jwa.request.list;
 
+import dev.masterflomaster1.jwa.common.Dir;
 import dev.masterflomaster1.jwa.common.Prop;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -22,7 +23,7 @@ import java.util.stream.Collectors;
 public final class AllImagesList extends AbstractList {
 
     private AiSort aiSort;
-    private AiDir aiDir;
+    private Dir.Mixed aiDir;
     private String aiFrom;
     private String aiTo;
     private String aiContinue;
@@ -60,7 +61,7 @@ public final class AllImagesList extends AbstractList {
          * The direction in which to list.
          * @return {@code Builder}
          */
-        public Builder aiDir(AiDir aiDir) {
+        public Builder aiDir(Dir.Mixed aiDir) {
             allImagesList.aiDir = aiDir;
             allImagesList.apiUrl.putQuery("aidir", aiDir.getValue());
             return this;
@@ -228,22 +229,6 @@ public final class AllImagesList extends AbstractList {
         private final String value;
 
         AiSort(String value) {
-            this.value = value;
-        }
-
-    }
-
-    @Getter
-    public enum AiDir {
-
-        ASCENDING ("ascending"),
-        DESCENDING ("descending"),
-        NEWER ("newer"),
-        OLDER ("older");
-
-        private final String value;
-
-        AiDir(String value) {
             this.value = value;
         }
 

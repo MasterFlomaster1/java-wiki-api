@@ -3,6 +3,7 @@ package dev.masterflomaster1.jwa.request.list;
 import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
+import dev.masterflomaster1.jwa.common.Dir;
 import dev.masterflomaster1.jwa.common.Namespace;
 import dev.masterflomaster1.jwa.request.action.QueryAction;
 import org.junit.jupiter.api.BeforeAll;
@@ -52,7 +53,7 @@ class RecentChangesListTest {
         var a = new RecentChangesList.Builder()
                 .rcStart(LocalDateTime.of(2023, Month.AUGUST, 8, 12, 35).toInstant(ZoneOffset.UTC))
                 .rcEnd(LocalDateTime.of(2023, Month.AUGUST, 8, 12, 35).toInstant(ZoneOffset.UTC))
-                .rcDir(RecentChangesList.RcDir.OLDER)
+                .rcDir(Dir.Time.OLDER)
                 .rcNamespace(Namespace.TALK)
                 .rcUser("User1")
                 .rcExcludeUser("User1")
@@ -69,7 +70,7 @@ class RecentChangesListTest {
 
         assertEquals(LocalDateTime.of(2023, Month.AUGUST, 8, 12, 35).toInstant(ZoneOffset.UTC), a.getRcStart());
         assertEquals(LocalDateTime.of(2023, Month.AUGUST, 8, 12, 35).toInstant(ZoneOffset.UTC), a.getRcEnd());
-        assertEquals(RecentChangesList.RcDir.OLDER, a.getRcDir());
+        assertEquals(Dir.Time.OLDER, a.getRcDir());
         assertEquals(Namespace.TALK, a.getRcNamespace());
         assertEquals("User1", a.getRcUser());
         assertEquals("User1", a.getRcExcludeUser());

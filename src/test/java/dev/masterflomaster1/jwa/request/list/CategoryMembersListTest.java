@@ -3,6 +3,7 @@ package dev.masterflomaster1.jwa.request.list;
 import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
+import dev.masterflomaster1.jwa.common.Dir;
 import dev.masterflomaster1.jwa.common.Namespace;
 import dev.masterflomaster1.jwa.request.action.QueryAction;
 import org.junit.jupiter.api.BeforeAll;
@@ -56,7 +57,7 @@ class CategoryMembersListTest {
                 .cmContinue("test")
                 .cmLimit(344)
                 .cmSort(CategoryMembersList.CmSort.TIMESTAMP)
-                .cmDir(CategoryMembersList.CmDir.NEWER)
+                .cmDir(Dir.Mixed.NEWER)
                 .cmStart(LocalDateTime.of(2023, Month.AUGUST, 8, 12, 35).toInstant(ZoneOffset.UTC))
                 .cmEnd(LocalDateTime.of(2023, Month.SEPTEMBER, 8, 12, 35).toInstant(ZoneOffset.UTC))
                 .cmStartHexSortKey("test1")
@@ -73,7 +74,7 @@ class CategoryMembersListTest {
         assertEquals("test", a.getCmContinue());
         assertEquals(344, a.getCmLimit());
         assertEquals(CategoryMembersList.CmSort.TIMESTAMP, a.getCmSort());
-        assertEquals(CategoryMembersList.CmDir.NEWER, a.getCmDir());
+        assertEquals(Dir.Mixed.NEWER, a.getCmDir());
         assertEquals(LocalDateTime.of(2023, Month.AUGUST, 8, 12, 35).toInstant(ZoneOffset.UTC), a.getCmStart());
         assertEquals(LocalDateTime.of(2023, Month.SEPTEMBER, 8, 12, 35).toInstant(ZoneOffset.UTC), a.getCmEnd());
         assertEquals("test1", a.getCmStartHexSortKey());

@@ -33,7 +33,7 @@ class CategoriesPropTest {
                         .prop(Set.of(
                                 new CategoriesProp.Builder()
                                         .clLimit(10)
-                                        .clDir(Dir.ASCENDING)
+                                        .clDir(Dir.Order.ASCENDING)
                                         .build()
                                 )
                         )
@@ -54,7 +54,7 @@ class CategoriesPropTest {
                 .clLimit(5)
                 .clContinue("736|Academic_staff_of_the_University_of_Bern")
                 .clCategories(Set.of("A", "B"))
-                .clDir(Dir.DESCENDING)
+                .clDir(Dir.Order.DESCENDING)
                 .build();
 
         assertEquals(EnumSet.of(CategoriesProp.ClProp.TIMESTAMP, CategoriesProp.ClProp.HIDDEN), a.getClProp());
@@ -63,7 +63,7 @@ class CategoriesPropTest {
         assertEquals(5, a.getClLimit());
         assertEquals("736|Academic_staff_of_the_University_of_Bern", a.getClContinue());
         assertEquals(Set.of("A", "B"), a.getClCategories());
-        assertEquals(Dir.DESCENDING, a.getClDir());
+        assertEquals(Dir.Order.DESCENDING, a.getClDir());
     }
 
 }

@@ -30,6 +30,7 @@ public final class Query {
     @SerializedName("prefixsearch")    private List<DefaultPage> prefixSearch;
     @SerializedName("betafeatures")    private Map<String, BetaFeature> betafeatures;
     @SerializedName("projects")        private List<String> projects;
+    @SerializedName("blocks")          private List<Blocks> blocks;
 
     private Query() { }
 }

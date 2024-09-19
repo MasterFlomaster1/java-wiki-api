@@ -3,6 +3,7 @@ package dev.masterflomaster1.jwa.request.list;
 import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
+import dev.masterflomaster1.jwa.common.Dir;
 import dev.masterflomaster1.jwa.common.Prop;
 import dev.masterflomaster1.jwa.request.action.QueryAction;
 import org.junit.jupiter.api.BeforeAll;
@@ -55,7 +56,7 @@ class AllImagesListTest {
                         .list(Set.of(
                                 new AllImagesList.Builder()
                                         .aiSort(AllImagesList.AiSort.TIMESTAMP)
-                                        .aiDir(AllImagesList.AiDir.OLDER)
+                                        .aiDir(Dir.Mixed.OLDER)
                                         .aiProp(EnumSet.of(Prop.USER, Prop.TIMESTAMP, Prop.URL))
                                         .build()
                                 )
@@ -72,7 +73,7 @@ class AllImagesListTest {
     void testBuilder() {
         var a = new AllImagesList.Builder()
                 .aiSort(AllImagesList.AiSort.TIMESTAMP)
-                .aiDir(AllImagesList.AiDir.OLDER)
+                .aiDir(Dir.Mixed.OLDER)
                 .aiFrom("B")
                 .aiTo("C")
                 .aiContinue("cont")
@@ -90,7 +91,7 @@ class AllImagesListTest {
                 .build();
 
         assertEquals(AllImagesList.AiSort.TIMESTAMP, a.getAiSort());
-        assertEquals(AllImagesList.AiDir.OLDER, a.getAiDir());
+        assertEquals(Dir.Mixed.OLDER, a.getAiDir());
         assertEquals("B", a.getAiFrom());
         assertEquals("C", a.getAiTo());
         assertEquals("cont", a.getAiContinue());

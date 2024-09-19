@@ -23,7 +23,7 @@ public final class AllCategoriesList extends AbstractList {
     private String acContinue;
     private String acTo;
     private String acPrefix;
-    private Dir acDir;
+    private Dir.Order acDir;
     private int acMin;
     private int acMax;
     private int acLimit;
@@ -83,7 +83,7 @@ public final class AllCategoriesList extends AbstractList {
          * Direction to sort in.
          * @return {@code Builder}
          */
-        public Builder acDir(Dir acDir) {
+        public Builder acDir(Dir.Order acDir) {
             allCategoriesList.acDir = acDir;
             allCategoriesList.apiUrl.putQuery("acdir", acDir.getValue());
             return this;
