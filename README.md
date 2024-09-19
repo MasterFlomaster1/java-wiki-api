@@ -127,6 +127,7 @@ The `list` parameter is used to retrieve lists of various objects, such as pages
 | allfileusages   | List all file usages, including non-existing |
 | allimages       | Enumerate all images sequentially            |
 | betafeatures    | List all BetaFeatures                        |
+| blocks          | List all blocked users and IP addresses      |
 | categorymembers | List all pages in a given category           |
 | prefixsearch    | Perform a prefix search for page titles      |
 | projects        | List all the projects                        |
@@ -188,18 +189,17 @@ Any help is appreciated :)
 ##### Get a list of categories the page Albert Einstein belongs to
 ```java
 var a = new WikiApiRequest.Builder()
-                .action(new QueryAction.Builder()
-                        .prop(Set.of(
-                                new CategoriesProp.Builder()
-                                        .clLimit(10)
-                                        .clDir(Dir.ASCENDING)
-                                        .build()
-                                )
-                        )
-                        .titles(Set.of("Albert Einstein"))
-                        .build()
-                )
-                .build();
+        .action(new QueryAction.Builder()
+                .prop(Set.of(
+                        new CategoriesProp.Builder()
+                                .clLimit(10)
+                                .clDir(Dir.Order.ASCENDING)
+                                .build()
+                ))
+                .titles(Set.of("Albert Einstein"))
+                .build()
+        )
+        .build();
 
 Response r = api.execute(a);
 System.out.println(r.getQuery().getPages().get(0).getCategories());
@@ -208,21 +208,20 @@ System.out.println(r.getQuery().getPages().get(0).getCategories());
 ##### Fetch site information.
 ```java
 var a = new WikiApiRequest.Builder()
-                .action(new QueryAction.Builder()
-                        .meta(Set.of(
-                                new SiteInfoMeta.Builder()
-                                        .siProp(EnumSet.of(
-                                                SiteInfoMeta.SiProp.GENERAL,
-                                                SiteInfoMeta.SiProp.NAMESPACES,
-                                                SiteInfoMeta.SiProp.NAMESPACE_ALIASES,
-                                                SiteInfoMeta.SiProp.STATISTICS
-                                        ))
-                                        .build()
-                                )
-                        )
-                        .build()
-                )
-                .build();
+        .action(new QueryAction.Builder()
+                .meta(Set.of(
+                        new SiteInfoMeta.Builder()
+                                .siProp(EnumSet.of(
+                                        SiteInfoMeta.SiProp.GENERAL,
+                                        SiteInfoMeta.SiProp.NAMESPACES,
+                                        SiteInfoMeta.SiProp.NAMESPACE_ALIASES,
+                                        SiteInfoMeta.SiProp.STATISTICS
+                                ))
+                                .build()
+                ))
+                .build()
+        )
+        .build();
 
 Response r = api.execute(a);
 System.out.println(r.getQuery().getGeneral());
@@ -231,21 +230,20 @@ System.out.println(r.getQuery().getGeneral());
 ##### Return information for user Example.
 ```java
 var a = new WikiApiRequest.Builder()
-                .action(new QueryAction.Builder()
-                        .list(Set.of(
-                                new UsersList.Builder()
-                                        .usProp(EnumSet.of(
-                                                UsersList.UsProp.GROUPS,
-                                                UsersList.UsProp.EDIT_COUNT,
-                                                UsersList.UsProp.GENDER
-                                        ))
-                                        .usUsers(Set.of("Example"))
-                                        .build()
-                                )
-                        )
-                        .build()
-                )
-                .build();
+        .action(new QueryAction.Builder()
+                .list(Set.of(
+                        new UsersList.Builder()
+                                .usProp(EnumSet.of(
+                                        UsersList.UsProp.GROUPS,
+                                        UsersList.UsProp.EDIT_COUNT,
+                                        UsersList.UsProp.GENDER
+                                ))
+                                .usUsers(Set.of("Example"))
+                                .build()
+                ))
+                .build()
+        )
+        .build();
 
 Response r = api.execute(a);
 System.out.println(r.getQuery().getUsers());
@@ -254,16 +252,15 @@ System.out.println(r.getQuery().getUsers());
 ##### Show contributors to the page Main Page.
 ```java
 var a = new WikiApiRequest.Builder()
-                .action(new QueryAction.Builder()
-                        .prop(Set.of(
-                                new ContributorsProp.Builder()
-                                        .build()
-                                )
-                        )
-                        .titles(Set.of("Main Page"))
-                        .build()
-                )
-                .build();
+        .action(new QueryAction.Builder()
+                .prop(Set.of(
+                        new ContributorsProp.Builder()
+                                .build()
+                ))
+                .titles(Set.of("Main Page"))
+                .build()
+        )
+        .build();
 
 Response r = api.execute(a);
 System.out.println(r.getQuery().getPages().get(0).getContributors());
@@ -272,16 +269,15 @@ System.out.println(r.getQuery().getPages().get(0).getContributors());
 ##### Get a list of external links on the page Main Page.
 ```java
 var a = new WikiApiRequest.Builder()
-                .action(new QueryAction.Builder()
-                        .prop(Set.of(
-                                new ExtLinksProp.Builder()
-                                        .build()
-                                )
-                        )
-                        .titles(Set.of("Main Page"))
-                        .build()
-                )
-                .build();
+        .action(new QueryAction.Builder()
+                .prop(Set.of(
+                        new ExtLinksProp.Builder()
+                                .build()
+                ))
+                .titles(Set.of("Main Page"))
+                .build()
+        )
+        .build();
 
 Response r = api.execute(a);
 System.out.println(r.getQuery().getPages().get(0).getExtLinks());
@@ -290,22 +286,21 @@ System.out.println(r.getQuery().getPages().get(0).getExtLinks());
 ##### Fetch information about versions of File:Test.jpg from 2008 and later.
 ```java
 var a = new WikiApiRequest.Builder()
-                .action(new QueryAction.Builder()
-                        .prop(Set.of(
-                                new ImageInfoProp.Builder()
-                                        .iiProp(EnumSet.of(ImageInfoProp.IIProp.TIMESTAMP,
-                                                ImageInfoProp.IIProp.USER,
-                                                ImageInfoProp.IIProp.URL
-                                        ))
-                                        .iiLimit(50)
-                                        .iiEnd(LocalDateTime.of(2007, 12, 31, 23, 59, 59))
-                                        .build()
-                                )
-                        )
-                        .titles(Set.of("File:Test.jpg"))
-                        .build()
-                )
-                .build();
+        .action(new QueryAction.Builder()
+                .prop(Set.of(
+                        new ImageInfoProp.Builder()
+                                .iiProp(EnumSet.of(ImageInfoProp.IIProp.TIMESTAMP,
+                                        ImageInfoProp.IIProp.USER,
+                                        ImageInfoProp.IIProp.URL
+                                ))
+                                .iiLimit(50)
+                                .iiEnd(LocalDateTime.of(2007, 12, 31, 23, 59, 59))
+                                .build()
+                ))
+                .titles(Set.of("File:Test.jpg"))
+                .build()
+        )
+        .build();
 
 Response r = api.execute(a);
 System.out.println(r.getQuery().getPages().get(0).getImageInfo().get(0));
@@ -314,16 +309,15 @@ System.out.println(r.getQuery().getPages().get(0).getImageInfo().get(0));
 ##### Get a list of files used on the page Main Page.
 ```java
 var a = new WikiApiRequest.Builder()
-                .action(new QueryAction.Builder()
-                        .prop(Set.of(
-                                new ImagesProp.Builder()
-                                        .build()
-                                )
-                        )
-                        .titles(Set.of("Main Page"))
-                        .build()
-                )
-                .build();
+        .action(new QueryAction.Builder()
+                .prop(Set.of(
+                        new ImagesProp.Builder()
+                                .build()
+                ))
+                .titles(Set.of("Main Page"))
+                .build()
+        )
+        .build();
 
 Response r = api.execute(a);
 System.out.println(r.getQuery().getPages().get(0).getImages());
@@ -332,16 +326,15 @@ System.out.println(r.getQuery().getPages().get(0).getImages());
 ##### Get information about the page Main Page.
 ```java
 var a = new WikiApiRequest.Builder()
-                .action(new QueryAction.Builder()
-                        .prop(Set.of(
-                                        new InfoProp.Builder()
-                                                .build()
-                                )
-                        )
-                        .titles(Set.of("Main Page"))
-                        .build()
-                )
-                .build();
+        .action(new QueryAction.Builder()
+                .prop(Set.of(
+                        new InfoProp.Builder()
+                                .build()
+                ))
+                .titles(Set.of("Main Page"))
+                .build()
+        )
+        .build();
 
 Response r = api.execute(a);
 System.out.println(r.getQuery().getPages().get(0));
@@ -350,15 +343,15 @@ System.out.println(r.getQuery().getPages().get(0));
 ##### Show pageview statistics for the main page.
 ```java
 var a = new WikiApiRequest.Builder()
-                .action(new QueryAction.Builder()
-                        .prop(Set.of(
-                                new PageViewsProp.Builder()
-                                        .build()
-                        ))
-                        .titles(Set.of("Main Page"))
-                        .build()
-                )
-                .build();
+        .action(new QueryAction.Builder()
+                .prop(Set.of(
+                        new PageViewsProp.Builder()
+                                .build()
+                ))
+                .titles(Set.of("Main Page"))
+                .build()
+        )
+        .build();
 
 Response r = api.execute(a);
 System.out.println(r.getQuery().getPages().get(0).getPageViews());
@@ -367,22 +360,21 @@ System.out.println(r.getQuery().getPages().get(0).getPageViews());
 ##### Get last 5 revisions of the Main Page.
 ```java
 var a = new WikiApiRequest.Builder()
-                .action(new QueryAction.Builder()
-                        .prop(Set.of(
-                                new RevisionsProp.Builder()
-                                        .rvProp(EnumSet.of(
-                                                RevisionsProp.RvProp.TIMESTAMP,
-                                                RevisionsProp.RvProp.USER,
-                                                RevisionsProp.RvProp.COMMENT
-                                        ))
-                                        .rvLimit(5)
-                                        .build()
-                                )
-                        )
-                        .titles(Set.of("Main Page"))
-                        .build()
-                )
-                .build();
+        .action(new QueryAction.Builder()
+                .prop(Set.of(
+                        new RevisionsProp.Builder()
+                                .rvProp(EnumSet.of(
+                                        RevisionsProp.RvProp.TIMESTAMP,
+                                        RevisionsProp.RvProp.USER,
+                                        RevisionsProp.RvProp.COMMENT
+                                ))
+                                .rvLimit(5)
+                                .build()
+                ))
+                .titles(Set.of("Main Page"))
+                .build()
+        )
+        .build();
 
 Response r = api.execute(a);
 System.out.println(r.getQuery().getPages().get(0).getRevisions());
@@ -390,11 +382,11 @@ System.out.println(r.getQuery().getPages().get(0).getRevisions());
 ##### Check if the IP address 192.0.2.18 is blocked as a Tor exit node.
 ```java
 var a = new WikiApiRequest.Builder()
-                .action(new TorBlockAction.Builder()
-                        .ip("192.0.2.18")
-                        .build()
-                )
-                .build();
+        .action(new TorBlockAction.Builder()
+                .ip("192.0.2.18")
+                .build()
+        )
+        .build();
 
 Response r = api.execute(a);
 System.out.println(r.getTorBlock());
