@@ -129,6 +129,7 @@ The `list` parameter is used to retrieve lists of various objects, such as pages
 | betafeatures    | List all BetaFeatures                        |
 | categorymembers | List all pages in a given category           |
 | prefixsearch    | Perform a prefix search for page titles      |
+| projects        | List all the projects                        |
 | random          | Get a set of random pages                    |
 | recentchanges   | Enumerate recent changes                     |
 | tags            | List change tags                             |

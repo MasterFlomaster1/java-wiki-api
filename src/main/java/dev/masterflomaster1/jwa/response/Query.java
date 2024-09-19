@@ -29,6 +29,7 @@ public final class Query {
     @SerializedName("tags")            private List<Tag> tags;
     @SerializedName("prefixsearch")    private List<DefaultPage> prefixSearch;
     @SerializedName("betafeatures")    private Map<String, BetaFeature> betafeatures;
+    @SerializedName("projects")        private List<String> projects;
 
     private Query() { }
 }
