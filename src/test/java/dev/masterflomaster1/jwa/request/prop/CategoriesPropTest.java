@@ -43,6 +43,9 @@ class CategoriesPropTest {
                 .build();
 
         Response r = api.execute(a);
+
+        System.out.println(r.getQuery().getPages().get(0).getCategories());
+
         assertNotNull(r.getQuery().getPages().get(0).getCategories());
     }
 

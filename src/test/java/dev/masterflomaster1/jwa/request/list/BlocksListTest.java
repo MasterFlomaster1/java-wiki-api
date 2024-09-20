@@ -57,6 +57,7 @@ class BlocksListTest {
                 .bkIp("1.1.1.1")
                 .bkLimit(30)
                 .bkProp(EnumSet.of(BlocksList.BkProp.BY, BlocksList.BkProp.BY_ID))
+                .bkShow(EnumSet.of(BlocksList.BkShow.IP))
                 .bkContinue("test")
                 .build();
 
@@ -67,6 +68,7 @@ class BlocksListTest {
         assertEquals(Set.of("Demo"), a.getBkUsers());
         assertEquals(30, a.getBkLimit());
         assertEquals(EnumSet.of(BlocksList.BkProp.BY, BlocksList.BkProp.BY_ID), a.getBkProp());
+        assertEquals(EnumSet.of(BlocksList.BkShow.IP), a.getBkShow());
         assertEquals("test", a.getBkContinue());
 
     }

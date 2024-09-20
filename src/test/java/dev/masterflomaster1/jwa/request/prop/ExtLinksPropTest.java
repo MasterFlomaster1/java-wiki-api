@@ -3,6 +3,7 @@ package dev.masterflomaster1.jwa.request.prop;
 import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
+import dev.masterflomaster1.jwa.common.Protocol;
 import dev.masterflomaster1.jwa.request.action.QueryAction;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -47,13 +48,13 @@ class ExtLinksPropTest {
         var a = new ExtLinksProp.Builder()
                 .elLimit(30)
                 .elContinue("460837609")
-                .elProtocol(ExtLinksProp.ElProtocol.SSH)
+                .elProtocol(Protocol.SSH)
                 .elQuery("test")
                 .build();
 
         assertEquals(30, a.getElLimit());
         assertEquals("460837609", a.getElContinue());
-        assertEquals(ExtLinksProp.ElProtocol.SSH, a.getElProtocol());
+        assertEquals(Protocol.SSH, a.getElProtocol());
         assertEquals("test", a.getElQuery());
     }
 

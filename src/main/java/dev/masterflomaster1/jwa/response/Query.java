@@ -32,6 +32,7 @@ public final class Query {
     @SerializedName("projects")        private List<String> projects;
     @SerializedName("blocks")          private List<Blocks> blocks;
     @SerializedName("backlinks")       private List<DefaultPage> backlinks;
+    @SerializedName("exturlusage")     private List<ExtUrlUsage> exturlusage;
 
     private Query() { }
 }

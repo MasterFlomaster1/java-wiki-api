@@ -1,5 +1,6 @@
 package dev.masterflomaster1.jwa.request.prop;
 
+import dev.masterflomaster1.jwa.common.Protocol;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
@@ -17,7 +18,7 @@ public final class ExtLinksProp extends AbstractProp {
 
     private int elLimit;
     private String elContinue;
-    private ElProtocol elProtocol;
+    private Protocol elProtocol;
     private String elQuery;
 
     private ExtLinksProp() {
@@ -56,9 +57,9 @@ public final class ExtLinksProp extends AbstractProp {
          * Leave both this and {@code elquery} empty to list all external links.
          * @return {@code Builder}
          */
-        public Builder elProtocol(ElProtocol elProtocol) {
+        public Builder elProtocol(Protocol elProtocol) {
             extLinksProp.elProtocol = elProtocol;
-            extLinksProp.apiUrl.putQuery("elprotocol", elProtocol.value);
+            extLinksProp.apiUrl.putQuery("elprotocol", elProtocol.getValue());
             return this;
         }
 
@@ -74,45 +75,6 @@ public final class ExtLinksProp extends AbstractProp {
 
         public ExtLinksProp build() {
             return extLinksProp;
-        }
-
-    }
-
-    @Getter
-    public enum ElProtocol {
-        BITCOIN ("bitcoin"),
-        FTP ("ftp"),
-        FTPS ("ftps"),
-        GEO ("geo"),
-        GIT ("git"),
-        GOPHER ("gopher"),
-        HTTP ("http"),
-        HTTPS ("https"),
-        IRC ("irc"),
-        IRCS ("ircs"),
-        MAGNET ("magnet"),
-        MAILTO ("mailto"),
-        MATRIX ("matrix"),
-        MMS ("mms"),
-        NEWS ("news"),
-        NNTP ("nntp"),
-        REDIS ("redis"),
-        SFTP ("sftp"),
-        SIP ("sip"),
-        SIPS ("sips"),
-        SMS ("sms"),
-        SSH ("ssh"),
-        SVN ("svn"),
-        TEL ("tel"),
-        TELNET ("telnet"),
-        URN ("urn"),
-        WORLDWIND ("worldwind"),
-        XMPP ("xmpp");
-
-        private final String value;
-
-        ElProtocol(String value) {
-            this.value = value;
         }
 
     }
