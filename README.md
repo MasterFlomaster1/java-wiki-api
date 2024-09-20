@@ -130,6 +130,7 @@ The `list` parameter is used to retrieve lists of various objects, such as pages
 | betafeatures    | List all BetaFeatures                        |
 | blocks          | List all blocked users and IP addresses      |
 | categorymembers | List all pages in a given category           |
+| exturlusage     | Enumerate pages that contain a given URL     |
 | prefixsearch    | Perform a prefix search for page titles      |
 | projects        | List all the projects                        |
 | random          | Get a set of random pages                    |
