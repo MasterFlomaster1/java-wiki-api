@@ -1,5 +1,6 @@
 package dev.masterflomaster1.jwa.request.list;
 
+import dev.masterflomaster1.jwa.common.FilterRedir;
 import dev.masterflomaster1.jwa.common.Namespace;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -24,7 +25,7 @@ import java.util.stream.Collectors;
 public final class RandomList extends AbstractList {
 
     private EnumSet<Namespace> rnNamespace;
-    private RnFilterRedir rnFilterRedir;
+    private FilterRedir rnFilterRedir;
     private int rnLimit;
     private String rnContinue;
 
@@ -52,7 +53,7 @@ public final class RandomList extends AbstractList {
          * How to filter for redirects.
          * @return {@code Builder}
          */
-        public Builder rnFilterRedir(final RnFilterRedir rnFilterRedir) {
+        public Builder rnFilterRedir(final FilterRedir rnFilterRedir) {
             randomList.rnFilterRedir = rnFilterRedir;
             randomList.apiUrl.putQuery("rnfilterredir", rnFilterRedir.getValue());
             return this;
@@ -83,21 +84,6 @@ public final class RandomList extends AbstractList {
 
         public RandomList build() {
             return randomList;
-        }
-
-    }
-
-    @Getter
-    public enum RnFilterRedir {
-
-        ALL("all"),
-        NON_REDIRECTS("nonredirects"),
-        REDIRECTS("redirects");
-
-        private final String value;
-
-        RnFilterRedir(String value) {
-            this.value = value;
         }
 
     }

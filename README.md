@@ -126,6 +126,7 @@ The `list` parameter is used to retrieve lists of various objects, such as pages
 | allcategories   | Enumerate all categories                     |
 | allfileusages   | List all file usages, including non-existing |
 | allimages       | Enumerate all images sequentially            |
+| backlinks       | Find all pages that link to the given page   |
 | betafeatures    | List all BetaFeatures                        |
 | blocks          | List all blocked users and IP addresses      |
 | categorymembers | List all pages in a given category           |

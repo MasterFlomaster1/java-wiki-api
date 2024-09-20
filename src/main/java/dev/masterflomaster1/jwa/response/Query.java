@@ -31,6 +31,7 @@ public final class Query {
     @SerializedName("betafeatures")    private Map<String, BetaFeature> betafeatures;
     @SerializedName("projects")        private List<String> projects;
     @SerializedName("blocks")          private List<Blocks> blocks;
+    @SerializedName("backlinks")       private List<DefaultPage> backlinks;
 
     private Query() { }
 }

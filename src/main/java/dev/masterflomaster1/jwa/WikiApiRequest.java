@@ -6,6 +6,7 @@ import lombok.ToString;
 
 @Getter
 @ToString
+@SuppressWarnings("SpellCheckingInspection")
 public final class WikiApiRequest {
 
     private String url = "https://en.wikipedia.org/w/api.php";
