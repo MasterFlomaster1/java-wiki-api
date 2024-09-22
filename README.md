@@ -121,23 +121,29 @@ var a = new WikiApiRequest.Builder()
 
 The `list` parameter is used to retrieve lists of various objects, such as pages, categories, users, or links. Supported lists:
 
-| Name            | Description                                  |
-|-----------------|----------------------------------------------|
-| allcategories   | Enumerate all categories                     |
-| allfileusages   | List all file usages, including non-existing |
-| allimages       | Enumerate all images sequentially            |
-| backlinks       | Find all pages that link to the given page   |
-| betafeatures    | List all BetaFeatures                        |
-| blocks          | List all blocked users and IP addresses      |
-| categorymembers | List all pages in a given category           |
-| exturlusage     | Enumerate pages that contain a given URL     |
-| prefixsearch    | Perform a prefix search for page titles      |
-| projects        | List all the projects                        |
-| random          | Get a set of random pages                    |
-| recentchanges   | Enumerate recent changes                     |
-| tags            | List change tags                             |
-| usercontribs    | Get all edits by a user                      |
-| users           | Get information about a list of users        |
+| Name             | Description                                           |
+|------------------|-------------------------------------------------------|
+| allcategories    | Enumerate all categories                              |
+| allfileusages    | List all file usages, including non-existing          |
+| allimages        | Enumerate all images sequentially                     |
+| alllinks         | Enumerate all links that point to a given namespace   |
+| allpages         | Enumerate all pages sequentially in a given namespace |
+| allusers         | Enumerate all registered users                        |
+| backlinks        | Find all pages that link to the given page            |
+| betafeatures     | List all BetaFeatures                                 |
+| blocks           | List all blocked users and IP addresses               |
+| categorymembers  | List all pages in a given category                    |
+| exturlusage      | Enumerate pages that contain a given URL              |
+| filearchive      | Enumerate all deleted files sequentially              |
+| imageusage       | Find all pages that use the given image title         |
+| prefixsearch     | Perform a prefix search for page titles               |
+| projects         | List all the projects                                 |
+| protectedtitles  | List all titles protected from creation               |
+| random           | Get a set of random pages                             |
+| recentchanges    | Enumerate recent changes                              |
+| tags             | List change tags                                      |
+| usercontribs     | Get all edits by a user                               |
+| users            | Get information about a list of users                 |
 
 **Example:**
 

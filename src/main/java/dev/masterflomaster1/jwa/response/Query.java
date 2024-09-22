@@ -33,6 +33,12 @@ public final class Query {
     @SerializedName("blocks")          private List<Blocks> blocks;
     @SerializedName("backlinks")       private List<DefaultPage> backlinks;
     @SerializedName("exturlusage")     private List<ExtUrlUsage> exturlusage;
+    @SerializedName("alllinks")        private List<AllLinks> allLinks;
+    @SerializedName("allpages")        private List<DefaultPage> allPages;
+    @SerializedName("allusers")        private List<AllUsers> allUsers;
+    @SerializedName("filearchive")     private List<FileArchive> fileArchive;
+    @SerializedName("imageusage")      private List<DefaultPage> imageUsage;
+    @SerializedName("protectedtitles") private List<ProtectedTitles> protectedtitles;
 
     private Query() { }
 }

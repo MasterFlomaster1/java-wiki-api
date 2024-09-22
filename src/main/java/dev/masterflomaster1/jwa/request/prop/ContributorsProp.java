@@ -1,5 +1,7 @@
 package dev.masterflomaster1.jwa.request.prop;
 
+import dev.masterflomaster1.jwa.common.Group;
+import dev.masterflomaster1.jwa.common.Rights;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
@@ -18,40 +20,15 @@ import java.util.stream.Collectors;
 @SuppressWarnings("SpellCheckingInspection")
 public final class ContributorsProp extends AbstractProp {
 
-    private EnumSet<PcGroup> pcGroup;
-    private EnumSet<PcGroup> pcExcludeGroup;
-    private EnumSet<PcRights> pcRights;
-    private EnumSet<PcRights> pcExcludeRights;
+    private EnumSet<Group> pcGroup;
+    private EnumSet<Group> pcExcludeGroup;
+    private EnumSet<Rights> pcRights;
+    private EnumSet<Rights> pcExcludeRights;
     private int pcLimit;
     private String pcContinue;
 
     private ContributorsProp() {
         name = "contributors";
-    }
-
-    @Getter
-    public enum PcGroup {
-
-        ABUSE_FILTER ("");
-
-        private final String value;
-
-        PcGroup(String value) {
-            this.value = value;
-        }
-
-    }
-
-    @Getter
-    public enum PcRights {
-        EDIT ("edit");
-
-        private final String value;
-
-        PcRights(String value) {
-            this.value = value;
-        }
-
     }
 
     public static class Builder {
@@ -63,10 +40,10 @@ public final class ContributorsProp extends AbstractProp {
          * autoconfirmed.
          * @return {@code Builder}
          */
-        public Builder pcGroup(EnumSet<PcGroup> pcGroup) {
+        public Builder pcGroup(EnumSet<Group> pcGroup) {
             contributorsProp.pcGroup = pcGroup;
             contributorsProp.apiUrl.putQuery("pcgroup", pcGroup.stream()
-                    .map(PcGroup::getValue)
+                    .map(Group::getValue)
                     .collect(Collectors.joining("|")));
             return this;
         }
@@ -76,10 +53,10 @@ public final class ContributorsProp extends AbstractProp {
          * autoconfirmed.
          * @return {@code Builder}
          */
-        public Builder pcExcludeGroup(EnumSet<PcGroup> pcExcludeGroup) {
+        public Builder pcExcludeGroup(EnumSet<Group> pcExcludeGroup) {
             contributorsProp.pcExcludeGroup = pcExcludeGroup;
             contributorsProp.apiUrl.putQuery("pcexcludegroup", pcExcludeGroup.stream()
-                    .map(PcGroup::getValue)
+                    .map(Group::getValue)
                     .collect(Collectors.joining("|")));
             return this;
         }
@@ -90,10 +67,10 @@ public final class ContributorsProp extends AbstractProp {
          * Maximum number of values is 50 (500 for clients that are allowed higher limits).
          * @return {@code Builder}
          */
-        public Builder pcRights(EnumSet<PcRights> pcRights) {
+        public Builder pcRights(EnumSet<Rights> pcRights) {
             contributorsProp.pcRights = pcRights;
             contributorsProp.apiUrl.putQuery("pcrights", pcRights.stream()
-                    .map(PcRights::getValue)
+                    .map(Rights::getValue)
                     .collect(Collectors.joining("|")));
             return this;
         }
@@ -104,10 +81,10 @@ public final class ContributorsProp extends AbstractProp {
          * Maximum number of values is 50 (500 for clients that are allowed higher limits).
          * @return {@code Builder}
          */
-        public Builder pcExcludeRights(EnumSet<PcRights> pcExcludeRights) {
+        public Builder pcExcludeRights(EnumSet<Rights> pcExcludeRights) {
             contributorsProp.pcExcludeRights = pcExcludeRights;
             contributorsProp.apiUrl.putQuery("pcexcluderights", pcExcludeRights.stream()
-                    .map(PcRights::getValue)
+                    .map(Rights::getValue)
                     .collect(Collectors.joining("|")));
             return this;
         }

@@ -3,6 +3,8 @@ package dev.masterflomaster1.jwa.request.prop;
 import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
+import dev.masterflomaster1.jwa.common.Group;
+import dev.masterflomaster1.jwa.common.Rights;
 import dev.masterflomaster1.jwa.request.action.QueryAction;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -46,18 +48,18 @@ class ContributorsPropTest {
     @Test
     void testBuilder() {
         var a = new ContributorsProp.Builder()
-                .pcGroup(EnumSet.of(ContributorsProp.PcGroup.ABUSE_FILTER))
-                .pcExcludeGroup(EnumSet.of(ContributorsProp.PcGroup.ABUSE_FILTER))
-                .pcRights(EnumSet.of(ContributorsProp.PcRights.EDIT))
-                .pcExcludeRights(EnumSet.of(ContributorsProp.PcRights.EDIT))
+                .pcGroup(EnumSet.of(Group.ABUSE_FILTER))
+                .pcExcludeGroup(EnumSet.of(Group.ABUSE_FILTER))
+                .pcRights(EnumSet.of(Rights.EDIT))
+                .pcExcludeRights(EnumSet.of(Rights.EDIT))
                 .pcLimit(60)
                 .pcContinue("15580374|1029")
                 .build();
 
-        assertEquals(EnumSet.of(ContributorsProp.PcGroup.ABUSE_FILTER), a.getPcGroup());
-        assertEquals(EnumSet.of(ContributorsProp.PcGroup.ABUSE_FILTER), a.getPcExcludeGroup());
-        assertEquals(EnumSet.of(ContributorsProp.PcRights.EDIT), a.getPcRights());
-        assertEquals(EnumSet.of(ContributorsProp.PcRights.EDIT), a.getPcExcludeRights());
+        assertEquals(EnumSet.of(Group.ABUSE_FILTER), a.getPcGroup());
+        assertEquals(EnumSet.of(Group.ABUSE_FILTER), a.getPcExcludeGroup());
+        assertEquals(EnumSet.of(Rights.EDIT), a.getPcRights());
+        assertEquals(EnumSet.of(Rights.EDIT), a.getPcExcludeRights());
         assertEquals(60, a.getPcLimit());
         assertEquals("15580374|1029", a.getPcContinue());
     }
