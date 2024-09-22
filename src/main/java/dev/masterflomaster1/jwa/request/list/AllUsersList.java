@@ -3,12 +3,13 @@ package dev.masterflomaster1.jwa.request.list;
 import dev.masterflomaster1.jwa.common.Dir;
 import dev.masterflomaster1.jwa.common.Group;
 import dev.masterflomaster1.jwa.common.Rights;
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.util.EnumSet;
-import java.util.stream.Collectors;
 
 /**
  * Enumerate all registered users.
@@ -35,10 +36,10 @@ public final class AllUsersList extends AbstractList {
     private boolean auAttachedWiki;
 
     private AllUsersList() {
-        name = "allusers";
+        super("allusers");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final AllUsersList allUsersList = new AllUsersList();
 
@@ -89,9 +90,7 @@ public final class AllUsersList extends AbstractList {
          */
         public Builder auGroup(final EnumSet<Group> auGroup) {
             allUsersList.auGroup = auGroup;
-            allUsersList.apiUrl.putQuery("augroup", auGroup.stream()
-                    .map(Group::getValue)
-                    .collect(Collectors.joining("|")));
+            allUsersList.apiUrl.putQuery("augroup", merge(auGroup));
             return this;
         }
 
@@ -101,9 +100,7 @@ public final class AllUsersList extends AbstractList {
          */
         public Builder auExcludeGroup(final EnumSet<Group> auExcludeGroup) {
             allUsersList.auExcludeGroup = auExcludeGroup;
-            allUsersList.apiUrl.putQuery("auexcludegroup", auExcludeGroup.stream()
-                    .map(Group::getValue)
-                    .collect(Collectors.joining("|")));
+            allUsersList.apiUrl.putQuery("auexcludegroup", merge(auExcludeGroup));
             return this;
         }
 
@@ -115,9 +112,7 @@ public final class AllUsersList extends AbstractList {
          */
         public Builder auRights(final EnumSet<Rights> auRights) {
             allUsersList.auRights = auRights;
-            allUsersList.apiUrl.putQuery("aurights", auRights.stream()
-                    .map(Rights::getValue)
-                    .collect(Collectors.joining("|")));
+            allUsersList.apiUrl.putQuery("aurights", merge(auRights));
             return this;
         }
 
@@ -127,9 +122,7 @@ public final class AllUsersList extends AbstractList {
          */
         public Builder auProp(final EnumSet<AuProp> auProp) {
             allUsersList.auProp = auProp;
-            allUsersList.apiUrl.putQuery("auprop", auProp.stream()
-                    .map(AuProp::getValue)
-                    .collect(Collectors.joining("|")));
+            allUsersList.apiUrl.putQuery("auprop", merge(auProp));
             return this;
         }
 
@@ -182,7 +175,7 @@ public final class AllUsersList extends AbstractList {
     }
 
     @Getter
-    public enum AuProp {
+    public enum AuProp implements EnumValueProvider {
 
         /**
          * Adds the information about a current block on the user.

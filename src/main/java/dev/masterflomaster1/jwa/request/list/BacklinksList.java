@@ -3,12 +3,12 @@ package dev.masterflomaster1.jwa.request.list;
 import dev.masterflomaster1.jwa.common.Dir;
 import dev.masterflomaster1.jwa.common.FilterRedir;
 import dev.masterflomaster1.jwa.common.Namespace;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.util.EnumSet;
-import java.util.stream.Collectors;
 
 /**
  * Find all pages that link to the given page.
@@ -31,10 +31,10 @@ public final class BacklinksList extends AbstractList {
     private boolean blRedirect;
 
     private BacklinksList() {
-        name = "backlinks";
+        super("backlinks");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final BacklinksList backlinksList = new BacklinksList();
 
@@ -76,9 +76,7 @@ public final class BacklinksList extends AbstractList {
          */
         public Builder blNamespace(final EnumSet<Namespace> namespace) {
             backlinksList.blNamespace = namespace;
-            backlinksList.apiUrl.putQuery("blnamespace", namespace.stream()
-                    .map(Namespace::getValue)
-                    .collect(Collectors.joining("|")));
+            backlinksList.apiUrl.putQuery("blnamespace", merge(namespace));
             return this;
         }
 

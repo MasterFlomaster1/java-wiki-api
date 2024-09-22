@@ -2,13 +2,14 @@ package dev.masterflomaster1.jwa.request.list;
 
 import dev.masterflomaster1.jwa.common.Dir;
 import dev.masterflomaster1.jwa.common.Prop;
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.time.Instant;
 import java.util.EnumSet;
-import java.util.stream.Collectors;
 
 /**
  * Enumerate all images sequentially.
@@ -40,10 +41,10 @@ public final class AllImagesList extends AbstractList {
     private int aiLimit;
 
     private AllImagesList() {
-        name = "allimages";
+        super("allimages");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final AllImagesList allImagesList = new AllImagesList();
 
@@ -125,9 +126,7 @@ public final class AllImagesList extends AbstractList {
          */
         public Builder aiProp(EnumSet<Prop> aiProp) {
             allImagesList.aiProp = aiProp;
-            allImagesList.apiUrl.putQuery("aiprop", aiProp.stream()
-                    .map(Prop::getValue)
-                    .collect(Collectors.joining("|")));
+            allImagesList.apiUrl.putQuery("aiprop", merge(aiProp));
             return this;
         }
 
@@ -235,7 +234,7 @@ public final class AllImagesList extends AbstractList {
     }
 
     @Getter
-    public enum AiFilterBots {
+    public enum AiFilterBots implements EnumValueProvider {
 
         ALL ("all"),
         BOTS ("bots"),

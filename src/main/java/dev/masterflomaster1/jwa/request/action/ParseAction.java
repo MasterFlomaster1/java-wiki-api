@@ -2,11 +2,12 @@ package dev.masterflomaster1.jwa.request.action;
 
 import dev.masterflomaster1.jwa.common.ContentFormat;
 import dev.masterflomaster1.jwa.common.ContentModel;
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.util.EnumSet;
-import java.util.stream.Collectors;
 
 /**
  * Parses content and returns parser output.
@@ -49,7 +50,7 @@ public final class ParseAction extends AbstractAction {
         apiUrl.setAction("parse");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final ParseAction parseAction = new ParseAction();
 
@@ -141,9 +142,7 @@ public final class ParseAction extends AbstractAction {
          */
         public Builder prop(EnumSet<Prop> prop) {
             parseAction.prop = prop;
-            parseAction.apiUrl.putQuery("prop", prop.stream()
-                    .map(Prop::getValue)
-                    .collect(Collectors.joining("|")));
+            parseAction.apiUrl.putQuery("prop", merge(prop));
             return this;
         }
 
@@ -331,7 +330,7 @@ public final class ParseAction extends AbstractAction {
     }
 
     @Getter
-    public enum Prop {
+    public enum Prop implements EnumValueProvider {
 
         CATEGORIES ("categories");
 
@@ -344,7 +343,7 @@ public final class ParseAction extends AbstractAction {
     }
 
     @Getter
-    public enum UseSkin {
+    public enum UseSkin implements EnumValueProvider {
 
         API_OUTPUT ("apioutput"),
         COLOGNE_BLUE ("cologneblue"),

@@ -1,5 +1,7 @@
 package dev.masterflomaster1.jwa.request.list;
 
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
@@ -25,10 +27,10 @@ public final class UsersList extends AbstractList {
     private Set<Integer> usUserIds;
 
     private UsersList() {
-        name = "users";
+        super("users");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final UsersList usersList = new UsersList();
 
@@ -38,9 +40,7 @@ public final class UsersList extends AbstractList {
          */
         public Builder usProp(EnumSet<UsProp> usProp) {
             usersList.usProp = usProp;
-            usersList.apiUrl.putQuery("usprop", usProp.stream()
-                    .map(UsProp::getValue)
-                    .collect(Collectors.joining("|")));
+            usersList.apiUrl.putQuery("usprop", merge(usProp));
             return this;
         }
 
@@ -88,7 +88,7 @@ public final class UsersList extends AbstractList {
      * Which pieces of information to include
      */
     @Getter
-    public enum UsProp {
+    public enum UsProp implements EnumValueProvider {
 
         /** Tags if the user is blocked, by whom, and for what reason. */
         BLOCK_INFO ("blockinfo"),

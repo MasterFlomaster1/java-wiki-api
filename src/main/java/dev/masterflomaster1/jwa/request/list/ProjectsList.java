@@ -1,5 +1,6 @@
 package dev.masterflomaster1.jwa.request.list;
 
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
@@ -18,10 +19,10 @@ public final class ProjectsList extends AbstractList {
     private boolean pjSubProjects;
 
     private ProjectsList() {
-        name = "projects";
+        super("projects");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final ProjectsList projectsList = new ProjectsList();
 

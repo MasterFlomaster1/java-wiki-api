@@ -1,11 +1,12 @@
 package dev.masterflomaster1.jwa.request.meta;
 
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.util.EnumSet;
-import java.util.stream.Collectors;
 
 /**
  * Show information about a global user.
@@ -21,10 +22,10 @@ public final class GlobalUserInfoMeta extends AbstractMeta {
     private EnumSet<GuiProp> guiProp;
 
     private GlobalUserInfoMeta() {
-        name = "globaluserinfo";
+        super("globaluserinfo");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final GlobalUserInfoMeta globalUserInfoMeta = new GlobalUserInfoMeta();
 
@@ -56,9 +57,7 @@ public final class GlobalUserInfoMeta extends AbstractMeta {
          */
         public Builder guiProp(EnumSet<GuiProp> guiProp) {
             globalUserInfoMeta.guiProp = guiProp;
-            globalUserInfoMeta.apiUrl.putQuery("guiprop", guiProp.stream()
-                    .map(GuiProp::getValue)
-                    .collect(Collectors.joining("|")));
+            globalUserInfoMeta.apiUrl.putQuery("guiprop", merge(guiProp));
             return this;
         }
 
@@ -69,7 +68,7 @@ public final class GlobalUserInfoMeta extends AbstractMeta {
     }
 
     @Getter
-    public enum GuiProp {
+    public enum GuiProp implements EnumValueProvider {
 
         /**
          * Get a list of global groups this user belongs to.
@@ -96,7 +95,7 @@ public final class GlobalUserInfoMeta extends AbstractMeta {
          */
         EDIT_COUNT ("editcount");
 
-        final String value;
+        private final String value;
 
         GuiProp(String value) {
             this.value = value;

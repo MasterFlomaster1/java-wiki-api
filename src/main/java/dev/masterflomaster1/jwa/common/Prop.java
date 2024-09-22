@@ -1,10 +1,11 @@
 package dev.masterflomaster1.jwa.common;
 
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
 import lombok.Getter;
 
 @Getter
 @SuppressWarnings("SpellCheckingInspection")
-public enum Prop {
+public enum Prop implements EnumValueProvider {
 
     /**
      * Adds the filename of the archive version for non-latest versions. If the file has been revision deleted,

@@ -19,7 +19,7 @@ public final class SiteViewsMeta extends AbstractMeta {
     private int pvIsDays;
 
     private SiteViewsMeta() {
-        name = "siteviews";
+        super("siteviews");
     }
 
     public static class Builder {

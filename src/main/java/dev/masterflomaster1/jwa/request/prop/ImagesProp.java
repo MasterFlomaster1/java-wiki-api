@@ -1,6 +1,7 @@
 package dev.masterflomaster1.jwa.request.prop;
 
 import dev.masterflomaster1.jwa.common.Dir;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
@@ -24,10 +25,10 @@ public final class ImagesProp extends AbstractProp {
     private Dir.Order imDir;
 
     private ImagesProp() {
-        name = "images";
+        super("images");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final ImagesProp imagesProp = new ImagesProp();
 

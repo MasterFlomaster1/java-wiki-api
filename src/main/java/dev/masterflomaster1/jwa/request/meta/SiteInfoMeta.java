@@ -1,11 +1,12 @@
 package dev.masterflomaster1.jwa.request.meta;
 
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.util.EnumSet;
-import java.util.stream.Collectors;
 
 /**
  * Return general information about the site.
@@ -23,11 +24,11 @@ public final class SiteInfoMeta extends AbstractMeta {
     private boolean siNumberInGroup;
 
     private SiteInfoMeta() {
-        name = "siteinfo";
+        super("siteinfo");
     }
 
     @Getter
-    public enum SiProp {
+    public enum SiProp implements EnumValueProvider {
 
         /**
          * Overall system information.
@@ -42,7 +43,7 @@ public final class SiteInfoMeta extends AbstractMeta {
         PROTOCOLS ("protocols"),
         STATISTICS ("statistics");
 
-        final String value;
+        private final String value;
 
         SiProp(String value) {
             this.value = value;
@@ -50,7 +51,7 @@ public final class SiteInfoMeta extends AbstractMeta {
 
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final SiteInfoMeta siteInfoMeta = new SiteInfoMeta();
 
@@ -61,9 +62,7 @@ public final class SiteInfoMeta extends AbstractMeta {
          */
         public Builder siProp(EnumSet<SiProp> siProp) {
             siteInfoMeta.siProp = siProp;
-            siteInfoMeta.apiUrl.putQuery("siprop", siProp.stream()
-                    .map(SiProp::getValue)
-                    .collect(Collectors.joining("|")));
+            siteInfoMeta.apiUrl.putQuery("siprop", merge(siProp));
             return this;
         }
 

@@ -1,10 +1,11 @@
 package dev.masterflomaster1.jwa.common;
 
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
 import lombok.Getter;
 
 @Getter
 @SuppressWarnings("SpellCheckingInspection")
-public enum Rights {
+public enum Rights implements EnumValueProvider {
 
     ABUSE_FILTER_ACCESS_PROTECTED_VARS("abusefilter-access-protected-vars"),
     ABUSE_FILTER_BYPASS_BLOCKED_EXTERNAL_DOMAINS("abusefilter-bypass-blocked-external-domains"),

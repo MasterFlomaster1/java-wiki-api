@@ -1,5 +1,6 @@
 package dev.masterflomaster1.jwa.request.action;
 
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.Getter;
 import lombok.ToString;
 import okhttp3.FormBody;
@@ -31,7 +32,7 @@ public final class EmailUserAction extends AbstractAction implements IPost {
                 .build();
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final EmailUserAction emailUserAction = new EmailUserAction();
 

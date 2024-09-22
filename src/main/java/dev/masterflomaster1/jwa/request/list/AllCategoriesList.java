@@ -1,12 +1,13 @@
 package dev.masterflomaster1.jwa.request.list;
 
 import dev.masterflomaster1.jwa.common.Dir;
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.util.EnumSet;
-import java.util.stream.Collectors;
 
 /**
  * Enumerate all categories.
@@ -30,10 +31,10 @@ public final class AllCategoriesList extends AbstractList {
     private EnumSet<AcProp> acProp;
 
     private AllCategoriesList() {
-        name = "allcategories";
+        super("allcategories");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final AllCategoriesList allCategoriesList = new AllCategoriesList();
 
@@ -126,9 +127,7 @@ public final class AllCategoriesList extends AbstractList {
          */
         public Builder acProp(EnumSet<AcProp> acProp) {
             allCategoriesList.acProp = acProp;
-            allCategoriesList.apiUrl.putQuery("acprop", acProp.stream()
-                    .map(AcProp::getValue)
-                    .collect(Collectors.joining("|")));
+            allCategoriesList.apiUrl.putQuery("acprop", merge(acProp));
             return this;
         }
 
@@ -139,7 +138,7 @@ public final class AllCategoriesList extends AbstractList {
     }
 
     @Getter
-    public enum AcProp {
+    public enum AcProp implements EnumValueProvider {
         HIDDEN ("hidden"),
         SIZE ("size");
 

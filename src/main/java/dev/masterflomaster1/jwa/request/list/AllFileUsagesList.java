@@ -1,12 +1,13 @@
 package dev.masterflomaster1.jwa.request.list;
 
 import dev.masterflomaster1.jwa.common.Dir;
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.util.EnumSet;
-import java.util.stream.Collectors;
 
 /**
  * List all file usages, including non-existing.
@@ -29,10 +30,10 @@ public final class AllFileUsagesList extends AbstractList {
     private Dir.Order afDir;
 
     private AllFileUsagesList() {
-        name = "allfileusages";
+        super("allfileusages");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final AllFileUsagesList allFileUsagesList = new AllFileUsagesList();
 
@@ -95,9 +96,7 @@ public final class AllFileUsagesList extends AbstractList {
          */
         public Builder afProp(EnumSet<AfProp> afProp) {
             allFileUsagesList.afProp = afProp;
-            allFileUsagesList.apiUrl.putQuery("afprop", afProp.stream()
-                    .map(AfProp::getValue)
-                    .collect(Collectors.joining("|")));
+            allFileUsagesList.apiUrl.putQuery("afprop", merge(afProp));
             return this;
         }
 
@@ -129,7 +128,7 @@ public final class AllFileUsagesList extends AbstractList {
     }
 
     @Getter
-    public enum AfProp {
+    public enum AfProp implements EnumValueProvider {
 
         IDS ("ids"),
         TITLE ("title");

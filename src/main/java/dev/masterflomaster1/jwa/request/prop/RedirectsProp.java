@@ -1,12 +1,13 @@
 package dev.masterflomaster1.jwa.request.prop;
 
 import dev.masterflomaster1.jwa.common.Namespace;
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.util.EnumSet;
-import java.util.stream.Collectors;
 
 @Getter
 @ToString
@@ -21,10 +22,10 @@ public final class RedirectsProp extends AbstractProp {
     private String rdContinue;
 
     private RedirectsProp() {
-        name = "redirects";
+        super("redirects");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final RedirectsProp redirectsProp = new RedirectsProp();
 
@@ -34,9 +35,7 @@ public final class RedirectsProp extends AbstractProp {
          */
         public Builder rdProp(EnumSet<RdProp> rdProp) {
             redirectsProp.rdProp = rdProp;
-            redirectsProp.apiUrl.putQuery("rdprop", rdProp.stream()
-                    .map(RdProp::getValue)
-                    .collect(Collectors.joining("|")));
+            redirectsProp.apiUrl.putQuery("rdprop", merge(rdProp));
             return this;
         }
 
@@ -49,9 +48,7 @@ public final class RedirectsProp extends AbstractProp {
          */
         public Builder rdNamespace(EnumSet<Namespace> rdNamespace) {
             redirectsProp.rdNamespace = rdNamespace;
-            redirectsProp.apiUrl.putQuery("rdnamespace", rdNamespace.stream()
-                    .map(Namespace::getValue)
-                    .collect(Collectors.joining("|")));
+            redirectsProp.apiUrl.putQuery("rdnamespace", merge(rdNamespace));
             return this;
         }
 
@@ -96,7 +93,7 @@ public final class RedirectsProp extends AbstractProp {
     }
 
     @Getter
-    public enum RdProp {
+    public enum RdProp implements EnumValueProvider {
 
         /**
          * Fragment of each redirect, if any.
@@ -122,7 +119,7 @@ public final class RedirectsProp extends AbstractProp {
     }
 
     @Getter
-    public enum RdShow {
+    public enum RdShow implements EnumValueProvider {
 
         /**
          * Only show redirects without a fragment.

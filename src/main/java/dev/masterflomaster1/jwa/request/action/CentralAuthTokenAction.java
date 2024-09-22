@@ -1,5 +1,6 @@
 package dev.masterflomaster1.jwa.request.action;
 
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -17,7 +18,7 @@ public final class CentralAuthTokenAction extends AbstractAction {
         apiUrl.setAction("centralauthtoken");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final CentralAuthTokenAction centralAuthTokenAction = new CentralAuthTokenAction();
 

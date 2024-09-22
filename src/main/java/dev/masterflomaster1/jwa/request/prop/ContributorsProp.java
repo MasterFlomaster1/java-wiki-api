@@ -2,12 +2,12 @@ package dev.masterflomaster1.jwa.request.prop;
 
 import dev.masterflomaster1.jwa.common.Group;
 import dev.masterflomaster1.jwa.common.Rights;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.util.EnumSet;
-import java.util.stream.Collectors;
 
 /**
  * Get the list of logged-in contributors and the count of anonymous contributors to a page.
@@ -28,10 +28,10 @@ public final class ContributorsProp extends AbstractProp {
     private String pcContinue;
 
     private ContributorsProp() {
-        name = "contributors";
+        super("contributors");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final ContributorsProp contributorsProp = new ContributorsProp();
 
@@ -42,9 +42,7 @@ public final class ContributorsProp extends AbstractProp {
          */
         public Builder pcGroup(EnumSet<Group> pcGroup) {
             contributorsProp.pcGroup = pcGroup;
-            contributorsProp.apiUrl.putQuery("pcgroup", pcGroup.stream()
-                    .map(Group::getValue)
-                    .collect(Collectors.joining("|")));
+            contributorsProp.apiUrl.putQuery("pcgroup", merge(pcGroup));
             return this;
         }
 
@@ -55,9 +53,7 @@ public final class ContributorsProp extends AbstractProp {
          */
         public Builder pcExcludeGroup(EnumSet<Group> pcExcludeGroup) {
             contributorsProp.pcExcludeGroup = pcExcludeGroup;
-            contributorsProp.apiUrl.putQuery("pcexcludegroup", pcExcludeGroup.stream()
-                    .map(Group::getValue)
-                    .collect(Collectors.joining("|")));
+            contributorsProp.apiUrl.putQuery("pcexcludegroup", merge(pcExcludeGroup));
             return this;
         }
 
@@ -69,9 +65,7 @@ public final class ContributorsProp extends AbstractProp {
          */
         public Builder pcRights(EnumSet<Rights> pcRights) {
             contributorsProp.pcRights = pcRights;
-            contributorsProp.apiUrl.putQuery("pcrights", pcRights.stream()
-                    .map(Rights::getValue)
-                    .collect(Collectors.joining("|")));
+            contributorsProp.apiUrl.putQuery("pcrights", merge(pcRights));
             return this;
         }
 
@@ -83,9 +77,7 @@ public final class ContributorsProp extends AbstractProp {
          */
         public Builder pcExcludeRights(EnumSet<Rights> pcExcludeRights) {
             contributorsProp.pcExcludeRights = pcExcludeRights;
-            contributorsProp.apiUrl.putQuery("pcexcluderights", pcExcludeRights.stream()
-                    .map(Rights::getValue)
-                    .collect(Collectors.joining("|")));
+            contributorsProp.apiUrl.putQuery("pcexcluderights", merge(pcExcludeRights));
             return this;
         }
 

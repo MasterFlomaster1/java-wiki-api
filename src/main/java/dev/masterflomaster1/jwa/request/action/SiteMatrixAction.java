@@ -1,10 +1,11 @@
 package dev.masterflomaster1.jwa.request.action;
 
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.util.EnumSet;
-import java.util.stream.Collectors;
 
 /**
  * Get Wikimedia sites list.
@@ -27,7 +28,7 @@ public final class SiteMatrixAction extends AbstractAction {
         apiUrl.setAction("sitematrix");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final SiteMatrixAction siteMatrixAction = new SiteMatrixAction();
 
@@ -37,9 +38,7 @@ public final class SiteMatrixAction extends AbstractAction {
          */
         public Builder smType(EnumSet<SmType> smType) {
             siteMatrixAction.smType = smType;
-            siteMatrixAction.apiUrl.putQuery("smtype", smType.stream()
-                    .map(SmType::getValue)
-                    .collect(Collectors.joining("|")));
+            siteMatrixAction.apiUrl.putQuery("smtype", merge(smType));
             return this;
         }
 
@@ -49,9 +48,7 @@ public final class SiteMatrixAction extends AbstractAction {
          */
         public Builder smState(EnumSet<SmState> smState) {
             siteMatrixAction.smState = smState;
-            siteMatrixAction.apiUrl.putQuery("smstate", smState.stream()
-                    .map(SmState::getValue)
-                    .collect(Collectors.joining("|")));
+            siteMatrixAction.apiUrl.putQuery("smstate", merge(smState));
             return this;
         }
 
@@ -61,9 +58,7 @@ public final class SiteMatrixAction extends AbstractAction {
          */
         public Builder smLangProp(EnumSet<SmLangProp> smLangProp) {
             siteMatrixAction.smLangProp = smLangProp;
-            siteMatrixAction.apiUrl.putQuery("smlangprop", smLangProp.stream()
-                    .map(SmLangProp::getValue)
-                    .collect(Collectors.joining("|")));
+            siteMatrixAction.apiUrl.putQuery("smlangprop", merge(smLangProp));
             return this;
         }
 
@@ -73,9 +68,7 @@ public final class SiteMatrixAction extends AbstractAction {
          */
         public Builder smSiteProp(EnumSet<SmSiteProp> smSiteProp) {
             siteMatrixAction.smSiteProp = smSiteProp;
-            siteMatrixAction.apiUrl.putQuery("smsiteprop", smSiteProp.stream()
-                    .map(SmSiteProp::getValue)
-                    .collect(Collectors.joining("|")));
+            siteMatrixAction.apiUrl.putQuery("smsiteprop", merge(smSiteProp));
             return this;
         }
 
@@ -109,7 +102,7 @@ public final class SiteMatrixAction extends AbstractAction {
     }
 
     @Getter
-    public enum SmType {
+    public enum SmType implements EnumValueProvider {
 
         /**
          * Wikimedia projects under this language code.
@@ -130,7 +123,7 @@ public final class SiteMatrixAction extends AbstractAction {
     }
 
     @Getter
-    public enum SmState {
+    public enum SmState implements EnumValueProvider {
 
         ALL ("all"),
         CLOSED ("closed"),
@@ -147,7 +140,7 @@ public final class SiteMatrixAction extends AbstractAction {
     }
 
     @Getter
-    public enum SmLangProp {
+    public enum SmLangProp implements EnumValueProvider {
 
         CODE ("code"),
         DIR ("dir"),
@@ -164,7 +157,7 @@ public final class SiteMatrixAction extends AbstractAction {
     }
 
     @Getter
-    public enum SmSiteProp {
+    public enum SmSiteProp implements EnumValueProvider {
 
         CODE ("code"),
         DB_NAME ("dbname"),

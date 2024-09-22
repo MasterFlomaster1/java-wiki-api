@@ -1,5 +1,6 @@
 package dev.masterflomaster1.jwa.request.list;
 
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
@@ -18,10 +19,10 @@ public final class BetaFeaturesList extends AbstractList {
     private boolean bfCounts;
 
     private BetaFeaturesList() {
-        name = "betafeatures";
+        super("betafeatures");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final BetaFeaturesList betaFeaturesList = new BetaFeaturesList();
 

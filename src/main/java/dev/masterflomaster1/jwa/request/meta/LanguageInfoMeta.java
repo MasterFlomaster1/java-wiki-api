@@ -1,12 +1,13 @@
 package dev.masterflomaster1.jwa.request.meta;
 
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.util.EnumSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * Return information about available languages.
@@ -22,10 +23,10 @@ public final class LanguageInfoMeta extends AbstractMeta {
     private String liContinue;
 
     private LanguageInfoMeta() {
-        name = "languageinfo";
+        super("languageinfo");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final LanguageInfoMeta languageInfoMeta = new LanguageInfoMeta();
 
@@ -35,9 +36,7 @@ public final class LanguageInfoMeta extends AbstractMeta {
          */
         public Builder liProp(EnumSet<LiProp> liProp) {
             languageInfoMeta.liProp = liProp;
-            languageInfoMeta.apiUrl.putQuery("liprop", liProp.stream()
-                    .map(LiProp::getValue)
-                    .collect(Collectors.joining("|")));
+            languageInfoMeta.apiUrl.putQuery("liprop", merge(liProp));
             return this;
         }
 
@@ -71,7 +70,7 @@ public final class LanguageInfoMeta extends AbstractMeta {
     }
 
     @Getter
-    public enum LiProp {
+    public enum LiProp implements EnumValueProvider {
 
         /**
          * The autonym of the language, that is, the name in that language.
@@ -115,7 +114,7 @@ public final class LanguageInfoMeta extends AbstractMeta {
          */
         VARIANTS ("variants");
 
-        final String value;
+        private final String value;
 
         LiProp(String value) {
             this.value = value;

@@ -21,7 +21,7 @@ public final class TokensMeta extends AbstractMeta {
     private EnumSet<Type> type;
 
     private TokensMeta() {
-        name = "tokens";
+        super("tokens");
     }
 
     public static class Builder {

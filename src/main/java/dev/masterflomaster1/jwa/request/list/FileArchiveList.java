@@ -1,12 +1,13 @@
 package dev.masterflomaster1.jwa.request.list;
 
 import dev.masterflomaster1.jwa.common.Dir;
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.util.EnumSet;
-import java.util.stream.Collectors;
 
 /**
  * Enumerate all deleted files sequentially.
@@ -30,10 +31,10 @@ public final class FileArchiveList extends AbstractList {
     private String faContinue;
 
     private FileArchiveList() {
-        name = "filearchive";
+        super("filearchive");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final FileArchiveList fileArchiveList = new FileArchiveList();
 
@@ -103,9 +104,7 @@ public final class FileArchiveList extends AbstractList {
          */
         public Builder faProp(final EnumSet<FaProp> faProp) {
             fileArchiveList.faProp = faProp;
-            fileArchiveList.apiUrl.putQuery("faprop", faProp.stream()
-                    .map(FaProp::getValue)
-                    .collect(Collectors.joining("|")));
+            fileArchiveList.apiUrl.putQuery("faprop", merge(faProp));
             return this;
         }
 
@@ -139,7 +138,7 @@ public final class FileArchiveList extends AbstractList {
     }
 
     @Getter
-    public enum FaProp {
+    public enum FaProp implements EnumValueProvider {
 
         /**
          * Adds the filename of the archive version for non-latest versions.

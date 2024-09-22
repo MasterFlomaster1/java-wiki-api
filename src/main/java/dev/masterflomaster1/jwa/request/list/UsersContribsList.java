@@ -2,6 +2,8 @@ package dev.masterflomaster1.jwa.request.list;
 
 import dev.masterflomaster1.jwa.common.Dir;
 import dev.masterflomaster1.jwa.common.Namespace;
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
@@ -37,10 +39,10 @@ public final class UsersContribsList extends AbstractList {
     private String ucTag;
 
     private UsersContribsList() {
-        name = "usercontribs";
+        super("usercontribs");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final UsersContribsList usersContribsList = new UsersContribsList();
 
@@ -151,9 +153,7 @@ public final class UsersContribsList extends AbstractList {
          */
         public Builder ucNamespace(EnumSet<Namespace> ucNamespace) {
             usersContribsList.ucNamespace = ucNamespace;
-            usersContribsList.apiUrl.putQuery("ucnamespace", ucNamespace.stream()
-                    .map(Namespace::getValue)
-                    .collect(Collectors.joining("|")));
+            usersContribsList.apiUrl.putQuery("ucnamespace", merge(ucNamespace));
             return this;
         }
 
@@ -163,9 +163,7 @@ public final class UsersContribsList extends AbstractList {
          */
         public Builder ucProp(EnumSet<UcProp> ucProp) {
             usersContribsList.ucProp = ucProp;
-            usersContribsList.apiUrl.putQuery("ucprop", ucProp.stream()
-                    .map(UcProp::getValue)
-                    .collect(Collectors.joining("|")));
+            usersContribsList.apiUrl.putQuery("ucprop", merge(ucProp));
             return this;
         }
 
@@ -175,9 +173,7 @@ public final class UsersContribsList extends AbstractList {
          */
         public Builder ucShow(EnumSet<UcShow> ucShow) {
             usersContribsList.ucShow = ucShow;
-            usersContribsList.apiUrl.putQuery("ucshow", ucShow.stream()
-                    .map(UcShow::getValue)
-                    .collect(Collectors.joining("|")));
+            usersContribsList.apiUrl.putQuery("ucshow", merge(ucShow));
             return this;
         }
 
@@ -198,7 +194,7 @@ public final class UsersContribsList extends AbstractList {
     }
 
     @Getter
-    public enum UcProp {
+    public enum UcProp implements EnumValueProvider {
 
         COMMENT ("comment"),
         FLAGS ("flags"),
@@ -221,7 +217,7 @@ public final class UsersContribsList extends AbstractList {
     }
 
     @Getter
-    public enum UcShow {
+    public enum UcShow implements EnumValueProvider {
 
         NOT_AUTO_PATROLLED ("!autopatrolled"),
         NOT_MINOR ("!minor"),

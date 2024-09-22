@@ -2,13 +2,13 @@ package dev.masterflomaster1.jwa.request.prop;
 
 import dev.masterflomaster1.jwa.common.Dir;
 import dev.masterflomaster1.jwa.common.Namespace;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.util.EnumSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * Returns all pages transcluded on the given pages.
@@ -28,10 +28,10 @@ public final class TemplatesProp extends AbstractProp {
     private Dir.Order tlDir;
 
     private TemplatesProp() {
-        name = "templates";
+        super("templates");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final TemplatesProp templatesProp = new TemplatesProp();
 
@@ -41,9 +41,7 @@ public final class TemplatesProp extends AbstractProp {
          */
         public Builder tlNamespace(EnumSet<Namespace> tlNamespace) {
             templatesProp.tlNamespace = tlNamespace;
-            templatesProp.apiUrl.putQuery("tlnamespace", tlNamespace.stream()
-                    .map(Namespace::getValue)
-                    .collect(Collectors.joining("|")));
+            templatesProp.apiUrl.putQuery("tlnamespace", merge(tlNamespace));
             return this;
         }
 

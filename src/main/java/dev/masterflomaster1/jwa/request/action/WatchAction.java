@@ -1,6 +1,7 @@
 package dev.masterflomaster1.jwa.request.action;
 
 import dev.masterflomaster1.jwa.common.Generator;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.Getter;
 import lombok.ToString;
 import okhttp3.FormBody;
@@ -41,7 +42,7 @@ public final class WatchAction extends AbstractAction implements IPost {
                 .build();
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final WatchAction watchAction = new WatchAction();
 

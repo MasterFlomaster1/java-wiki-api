@@ -1,6 +1,8 @@
 package dev.masterflomaster1.jwa.request.list;
 
 import dev.masterflomaster1.jwa.common.Dir;
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
@@ -33,10 +35,10 @@ public final class BlocksList extends AbstractList {
     private String bkContinue;
 
     private BlocksList() {
-        name = "blocks";
+        super("blocks");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final BlocksList blocksList = new BlocksList();
 
@@ -137,9 +139,7 @@ public final class BlocksList extends AbstractList {
          */
         public Builder bkProp(final EnumSet<BkProp> bkProp) {
             blocksList.bkProp = bkProp;
-            blocksList.apiUrl.putQuery("bkprop", bkProp.stream()
-                    .map(BkProp::getValue)
-                    .collect(Collectors.joining("|")));
+            blocksList.apiUrl.putQuery("bkprop", merge(bkProp));
             return this;
         }
 
@@ -150,9 +150,7 @@ public final class BlocksList extends AbstractList {
          */
         public Builder bkShow(final EnumSet<BkShow> bkShow) {
             blocksList.bkShow = bkShow;
-            blocksList.apiUrl.putQuery("bkshow", bkShow.stream()
-                    .map(BkShow::getValue)
-                    .collect(Collectors.joining("|")));
+            blocksList.apiUrl.putQuery("bkshow", merge(bkShow));
             return this;
         }
 
@@ -175,7 +173,7 @@ public final class BlocksList extends AbstractList {
     }
 
     @Getter
-    public enum BkProp {
+    public enum BkProp implements EnumValueProvider {
 
         /**
          * Adds the ID of the block.
@@ -241,7 +239,7 @@ public final class BlocksList extends AbstractList {
     }
 
     @Getter
-    public enum BkShow {
+    public enum BkShow implements EnumValueProvider {
 
         NOT_ACCOUNT("!account"),
         NOT_IP("!ip"),

@@ -1,12 +1,13 @@
 package dev.masterflomaster1.jwa.request.list;
 
 import dev.masterflomaster1.jwa.common.Namespace;
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.util.EnumSet;
-import java.util.stream.Collectors;
 
 /**
  * Perform a prefix search for page titles.
@@ -31,10 +32,10 @@ public final class PrefixSearchList extends AbstractList {
     private PsProfile psProfile;
 
     private PrefixSearchList() {
-        name = "prefixsearch";
+        super("prefixsearch");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final PrefixSearchList prefixSearchList = new PrefixSearchList();
 
@@ -54,9 +55,7 @@ public final class PrefixSearchList extends AbstractList {
          */
         public Builder psNamespace(final EnumSet<Namespace> psNamespace) {
             prefixSearchList.psNamespace = psNamespace;
-            prefixSearchList.apiUrl.putQuery("psnamespace", psNamespace.stream()
-                    .map(Namespace::getValue)
-                    .collect(Collectors.joining("|")));
+            prefixSearchList.apiUrl.putQuery("psnamespace", merge(psNamespace));
             return this;
         }
 
@@ -103,7 +102,7 @@ public final class PrefixSearchList extends AbstractList {
     }
 
     @Getter
-    public enum PsProfile {
+    public enum PsProfile implements EnumValueProvider {
 
         /**
          * Classic prefix, few punctuation characters and some diacritics removed.

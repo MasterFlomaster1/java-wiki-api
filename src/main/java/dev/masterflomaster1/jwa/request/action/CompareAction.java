@@ -1,10 +1,11 @@
 package dev.masterflomaster1.jwa.request.action;
 
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.util.EnumSet;
-import java.util.stream.Collectors;
 
 /**
  * Get the difference between two pages.
@@ -33,7 +34,7 @@ public final class CompareAction extends AbstractAction {
         apiUrl.setAction("compare");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final CompareAction compareAction = new CompareAction();
 
@@ -134,9 +135,7 @@ public final class CompareAction extends AbstractAction {
          */
         public Builder prop(EnumSet<Prop> prop) {
             compareAction.prop = prop;
-            compareAction.apiUrl.putQuery("prop", prop.stream()
-                    .map(Prop::getValue)
-                    .collect(Collectors.joining("|")));
+            compareAction.apiUrl.putQuery("prop", merge(prop));
             return this;
         }
 
@@ -146,9 +145,7 @@ public final class CompareAction extends AbstractAction {
          */
         public Builder slots(EnumSet<Slots> slots) {
             compareAction.slots = slots;
-            compareAction.apiUrl.putQuery("slots", slots.stream()
-                    .map(Slots::getValue)
-                    .collect(Collectors.joining("|")));
+            compareAction.apiUrl.putQuery("slots", merge(slots));
             return this;
         }
 
@@ -169,7 +166,7 @@ public final class CompareAction extends AbstractAction {
     }
 
     @Getter
-    public enum ToRelative {
+    public enum ToRelative implements EnumValueProvider {
 
         CUR ("cur"),
         NEXT ("next"),
@@ -184,7 +181,7 @@ public final class CompareAction extends AbstractAction {
     }
 
     @Getter
-    public enum Prop {
+    public enum Prop implements EnumValueProvider {
 
         /**
          * The comment on the 'from' and 'to' revisions. If the comment has been revision deleted, a
@@ -248,7 +245,7 @@ public final class CompareAction extends AbstractAction {
     }
 
     @Getter
-    public enum Slots {
+    public enum Slots implements EnumValueProvider {
         ALL_VALUES ("*"),
         MAIN ("main");
 
@@ -261,7 +258,7 @@ public final class CompareAction extends AbstractAction {
     }
 
     @Getter
-    public enum DiffType {
+    public enum DiffType implements EnumValueProvider {
 
         INLINE ("inline"),
         TABLE ("table"),

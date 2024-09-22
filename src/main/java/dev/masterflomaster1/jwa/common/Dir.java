@@ -1,5 +1,6 @@
 package dev.masterflomaster1.jwa.common;
 
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
 import lombok.Getter;
 
 /**
@@ -8,7 +9,7 @@ import lombok.Getter;
 public abstract class Dir {
 
     @Getter
-    public enum Time {
+    public enum Time implements EnumValueProvider {
 
         NEWER ("newer"),
         OLDER ("older");
@@ -22,7 +23,7 @@ public abstract class Dir {
     }
 
     @Getter
-    public enum Order {
+    public enum Order implements EnumValueProvider {
 
         ASCENDING ("ascending"),
         DESCENDING ("descending");
@@ -36,7 +37,7 @@ public abstract class Dir {
     }
 
     @Getter
-    public enum Mixed {
+    public enum Mixed implements EnumValueProvider {
 
         ASCENDING ("ascending"),
         DESCENDING ("descending"),

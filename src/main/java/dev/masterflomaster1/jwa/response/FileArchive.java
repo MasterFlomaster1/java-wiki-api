@@ -3,8 +3,8 @@ package dev.masterflomaster1.jwa.response;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import dev.masterflomaster1.jwa.common.Namespace;
-import dev.masterflomaster1.jwa.json.NamespaceDeserializer;
-import dev.masterflomaster1.jwa.json.TimestampDeserializer;
+import dev.masterflomaster1.jwa.internal.json.NamespaceDeserializer;
+import dev.masterflomaster1.jwa.internal.json.TimestampDeserializer;
 import lombok.Getter;
 import lombok.ToString;
 

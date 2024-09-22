@@ -1,5 +1,6 @@
 package dev.masterflomaster1.jwa.request.action;
 
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import dev.masterflomaster1.jwa.request.list.AbstractList;
 import dev.masterflomaster1.jwa.request.meta.AbstractMeta;
 import dev.masterflomaster1.jwa.request.prop.AbstractProp;
@@ -28,7 +29,7 @@ public final class QueryAction extends AbstractAction {
         apiUrl.setAction("query");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final QueryAction queryAction = new QueryAction();
 

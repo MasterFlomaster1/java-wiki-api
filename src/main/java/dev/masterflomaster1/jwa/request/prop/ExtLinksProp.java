@@ -1,6 +1,7 @@
 package dev.masterflomaster1.jwa.request.prop;
 
 import dev.masterflomaster1.jwa.common.Protocol;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
@@ -22,10 +23,10 @@ public final class ExtLinksProp extends AbstractProp {
     private String elQuery;
 
     private ExtLinksProp() {
-        name = "extlinks";
+        super("extlinks");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final ExtLinksProp extLinksProp = new ExtLinksProp();
 

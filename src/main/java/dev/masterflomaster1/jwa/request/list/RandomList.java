@@ -2,12 +2,12 @@ package dev.masterflomaster1.jwa.request.list;
 
 import dev.masterflomaster1.jwa.common.FilterRedir;
 import dev.masterflomaster1.jwa.common.Namespace;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.util.EnumSet;
-import java.util.stream.Collectors;
 
 /**
  * Get a set of random pages.
@@ -30,10 +30,10 @@ public final class RandomList extends AbstractList {
     private String rnContinue;
 
     private RandomList() {
-        name = "random";
+        super("random");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final RandomList randomList = new RandomList();
 
@@ -43,9 +43,7 @@ public final class RandomList extends AbstractList {
          */
         public Builder rnNamespace(final EnumSet<Namespace> rnNamespace) {
             randomList.rnNamespace = rnNamespace;
-            randomList.apiUrl.putQuery("rnnamespace", rnNamespace.stream()
-                    .map(Namespace::getValue)
-                    .collect(Collectors.joining("|")));
+            randomList.apiUrl.putQuery("rnnamespace", merge(rnNamespace));
             return this;
         }
 

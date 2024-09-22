@@ -3,12 +3,12 @@ package dev.masterflomaster1.jwa.request.list;
 import dev.masterflomaster1.jwa.common.Dir;
 import dev.masterflomaster1.jwa.common.FilterRedir;
 import dev.masterflomaster1.jwa.common.Namespace;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.util.EnumSet;
-import java.util.stream.Collectors;
 
 /**
  * Find all pages that use the given image title.
@@ -31,10 +31,10 @@ public final class ImageUsageList extends AbstractList {
     private boolean iuRedirect;
 
     private ImageUsageList() {
-        name = "imageusage";
+        super("imageusage");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final ImageUsageList imageUsageList = new ImageUsageList();
 
@@ -76,9 +76,7 @@ public final class ImageUsageList extends AbstractList {
          */
         public Builder iuNamespace(final EnumSet<Namespace> iuNamespace) {
             imageUsageList.iuNamespace = iuNamespace;
-            imageUsageList.apiUrl.putQuery("iunamespace", iuNamespace.stream()
-                    .map(Namespace::getValue)
-                    .collect(Collectors.joining("|")));
+            imageUsageList.apiUrl.putQuery("iunamespace", merge(iuNamespace));
             return this;
         }
 

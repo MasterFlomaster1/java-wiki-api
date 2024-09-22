@@ -1,5 +1,6 @@
 package dev.masterflomaster1.jwa.request.action;
 
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -21,7 +22,7 @@ public final class SpamBlacklistAction extends AbstractAction {
         apiUrl.setAction("spamblacklist");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final SpamBlacklistAction spamBlacklistAction = new SpamBlacklistAction();
 

@@ -1,5 +1,6 @@
 package dev.masterflomaster1.jwa.request.prop;
 
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
@@ -18,10 +19,10 @@ public final class CategoryInfoProp extends AbstractProp {
     private String ciContinue;
 
     private CategoryInfoProp() {
-        name = "categoryinfo";
+        super("categoryinfo");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final CategoryInfoProp categoryInfoProp = new CategoryInfoProp();
 

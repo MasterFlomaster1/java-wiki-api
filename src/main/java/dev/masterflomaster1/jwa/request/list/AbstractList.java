@@ -6,7 +6,11 @@ import lombok.Getter;
 @Getter
 public abstract class AbstractList {
 
-    protected String name;
+    private final String name;
     protected final WikiApiUrl apiUrl = new WikiApiUrl();
+
+    AbstractList(final String name) {
+        this.name = name;
+    }
 
 }

@@ -2,6 +2,7 @@ package dev.masterflomaster1.jwa.request.action;
 
 import dev.masterflomaster1.jwa.common.Namespace;
 import dev.masterflomaster1.jwa.common.Tags;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.Getter;
 import lombok.ToString;
 import okhttp3.FormBody;
@@ -50,7 +51,7 @@ public final class BlockAction extends AbstractAction implements IPost {
                 .build();
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final BlockAction blockAction = new BlockAction();
 
@@ -186,9 +187,7 @@ public final class BlockAction extends AbstractAction implements IPost {
          */
         public Builder tags(EnumSet<Tags> tags) {
             blockAction.tags = tags;
-            blockAction.apiUrl.putQuery("tags", tags.stream()
-                    .map(Tags::getValue)
-                    .collect(Collectors.joining("|")));
+            blockAction.apiUrl.putQuery("tags", merge(tags));
             return this;
         }
 

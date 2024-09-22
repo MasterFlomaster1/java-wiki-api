@@ -1,5 +1,7 @@
 package dev.masterflomaster1.jwa.request.action;
 
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.Getter;
 import lombok.ToString;
 import okhttp3.FormBody;
@@ -34,7 +36,7 @@ public final class DeleteAction extends AbstractAction implements IPost {
                 .build();
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final DeleteAction deleteAction = new DeleteAction();
 
@@ -130,7 +132,7 @@ public final class DeleteAction extends AbstractAction implements IPost {
     }
 
     @Getter
-    public enum Watchlist {
+    public enum Watchlist implements EnumValueProvider {
 
         NO_CHANGE ("nochange"),
         PREFERENCES ("preferences"),

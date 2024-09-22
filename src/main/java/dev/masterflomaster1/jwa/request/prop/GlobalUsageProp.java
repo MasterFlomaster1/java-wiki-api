@@ -1,12 +1,13 @@
 package dev.masterflomaster1.jwa.request.prop;
 
 import dev.masterflomaster1.jwa.common.Namespace;
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.util.EnumSet;
-import java.util.stream.Collectors;
 
 /**
  * Returns global image usage for a certain image.
@@ -26,10 +27,10 @@ public final class GlobalUsageProp extends AbstractProp {
     private boolean guFilterLocal;
 
     private GlobalUsageProp() {
-        name = "globalusage";
+        super("globalusage");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final GlobalUsageProp globalUsageProp = new GlobalUsageProp();
 
@@ -39,9 +40,7 @@ public final class GlobalUsageProp extends AbstractProp {
          */
         public Builder guProp(EnumSet<GuProp> guProp) {
             globalUsageProp.guProp = guProp;
-            globalUsageProp.apiUrl.putQuery("guprop", guProp.stream()
-                    .map(GuProp::getValue)
-                    .collect(Collectors.joining("|")));
+            globalUsageProp.apiUrl.putQuery("guprop", merge(guProp));
             return this;
         }
 
@@ -62,9 +61,7 @@ public final class GlobalUsageProp extends AbstractProp {
          */
         public Builder guNamespace(EnumSet<Namespace> guNamespace) {
             globalUsageProp.guNamespace = guNamespace;
-            globalUsageProp.apiUrl.putQuery("gunamespace", guNamespace.stream()
-                    .map(Namespace::getValue)
-                    .collect(Collectors.joining("|")));
+            globalUsageProp.apiUrl.putQuery("gunamespace", merge(guNamespace));
             return this;
         }
 
@@ -97,7 +94,7 @@ public final class GlobalUsageProp extends AbstractProp {
     }
 
     @Getter
-    public enum GuProp {
+    public enum GuProp implements EnumValueProvider {
         NAMESPACE ("namespace"),
         PAGE_ID ("pageid"),
         URL ("url");

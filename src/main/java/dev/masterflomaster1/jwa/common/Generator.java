@@ -1,10 +1,11 @@
 package dev.masterflomaster1.jwa.common;
 
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
 import lombok.Getter;
 
 @Getter
 @SuppressWarnings("SpellCheckingInspection")
-public enum Generator {
+public enum Generator implements EnumValueProvider {
 
     /**
      * Enumerate all categories.

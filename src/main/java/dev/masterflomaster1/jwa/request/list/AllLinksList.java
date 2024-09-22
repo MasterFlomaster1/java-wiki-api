@@ -2,12 +2,13 @@ package dev.masterflomaster1.jwa.request.list;
 
 import dev.masterflomaster1.jwa.common.Dir;
 import dev.masterflomaster1.jwa.common.Namespace;
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.util.EnumSet;
-import java.util.stream.Collectors;
 
 /**
  * Enumerate all links that point to a given namespace.
@@ -31,10 +32,10 @@ public final class AllLinksList extends AbstractList {
     private Dir.Order alDir;
 
     private AllLinksList() {
-        name = "alllinks";
+        super("alllinks");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final AllLinksList allLinksList = new AllLinksList();
 
@@ -97,9 +98,7 @@ public final class AllLinksList extends AbstractList {
          */
         public Builder alProp(EnumSet<AlProp> alProp) {
             allLinksList.alProp = alProp;
-            allLinksList.apiUrl.putQuery("alprop", alProp.stream()
-                    .map(AlProp::getValue)
-                    .collect(Collectors.joining("|")));
+            allLinksList.apiUrl.putQuery("alprop", merge(alProp));
             return this;
         }
 
@@ -109,9 +108,7 @@ public final class AllLinksList extends AbstractList {
          */
         public Builder alNamespace(EnumSet<Namespace> alNamespace) {
             allLinksList.alNamespace = alNamespace;
-            allLinksList.apiUrl.putQuery("cmnamespace", alNamespace.stream()
-                    .map(Namespace::getValue)
-                    .collect(Collectors.joining("|")));
+            allLinksList.apiUrl.putQuery("cmnamespace", merge(alNamespace));
             return this;
         }
 
@@ -143,7 +140,7 @@ public final class AllLinksList extends AbstractList {
     }
 
     @Getter
-    public enum AlProp {
+    public enum AlProp implements EnumValueProvider {
 
         /**
          * Adds the page ID of the linking page (cannot be used with alunique).

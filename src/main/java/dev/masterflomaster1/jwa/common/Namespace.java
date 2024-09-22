@@ -1,12 +1,13 @@
 package dev.masterflomaster1.jwa.common;
 
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
 import lombok.Getter;
 
 /**
  * @see <a href="https://en.wikipedia.org/wiki/Wikipedia:Namespace">Wikipedia:Namespace</a>
  */
 @Getter
-public enum Namespace {
+public enum Namespace implements EnumValueProvider {
 
     ALL_NAMESPACES ("*"),
     MEDIA ("-2"),

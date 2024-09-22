@@ -1,11 +1,12 @@
 package dev.masterflomaster1.jwa.request.meta;
 
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.util.EnumSet;
-import java.util.stream.Collectors;
 
 /**
  * Get information about the current user.
@@ -22,10 +23,10 @@ public final class UserInfoMeta extends AbstractMeta {
     private String uiAttachedWiki;
 
     private UserInfoMeta() {
-        name = "userinfo";
+        super("userinfo");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final UserInfoMeta userInfoMeta = new UserInfoMeta();
 
@@ -35,9 +36,7 @@ public final class UserInfoMeta extends AbstractMeta {
          */
         public Builder uiProp(EnumSet<UiProp> uiProp) {
             userInfoMeta.uiProp = uiProp;
-            userInfoMeta.apiUrl.putQuery("uiprop", uiProp.stream()
-                    .map(UiProp::getValue)
-                    .collect(Collectors.joining("|")));
+            userInfoMeta.apiUrl.putQuery("uiprop", merge(uiProp));
             return this;
         }
 
@@ -58,7 +57,7 @@ public final class UserInfoMeta extends AbstractMeta {
     }
 
     @Getter
-    public enum UiProp {
+    public enum UiProp implements EnumValueProvider {
 
         /**
          * Tags if the current user is blocked, by whom, and for what reason.

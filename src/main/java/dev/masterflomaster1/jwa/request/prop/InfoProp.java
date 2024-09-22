@@ -1,11 +1,12 @@
 package dev.masterflomaster1.jwa.request.prop;
 
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.util.EnumSet;
-import java.util.stream.Collectors;
 
 /**
  * Get basic page information.
@@ -22,14 +23,14 @@ public final class InfoProp extends AbstractProp {
     private String inContinue;
 
     private InfoProp() {
-        name = "info";
+        super("info");
     }
 
     /**
      * Additional properties to get
      */
     @Getter
-    public enum InProp {
+    public enum InProp implements EnumValueProvider {
 
         /**
          * The prefixed title of the
@@ -111,7 +112,7 @@ public final class InfoProp extends AbstractProp {
 
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final InfoProp infoProp = new InfoProp();
 
@@ -121,9 +122,7 @@ public final class InfoProp extends AbstractProp {
          */
         public Builder inProp(EnumSet<InProp> inProp) {
             infoProp.inProp = inProp;
-            infoProp.apiUrl.putQuery("inprop", inProp.stream()
-                    .map(InProp::getValue)
-                    .collect(Collectors.joining("|")));
+            infoProp.apiUrl.putQuery("inprop", merge(inProp));
             return this;
         }
 

@@ -15,7 +15,11 @@ import lombok.Getter;
 @Getter
 public abstract class AbstractProp {
 
-    protected String name;
+    private final String name;
     protected final WikiApiUrl apiUrl = new WikiApiUrl();
+
+    AbstractProp(final String name) {
+        this.name = name;
+    }
 
 }

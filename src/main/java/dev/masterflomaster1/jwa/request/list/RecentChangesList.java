@@ -2,13 +2,14 @@ package dev.masterflomaster1.jwa.request.list;
 
 import dev.masterflomaster1.jwa.common.Dir;
 import dev.masterflomaster1.jwa.common.Namespace;
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.time.Instant;
 import java.util.EnumSet;
-import java.util.stream.Collectors;
 
 /**
  * Enumerate recent changes.
@@ -38,10 +39,10 @@ public final class RecentChangesList extends AbstractList {
     private boolean rcGenerateRevisions;
 
     private RecentChangesList() {
-        name = "recentchanges";
+        super("recentchanges");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final RecentChangesList recentChangesList = new RecentChangesList();
 
@@ -123,9 +124,7 @@ public final class RecentChangesList extends AbstractList {
          */
         public Builder rcProp(EnumSet<RcProp> rcProp) {
             recentChangesList.rcProp = rcProp;
-            recentChangesList.apiUrl.putQuery("rcprop", rcProp.stream()
-                    .map(RcProp::getValue)
-                    .collect(Collectors.joining("|")));
+            recentChangesList.apiUrl.putQuery("rcprop", merge(rcProp));
             return this;
         }
 
@@ -138,9 +137,7 @@ public final class RecentChangesList extends AbstractList {
          */
         public Builder rcShow(EnumSet<RcShow> rcShow) {
             recentChangesList.rcShow = rcShow;
-            recentChangesList.apiUrl.putQuery("rcshow", rcShow.stream()
-                    .map(RcShow::getValue)
-                    .collect(Collectors.joining("|")));
+            recentChangesList.apiUrl.putQuery("rcshow", merge(rcShow));
             return this;
         }
 
@@ -161,9 +158,7 @@ public final class RecentChangesList extends AbstractList {
          */
         public Builder rcType(EnumSet<RcType> rcType) {
             recentChangesList.rcType = rcType;
-            recentChangesList.apiUrl.putQuery("rctype", rcType.stream()
-                    .map(RcType::getValue)
-                    .collect(Collectors.joining("|")));
+            recentChangesList.apiUrl.putQuery("rctype", merge(rcType));
             return this;
         }
 
@@ -220,7 +215,7 @@ public final class RecentChangesList extends AbstractList {
      * Which types of changes to show.
      */
     @Getter
-    public enum RcType {
+    public enum RcType implements EnumValueProvider {
         CATEGORIZE ("categorize"),
         EDIT ("edit"),
         EXTERNAL ("external"),
@@ -236,7 +231,7 @@ public final class RecentChangesList extends AbstractList {
     }
 
     @Getter
-    public enum RcProp {
+    public enum RcProp implements EnumValueProvider {
         COMMENT ("comment"),
         FLAGS ("flags"),
         IDS ("ids"),
@@ -261,7 +256,7 @@ public final class RecentChangesList extends AbstractList {
     }
 
     @Getter
-    public enum RcShow {
+    public enum RcShow implements EnumValueProvider {
         NOT_ANON ("!anon"),
         NOT_AUTO_PATROLLED ("!autopatrolled"),
         NOT_BOT ("!bot"),

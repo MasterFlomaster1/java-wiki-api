@@ -2,12 +2,13 @@ package dev.masterflomaster1.jwa.request.list;
 
 import dev.masterflomaster1.jwa.common.Namespace;
 import dev.masterflomaster1.jwa.common.Protocol;
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.util.EnumSet;
-import java.util.stream.Collectors;
 
 /**
  * Enumerate pages that contain a given URL.
@@ -28,10 +29,10 @@ public final class ExtUrlUsageList extends AbstractList {
     private int euLimit;
 
     private ExtUrlUsageList() {
-        name = "exturlusage";
+        super("exturlusage");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final ExtUrlUsageList extUrlUsageList = new ExtUrlUsageList();
 
@@ -41,9 +42,7 @@ public final class ExtUrlUsageList extends AbstractList {
          */
         public Builder euProp(final EnumSet<EuProp> euProp) {
             extUrlUsageList.euProp = euProp;
-            extUrlUsageList.apiUrl.putQuery("euprop", euProp.stream()
-                    .map(EuProp::getValue)
-                    .collect(Collectors.joining("|")));
+            extUrlUsageList.apiUrl.putQuery("euprop", merge(euProp));
             return this;
         }
 
@@ -88,9 +87,7 @@ public final class ExtUrlUsageList extends AbstractList {
          */
         public Builder euNamespace(final EnumSet<Namespace> euNamespace) {
             extUrlUsageList.euNamespace = euNamespace;
-            extUrlUsageList.apiUrl.putQuery("eunamespace", euNamespace.stream()
-                    .map(Namespace::getValue)
-                    .collect(Collectors.joining("|")));
+            extUrlUsageList.apiUrl.putQuery("eunamespace", merge(euNamespace));
             return this;
         }
 
@@ -112,7 +109,7 @@ public final class ExtUrlUsageList extends AbstractList {
     }
 
     @Getter
-    public enum EuProp {
+    public enum EuProp implements EnumValueProvider {
 
         /**
          * Adds the ID of page.

@@ -1,5 +1,6 @@
 package dev.masterflomaster1.jwa.request.prop;
 
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
@@ -20,10 +21,10 @@ public final class PageViewsProp extends AbstractProp {
     private String pvIpContinue;
 
     private PageViewsProp() {
-        name = "pageviews";
+        super("pageviews");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final PageViewsProp pageViewsProp = new PageViewsProp();
 

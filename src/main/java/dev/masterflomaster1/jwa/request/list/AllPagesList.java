@@ -3,12 +3,13 @@ package dev.masterflomaster1.jwa.request.list;
 import dev.masterflomaster1.jwa.common.Dir;
 import dev.masterflomaster1.jwa.common.FilterRedir;
 import dev.masterflomaster1.jwa.common.Namespace;
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.util.EnumSet;
-import java.util.stream.Collectors;
 
 /**
  * Enumerate all pages sequentially in a given namespace.
@@ -38,10 +39,10 @@ public final class AllPagesList extends AbstractList {
     private Dir.Order apDir;
 
     private AllPagesList() {
-        name = "allpages";
+        super("allpages");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final AllPagesList allPagesList = new AllPagesList();
 
@@ -143,9 +144,7 @@ public final class AllPagesList extends AbstractList {
          */
         public Builder apPrType(final EnumSet<ApPrType> apPrType) {
             allPagesList.apPrType = apPrType;
-            allPagesList.apiUrl.putQuery("apprtype", apPrType.stream()
-                    .map(ApPrType::getValue)
-                    .collect(Collectors.joining("|")));
+            allPagesList.apiUrl.putQuery("apprtype", merge(apPrType));
             return this;
         }
 
@@ -155,9 +154,7 @@ public final class AllPagesList extends AbstractList {
          */
         public Builder apPrLevel(final EnumSet<ApPrLevel> apPrLevel) {
             allPagesList.apPrLevel = apPrLevel;
-            allPagesList.apiUrl.putQuery("apprlevel", apPrLevel.stream()
-                    .map(ApPrLevel::getValue)
-                    .collect(Collectors.joining("|")));
+            allPagesList.apiUrl.putQuery("apprlevel", merge(apPrLevel));
             return this;
         }
 
@@ -209,7 +206,7 @@ public final class AllPagesList extends AbstractList {
     }
 
     @Getter
-    public enum ApFilterLangLinks {
+    public enum ApFilterLangLinks implements EnumValueProvider {
 
         ALL("all"),
         WITH_LANG_LINKS("withlanglinks"),
@@ -224,7 +221,7 @@ public final class AllPagesList extends AbstractList {
     }
 
     @Getter
-    public enum ApPrType {
+    public enum ApPrType implements EnumValueProvider {
 
         EDIT("edit"),
         MOVE("move"),
@@ -239,7 +236,7 @@ public final class AllPagesList extends AbstractList {
     }
 
     @Getter
-    public enum ApPrLevel {
+    public enum ApPrLevel implements EnumValueProvider {
 
         EMPTY(" "),
         AUTO_CONFIRMED("autoconfirmed"),
@@ -256,7 +253,7 @@ public final class AllPagesList extends AbstractList {
     }
 
     @Getter
-    public enum ApPrFilterCascade {
+    public enum ApPrFilterCascade implements EnumValueProvider {
 
         ALL("all"),
         CASCADING("cascading"),
@@ -271,7 +268,7 @@ public final class AllPagesList extends AbstractList {
     }
 
     @Getter
-    public enum ApPrExpiry {
+    public enum ApPrExpiry implements EnumValueProvider {
 
         /**
          * Get pages with any protections expiry.

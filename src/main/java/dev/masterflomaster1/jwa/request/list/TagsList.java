@@ -1,11 +1,12 @@
 package dev.masterflomaster1.jwa.request.list;
 
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.util.EnumSet;
-import java.util.stream.Collectors;
 
 /**
  * List change tags.
@@ -23,10 +24,10 @@ public final class TagsList extends AbstractList {
     private EnumSet<TgProp> tgProp;
 
     private TagsList() {
-        name = "tags";
+        super("tags");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final TagsList tagsList = new TagsList();
 
@@ -59,9 +60,7 @@ public final class TagsList extends AbstractList {
          */
         public Builder tgProp(final EnumSet<TgProp> tgProp) {
             tagsList.tgProp = tgProp;
-            tagsList.apiUrl.putQuery("tgprop", tgProp.stream()
-                    .map(TgProp::getValue)
-                    .collect(Collectors.joining("|")));
+            tagsList.apiUrl.putQuery("tgprop", merge(tgProp));
             return this;
         }
 
@@ -72,7 +71,7 @@ public final class TagsList extends AbstractList {
     }
 
     @Getter
-    public enum TgProp {
+    public enum TgProp implements EnumValueProvider {
 
         /**
          * Adds system message for the tag.

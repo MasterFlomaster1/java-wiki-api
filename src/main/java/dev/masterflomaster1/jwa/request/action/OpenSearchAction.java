@@ -1,11 +1,12 @@
 package dev.masterflomaster1.jwa.request.action;
 
 import dev.masterflomaster1.jwa.common.Namespace;
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.util.EnumSet;
-import java.util.stream.Collectors;
 
 @Getter
 @ToString
@@ -24,7 +25,7 @@ public final class OpenSearchAction extends AbstractAction {
         apiUrl.setAction("opensearch");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final OpenSearchAction openSearchAction = new OpenSearchAction();
 
@@ -44,9 +45,7 @@ public final class OpenSearchAction extends AbstractAction {
          */
         public Builder namespace(EnumSet<Namespace> namespace) {
             openSearchAction.namespace = namespace;
-            openSearchAction.apiUrl.putQuery("namespace", namespace.stream()
-                    .map(Namespace::getValue)
-                    .collect(Collectors.joining("|")));
+            openSearchAction.apiUrl.putQuery("namespace", merge(namespace));
             return this;
         }
 
@@ -112,7 +111,7 @@ public final class OpenSearchAction extends AbstractAction {
     }
 
     @Getter
-    public enum Profile {
+    public enum Profile implements EnumValueProvider {
 
         /**
          * Classic prefix, few punctuation characters and some diacritics removed.
@@ -153,7 +152,7 @@ public final class OpenSearchAction extends AbstractAction {
     }
 
     @Getter
-    public enum Redirects {
+    public enum Redirects implements EnumValueProvider {
 
         /**
          * Return the target page. May return fewer than limit results.
@@ -174,7 +173,7 @@ public final class OpenSearchAction extends AbstractAction {
     }
 
     @Getter
-    public enum Format {
+    public enum Format implements EnumValueProvider {
 
         JSON ("json"),
         JSON_FM ("jsonfm"),

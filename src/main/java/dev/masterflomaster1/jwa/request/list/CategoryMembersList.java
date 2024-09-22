@@ -2,13 +2,14 @@ package dev.masterflomaster1.jwa.request.list;
 
 import dev.masterflomaster1.jwa.common.Dir;
 import dev.masterflomaster1.jwa.common.Namespace;
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.time.Instant;
 import java.util.EnumSet;
-import java.util.stream.Collectors;
 
 /**
  * List all pages in a given category.
@@ -38,10 +39,10 @@ public final class CategoryMembersList extends AbstractList {
     private String cmEndSortKeyPrefix;
 
     private CategoryMembersList() {
-        name = "categorymembers";
+        super("categorymembers");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final CategoryMembersList categoryMembersList = new CategoryMembersList();
 
@@ -72,9 +73,7 @@ public final class CategoryMembersList extends AbstractList {
          */
         public Builder cmProp(final EnumSet<CmProp> cmProp) {
             categoryMembersList.cmProp = cmProp;
-            categoryMembersList.apiUrl.putQuery("cmprop", cmProp.stream()
-                    .map(CmProp::getValue)
-                    .collect(Collectors.joining("|")));
+            categoryMembersList.apiUrl.putQuery("cmprop", merge(cmProp));
             return this;
         }
 
@@ -85,9 +84,7 @@ public final class CategoryMembersList extends AbstractList {
          */
         public Builder cmNamespace(final EnumSet<Namespace> cmNamespace) {
             categoryMembersList.cmNamespace = cmNamespace;
-            categoryMembersList.apiUrl.putQuery("cmnamespace", cmNamespace.stream()
-                    .map(Namespace::getValue)
-                    .collect(Collectors.joining("|")));
+            categoryMembersList.apiUrl.putQuery("cmnamespace", merge(cmNamespace));
             return this;
         }
 
@@ -97,9 +94,7 @@ public final class CategoryMembersList extends AbstractList {
          */
         public Builder cmType(final EnumSet<CmType> cmType) {
             categoryMembersList.cmType = cmType;
-            categoryMembersList.apiUrl.putQuery("cmtype", cmType.stream()
-                    .map(CmType::getValue)
-                    .collect(Collectors.joining("|")));
+            categoryMembersList.apiUrl.putQuery("cmtype", merge(cmType));
             return this;
         }
 
@@ -217,7 +212,7 @@ public final class CategoryMembersList extends AbstractList {
     }
 
     @Getter
-    public enum CmProp {
+    public enum CmProp implements EnumValueProvider {
 
         IDS("ids"),
         TITLE("title"),
@@ -235,7 +230,7 @@ public final class CategoryMembersList extends AbstractList {
     }
 
     @Getter
-    public enum CmType {
+    public enum CmType implements EnumValueProvider {
 
         FILE("file"),
         PAGE("page"),
@@ -250,7 +245,7 @@ public final class CategoryMembersList extends AbstractList {
     }
 
     @Getter
-    public enum CmSort {
+    public enum CmSort implements EnumValueProvider {
 
         SORT_KEY("sortkey"),
         TIMESTAMP("timestamp");

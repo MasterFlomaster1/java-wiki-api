@@ -1,5 +1,7 @@
 package dev.masterflomaster1.jwa.request.action;
 
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -19,7 +21,7 @@ public final class TitleBlacklistAction extends AbstractAction {
         apiUrl.setAction("titleblacklist");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final TitleBlacklistAction titleBlacklistAction = new TitleBlacklistAction();
 
@@ -60,7 +62,7 @@ public final class TitleBlacklistAction extends AbstractAction {
     }
 
     @Getter
-    public enum TbAction {
+    public enum TbAction implements EnumValueProvider {
 
         CREATE ("create"),
         CREATE_PAGE ("createpage"),

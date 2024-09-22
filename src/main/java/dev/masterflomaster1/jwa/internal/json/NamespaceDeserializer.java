@@ -1,4 +1,4 @@
-package dev.masterflomaster1.jwa.json;
+package dev.masterflomaster1.jwa.internal.json;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;

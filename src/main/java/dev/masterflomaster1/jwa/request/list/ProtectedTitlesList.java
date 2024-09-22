@@ -2,13 +2,14 @@ package dev.masterflomaster1.jwa.request.list;
 
 import dev.masterflomaster1.jwa.common.Dir;
 import dev.masterflomaster1.jwa.common.Namespace;
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.time.Instant;
 import java.util.EnumSet;
-import java.util.stream.Collectors;
 
 /**
  * List all titles protected from creation.
@@ -31,10 +32,10 @@ public final class ProtectedTitlesList extends AbstractList {
     private String ptContinue;
 
     private ProtectedTitlesList() {
-        name = "protectedtitles";
+        super("protectedtitles");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final ProtectedTitlesList protectedTitlesList = new ProtectedTitlesList();
 
@@ -44,9 +45,7 @@ public final class ProtectedTitlesList extends AbstractList {
          */
         public Builder ptNamespace(final EnumSet<Namespace> ptNamespace) {
             protectedTitlesList.ptNamespace = ptNamespace;
-            protectedTitlesList.apiUrl.putQuery("ptnamespace", ptNamespace.stream()
-                    .map(Namespace::getValue)
-                    .collect(Collectors.joining("|")));
+            protectedTitlesList.apiUrl.putQuery("ptnamespace", merge(ptNamespace));
             return this;
         }
 
@@ -56,9 +55,7 @@ public final class ProtectedTitlesList extends AbstractList {
          */
         public Builder ptLevel(final EnumSet<PtLevel> ptLevel) {
             protectedTitlesList.ptLevel = ptLevel;
-            protectedTitlesList.apiUrl.putQuery("ptlevel", ptLevel.stream()
-                    .map(PtLevel::getValue)
-                    .collect(Collectors.joining("|")));
+            protectedTitlesList.apiUrl.putQuery("ptlevel", merge(ptLevel));
             return this;
         }
 
@@ -109,9 +106,7 @@ public final class ProtectedTitlesList extends AbstractList {
          */
         public Builder ptProp(final EnumSet<PtProp> ptProp) {
             protectedTitlesList.ptProp = ptProp;
-            protectedTitlesList.apiUrl.putQuery("ptprop", ptProp.stream()
-                    .map(PtProp::getValue)
-                    .collect(Collectors.joining("|")));
+            protectedTitlesList.apiUrl.putQuery("ptprop", merge(ptProp));
             return this;
         }
 
@@ -134,7 +129,7 @@ public final class ProtectedTitlesList extends AbstractList {
     }
 
     @Getter
-    public enum PtLevel {
+    public enum PtLevel implements EnumValueProvider {
 
         AUTO_CONFIRMED("autoconfirmed"),
         EXTENDED_CONFIRMED("extendedconfirmed"),
@@ -150,7 +145,7 @@ public final class ProtectedTitlesList extends AbstractList {
     }
 
     @Getter
-    public enum PtProp {
+    public enum PtProp implements EnumValueProvider {
 
         /**
          * Adds the comment for the protection.

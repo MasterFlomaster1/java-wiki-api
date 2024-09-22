@@ -1,6 +1,7 @@
 package dev.masterflomaster1.jwa.request.prop;
 
 import dev.masterflomaster1.jwa.common.Prop;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
@@ -8,7 +9,6 @@ import lombok.ToString;
 import java.time.Instant;
 import java.util.EnumSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Getter
 @ToString
@@ -32,10 +32,10 @@ public final class VideoInfoProp extends AbstractProp {
     private boolean viLocalOnly;
 
     private VideoInfoProp() {
-        name = "videoinfo";
+        super("videoinfo");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final VideoInfoProp videoInfoProp = new VideoInfoProp();
 
@@ -45,9 +45,7 @@ public final class VideoInfoProp extends AbstractProp {
          */
         public Builder viProp(EnumSet<Prop> viProp) {
             videoInfoProp.viProp = viProp;
-            videoInfoProp.apiUrl.putQuery("viprop", viProp.stream()
-                    .map(Prop::getValue)
-                    .collect(Collectors.joining("|")));
+            videoInfoProp.apiUrl.putQuery("viprop", merge(viProp));
             return this;
         }
 

@@ -1,10 +1,11 @@
 package dev.masterflomaster1.jwa.common;
 
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
 import lombok.Getter;
 
 @Getter
 @SuppressWarnings("SpellCheckingInspection")
-public enum Group {
+public enum Group implements EnumValueProvider {
 
     ABUSE_FILTER("abusefilter"),
     ABUSE_FILTER_HELPER("abusefilter-helper"),

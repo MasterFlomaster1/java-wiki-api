@@ -1,13 +1,14 @@
 package dev.masterflomaster1.jwa.request.prop;
 
 import dev.masterflomaster1.jwa.common.Dir;
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.util.EnumSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * List all categories the pages belong to.
@@ -28,10 +29,10 @@ public final class CategoriesProp extends AbstractProp {
     private Dir.Order clDir;
 
     private CategoriesProp() {
-        name = "categories";
+        super("categories");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final CategoriesProp categoriesProp = new CategoriesProp();
 
@@ -41,9 +42,7 @@ public final class CategoriesProp extends AbstractProp {
          */
         public Builder clProp(EnumSet<ClProp> clProp) {
             categoriesProp.clProp = clProp;
-            categoriesProp.apiUrl.putQuery("clProp", clProp.stream()
-                    .map(ClProp::getValue)
-                    .collect(Collectors.joining("|")));
+            categoriesProp.apiUrl.putQuery("clProp", merge(clProp));
             return this;
         }
 
@@ -110,7 +109,7 @@ public final class CategoriesProp extends AbstractProp {
      * Which additional properties to get for each category:
      */
     @Getter
-    public enum ClProp {
+    public enum ClProp implements EnumValueProvider {
 
         /**
          * Tags categories that are hidden with {@code __HIDDENCAT__}.
@@ -139,7 +138,7 @@ public final class CategoriesProp extends AbstractProp {
      * Which kind of categories to show.
      */
     @Getter
-    public enum ClShow {
+    public enum ClShow implements EnumValueProvider {
         HIDDEN ("hidden"),
         UNHIDDEN ("!hidden");
 

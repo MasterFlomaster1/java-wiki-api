@@ -1,13 +1,13 @@
 package dev.masterflomaster1.jwa.request.prop;
 
 import dev.masterflomaster1.jwa.common.Prop;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.time.Instant;
 import java.util.EnumSet;
-import java.util.stream.Collectors;
 
 /**
  * Returns file information and upload history.
@@ -30,10 +30,10 @@ public final class ImageInfoProp extends AbstractProp {
     private boolean iiExtMetadataMultiLang;
 
     private ImageInfoProp() {
-        name = "imageinfo";
+        super("imageinfo");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final ImageInfoProp imageInfoProp = new ImageInfoProp();
 
@@ -43,9 +43,7 @@ public final class ImageInfoProp extends AbstractProp {
          */
         public Builder iiProp(EnumSet<Prop> iiProp) {
             imageInfoProp.iiProp = iiProp;
-            imageInfoProp.apiUrl.putQuery("iiprop", iiProp.stream()
-                    .map(Prop::getValue)
-                    .collect(Collectors.joining("|")));
+            imageInfoProp.apiUrl.putQuery("iiprop", merge(iiProp));
             return this;
         }
 

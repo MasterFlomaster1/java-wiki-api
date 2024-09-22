@@ -1,13 +1,14 @@
 package dev.masterflomaster1.jwa.request.prop;
 
 import dev.masterflomaster1.jwa.common.Dir;
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.time.Instant;
 import java.util.EnumSet;
-import java.util.stream.Collectors;
 
 /**
  * Get revision information.
@@ -32,10 +33,10 @@ public final class RevisionsProp extends AbstractProp {
     private String rvContinue;
 
     private RevisionsProp() {
-        name = "revisions";
+        super("revisions");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final RevisionsProp revisionsProp = new RevisionsProp();
 
@@ -45,9 +46,7 @@ public final class RevisionsProp extends AbstractProp {
          */
         public Builder rvProp(EnumSet<RvProp> rvProp) {
             revisionsProp.rvProp = rvProp;
-            revisionsProp.apiUrl.putQuery("rvprop", rvProp.stream()
-                    .map(RvProp::getValue)
-                    .collect(Collectors.joining("|")));
+            revisionsProp.apiUrl.putQuery("rvprop", merge(rvProp));
             return this;
         }
 
@@ -158,7 +157,7 @@ public final class RevisionsProp extends AbstractProp {
     }
 
     @Getter
-    public enum RvProp {
+    public enum RvProp implements EnumValueProvider {
 
         /**
          * Comment by the user for the revision. If the comment has been revision deleted, a {@code commenthidden}

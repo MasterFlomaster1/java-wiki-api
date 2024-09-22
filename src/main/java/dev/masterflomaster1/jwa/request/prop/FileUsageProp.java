@@ -1,12 +1,13 @@
 package dev.masterflomaster1.jwa.request.prop;
 
 import dev.masterflomaster1.jwa.common.Namespace;
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.util.EnumSet;
-import java.util.stream.Collectors;
 
 /**
  * Find all pages that use the given files.
@@ -26,14 +27,14 @@ public final class FileUsageProp extends AbstractProp {
     private String fuContinue;
 
     private FileUsageProp() {
-        name = "fileusage";
+        super("fileusage");
     }
 
     /**
      * Which properties to get
      */
     @Getter
-    public enum FuProp {
+    public enum FuProp implements EnumValueProvider {
 
         /**
          * Page ID of each page.
@@ -62,7 +63,7 @@ public final class FileUsageProp extends AbstractProp {
      * Show only items that meet these criteria.
      */
     @Getter
-    public enum FuShow {
+    public enum FuShow implements EnumValueProvider {
 
         /**
          * Only show redirects.
@@ -82,7 +83,7 @@ public final class FileUsageProp extends AbstractProp {
 
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final FileUsageProp fileUsageProp = new FileUsageProp();
 
@@ -92,9 +93,7 @@ public final class FileUsageProp extends AbstractProp {
          */
         public Builder fuProp(EnumSet<FuProp> fuProp) {
             fileUsageProp.fuProp = fuProp;
-            fileUsageProp.apiUrl.putQuery("fuprop", fuProp.stream()
-                    .map(FuProp::getValue)
-                    .collect(Collectors.joining("|")));
+            fileUsageProp.apiUrl.putQuery("fuprop", merge(fuProp));
             return this;
         }
 
@@ -104,9 +103,7 @@ public final class FileUsageProp extends AbstractProp {
          */
         public Builder fuNamespace(EnumSet<Namespace> fuNamespace) {
             fileUsageProp.fuNamespace = fuNamespace;
-            fileUsageProp.apiUrl.putQuery("funamespace", fuNamespace.stream()
-                    .map(Namespace::getValue)
-                    .collect(Collectors.joining("|")));
+            fileUsageProp.apiUrl.putQuery("funamespace", merge(fuNamespace));
             return this;
         }
 
@@ -116,9 +113,7 @@ public final class FileUsageProp extends AbstractProp {
          */
         public Builder fuShow(EnumSet<FuShow> fuShow) {
             fileUsageProp.fuShow = fuShow;
-            fileUsageProp.apiUrl.putQuery("fushow", fuShow.stream()
-                    .map(FuShow::getValue)
-                    .collect(Collectors.joining("|")));
+            fileUsageProp.apiUrl.putQuery("fushow", merge(fuShow));
             return this;
         }
 
