@@ -10,10 +10,10 @@ import lombok.ToString;
 
 import java.time.Instant;
 import java.util.EnumSet;
+import java.util.Set;
 
 /**
  * Enumerate all images sequentially.
- * TODO: implement aimime
  *
  * @see <a href="https://www.mediawiki.org/wiki/Special:MyLanguage/API:Allimages">API:Allimages</a>
  */
@@ -38,6 +38,7 @@ public final class AllImagesList extends AbstractList {
     private String aiSha1Base36;
     private String aiUser;
     private AiFilterBots aiFilterBots;
+    private Set<String> aiMime;
     private int aiLimit;
 
     private AllImagesList() {
@@ -199,6 +200,17 @@ public final class AllImagesList extends AbstractList {
         public Builder aiFilterBots(AiFilterBots aiFilterBots) {
             allImagesList.aiFilterBots = aiFilterBots;
             allImagesList.apiUrl.putQuery("aifilterbots", aiFilterBots.getValue());
+            return this;
+        }
+
+        /**
+         * Disabled due to <a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgMiserMode">miser mode</a>.
+         * @param aiMime Maximum number of values is 50 (500 for clients that are allowed higher limits).
+         * @return {@code Builder}
+         */
+        public Builder aiMime(final Set<String> aiMime) {
+            allImagesList.aiMime = aiMime;
+            allImagesList.apiUrl.putQuery("aimime", mergeString(aiMime));
             return this;
         }
 

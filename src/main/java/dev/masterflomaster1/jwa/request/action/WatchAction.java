@@ -113,7 +113,7 @@ public final class WatchAction extends AbstractAction implements IPost {
 
         /**
          * Get the list of pages to work on by executing the specified query module.
-         * TODO: Note: Generator parameter names must be prefixed with a "g"
+         * Note: Generator parameter names must be prefixed with a "g"
          * @return {@code Builder}
          */
         public Builder generator(Generator generator) {

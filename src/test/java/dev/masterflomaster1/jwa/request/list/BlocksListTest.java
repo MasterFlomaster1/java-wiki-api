@@ -47,6 +47,27 @@ class BlocksListTest {
     }
 
     @Test
+    void shouldReturnRestrictionsObject() throws IOException {
+        var a = new WikiApiRequest.Builder()
+                .action(new QueryAction.Builder()
+                        .list(Set.of(
+                                new BlocksList.Builder()
+                                        .bkUsers(Set.of("105.113.40.0/23"))
+                                        .bkProp(EnumSet.of(BlocksList.BkProp.RESTRICTIONS))
+                                        .build()
+                        ))
+                        .build()
+                )
+                .build();
+
+        Response r = api.execute(a);
+
+        System.out.println(r.getQuery().getBlocks());
+
+        assertNotNull(r.getQuery().getBlocks().get(0).getRestrictions());
+    }
+
+    @Test
     void testBuilder() {
         var a = new BlocksList.Builder()
                 .bkStart(LocalDateTime.of(2024, 1, 1, 2, 3).toInstant(ZoneOffset.UTC))

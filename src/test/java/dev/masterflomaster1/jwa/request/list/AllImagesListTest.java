@@ -87,6 +87,7 @@ class AllImagesListTest {
                 .aiSha1Base36("base36")
                 .aiUser("example")
                 .aiFilterBots(AllImagesList.AiFilterBots.ALL)
+                .aiMime(Set.of("str"))
                 .aiLimit(50)
                 .build();
 
@@ -105,6 +106,7 @@ class AllImagesListTest {
         assertEquals("base36", a.getAiSha1Base36());
         assertEquals("example", a.getAiUser());
         assertEquals(AllImagesList.AiFilterBots.ALL, a.getAiFilterBots());
+        assertEquals(Set.of("str"), a.getAiMime());
         assertEquals(50, a.getAiLimit());
     }
 

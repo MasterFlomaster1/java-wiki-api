@@ -2,15 +2,14 @@ package dev.masterflomaster1.jwa.response;
 
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
+import dev.masterflomaster1.jwa.common.Namespace;
 import dev.masterflomaster1.jwa.internal.json.TimestampDeserializer;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.time.Instant;
+import java.util.List;
 
-/**
- * TODO: add {@code restrictions} field
- */
 @Getter
 @ToString
 @SuppressWarnings("SpellCheckingInspection")
@@ -30,6 +29,7 @@ public final class Blocks {
     @SerializedName("hidden")            private Boolean hidden;
     @SerializedName("allowusertalk")     private Boolean allowusertalk;
     @SerializedName("partial")           private Boolean partial;
+    @SerializedName("restrictions")      private Restrictions restrictions;
 
     @SerializedName("timestamp")
     @JsonAdapter(TimestampDeserializer.class)
@@ -40,5 +40,16 @@ public final class Blocks {
     private Instant expiry;
 
     private Blocks() { }
+
+    @Getter
+    @ToString
+    static final class Restrictions {
+
+        @SerializedName("pages")      private List<BasePage> pages;
+        @SerializedName("namespaces") private List<Namespace> namespaces;
+
+        private Restrictions() { }
+
+    }
 
 }
