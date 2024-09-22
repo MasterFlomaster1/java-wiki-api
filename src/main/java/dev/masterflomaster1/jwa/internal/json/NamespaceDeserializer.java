@@ -8,7 +8,9 @@ import dev.masterflomaster1.jwa.common.Namespace;
 
 import java.lang.reflect.Type;
 
-public class NamespaceDeserializer implements JsonDeserializer<Namespace> {
+public final class NamespaceDeserializer implements JsonDeserializer<Namespace> {
+
+    private NamespaceDeserializer() { }
 
     @Override
     public Namespace deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {

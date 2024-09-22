@@ -8,7 +8,9 @@ import com.google.gson.JsonParseException;
 import java.lang.reflect.Type;
 import java.time.Instant;
 
-public class TimestampDeserializer implements JsonDeserializer<Instant> {
+public final class TimestampDeserializer implements JsonDeserializer<Instant> {
+
+    private TimestampDeserializer() { }
 
     @Override
     public Instant deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {

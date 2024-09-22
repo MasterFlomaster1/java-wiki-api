@@ -3,6 +3,7 @@ package dev.masterflomaster1.jwa.response;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import dev.masterflomaster1.jwa.common.Namespace;
+import dev.masterflomaster1.jwa.internal.json.NamespaceListDeserializer;
 import dev.masterflomaster1.jwa.internal.json.TimestampDeserializer;
 import lombok.Getter;
 import lombok.ToString;
@@ -45,8 +46,11 @@ public final class Blocks {
     @ToString
     static final class Restrictions {
 
-        @SerializedName("pages")      private List<BasePage> pages;
-        @SerializedName("namespaces") private List<Namespace> namespaces;
+        @SerializedName("pages") private List<BasePage> pages;
+
+        @JsonAdapter(NamespaceListDeserializer.class)
+        @SerializedName("namespaces")
+        private List<Namespace> namespaces;
 
         private Restrictions() { }
 
