@@ -1,11 +1,12 @@
 package dev.masterflomaster1.jwa.request.meta;
 
+import dev.masterflomaster1.jwa.internal.EnumValueProvider;
+import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.util.EnumSet;
-import java.util.stream.Collectors;
 
 /**
  * Gets tokens for data-modifying actions.
@@ -24,7 +25,7 @@ public final class TokensMeta extends AbstractMeta {
         super("tokens");
     }
 
-    public static class Builder {
+    public static class Builder extends AbstractBuilder {
 
         private final TokensMeta tokensMeta = new TokensMeta();
 
@@ -34,9 +35,7 @@ public final class TokensMeta extends AbstractMeta {
          */
         public Builder type(EnumSet<Type> type) {
             tokensMeta.type = type;
-            tokensMeta.apiUrl.putQuery("type", type.stream()
-                    .map(Type::getValue)
-                    .collect(Collectors.joining("|")));
+            tokensMeta.apiUrl.putQuery("type", merge(type));
             return this;
         }
 
@@ -47,7 +46,7 @@ public final class TokensMeta extends AbstractMeta {
     }
 
     @Getter
-    public enum Type {
+    public enum Type implements EnumValueProvider {
 
         ALL_VALUES ("*"),
         CREATE_ACCOUNT ("createaccount"),

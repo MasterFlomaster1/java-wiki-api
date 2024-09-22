@@ -10,7 +10,6 @@ import lombok.ToString;
 import java.time.Instant;
 import java.util.EnumSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * List all blocked users and IP addresses.
@@ -89,9 +88,7 @@ public final class BlocksList extends AbstractList {
          */
         public Builder bkIds(final Set<Integer> bkIds) {
             blocksList.bkIds = bkIds;
-            blocksList.apiUrl.putQuery("bkids", bkIds.stream()
-                    .map(Object::toString)
-                    .collect(Collectors.joining("|")));
+            blocksList.apiUrl.putQuery("bkids", mergeInt(bkIds));
             return this;
         }
 
@@ -104,7 +101,7 @@ public final class BlocksList extends AbstractList {
          */
         public Builder bkUsers(final Set<String> bkUsers) {
             blocksList.bkUsers = bkUsers;
-            blocksList.apiUrl.putQuery("bkusers", String.join("|", bkUsers));
+            blocksList.apiUrl.putQuery("bkusers", mergeString(bkUsers));
             return this;
         }
 

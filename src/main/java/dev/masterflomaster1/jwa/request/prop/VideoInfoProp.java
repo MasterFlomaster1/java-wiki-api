@@ -140,7 +140,7 @@ public final class VideoInfoProp extends AbstractProp {
          */
         public Builder viExtMetadataFilter(Set<String> viExtMetadataFilter) {
             videoInfoProp.viExtMetadataFilter = viExtMetadataFilter;
-            videoInfoProp.apiUrl.putQuery("viextmetadatafilter", String.join("|", viExtMetadataFilter));
+            videoInfoProp.apiUrl.putQuery("viextmetadatafilter", mergeString(viExtMetadataFilter));
             return this;
         }
 

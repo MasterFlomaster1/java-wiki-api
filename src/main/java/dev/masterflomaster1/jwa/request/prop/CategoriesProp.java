@@ -85,7 +85,7 @@ public final class CategoriesProp extends AbstractProp {
          */
         public Builder clCategories(Set<String> clCategories) {
             categoriesProp.clCategories = clCategories;
-            categoriesProp.apiUrl.putQuery("clcategories", String.join("|", clCategories));
+            categoriesProp.apiUrl.putQuery("clcategories", mergeString(clCategories));
             return this;
         }
 

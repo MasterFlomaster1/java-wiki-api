@@ -8,7 +8,6 @@ import lombok.ToString;
 
 import java.util.EnumSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * Get information about a list of users.
@@ -61,7 +60,7 @@ public final class UsersList extends AbstractList {
          */
         public Builder usUsers(Set<String> usUsers) {
             usersList.usUsers = usUsers;
-            usersList.apiUrl.putQuery("ususers", String.join("|", usUsers));
+            usersList.apiUrl.putQuery("ususers", mergeString(usUsers));
             return this;
         }
 
@@ -72,9 +71,7 @@ public final class UsersList extends AbstractList {
          */
         public Builder usUserIds(Set<Integer> usUserIds) {
             usersList.usUserIds = usUserIds;
-            usersList.apiUrl.putQuery("ususerids", usUserIds.stream()
-                    .map(String::valueOf)
-                    .collect(Collectors.joining("|")));
+            usersList.apiUrl.putQuery("ususerids", mergeInt(usUserIds));
             return this;
         }
 

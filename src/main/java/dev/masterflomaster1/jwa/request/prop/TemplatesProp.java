@@ -75,7 +75,7 @@ public final class TemplatesProp extends AbstractProp {
          */
         public Builder tlTemplates(Set<String> tlTemplates) {
             templatesProp.tlTemplates = tlTemplates;
-            templatesProp.apiUrl.putQuery("tltemplates", String.join("|", tlTemplates));
+            templatesProp.apiUrl.putQuery("tltemplates", mergeString(tlTemplates));
             return this;
         }
 

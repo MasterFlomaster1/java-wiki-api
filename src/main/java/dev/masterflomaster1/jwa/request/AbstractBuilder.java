@@ -14,4 +14,23 @@ public abstract class AbstractBuilder implements EnumMerger {
                 .map(EnumValueProvider::getValue)
                 .collect(Collectors.joining("|"));
     }
+
+    @Override
+    public String mergeInt(Set<Integer> items) {
+        return items.stream()
+                .map(Object::toString)
+                .collect(Collectors.joining("|"));
+    }
+
+    public String mergeLong(Set<Long> items) {
+        return items.stream()
+                .map(Object::toString)
+                .collect(Collectors.joining("|"));
+    }
+
+    @Override
+    public String mergeString(Set<String> items) {
+        return String.join("|", items);
+    }
+
 }

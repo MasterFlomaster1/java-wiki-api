@@ -62,7 +62,7 @@ public final class ImagesProp extends AbstractProp {
          */
         public Builder imImages(Set<String> imImages) {
             imagesProp.imImages = imImages;
-            imagesProp.apiUrl.putQuery("imimages", String.join("|", imImages));
+            imagesProp.apiUrl.putQuery("imimages", mergeString(imImages));
             return this;
         }
 

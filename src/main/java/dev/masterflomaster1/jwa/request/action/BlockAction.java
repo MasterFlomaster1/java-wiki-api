@@ -9,7 +9,6 @@ import okhttp3.FormBody;
 
 import java.util.EnumSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * Block a user.
@@ -207,7 +206,7 @@ public final class BlockAction extends AbstractAction implements IPost {
          */
         public Builder pageRestrictions(Set<String> pageRestrictions) {
             blockAction.pageRestrictions = pageRestrictions;
-            blockAction.apiUrl.putQuery("pagerestrictions", String.join("|", pageRestrictions));
+            blockAction.apiUrl.putQuery("pagerestrictions", mergeString(pageRestrictions));
             return this;
         }
 
@@ -217,9 +216,7 @@ public final class BlockAction extends AbstractAction implements IPost {
          */
         public Builder namespaceRestrictions(EnumSet<Namespace> namespaceRestrictions) {
             blockAction.namespaceRestrictions = namespaceRestrictions;
-            blockAction.apiUrl.putQuery("namespacerestrictions", namespaceRestrictions.stream()
-                    .map(Namespace::getValue)
-                    .collect(Collectors.joining("|")));
+            blockAction.apiUrl.putQuery("namespacerestrictions", merge(namespaceRestrictions));
             return this;
         }
 

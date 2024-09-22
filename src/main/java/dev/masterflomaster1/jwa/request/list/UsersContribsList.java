@@ -11,7 +11,6 @@ import lombok.ToString;
 import java.time.Instant;
 import java.util.EnumSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * Get all edits by a user.
@@ -97,7 +96,7 @@ public final class UsersContribsList extends AbstractList {
          */
         public Builder ucUser(Set<String> ucUser) {
             usersContribsList.ucUser = ucUser;
-            usersContribsList.apiUrl.putQuery("ucuser", String.join("|", ucUser));
+            usersContribsList.apiUrl.putQuery("ucuser", mergeString(ucUser));
             return this;
         }
 
@@ -109,9 +108,7 @@ public final class UsersContribsList extends AbstractList {
          */
         public Builder ucUserIds(Set<Integer> ucUserIds) {
             usersContribsList.ucUserIds = ucUserIds;
-            usersContribsList.apiUrl.putQuery("ucuserids", ucUserIds.stream()
-                    .map(Object::toString)
-                    .collect(Collectors.joining("|")));
+            usersContribsList.apiUrl.putQuery("ucuserids", mergeInt(ucUserIds));
             return this;
         }
 

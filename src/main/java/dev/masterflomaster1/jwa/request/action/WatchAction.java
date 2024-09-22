@@ -6,9 +6,7 @@ import lombok.Getter;
 import lombok.ToString;
 import okhttp3.FormBody;
 
-import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * Add or remove pages from the current user's watchlist.
@@ -85,7 +83,7 @@ public final class WatchAction extends AbstractAction implements IPost {
          */
         public Builder titles(Set<String> titles) {
             watchAction.titles = titles;
-            watchAction.apiUrl.putQuery("titles", String.join("|", titles));
+            watchAction.apiUrl.putQuery("titles", mergeString(titles));
             return this;
         }
 
@@ -96,9 +94,7 @@ public final class WatchAction extends AbstractAction implements IPost {
          */
         public Builder pageIds(Set<Integer> pageIds) {
             watchAction.pageIds = pageIds;
-            watchAction.apiUrl.putQuery("pageids", pageIds.stream()
-                    .map(Object::toString)
-                    .collect(Collectors.joining("|")));
+            watchAction.apiUrl.putQuery("pageids", mergeInt(pageIds));
             return this;
         }
 
@@ -111,9 +107,7 @@ public final class WatchAction extends AbstractAction implements IPost {
          */
         public Builder revIds(Set<Long> revIds) {
             watchAction.revIds = revIds;
-            watchAction.apiUrl.putQuery("revids", revIds.stream()
-                    .map(Objects::toString)
-                    .collect(Collectors.joining("|")));
+            watchAction.apiUrl.putQuery("revids", mergeLong(revIds));
             return this;
         }
 

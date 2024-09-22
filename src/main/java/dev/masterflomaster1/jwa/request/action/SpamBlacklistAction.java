@@ -33,7 +33,7 @@ public final class SpamBlacklistAction extends AbstractAction {
          */
         public Builder url(Set<String> url) {
             spamBlacklistAction.url = url;
-            spamBlacklistAction.apiUrl.putQuery("url", String.join("|", url));
+            spamBlacklistAction.apiUrl.putQuery("url", mergeString(url));
             return this;
         }
 

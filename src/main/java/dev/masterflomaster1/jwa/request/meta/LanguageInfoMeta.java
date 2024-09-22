@@ -47,7 +47,7 @@ public final class LanguageInfoMeta extends AbstractMeta {
          */
         public Builder liCode(Set<String> liCode) {
             languageInfoMeta.liCode = liCode;
-            languageInfoMeta.apiUrl.putQuery("licode", String.join("|", liCode));
+            languageInfoMeta.apiUrl.putQuery("licode", mergeString(liCode));
             return this;
         }
 

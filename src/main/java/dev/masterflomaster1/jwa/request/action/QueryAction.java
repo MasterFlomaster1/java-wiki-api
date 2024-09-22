@@ -106,7 +106,7 @@ public final class QueryAction extends AbstractAction {
          */
         public Builder titles(Set<String> titles) {
             queryAction.titles = titles;
-            queryAction.apiUrl.putQuery("titles", String.join("|", titles));
+            queryAction.apiUrl.putQuery("titles", mergeString(titles));
             return this;
         }
 
