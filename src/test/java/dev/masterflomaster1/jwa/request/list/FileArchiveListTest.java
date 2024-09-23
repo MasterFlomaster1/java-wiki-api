@@ -1,14 +1,13 @@
 package dev.masterflomaster1.jwa.request.list;
 
 import dev.masterflomaster1.jwa.BaseApiTest;
-import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApiRequest;
 import dev.masterflomaster1.jwa.common.Dir;
+import dev.masterflomaster1.jwa.internal.UrlComparator;
 import dev.masterflomaster1.jwa.request.action.QueryAction;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.EnumSet;
 import java.util.Set;
 
@@ -18,7 +17,7 @@ class FileArchiveListTest extends BaseApiTest {
 
     @Test
     @DisplayName("Show a list of all deleted files")
-    void testExample1() throws IOException {
+    void testExample1() {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .list(Set.of(
@@ -29,11 +28,10 @@ class FileArchiveListTest extends BaseApiTest {
                 )
                 .build();
 
-        Response r = api.execute(a);
-
-        System.out.println(r.getQuery().getFileArchive());
-
-        assertNotNull(r.getQuery().getFileArchive());
+        assertTrue(UrlComparator.compareUrls(
+                "https://en.wikipedia.org/w/api.php?action=query&format=json&list=filearchive&formatversion=2",
+                a.getUrl()
+        ));
     }
 
     @Test

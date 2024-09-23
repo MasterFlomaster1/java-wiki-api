@@ -1,15 +1,14 @@
 package dev.masterflomaster1.jwa.request.list;
 
 import dev.masterflomaster1.jwa.BaseApiTest;
-import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApiRequest;
 import dev.masterflomaster1.jwa.common.Dir;
 import dev.masterflomaster1.jwa.common.Namespace;
+import dev.masterflomaster1.jwa.internal.UrlComparator;
 import dev.masterflomaster1.jwa.request.action.QueryAction;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.ZoneOffset;
@@ -21,23 +20,22 @@ import static org.junit.jupiter.api.Assertions.*;
 class RecentChangesListTest extends BaseApiTest {
 
     @Test
-    @DisplayName("List recent changes.")
-    void testExample1() throws IOException {
+    @DisplayName("List recent changes")
+    void testExample1() {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .list(Set.of(
                                 new RecentChangesList.Builder()
                                         .build()
-                                )
-                        )
+                        ))
                         .build()
                 )
                 .build();
 
-        Response r = api.execute(a);
-
-        assertTrue(r.getBatchComplete());
-        assertNotNull(r.getQuery().getRecentChanges());
+        assertTrue(UrlComparator.compareUrls(
+                "https://en.wikipedia.org/w/api.php?action=query&format=json&list=recentchanges&formatversion=2",
+                a.getUrl()
+        ));
     }
 
     @Test

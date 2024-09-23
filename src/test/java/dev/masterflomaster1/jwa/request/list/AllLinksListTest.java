@@ -1,15 +1,14 @@
 package dev.masterflomaster1.jwa.request.list;
 
 import dev.masterflomaster1.jwa.BaseApiTest;
-import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApiRequest;
 import dev.masterflomaster1.jwa.common.Dir;
 import dev.masterflomaster1.jwa.common.Namespace;
+import dev.masterflomaster1.jwa.internal.UrlComparator;
 import dev.masterflomaster1.jwa.request.action.QueryAction;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.EnumSet;
 import java.util.Set;
 
@@ -19,7 +18,7 @@ class AllLinksListTest extends BaseApiTest {
 
     @Test
     @DisplayName("List linked titles, including missing ones, with page IDs they are from, starting at B")
-    void testExample1() throws IOException {
+    void testExample1() {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .list(Set.of(
@@ -32,11 +31,10 @@ class AllLinksListTest extends BaseApiTest {
                 )
                 .build();
 
-        Response r = api.execute(a);
-
-        System.out.println(r.getQuery().getAllLinks());
-
-        assertNotNull(r.getQuery().getAllLinks());
+        assertTrue(UrlComparator.compareUrls(
+                "https://en.wikipedia.org/w/api.php?action=query&format=json&list=alllinks&formatversion=2&alfrom=B&alprop=ids%7Ctitle",
+                a.getUrl()
+        ));
     }
 
     @Test

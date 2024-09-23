@@ -1,25 +1,25 @@
 package dev.masterflomaster1.jwa.request.meta;
 
 import dev.masterflomaster1.jwa.BaseApiTest;
-import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApiRequest;
+import dev.masterflomaster1.jwa.internal.UrlComparator;
 import dev.masterflomaster1.jwa.request.action.QueryAction;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.EnumSet;
 import java.util.Set;
 
 import static dev.masterflomaster1.jwa.request.meta.UserInfoMeta.UiProp.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class UserInfoMetaTest extends BaseApiTest {
 
     @Test
-    @DisplayName("Get information about the current user.")
-    void testExample1() throws IOException {
+    @DisplayName("Get information about the current user")
+    void testExample1() {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .meta(Set.of(
@@ -30,13 +30,15 @@ class UserInfoMetaTest extends BaseApiTest {
                 )
                 .build();
 
-        Response r = api.execute(a);
-        assertNotNull(r.getQuery().getUserInfo());
+        assertTrue(UrlComparator.compareUrls(
+                "https://en.wikipedia.org/w/api.php?action=query&format=json&meta=userinfo&formatversion=2",
+                a.getUrl()
+        ));
     }
 
     @Test
-    @DisplayName("Get additional information about the current user.")
-    void testExample2() throws IOException {
+    @DisplayName("Get additional information about the current user")
+    void testExample2() {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .meta(Set.of(
@@ -48,8 +50,10 @@ class UserInfoMetaTest extends BaseApiTest {
                 )
                 .build();
 
-        Response r = api.execute(a);
-        assertNotNull(r.getQuery().getUserInfo());
+        assertTrue(UrlComparator.compareUrls(
+                "https://en.wikipedia.org/w/api.php?action=query&format=json&meta=userinfo&formatversion=2&uiprop=blockinfo%7Cgroups%7Crights%7Chasmsg",
+                a.getUrl()
+        ));
     }
 
     @Test

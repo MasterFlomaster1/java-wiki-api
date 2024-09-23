@@ -1,7 +1,6 @@
 package dev.masterflomaster1.jwa.request.list;
 
 import dev.masterflomaster1.jwa.BaseApiTest;
-import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApiRequest;
 import dev.masterflomaster1.jwa.common.Dir;
 import dev.masterflomaster1.jwa.internal.UrlComparator;
@@ -9,7 +8,6 @@ import dev.masterflomaster1.jwa.request.action.QueryAction;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.EnumSet;
 import java.util.Set;
 
@@ -40,8 +38,8 @@ class AllFileUsagesListTest extends BaseApiTest {
     }
 
     @Test
-    @DisplayName("List unique file titles.")
-    void testExample2() throws IOException {
+    @DisplayName("List unique file titles")
+    void testExample2() {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .list(Set.of(
@@ -49,14 +47,15 @@ class AllFileUsagesListTest extends BaseApiTest {
                                         .afFrom("B")
                                         .afUnique()
                                         .build()
-                                )
-                        )
+                        ))
                         .build()
                 )
                 .build();
 
-        Response r = api.execute(a);
-        assertNotNull(r.getQuery().getAllFileUsages());
+        assertTrue(UrlComparator.compareUrls(
+           "https://en.wikipedia.org/w/api.php?action=query&format=json&list=allfileusages&formatversion=2&affrom=B&afunique=1",
+           a.getUrl()
+        ));
     }
 
     @Test

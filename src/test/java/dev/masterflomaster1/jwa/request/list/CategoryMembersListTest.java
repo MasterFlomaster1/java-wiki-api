@@ -1,14 +1,13 @@
 package dev.masterflomaster1.jwa.request.list;
 
 import dev.masterflomaster1.jwa.BaseApiTest;
-import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApiRequest;
 import dev.masterflomaster1.jwa.common.Dir;
 import dev.masterflomaster1.jwa.common.Namespace;
+import dev.masterflomaster1.jwa.internal.UrlComparator;
 import dev.masterflomaster1.jwa.request.action.QueryAction;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.ZoneOffset;
@@ -20,22 +19,22 @@ import static org.junit.jupiter.api.Assertions.*;
 class CategoryMembersListTest extends BaseApiTest {
 
     @Test
-    void testExample1() throws IOException {
+    void testExample1() {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .list(Set.of(
                                 new CategoryMembersList.Builder()
                                         .cmTitle("Category:Physics")
                                         .build()
-                                )
-                        )
+                        ))
                         .build()
                 )
                 .build();
 
-        Response r = api.execute(a);
-
-        assertNotNull(r.getQuery().getCategoryMembers());
+        assertTrue(UrlComparator.compareUrls(
+                "https://en.wikipedia.org/w/api.php?action=query&format=json&list=categorymembers&formatversion=2&cmtitle=Category%3APhysics",
+                a.getUrl()
+        ));
     }
 
     @Test

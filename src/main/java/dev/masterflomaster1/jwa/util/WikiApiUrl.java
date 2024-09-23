@@ -72,7 +72,7 @@ public class WikiApiUrl {
             urlBuilder.append("&")
                     .append(entry.getKey())
                     .append("=")
-                    .append(URLEncoder.encode(entry.getValue(), StandardCharsets.UTF_8));
+                    .append(URLEncoder.encode(entry.getValue(), StandardCharsets.UTF_8).replace("+", "%20"));
         }
 
         return urlBuilder.toString();

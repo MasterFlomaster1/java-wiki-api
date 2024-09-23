@@ -1,13 +1,12 @@
 package dev.masterflomaster1.jwa.request.list;
 
 import dev.masterflomaster1.jwa.BaseApiTest;
-import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApiRequest;
+import dev.masterflomaster1.jwa.internal.UrlComparator;
 import dev.masterflomaster1.jwa.request.action.QueryAction;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.EnumSet;
 import java.util.Set;
 
@@ -16,8 +15,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class UsersListTest extends BaseApiTest {
 
     @Test
-    @DisplayName("Return information for user Example.")
-    void testExample1() throws IOException {
+    @DisplayName("Return information for user Example")
+    void testExample1() {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .list(Set.of(
@@ -29,16 +28,15 @@ class UsersListTest extends BaseApiTest {
                                         ))
                                         .usUsers(Set.of("Example"))
                                         .build()
-                                )
-                        )
+                        ))
                         .build()
                 )
                 .build();
 
-        Response r = api.execute(a);
-
-        assertTrue(r.getBatchComplete());
-        assertNotNull(r.getQuery().getUsers());
+        assertTrue(UrlComparator.compareUrls(
+                "https://en.wikipedia.org/w/api.php?action=query&format=json&list=users&formatversion=2&usprop=groups%7Ceditcount%7Cgender&ususers=Example",
+                a.getUrl()
+        ));
     }
 
     @Test

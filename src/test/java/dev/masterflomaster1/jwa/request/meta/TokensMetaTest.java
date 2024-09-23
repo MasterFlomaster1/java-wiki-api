@@ -3,6 +3,7 @@ package dev.masterflomaster1.jwa.request.meta;
 import dev.masterflomaster1.jwa.BaseApiTest;
 import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApiRequest;
+import dev.masterflomaster1.jwa.internal.UrlComparator;
 import dev.masterflomaster1.jwa.request.action.QueryAction;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,6 +14,7 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class TokensMetaTest extends BaseApiTest {
 
@@ -34,8 +36,8 @@ class TokensMetaTest extends BaseApiTest {
     }
 
     @Test
-    @DisplayName("Retrieve a csrf token (the default).")
-    void testExample1() throws IOException {
+    @DisplayName("Retrieve a csrf token (the default)")
+    void testExample1() {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .meta(Set.of(
@@ -46,13 +48,15 @@ class TokensMetaTest extends BaseApiTest {
                 )
                 .build();
 
-        Response r = api.execute(a);
-        assertNotNull(r.getQuery().getTokens());
+        assertTrue(UrlComparator.compareUrls(
+                "https://en.wikipedia.org/w/api.php?action=query&format=json&meta=tokens&formatversion=2",
+                a.getUrl()
+        ));
     }
 
     @Test
-    @DisplayName("Retrieve a watch token and a patrol token.")
-    void testExample2() throws IOException {
+    @DisplayName("Retrieve a watch token and a patrol token")
+    void testExample2() {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .meta(Set.of(
@@ -64,9 +68,10 @@ class TokensMetaTest extends BaseApiTest {
                 )
                 .build();
 
-        Response r = api.execute(a);
-        assertNotNull(r.getQuery().getTokens().getWatchToken());
-        assertNotNull(r.getQuery().getTokens().getPatrolToken());
+        assertTrue(UrlComparator.compareUrls(
+                "https://en.wikipedia.org/w/api.php?action=query&format=json&meta=tokens&formatversion=2&type=watch%7Cpatrol",
+                a.getUrl()
+        ));
     }
 
     @Test

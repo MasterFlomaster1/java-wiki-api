@@ -1,16 +1,15 @@
 package dev.masterflomaster1.jwa.request.list;
 
 import dev.masterflomaster1.jwa.BaseApiTest;
-import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApiRequest;
 import dev.masterflomaster1.jwa.common.Dir;
 import dev.masterflomaster1.jwa.common.FilterRedir;
 import dev.masterflomaster1.jwa.common.Namespace;
+import dev.masterflomaster1.jwa.internal.UrlComparator;
 import dev.masterflomaster1.jwa.request.action.QueryAction;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.EnumSet;
 import java.util.Set;
 
@@ -20,7 +19,7 @@ class BacklinksListTest extends BaseApiTest {
 
     @Test
     @DisplayName("Show links to Main Page")
-    void testExample1() throws IOException {
+    void testExample1() {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .list(Set.of(
@@ -32,9 +31,10 @@ class BacklinksListTest extends BaseApiTest {
                 )
                 .build();
 
-        Response r = api.execute(a);
-
-        assertNotNull(r.getQuery().getBacklinks());
+        assertTrue(UrlComparator.compareUrls(
+                "https://en.wikipedia.org/w/api.php?action=query&format=json&list=backlinks&formatversion=2&bltitle=Main%20Page",
+                a.getUrl()
+        ));
     }
 
     @Test

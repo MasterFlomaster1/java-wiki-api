@@ -1,7 +1,6 @@
 package dev.masterflomaster1.jwa.request.list;
 
 import dev.masterflomaster1.jwa.BaseApiTest;
-import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApiRequest;
 import dev.masterflomaster1.jwa.common.Dir;
 import dev.masterflomaster1.jwa.common.Prop;
@@ -10,7 +9,6 @@ import dev.masterflomaster1.jwa.request.action.QueryAction;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.ZoneOffset;
@@ -25,7 +23,7 @@ class AllImagesListTest extends BaseApiTest {
 
     @Test
     @DisplayName("Show a list of files starting at the letter B")
-    void testExample1() throws IOException {
+    void testExample1() {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .list(Set.of(
@@ -54,8 +52,7 @@ class AllImagesListTest extends BaseApiTest {
                                         .aiDir(Dir.Mixed.OLDER)
                                         .aiProp(EnumSet.of(Prop.USER, Prop.TIMESTAMP, Prop.URL))
                                         .build()
-                                )
-                        )
+                        ))
                         .build()
                 )
                 .build();
