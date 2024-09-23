@@ -1,10 +1,9 @@
 package dev.masterflomaster1.jwa.request.action;
 
+import dev.masterflomaster1.jwa.BaseApiTest;
 import dev.masterflomaster1.jwa.Response;
-import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
 import dev.masterflomaster1.jwa.common.Generator;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,14 +13,7 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.assumeFalse;
 
-class WatchActionTest {
-
-    private static WikiApi api;
-
-    @BeforeAll
-    static void before() {
-        api = new WikiApi();
-    }
+class WatchActionTest extends BaseApiTest {
 
     @Test
     @DisplayName("Watch the page Main Page.")

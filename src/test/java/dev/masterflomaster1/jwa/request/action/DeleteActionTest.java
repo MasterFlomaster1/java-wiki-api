@@ -1,9 +1,8 @@
 package dev.masterflomaster1.jwa.request.action;
 
+import dev.masterflomaster1.jwa.BaseApiTest;
 import dev.masterflomaster1.jwa.Response;
-import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,14 +11,7 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.assumeFalse;
 
-class DeleteActionTest {
-
-    private static WikiApi api;
-
-    @BeforeAll
-    static void before() {
-        api = new WikiApi();
-    }
+class DeleteActionTest extends BaseApiTest {
 
     @Test
     @DisplayName("Delete Main Page.")

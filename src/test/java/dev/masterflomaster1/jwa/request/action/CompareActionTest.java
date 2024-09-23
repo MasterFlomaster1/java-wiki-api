@@ -1,9 +1,8 @@
 package dev.masterflomaster1.jwa.request.action;
 
+import dev.masterflomaster1.jwa.BaseApiTest;
 import dev.masterflomaster1.jwa.Response;
-import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -12,14 +11,7 @@ import java.util.EnumSet;
 import static dev.masterflomaster1.jwa.request.action.CompareAction.Prop.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-class CompareActionTest {
-
-    private static WikiApi api;
-
-    @BeforeAll
-    static void before() {
-        api = new WikiApi();
-    }
+class CompareActionTest extends BaseApiTest {
 
     @Test
     void testExample1() throws IOException {

@@ -1,9 +1,8 @@
 package dev.masterflomaster1.jwa.request.action;
 
+import dev.masterflomaster1.jwa.BaseApiTest;
 import dev.masterflomaster1.jwa.Response;
-import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,14 +11,7 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-class LanguageSearchActionTest {
-
-    private static WikiApi api;
-
-    @BeforeAll
-    static void before() {
-        api = new WikiApi();
-    }
+class LanguageSearchActionTest extends BaseApiTest {
 
     @Test
     @DisplayName("Search for 'Te'")

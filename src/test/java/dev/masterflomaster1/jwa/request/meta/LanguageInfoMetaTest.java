@@ -1,10 +1,9 @@
 package dev.masterflomaster1.jwa.request.meta;
 
+import dev.masterflomaster1.jwa.BaseApiTest;
 import dev.masterflomaster1.jwa.Response;
-import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
 import dev.masterflomaster1.jwa.request.action.QueryAction;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,14 +15,7 @@ import static dev.masterflomaster1.jwa.request.meta.LanguageInfoMeta.LiProp.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-class LanguageInfoMetaTest {
-
-    private static WikiApi api;
-
-    @BeforeAll
-    static void before() {
-        api = new WikiApi();
-    }
+class LanguageInfoMetaTest extends BaseApiTest {
 
     @Test
     @DisplayName("Get the language codes of all supported languages.")

@@ -1,7 +1,7 @@
 package dev.masterflomaster1.jwa.request.action;
 
+import dev.masterflomaster1.jwa.BaseApiTest;
 import dev.masterflomaster1.jwa.Response;
-import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
 import dev.masterflomaster1.jwa.request.list.RecentChangesList;
 import dev.masterflomaster1.jwa.request.list.UsersList;
@@ -10,7 +10,6 @@ import dev.masterflomaster1.jwa.request.prop.CategoriesProp;
 import dev.masterflomaster1.jwa.request.prop.ContributorsProp;
 import dev.masterflomaster1.jwa.request.prop.ImagesProp;
 import dev.masterflomaster1.jwa.request.prop.RevisionsProp;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -18,14 +17,7 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class QueryActionTest {
-
-    private static WikiApi api;
-
-    @BeforeAll
-    static void before() {
-        api = new WikiApi();
-    }
+public class QueryActionTest extends BaseApiTest {
 
     @Test
     void testMultipleListProp() throws IOException {

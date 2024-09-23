@@ -1,13 +1,12 @@
 package dev.masterflomaster1.jwa.request.list;
 
+import dev.masterflomaster1.jwa.BaseApiTest;
 import dev.masterflomaster1.jwa.Response;
-import dev.masterflomaster1.jwa.WikiApi;
 import dev.masterflomaster1.jwa.WikiApiRequest;
 import dev.masterflomaster1.jwa.common.Dir;
 import dev.masterflomaster1.jwa.common.Group;
 import dev.masterflomaster1.jwa.common.Rights;
 import dev.masterflomaster1.jwa.request.action.QueryAction;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -17,14 +16,7 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class AllUsersListTest {
-
-    private static WikiApi api;
-
-    @BeforeAll
-    static void before() {
-        api = new WikiApi();
-    }
+class AllUsersListTest extends BaseApiTest {
 
     @Test
     @DisplayName("List users starting at Y")
