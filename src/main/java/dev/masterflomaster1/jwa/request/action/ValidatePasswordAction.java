@@ -45,6 +45,7 @@ public final class ValidatePasswordAction extends AbstractAction implements IPos
          */
         public Builder password(String password) {
             validatePasswordAction.password = password;
+            validatePasswordAction.apiUrl.putQuery("password", password);
             return this;
         }
 

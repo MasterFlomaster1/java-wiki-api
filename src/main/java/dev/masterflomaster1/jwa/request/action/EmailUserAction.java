@@ -84,6 +84,7 @@ public final class EmailUserAction extends AbstractAction implements IPost {
          */
         public Builder token(String token) {
             emailUserAction.token = token;
+            emailUserAction.apiUrl.putQuery("token", token);
             return this;
         }
 

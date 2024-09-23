@@ -1,8 +1,9 @@
 package dev.masterflomaster1.jwa.request.action;
 
 import dev.masterflomaster1.jwa.BaseApiTest;
-import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApiRequest;
+import dev.masterflomaster1.jwa.internal.UrlComparator;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -13,20 +14,22 @@ import static org.junit.jupiter.api.Assumptions.assumeFalse;
 class EmailUserActionTest extends BaseApiTest {
 
     @Test
+    @DisplayName("Send an email to the user WikiSysop with the text Content")
     void testExample1() throws IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new EmailUserAction.Builder()
-                        .target("Example")
-                        .subject("Demo subject")
+                        .target("WikiSysop")
+                        .subject("Test")
                         .text("Content")
-                        .token(Shared.tokens().getCsrfToken())
+                        .token("+\\")
                         .build()
                 )
                 .build();
 
-        Response r = api.execute(a);
-        assumeFalse(r.getError() != null && r.getError().getCode().equals("cantsend"), "cantsend, skipping");
-        assertNotNull(r.getEmailUser());
+        assertTrue(UrlComparator.compareUrls(
+                "https://en.wikipedia.org/w/api.php?action=emailuser&format=json&target=WikiSysop&subject=Test&text=Content&token=%2B%5C&formatversion=2",
+                a.getUrl()
+        ));
     }
 
     @Test

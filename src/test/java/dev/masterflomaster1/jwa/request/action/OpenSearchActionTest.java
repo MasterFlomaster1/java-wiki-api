@@ -1,15 +1,12 @@
 package dev.masterflomaster1.jwa.request.action;
 
 import dev.masterflomaster1.jwa.BaseApiTest;
-import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApiRequest;
 import dev.masterflomaster1.jwa.common.Namespace;
-import org.junit.Ignore;
-import org.junit.jupiter.api.Disabled;
+import dev.masterflomaster1.jwa.internal.UrlComparator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.EnumSet;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,11 +14,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class OpenSearchActionTest extends BaseApiTest {
 
+    /**
+     * NOTE: OpenSearchAction response not implemented yet
+     */
     @Test
-    @Ignore
-    @Disabled("OpenSearchAction response not implemented yet")
-    @DisplayName("Find pages beginning with Te.")
-    void testExample1() throws IOException {
+    @DisplayName("Find pages beginning with Te")
+    void testExample1() {
         var a = new WikiApiRequest.Builder()
                 .action(new OpenSearchAction.Builder()
                         .search("Te")
@@ -29,8 +27,10 @@ class OpenSearchActionTest extends BaseApiTest {
                 )
                 .build();
 
-        Response r = api.execute(a);
-        System.out.println(r);
+        assertTrue(UrlComparator.compareUrls(
+                "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=Te&formatversion=2",
+                a.getUrl()
+        ));
     }
 
     @Test

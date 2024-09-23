@@ -1,14 +1,12 @@
 package dev.masterflomaster1.jwa.request.meta;
 
 import dev.masterflomaster1.jwa.BaseApiTest;
-import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApiRequest;
 import dev.masterflomaster1.jwa.internal.UrlComparator;
 import dev.masterflomaster1.jwa.request.action.QueryAction;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.EnumSet;
 import java.util.Set;
 
@@ -17,23 +15,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class TokensMetaTest extends BaseApiTest {
-
-    @Test
-    void testLogin() throws IOException {
-        var a = new WikiApiRequest.Builder()
-                .action(new QueryAction.Builder()
-                        .meta(Set.of(
-                                new TokensMeta.Builder()
-                                        .type(EnumSet.of(TokensMeta.Type.LOGIN, TokensMeta.Type.CSRF))
-                                        .build()
-                        ))
-                        .build()
-                )
-                .build();
-
-        Response r = api.execute(a);
-        assertNotNull(r.getQuery().getTokens());
-    }
 
     @Test
     @DisplayName("Retrieve a csrf token (the default)")

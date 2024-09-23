@@ -228,6 +228,7 @@ public final class BlockAction extends AbstractAction implements IPost {
          */
         public Builder token(String token) {
             blockAction.token = token;
+            blockAction.apiUrl.putQuery("token", token);
             return this;
         }
 

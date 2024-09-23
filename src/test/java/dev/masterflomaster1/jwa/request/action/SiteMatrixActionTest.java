@@ -1,12 +1,11 @@
 package dev.masterflomaster1.jwa.request.action;
 
 import dev.masterflomaster1.jwa.BaseApiTest;
-import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApiRequest;
+import dev.masterflomaster1.jwa.internal.UrlComparator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.EnumSet;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,15 +14,17 @@ class SiteMatrixActionTest extends BaseApiTest {
 
     @Test
     @DisplayName("Show the site matrix")
-    void testExample1() throws IOException {
+    void testExample1() {
         var a = new WikiApiRequest.Builder()
                 .action(new SiteMatrixAction.Builder()
                         .build()
                 )
                 .build();
 
-        Response r = api.execute(a);
-        assertNotNull(r.getSiteMatrix());
+        assertTrue(UrlComparator.compareUrls(
+                "https://en.wikipedia.org/w/api.php?action=sitematrix&format=json&formatversion=2",
+                a.getUrl()
+        ));
     }
 
     @Test

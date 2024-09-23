@@ -65,6 +65,7 @@ public final class ThankAction extends AbstractAction implements IPost {
          */
         public Builder token(String token) {
             thankAction.token = token;
+            thankAction.apiUrl.putQuery("token", token);
             return this;
         }
 

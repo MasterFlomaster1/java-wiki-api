@@ -1,12 +1,10 @@
 package dev.masterflomaster1.jwa.request.action;
 
 import dev.masterflomaster1.jwa.BaseApiTest;
-import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApiRequest;
+import dev.masterflomaster1.jwa.internal.UrlComparator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -16,18 +14,20 @@ class ReviewActionTest extends BaseApiTest {
 
     @Test
     @DisplayName("Approve revision 12345 with comment 'Ok'")
-    void testExample1() throws IOException {
+    void testExample1() {
         var a = new WikiApiRequest.Builder()
                 .action(new ReviewAction.Builder()
                         .revId(12345)
                         .comment("Ok")
-                        .token(Shared.tokens().getCsrfToken())
+                        .token("123AB")
                         .build()
                 )
                 .build();
 
-        Response r = api.execute(a);
-        assumeFalse(r.getError() != null && r.getError().getCode().equals("permissiondenied"), "Permission denied, skipping");
+        assertTrue(UrlComparator.compareUrls(
+                "https://en.wikipedia.org/w/api.php?action=review&format=json&revid=12345&comment=Ok&token=123AB&formatversion=2",
+                a.getUrl()
+        ));
     }
 
     @Test

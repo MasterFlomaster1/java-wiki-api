@@ -1,11 +1,11 @@
 package dev.masterflomaster1.jwa.request.action;
 
 import dev.masterflomaster1.jwa.BaseApiTest;
-import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApiRequest;
+import dev.masterflomaster1.jwa.internal.UrlComparator;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.EnumSet;
 
 import static dev.masterflomaster1.jwa.request.action.CompareAction.Prop.*;
@@ -14,20 +14,20 @@ import static org.junit.jupiter.api.Assertions.*;
 class CompareActionTest extends BaseApiTest {
 
     @Test
-    void testExample1() throws IOException {
+    @DisplayName("Create a diff between revision 1246320177 and 1242717618")
+    void testExample1() {
         var a = new WikiApiRequest.Builder()
                 .action(new CompareAction.Builder()
-                        .fromRev(1207508716)
-                        .toRev(1210047507)
+                        .fromRev(1246320177)
+                        .toRev(1242717618)
                         .build()
                 )
                 .build();
 
-        Response r = api.execute(a);
-
-        System.out.println(r);
-        assertNotNull(r.getCompare());
-        System.out.println(r.getCompare());
+        assertTrue(UrlComparator.compareUrls(
+                "https://en.wikipedia.org/w/api.php?action=compare&format=json&fromrev=1246320177&torev=1242717618&formatversion=2",
+                a.getUrl()
+        ));
     }
 
     @Test

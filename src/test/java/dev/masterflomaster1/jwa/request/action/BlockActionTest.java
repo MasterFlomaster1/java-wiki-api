@@ -1,14 +1,13 @@
 package dev.masterflomaster1.jwa.request.action;
 
 import dev.masterflomaster1.jwa.BaseApiTest;
-import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApiRequest;
 import dev.masterflomaster1.jwa.common.Namespace;
 import dev.masterflomaster1.jwa.common.Tags;
+import dev.masterflomaster1.jwa.internal.UrlComparator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.EnumSet;
 import java.util.Set;
 
@@ -18,27 +17,27 @@ import static org.junit.jupiter.api.Assumptions.assumeFalse;
 class BlockActionTest extends BaseApiTest {
 
     @Test
-    @DisplayName("Block IP address 192.0.2.5 for three days with a reason.")
-    void testExample1() throws IOException {
+    @DisplayName("Block IP address 192.0.2.5 for three days with a reason")
+    void testExample1() {
         var a = new WikiApiRequest.Builder()
                 .action(new BlockAction.Builder()
                         .user("192.0.2.5")
                         .expiry("3 days")
                         .reason("First strike")
-                        .token(Shared.tokens().getCsrfToken())
+                        .token("+\\")
                         .build()
                 )
                 .build();
 
-        Response r = api.execute(a);
-
-        assumeFalse(r.getError() != null && r.getError().getCode().equals("permissiondenied"), "Permission denied, skipping");
-        assertNotNull(r.getBlock());
+        assertTrue(UrlComparator.compareUrls(
+                "https://en.wikipedia.org/w/api.php?action=block&format=json&user=192.0.2.5&expiry=3%20days&reason=First%20strike&token=%2B%5C&formatversion=2",
+                a.getUrl()
+        ));
     }
 
     @Test
-    @DisplayName("Block user Vandal indefinitely with a reason, and prevent new account creation and email sending.")
-    void testExample2() throws IOException {
+    @DisplayName("Block user Vandal indefinitely with a reason, and prevent new account creation and email sending")
+    void testExample2() {
         var a = new WikiApiRequest.Builder()
                 .action(new BlockAction.Builder()
                         .user("Vandal")
@@ -47,15 +46,15 @@ class BlockActionTest extends BaseApiTest {
                         .noCreate()
                         .autoBlock()
                         .noEmail()
-                        .token(Shared.tokens().getCsrfToken())
+                        .token("+\\")
                         .build()
                 )
                 .build();
 
-        Response r = api.execute(a);
-
-        assumeFalse(r.getError() != null && r.getError().getCode().equals("permissiondenied"), "Permission denied, skipping");
-        assertNotNull(r.getBlock());
+        assertTrue(UrlComparator.compareUrls(
+                "https://en.wikipedia.org/w/api.php?action=block&format=json&user=Vandal&expiry=never&reason=Vandalism&nocreate=1&autoblock=1&noemail=1&token=%2B%5C&formatversion=2",
+                a.getUrl()
+        ));
 
     }
 

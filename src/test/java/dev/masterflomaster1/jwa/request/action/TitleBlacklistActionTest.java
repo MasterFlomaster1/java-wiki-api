@@ -1,12 +1,10 @@
 package dev.masterflomaster1.jwa.request.action;
 
 import dev.masterflomaster1.jwa.BaseApiTest;
-import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApiRequest;
+import dev.masterflomaster1.jwa.internal.UrlComparator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,7 +12,7 @@ class TitleBlacklistActionTest extends BaseApiTest {
 
     @Test
     @DisplayName("Check whether Foo is blacklisted")
-    void testExample1() throws IOException {
+    void testExample1() {
         var a = new WikiApiRequest.Builder()
                 .action(new TitleBlacklistAction.Builder()
                         .tbTitle("Foo")
@@ -22,13 +20,15 @@ class TitleBlacklistActionTest extends BaseApiTest {
                 )
                 .build();
 
-        Response r = api.execute(a);
-        assertNotNull(r.getTitleBlacklist());
+        assertTrue(UrlComparator.compareUrls(
+                "https://en.wikipedia.org/w/api.php?action=titleblacklist&format=json&tbtitle=Foo&formatversion=2",
+                a.getUrl()
+        ));
     }
 
     @Test
     @DisplayName("Check whether Bar is blacklisted for editing")
-    void testExample2() throws IOException {
+    void testExample2() {
         var a = new WikiApiRequest.Builder()
                 .action(new TitleBlacklistAction.Builder()
                         .tbTitle("Bar")
@@ -37,8 +37,10 @@ class TitleBlacklistActionTest extends BaseApiTest {
                 )
                 .build();
 
-        Response r = api.execute(a);
-        assertNotNull(r.getTitleBlacklist());
+        assertTrue(UrlComparator.compareUrls(
+                "https://en.wikipedia.org/w/api.php?action=titleblacklist&format=json&tbtitle=Bar&tbaction=edit&formatversion=2",
+                a.getUrl()
+        ));
     }
 
     @Test

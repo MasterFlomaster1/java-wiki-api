@@ -71,6 +71,7 @@ public final class ReviewAction extends AbstractAction implements IPost {
          */
         public Builder token(String token) {
             reviewAction.token = token;
+            reviewAction.apiUrl.putQuery("token", token);
             return this;
         }
 

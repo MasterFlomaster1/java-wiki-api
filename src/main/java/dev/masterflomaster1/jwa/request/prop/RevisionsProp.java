@@ -22,6 +22,7 @@ import java.util.EnumSet;
 public final class RevisionsProp extends AbstractProp {
 
     private EnumSet<RvProp> rvProp;
+    private EnumSet<RvSlots> rvSlots;
     private int rvLimit;
     private String rvSection;
     private Instant rvStart;
@@ -47,6 +48,17 @@ public final class RevisionsProp extends AbstractProp {
         public Builder rvProp(EnumSet<RvProp> rvProp) {
             revisionsProp.rvProp = rvProp;
             revisionsProp.apiUrl.putQuery("rvprop", merge(rvProp));
+            return this;
+        }
+
+        /**
+         * Which revision slots to return data for, when slot-related properties are included in {@code rvprops}.
+         * If omitted, data from the main slot will be returned in a backwards-compatible format.
+         * @return {@code Builder}
+         */
+        public Builder rvSlots(EnumSet<RvSlots> rvSlots) {
+            revisionsProp.rvSlots = rvSlots;
+            revisionsProp.apiUrl.putQuery("rvslots", merge(rvSlots));
             return this;
         }
 
@@ -245,6 +257,20 @@ public final class RevisionsProp extends AbstractProp {
         private final String value;
 
         RvProp(String value) {
+            this.value = value;
+        }
+
+    }
+
+    @Getter
+    public enum RvSlots implements EnumValueProvider {
+
+        ALL_VALUES("*"),
+        MAIN("main");
+
+        private final String value;
+
+        RvSlots(String value) {
             this.value = value;
         }
 

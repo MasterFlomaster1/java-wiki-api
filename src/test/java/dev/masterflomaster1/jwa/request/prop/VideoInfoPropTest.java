@@ -1,14 +1,13 @@
 package dev.masterflomaster1.jwa.request.prop;
 
 import dev.masterflomaster1.jwa.BaseApiTest;
-import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApiRequest;
 import dev.masterflomaster1.jwa.common.Prop;
+import dev.masterflomaster1.jwa.internal.UrlComparator;
 import dev.masterflomaster1.jwa.request.action.QueryAction;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.EnumSet;
@@ -20,22 +19,23 @@ class VideoInfoPropTest extends BaseApiTest {
 
     @Test
     @DisplayName("Fetch information about File:Folgers.ogv")
-    void testExample1() throws IOException {
+    void testExample1() {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .prop(Set.of(
                                 new VideoInfoProp.Builder()
-                                        .viProp(EnumSet.of(Prop.USER, Prop.TIMESTAMP, Prop.URL))
+                                        .viProp(EnumSet.of(Prop.CANONICAL_TITLE))
                                         .build()
-                                )
-                        )
+                        ))
                         .titles(Set.of("File:Folgers.ogv"))
                         .build()
                 )
                 .build();
 
-        Response r = api.execute(a);
-        assertNotNull(r.getQuery().getPages().get(0).getVideoInfo());
+        assertTrue(UrlComparator.compareUrls(
+                "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=videoinfo&titles=File%3AFolgers.ogv&formatversion=2&viprop=canonicaltitle",
+                a.getUrl()
+        ));
     }
 
     @Test

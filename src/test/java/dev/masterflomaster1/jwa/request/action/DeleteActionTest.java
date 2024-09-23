@@ -1,12 +1,10 @@
 package dev.masterflomaster1.jwa.request.action;
 
 import dev.masterflomaster1.jwa.BaseApiTest;
-import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApiRequest;
+import dev.masterflomaster1.jwa.internal.UrlComparator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.assumeFalse;
@@ -14,38 +12,38 @@ import static org.junit.jupiter.api.Assumptions.assumeFalse;
 class DeleteActionTest extends BaseApiTest {
 
     @Test
-    @DisplayName("Delete Main Page.")
-    void testExample1() throws IOException {
+    @DisplayName("Delete Main Page")
+    void testExample1() {
         var a = new WikiApiRequest.Builder()
                 .action(new DeleteAction.Builder()
                         .title("Main Page")
-                        .token(Shared.tokens().getCsrfToken())
+                        .token("+\\")
                         .build()
                 )
                 .build();
 
-        Response r = api.execute(a);
-
-        assumeFalse(r.getError() != null && r.getError().getCode().equals("permissiondenied"), "Permission denied, skipping");
-        assertNotNull(r.getDelete());
+        assertTrue(UrlComparator.compareUrls(
+                "https://en.wikipedia.org/w/api.php?action=delete&format=json&title=Main%20Page&token=%2B%5C&formatversion=2",
+                a.getUrl()
+        ));
     }
 
     @Test
-    @DisplayName("Delete Main Page with the reason Preparing for move.")
-    void testExample2() throws IOException {
+    @DisplayName("Delete Main Page with the reason Preparing for move")
+    void testExample2() {
         var a = new WikiApiRequest.Builder()
                 .action(new DeleteAction.Builder()
                         .title("Main Page")
                         .reason("Preparing for move")
-                        .token(Shared.tokens().getCsrfToken())
+                        .token("+\\")
                         .build()
                 )
                 .build();
 
-        Response r = api.execute(a);
-
-        assumeFalse(r.getError() != null && r.getError().getCode().equals("permissiondenied"), "Permission denied, skipping");
-        assertNotNull(r.getDelete());
+        assertTrue(UrlComparator.compareUrls(
+                "https://en.wikipedia.org/w/api.php?action=delete&format=json&title=Main%20Page&reason=Preparing%20for%20move&token=%2B%5C&formatversion=2",
+                a.getUrl()
+        ));
     }
 
     @Test

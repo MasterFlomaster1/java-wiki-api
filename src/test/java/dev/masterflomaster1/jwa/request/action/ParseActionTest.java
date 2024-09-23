@@ -1,14 +1,13 @@
 package dev.masterflomaster1.jwa.request.action;
 
 import dev.masterflomaster1.jwa.BaseApiTest;
-import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApiRequest;
 import dev.masterflomaster1.jwa.common.ContentFormat;
 import dev.masterflomaster1.jwa.common.ContentModel;
+import dev.masterflomaster1.jwa.internal.UrlComparator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.EnumSet;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,8 +15,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class ParseActionTest extends BaseApiTest {
 
     @Test
-    @DisplayName("Parse a page.")
-    void testExample1() throws IOException {
+    @DisplayName("Parse a page")
+    void testExample1() {
         var a = new WikiApiRequest.Builder()
                 .action(new ParseAction.Builder()
                         .page("Project:Sandbox")
@@ -25,13 +24,15 @@ class ParseActionTest extends BaseApiTest {
                 )
                 .build();
 
-        Response r = api.execute(a);
-        assertNotNull(r.getParse());
+        assertTrue(UrlComparator.compareUrls(
+                "https://en.wikipedia.org/w/api.php?action=parse&format=json&page=Project%3ASandbox&formatversion=2",
+                a.getUrl()
+        ));
     }
 
     @Test
-    @DisplayName("Parse wikitext.")
-    void testExample2() throws IOException {
+    @DisplayName("Parse wikitext")
+    void testExample2() {
         var a = new WikiApiRequest.Builder()
                 .action(new ParseAction.Builder()
                         .text("{{Project:Sandbox}}")
@@ -40,24 +41,27 @@ class ParseActionTest extends BaseApiTest {
                 )
                 .build();
 
-        Response r = api.execute(a);
-        assertNotNull(r.getParse());
+        assertTrue(UrlComparator.compareUrls(
+                "https://en.wikipedia.org/w/api.php?action=parse&format=json&text=%7B%7BProject%3ASandbox%7D%7D&contentmodel=wikitext&formatversion=2",
+                a.getUrl()
+        ));
     }
 
     @Test
-    @DisplayName("Parse wikitext, specifying the page title.")
-    void testExample3() throws IOException {
+    @DisplayName("Parse wikitext, specifying the page title")
+    void testExample3() {
         var a = new WikiApiRequest.Builder()
                 .action(new ParseAction.Builder()
                         .title("Test")
                         .text("{{PAGENAME}}")
-                        .contentModel(ContentModel.WIKITEXT)
                         .build()
                 )
                 .build();
 
-        Response r = api.execute(a);
-        assertNotNull(r.getParse());
+        assertTrue(UrlComparator.compareUrls(
+                "https://en.wikipedia.org/w/api.php?action=parse&format=json&title=Test&text=%7B%7BPAGENAME%7D%7D&formatversion=2",
+                a.getUrl()
+        ));
     }
 
     @Test

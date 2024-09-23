@@ -1,18 +1,15 @@
 package dev.masterflomaster1.jwa.request.action;
 
 import dev.masterflomaster1.jwa.BaseApiTest;
-import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApiRequest;
-import dev.masterflomaster1.jwa.request.list.RecentChangesList;
+import dev.masterflomaster1.jwa.internal.UrlComparator;
 import dev.masterflomaster1.jwa.request.list.UsersList;
 import dev.masterflomaster1.jwa.request.meta.SiteInfoMeta;
-import dev.masterflomaster1.jwa.request.prop.CategoriesProp;
-import dev.masterflomaster1.jwa.request.prop.ContributorsProp;
-import dev.masterflomaster1.jwa.request.prop.ImagesProp;
 import dev.masterflomaster1.jwa.request.prop.RevisionsProp;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
+import java.util.EnumSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,35 +17,28 @@ import static org.junit.jupiter.api.Assertions.*;
 public class QueryActionTest extends BaseApiTest {
 
     @Test
-    void testMultipleListProp() throws IOException {
+    @DisplayName("Fetch site info and revisions of Main Page")
+    void testExample1() {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
-                        .prop(Set.of(
-                                new CategoriesProp.Builder()
-                                        .build(),
-                                new ContributorsProp.Builder()
-                                        .build(),
-                                new ImagesProp.Builder()
-                                        .build()
+                        .prop(Set.of(new RevisionsProp.Builder()
+                                .rvProp(EnumSet.of(RevisionsProp.RvProp.USER, RevisionsProp.RvProp.COMMENT))
+                                .build()
                         ))
-                        .list(Set.of(
-                                new RecentChangesList.Builder()
-                                        .build(),
-                                new UsersList.Builder()
-                                        .build()
+                        .meta(Set.of(new SiteInfoMeta.Builder()
+                                .build()
                         ))
-                        .titles(Set.of("PAVE"))
+                        .continue_("")
+                        .titles(Set.of("Main Page"))
                         .build()
                 )
                 .build();
 
-        Response r = api.execute(a);
+        assertTrue(UrlComparator.compareUrls(
+                "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&meta=siteinfo&continue=&titles=Main%20Page&formatversion=2&rvprop=user%7Ccomment",
+                a.getUrl()
+        ));
 
-        assertNotNull(r.getQuery().getPages().get(0).getCategories());
-        assertNotNull(r.getQuery().getPages().get(0).getContributors());
-        assertNotNull(r.getQuery().getPages().get(0).getImages());
-        assertNotNull(r.getQuery().getUsers());
-        assertNotNull(r.getQuery().getRecentChanges());
     }
 
     @Test

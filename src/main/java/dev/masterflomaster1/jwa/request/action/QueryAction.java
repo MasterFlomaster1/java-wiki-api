@@ -23,6 +23,7 @@ public final class QueryAction extends AbstractAction {
     private Set<AbstractMeta> meta;
     private boolean indexPageIDs;
     private boolean export;
+    private String continue_;
     private Set<String> titles;
 
     private QueryAction() {
@@ -95,6 +96,18 @@ public final class QueryAction extends AbstractAction {
         public Builder export() {
             queryAction.export = true;
             queryAction.apiUrl.putQuery("export", "1");
+            return this;
+        }
+
+        /**
+         * When more results are available, use this to continue.
+         * More detailed information on how to continue queries can be found on
+         * <a href="https://www.mediawiki.org/wiki/API:Continue">mediawiki.org</a>.
+         * @return {@code Builder}
+         */
+        public Builder continue_(final String continue_) {
+            queryAction.continue_ = continue_;
+            queryAction.apiUrl.putQuery("continue", continue_);
             return this;
         }
 

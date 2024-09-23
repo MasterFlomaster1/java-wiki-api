@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.EnumSet;
 import java.util.Set;
 
+@SuppressWarnings("unused")
 class Shared {
 
     private static Tokens tokens;

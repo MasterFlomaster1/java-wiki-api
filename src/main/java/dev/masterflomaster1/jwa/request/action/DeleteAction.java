@@ -119,6 +119,7 @@ public final class DeleteAction extends AbstractAction implements IPost {
          */
         public Builder token(String token) {
             deleteAction.token = token;
+            deleteAction.apiUrl.putQuery("token", token);
             return this;
         }
 

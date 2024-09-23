@@ -153,6 +153,7 @@ public final class WatchAction extends AbstractAction implements IPost {
          */
         public Builder token(String token) {
             watchAction.token = token;
+            watchAction.apiUrl.putQuery("token", token);
             return this;
         }
 

@@ -1,21 +1,20 @@
 package dev.masterflomaster1.jwa.request.action;
 
 import dev.masterflomaster1.jwa.BaseApiTest;
-import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApiRequest;
+import dev.masterflomaster1.jwa.internal.UrlComparator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class LanguageSearchActionTest extends BaseApiTest {
 
     @Test
     @DisplayName("Search for 'Te'")
-    void testExample1() throws IOException {
+    void testExample1() {
         var a = new WikiApiRequest.Builder()
                 .action(new LanguageSearchAction.Builder()
                         .search("Te")
@@ -23,13 +22,15 @@ class LanguageSearchActionTest extends BaseApiTest {
                 )
                 .build();
 
-        Response r = api.execute(a);
-        assertNotNull(r.getLanguageSearch());
+        assertTrue(UrlComparator.compareUrls(
+                "https://en.wikipedia.org/w/api.php?action=languagesearch&format=json&search=Te&formatversion=2",
+                a.getUrl()
+        ));
     }
 
     @Test
     @DisplayName("Search for 'ഫി'")
-    void testExample2() throws IOException {
+    void testExample2() {
         var a = new WikiApiRequest.Builder()
                 .action(new LanguageSearchAction.Builder()
                         .search("ഫി")
@@ -37,13 +38,15 @@ class LanguageSearchActionTest extends BaseApiTest {
                 )
                 .build();
 
-        Response r = api.execute(a);
-        assertNotNull(r.getLanguageSearch());
+        assertTrue(UrlComparator.compareUrls(
+                "https://en.wikipedia.org/w/api.php?action=languagesearch&format=json&search=%E0%B4%AB%E0%B4%BF&formatversion=2",
+                a.getUrl()
+        ));
     }
 
     @Test
     @DisplayName("Search for 'ഫി', allowing one typo")
-    void testExample3() throws IOException {
+    void testExample3() {
         var a = new WikiApiRequest.Builder()
                 .action(new LanguageSearchAction.Builder()
                         .search("ഫി")
@@ -52,8 +55,10 @@ class LanguageSearchActionTest extends BaseApiTest {
                 )
                 .build();
 
-        Response r = api.execute(a);
-        assertNotNull(r.getLanguageSearch());
+        assertTrue(UrlComparator.compareUrls(
+                "https://en.wikipedia.org/w/api.php?action=languagesearch&format=json&search=%E0%B4%AB%E0%B4%BF&typos=1&formatversion=2",
+                a.getUrl()
+        ));
     }
 
     @Test

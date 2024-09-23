@@ -1,32 +1,33 @@
 package dev.masterflomaster1.jwa.request.action;
 
 import dev.masterflomaster1.jwa.BaseApiTest;
-import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApiRequest;
+import dev.masterflomaster1.jwa.internal.UrlComparator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assumptions.assumeFalse;
 
 class ThankActionTest extends BaseApiTest {
 
     @Test
     @DisplayName("Send thanks for revision ID 456, with the source being a diff page")
-    void testExample1() throws IOException {
+    void testExample1() {
         var a = new WikiApiRequest.Builder()
                 .action(new ThankAction.Builder()
                         .rev(456)
-                        .token(Shared.tokens().getCsrfToken())
+                        .token("+\\")
                         .source("diff")
                         .build()
                 )
                 .build();
 
-        Response r = api.execute(a);
-        assumeFalse(r.getError() != null && r.getError().getCode().equals("notloggedin"), "Not logged in, skipping");
+        assertTrue(UrlComparator.compareUrls(
+                "https://en.wikipedia.org/w/api.php?action=thank&format=json&rev=456&token=%2B%5C&source=diff&formatversion=2",
+                a.getUrl()
+        ));
     }
 
     @Test
