@@ -5,6 +5,7 @@ import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApiRequest;
 import dev.masterflomaster1.jwa.common.Dir;
 import dev.masterflomaster1.jwa.common.Prop;
+import dev.masterflomaster1.jwa.internal.UrlComparator;
 import dev.masterflomaster1.jwa.request.action.QueryAction;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,11 +19,12 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AllImagesListTest extends BaseApiTest {
 
     @Test
-    @DisplayName("Show a list of files starting at the letter B.")
+    @DisplayName("Show a list of files starting at the letter B")
     void testExample1() throws IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
@@ -30,19 +32,20 @@ class AllImagesListTest extends BaseApiTest {
                                 new AllImagesList.Builder()
                                         .aiFrom("B")
                                         .build()
-                                )
-                        )
+                        ))
                         .build()
                 )
                 .build();
 
-        Response r = api.execute(a);
-        assertNotNull(r.getQuery().getAllImages());
+        assertTrue(UrlComparator.compareUrls(
+                "https://en.wikipedia.org/w/api.php?action=query&format=json&list=allimages&formatversion=2&aifrom=B",
+                a.getUrl()
+        ));
     }
 
     @Test
-    @DisplayName("Show a list of recently uploaded files, similar to Special:NewFiles.")
-    void testExample2() throws IOException {
+    @DisplayName("Show a list of recently uploaded files, similar to Special:NewFiles")
+    void testExample2() {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .list(Set.of(
@@ -57,8 +60,10 @@ class AllImagesListTest extends BaseApiTest {
                 )
                 .build();
 
-        Response r = api.execute(a);
-        assertNotNull(r.getQuery().getAllImages());
+        assertTrue(UrlComparator.compareUrls(
+                "https://en.wikipedia.org/w/api.php?action=query&format=json&list=allimages&formatversion=2&aisort=timestamp&aidir=older&aiprop=user%7Ctimestamp%7Curl",
+                a.getUrl()
+        ));
     }
 
     @Test

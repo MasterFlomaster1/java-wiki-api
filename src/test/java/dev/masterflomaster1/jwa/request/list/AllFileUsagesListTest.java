@@ -4,6 +4,7 @@ import dev.masterflomaster1.jwa.BaseApiTest;
 import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApiRequest;
 import dev.masterflomaster1.jwa.common.Dir;
+import dev.masterflomaster1.jwa.internal.UrlComparator;
 import dev.masterflomaster1.jwa.request.action.QueryAction;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,8 +18,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class AllFileUsagesListTest extends BaseApiTest {
 
     @Test
-    @DisplayName("List file titles, including missing ones, with page IDs they are from, starting at B.")
-    void testExample1() throws IOException {
+    @DisplayName("List file titles, including missing ones, with page IDs they are from, starting at B")
+    void testExample1() {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
                         .list(Set.of(
@@ -32,9 +33,10 @@ class AllFileUsagesListTest extends BaseApiTest {
                 )
                 .build();
 
-        Response r = api.execute(a);
-
-        assertNotNull(r.getQuery().getAllFileUsages());
+        assertTrue(UrlComparator.compareUrls(
+                "https://en.wikipedia.org/w/api.php?action=query&format=json&list=allfileusages&formatversion=2&affrom=B&afprop=ids%7Ctitle",
+                a.getUrl()
+        ));
     }
 
     @Test

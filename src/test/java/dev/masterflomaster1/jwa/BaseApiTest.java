@@ -1,6 +1,6 @@
 package dev.masterflomaster1.jwa;
 
-public class BaseApiTest {
+public abstract class BaseApiTest {
 
     protected final WikiApi api = Shared.api();
 

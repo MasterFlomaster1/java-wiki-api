@@ -5,7 +5,9 @@ import dev.masterflomaster1.jwa.Response;
 import dev.masterflomaster1.jwa.WikiApiRequest;
 import dev.masterflomaster1.jwa.common.FilterRedir;
 import dev.masterflomaster1.jwa.common.Namespace;
+import dev.masterflomaster1.jwa.internal.UrlComparator;
 import dev.masterflomaster1.jwa.request.action.QueryAction;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -17,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class RandomListTest extends BaseApiTest {
 
     @Test
+    @DisplayName("Return two random pages from the main namespace")
     void testExample1() throws IOException {
         var a = new WikiApiRequest.Builder()
                 .action(new QueryAction.Builder()
@@ -30,9 +33,10 @@ class RandomListTest extends BaseApiTest {
                 )
                 .build();
 
-        Response r = api.execute(a);
-
-        assertNotNull(r.getQuery().getRandom());
+        assertTrue(UrlComparator.compareUrls(
+                "https://en.wikipedia.org/w/api.php?action=query&format=json&list=random&formatversion=2&rnnamespace=0&rnlimit=2",
+                a.getUrl()
+        ));
     }
 
     @Test
