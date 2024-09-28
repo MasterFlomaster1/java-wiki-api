@@ -74,10 +74,16 @@
         <module name="ConstantName"/>
         <module name="LocalFinalVariableName"/>
         <module name="LocalVariableName"/>
-        <module name="MemberName"/>
-        <module name="MethodName"/>
+        <module name="MemberName">
+            <property name="format" value="^[a-z][a-zA-Z0-9]*_?$"/>
+        </module>
+        <module name="MethodName">
+            <property name="format" value="^[a-z][a-zA-Z0-9]*_?$"/>
+        </module>
         <module name="PackageName"/>
-        <module name="ParameterName"/>
+        <module name="ParameterName">
+            <property name="format" value="^[a-z][a-zA-Z0-9]*_?$"/>
+        </module>
         <module name="StaticVariableName"/>
         <module name="TypeName"/>
 
