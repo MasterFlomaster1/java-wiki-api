@@ -20,14 +20,14 @@ The build requires JDK 17 or later.
 <dependency>
     <groupId>io.github.masterflomaster1</groupId>
     <artifactId>java-wiki-api</artifactId>
-    <version>0.8.1</version>
+    <version>0.11.0</version>
 </dependency>
 ```
 
 ### Gradle
 ```grale
 dependencies {
-    implementation("io.github.masterflomaster1:java-wiki-api:0.8.1")
+    implementation("io.github.masterflomaster1:java-wiki-api:0.11.0")
 }
 ```
 

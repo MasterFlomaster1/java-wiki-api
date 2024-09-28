@@ -6,7 +6,7 @@
 
     <groupId>io.github.masterflomaster1</groupId>
     <artifactId>java-wiki-api</artifactId>
-    <version>0.8.1</version>
+    <version>0.11.0</version>
 
     <name>java-wiki-api</name>
     <description>Unofficial Java API client for Wikipedia</description>
