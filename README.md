@@ -85,23 +85,24 @@ var a = new WikiApiRequest.Builder()
 
 When using `query` action, the prop parameter specifies which properties of pages or objects you want to retrieve. This includes page content, contributors, templates, and more. Supported props:
 
-| Name         | Description                                                                              |
-|--------------|------------------------------------------------------------------------------------------|
-| categories   | List all categories the pages belong to                                                  |
-| categoryinfo | Returns information about the given categories                                           |
-| contributors | Get the list of logged-in contributors and the count of anonymous contributors to a page |
-| extlinks     | Returns all external URLs (not interwikis) from the given pages                          |
-| fileusage    | Find all pages that use the given files                                                  |
-| globalusage  | Returns global image usage for a certain image                                           |
-| imageinfo    | Returns file information and upload history                                              |
-| images       | Returns all files contained on the given pages                                           |
-| info         | Get basic page information                                                               |
-| isreviewed   | Determine if a page is marked as reviewed                                                |
-| pageviews    | Shows per-page pageview data                                                             |
-| redirects    | Returns all redirects to the given pages                                                 |
-| revisions    | Get revision information                                                                 |
-| templates    | Returns all pages transcluded on the given pages                                         |
-| videoinfo    | Extends imageinfo to include video source (derivatives) information                      |
+| Name            | Description                                                                              |
+|-----------------|------------------------------------------------------------------------------------------|
+| categories      | List all categories the pages belong to                                                  |
+| categoryinfo    | Returns information about the given categories                                           |
+| contributors    | Get the list of logged-in contributors and the count of anonymous contributors to a page |
+| extlinks        | Returns all external URLs (not interwikis) from the given pages                          |
+| fileusage       | Find all pages that use the given files                                                  |
+| globalusage     | Returns global image usage for a certain image                                           |
+| imageinfo       | Returns file information and upload history                                              |
+| images          | Returns all files contained on the given pages                                           |
+| info            | Get basic page information                                                               |
+| isreviewed      | Determine if a page is marked as reviewed                                                |
+| pageviews       | Shows per-page pageview data                                                             |
+| redirects       | Returns all redirects to the given pages                                                 |
+| revisions       | Get revision information                                                                 |
+| templates       | Returns all pages transcluded on the given pages                                         |
+| transcodestatus | Get transcode status for a given file page                                               |
+| videoinfo       | Extends imageinfo to include video source (derivatives) information                      |
 
 **Example:**
 
