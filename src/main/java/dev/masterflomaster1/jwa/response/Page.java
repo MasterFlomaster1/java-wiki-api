@@ -45,6 +45,8 @@ public final class Page {
     @SerializedName("redirects")            private List<Redirect> redirects;
     @SerializedName("videoinfo")            private List<VideoInfo> videoInfo;
     @SerializedName("fileusage")            private List<FileUsage> fileUsage;
+    @SerializedName("links")                private List<Links> links;
+    @SerializedName("linkshere")            private List<LinksHere> linksHere;
 
     private Page() { }
 }

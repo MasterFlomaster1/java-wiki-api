@@ -3,6 +3,7 @@ package dev.masterflomaster1.jwa.request.prop;
 import dev.masterflomaster1.jwa.BaseApiTest;
 import dev.masterflomaster1.jwa.WikiApiRequest;
 import dev.masterflomaster1.jwa.common.Namespace;
+import dev.masterflomaster1.jwa.common.Show;
 import dev.masterflomaster1.jwa.internal.UrlComparator;
 import dev.masterflomaster1.jwa.request.action.QueryAction;
 import org.junit.jupiter.api.DisplayName;
@@ -42,14 +43,14 @@ class FileUsagePropTest extends BaseApiTest {
         var a = new FileUsageProp.Builder()
                 .fuProp(EnumSet.of(FileUsageProp.FuProp.TITLE))
                 .fuNamespace(EnumSet.of(Namespace.TEMPLATE))
-                .fuShow(EnumSet.of(FileUsageProp.FuShow.REDIRECT))
+                .fuShow(EnumSet.of(Show.Redirect.REDIRECT))
                 .fuLimit(40)
                 .fuContinue("test")
                 .build();
 
         assertEquals(EnumSet.of(FileUsageProp.FuProp.TITLE), a.getFuProp());
         assertEquals(EnumSet.of(Namespace.TEMPLATE), a.getFuNamespace());
-        assertEquals(EnumSet.of(FileUsageProp.FuShow.REDIRECT), a.getFuShow());
+        assertEquals(EnumSet.of(Show.Redirect.REDIRECT), a.getFuShow());
         assertEquals(40, a.getFuLimit());
         assertEquals("test", a.getFuContinue());
     }

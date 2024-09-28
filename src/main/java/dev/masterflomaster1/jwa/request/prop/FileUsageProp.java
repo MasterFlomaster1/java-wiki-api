@@ -1,6 +1,7 @@
 package dev.masterflomaster1.jwa.request.prop;
 
 import dev.masterflomaster1.jwa.common.Namespace;
+import dev.masterflomaster1.jwa.common.Show;
 import dev.masterflomaster1.jwa.internal.EnumValueProvider;
 import dev.masterflomaster1.jwa.request.AbstractBuilder;
 import lombok.EqualsAndHashCode;
@@ -22,7 +23,7 @@ public final class FileUsageProp extends AbstractProp {
 
     private EnumSet<FuProp> fuProp;
     private EnumSet<Namespace> fuNamespace;
-    private EnumSet<FuShow> fuShow;
+    private EnumSet<Show.Redirect> fuShow;
     private int fuLimit;
     private String fuContinue;
 
@@ -59,30 +60,6 @@ public final class FileUsageProp extends AbstractProp {
 
     }
 
-    /**
-     * Show only items that meet these criteria.
-     */
-    @Getter
-    public enum FuShow implements EnumValueProvider {
-
-        /**
-         * Only show redirects.
-         */
-        REDIRECT ("redirect"),
-
-        /**
-         * Only show non-redirects.
-         */
-        NOT_REDIRECT ("!redirect");
-
-        private final String value;
-
-        FuShow(String value) {
-            this.value = value;
-        }
-
-    }
-
     public static class Builder extends AbstractBuilder {
 
         private final FileUsageProp fileUsageProp = new FileUsageProp();
@@ -111,7 +88,7 @@ public final class FileUsageProp extends AbstractProp {
          * Show only items that meet these criteria.
          * @return {@code Builder}
          */
-        public Builder fuShow(EnumSet<FuShow> fuShow) {
+        public Builder fuShow(EnumSet<Show.Redirect> fuShow) {
             fileUsageProp.fuShow = fuShow;
             fileUsageProp.apiUrl.putQuery("fushow", merge(fuShow));
             return this;

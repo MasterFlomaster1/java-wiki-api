@@ -97,6 +97,8 @@ When using `query` action, the prop parameter specifies which properties of page
 | images          | Returns all files contained on the given pages                                           |
 | info            | Get basic page information                                                               |
 | isreviewed      | Determine if a page is marked as reviewed                                                |
+| linkshere       | Find all pages that link to the given pages                                              |
+| links           | Returns all links from the given pages                                                   |
 | pageviews       | Shows per-page pageview data                                                             |
 | redirects       | Returns all redirects to the given pages                                                 |
 | revisions       | Get revision information                                                                 |
